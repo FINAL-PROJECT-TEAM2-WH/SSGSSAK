@@ -667,7 +667,7 @@ $('#loginBtn').on('click', function () {
 });
 
 $('#joinBtn').on('click', function () {	
-	location.href = "#";
+	location.href = "/regist/auth";
 });
 </script>
 

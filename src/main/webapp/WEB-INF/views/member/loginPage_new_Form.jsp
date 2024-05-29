@@ -2334,7 +2334,7 @@ $('#loginBtn').one('click', function () {
         success: function (data) {
         	console.log(data);
             if (data) {
-            	alert(data.success);
+            	//alert(data.success);
             	var parent = window.opener;    
             	parent.location.reload();
             	window.close();               	
