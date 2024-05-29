@@ -1,6 +1,6 @@
 package ssgssak.team1.sist.login.controller;
 
-import java.sql.Connection;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,18 +13,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-import ssgssak.team1.sist.com.util.ConnectionProvider;
-import ssgssak.team1.sist.login.persistence.MemberDAO;
-import ssgssak.team1.sist.login.persistence.MemberDAOImpl;
 import ssgssak.team1.sist.login.service.LoginService;
-import ssgssak.team1.sist.member.domain.MemberDTO;
 
 @Controller
 @Log4j
