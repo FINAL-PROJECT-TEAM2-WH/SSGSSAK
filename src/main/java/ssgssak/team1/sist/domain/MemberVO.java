@@ -19,7 +19,6 @@ import lombok.Setter;
 public class MemberVO {
 	private String id;
 	private String email;
-	private String phoneNum;
 	private String name;
 	private String passwd;
 	private Date birthD;
@@ -28,7 +27,5 @@ public class MemberVO {
 	private char login2Notification;
 	private String privilege;	
 	private char enabled;
-	
-	
-	
+
 }

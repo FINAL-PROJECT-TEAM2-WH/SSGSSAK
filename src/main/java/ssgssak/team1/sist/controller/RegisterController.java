@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import ssgssak.team1.sist.domain.MemberVO;
+
+import ssgssak.team1.sist.domain.ShippingPlaceInfoVO;
 import ssgssak.team1.sist.domain.TermsDTO;
+import ssgssak.team1.sist.domain.UserForm;
 import ssgssak.team1.sist.service.LoginService;
 import ssgssak.team1.sist.service.RegistService;
 
@@ -122,10 +125,25 @@ public class RegisterController {
 	}
 	
 	@PostMapping("/register")
-	public ResponseEntity<Map<String, Object>> register(MemberVO memberVO){
+	public ResponseEntity<Map<String, Object>> register(UserForm userform){
 		log.info("> registerPOST get in...");
 		Map<String, Object> result = new HashMap();
 		
+		System.out.println(userform.getMbr().getName());
+		System.out.println(userform.getMbr().getId());
+		System.out.println(userform.getMbr().getPasswd());
+		System.out.println(userform.getMbr().getEmail());
+		System.out.println(userform.getMbrCntsano());
+		System.out.println(userform.getMbrCntsELno());
+		System.out.println(userform.getShipinfo().getMemid());
+		System.out.println(userform.getShipinfo().getDetailAddress());
+		System.out.println(userform.getShipinfo().getJibunAddress());
+		System.out.println(userform.getShipinfo().getRoadAddress());
+		System.out.println(userform.getShipinfo().getPostNum());
+		/*
+		 * System.out.println(phoneNum.toString());
+		 * System.out.println(infoVO.toString());
+		 
 		if (registService.register(memberVO)) {
 			// 회원가입에 성공한 경우. 
 			result.put("success", true);				
@@ -133,7 +151,7 @@ public class RegisterController {
 			// 회원가입에 실패한 경우. 
 			result.put("success", false);
 		}
-	
+	*/
 		return ResponseEntity.ok(result);		
 	}
 	
