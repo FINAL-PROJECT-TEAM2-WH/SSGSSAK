@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
-import ssgssak.team1.sist.member.domain.MemberDTO;
+import ssgssak.team1.sist.domain.MemberDTO;
 
 
 public interface MemberDAO {

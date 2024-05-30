@@ -1,4 +1,4 @@
-package ssgssak.team1.sist.register.controller;
+package ssgssak.team1.sist.controller;
 
 import javax.servlet.http.HttpServletRequest;
 

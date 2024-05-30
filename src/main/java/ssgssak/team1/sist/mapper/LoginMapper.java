@@ -1,4 +1,4 @@
-package ssgssak.team1.sist.mapper.login;
+package ssgssak.team1.sist.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
