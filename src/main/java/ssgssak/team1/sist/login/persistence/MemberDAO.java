@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
-import ssgssak.team1.sist.domain.MemberDTO;
+import ssgssak.team1.sist.domain.MemberVO;
 
 
 public interface MemberDAO {
@@ -15,7 +15,7 @@ public interface MemberDAO {
 	
 	// Member의 id passwd 갖고 오는 
 	
-	public MemberDTO login (String id, String passwd) throws SQLException ;
+	public MemberVO login (String id, String passwd) throws SQLException ;
 	
 	public int updateLoginYN(String id) throws SQLException;
 	
@@ -56,7 +56,7 @@ public interface MemberDAO {
 	public ArrayList<String> getAgreement(String conditionName , String id) throws SQLException;
 	
 	// 회원 생성 함수 . 
-	public int registerMbr(MemberDTO dto, Map<String,String> map, Map<String,String> address) throws SQLException;
+	public int registerMbr(MemberVO dto, Map<String,String> map, Map<String,String> address) throws SQLException;
 	
 	public int regiInsertFolder(String id) throws SQLException;
 	

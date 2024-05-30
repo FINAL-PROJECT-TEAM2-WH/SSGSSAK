@@ -360,7 +360,7 @@
             <div class="cmem_certi_area ty_big">
                 <div class="cmem_certi">
 					<span class="cmem_certi_item">
-						<a href="<%= contextPath %>/member/join/agree.jsp" class="cmem_certi_phone" data-reactingV2-key='00183_000000837|t00060|1' title="새창열림">휴대폰 인증</a>
+						<a href="/regist/auth?agree" class="cmem_certi_phone" data-reactingV2-key='00183_000000837|t00060|1' title="새창열림">휴대폰 인증</a>
 					</span>
                     <span class="cmem_certi_item">
 					<a href="javascript:void(0);" onclick="selfCert.open('50');" class="cmem_certi_card" data-reactingV2-key='00183_000000837|t00060|2' title="새창열림">신용/체크카드 인증</a>

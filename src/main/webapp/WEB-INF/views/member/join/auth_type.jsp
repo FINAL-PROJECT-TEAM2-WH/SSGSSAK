@@ -394,7 +394,7 @@
                         </li>
                     </ul>
                     <div class="cmem_btnarea ty_join">
-                        <button type="button" class="cmem_join_btn cmem_btn_black_alpha20" data-reactingV2-key="00183_000000734|t00060|1" onclick="location.href='<%=contextPath%>/member/join/auth.do?mbrTypeCd=10'"><span>통합회원만 가입하기</span></button>
+                        <button type="button" class="cmem_join_btn cmem_btn_black_alpha20" data-reactingV2-key="00183_000000734|t00060|1" onclick="location.href='/regist/auth?mbrTypeCd=10'"><span>통합회원만 가입하기</span></button>
                         <button type="button" class="cmem_join_btn cmem_btn_primary" data-reactingV2-key="00183_000000734|t00060|2" onclick="location.href='/member/join/auth.ssg?mbrTypeCd=10&bothJoinYn=Y'"><span>멤버십 혜택 받고 통합회원 가입하기</span></button>
                     </div>
                 </div>

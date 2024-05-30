@@ -341,7 +341,7 @@
     </div>
 
     <form id="joinForm" method="POST">
-        <input type="hidden" name="selfCertTokenId" value="044c4bc40b9b11efa6b008f1ea745ea4"/>
+     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="cmem_cont">
             <div class="cmem_sec">
                 <div class="cmem_subtit">
@@ -364,7 +364,7 @@
                                     <input type="hidden" id="isDuplicateMbrLoginId"/>
                                     <div class="cmem_inpgrp ty_id">
                                         <div class="cmem_txt" id="idIpt">
-                                                <input type="text" placeholder="영어 또는 숫자로 6~20자리로 입력해주세요." class="translated" id="mbrLoginId" name="mbrDto.mbrLoginId" maxlength="20"/>
+                                                <input type="text" placeholder="영어 또는 숫자로 6~20자리로 입력해주세요." class="translated" id="mbrLoginId" name="id" maxlength="20"/>
                                             
                                         </div>
                                         <button type="button" class="cmem_btn cmem_btn_gray" id="checkDuplicateLoginIdBtn">
@@ -388,7 +388,7 @@
                         <dd class="cmem_dd">
                             <div class="cmem_inpgrp ty_pw">
                                 <div class="cmem_txt">
-                                    <input type="password" placeholder="영문, 숫자 조합 8~20자리로 입력해주세요." id="pwd" name="mbrDto.pwd" class="translated" maxlength="20"/><span class="trans_placeholder blind" data-default-txt="영문, 숫자 조합 8~20자리로 입력해주세요.">영문, 숫자 조합 8~20자리로 입력해주세요.</span>
+                                    <input type="password" placeholder="영문, 숫자 조합 8~20자리로 입력해주세요." id="pwd" name="passwd" class="translated" maxlength="20"/><span class="trans_placeholder blind" data-default-txt="영문, 숫자 조합 8~20자리로 입력해주세요.">영문, 숫자 조합 8~20자리로 입력해주세요.</span>
                                 </div>
                             </div>
                         </dd>
@@ -422,7 +422,7 @@
                         <dd class="cmem_dd">
                             <div class="cmem_inpgrp ty_pw">
                                 <div class="cmem_txt">
-                                    <input type="text" placeholder="きみのなまえわ" id="mbrname" name="mbrDto.name" class="translated" maxlength="20"/><span class="trans_placeholder blind" data-default-txt="영문, 숫자 조합 8~20자리로 입력해주세요.">영문, 숫자 조합 8~20자리로 입력해주세요.</span>
+                                    <input type="text" placeholder="きみのなまえわ" id="mbrname" name="name" class="translated" maxlength="20"/><span class="trans_placeholder blind" data-default-txt="영문, 숫자 조합 8~20자리로 입력해주세요.">영문, 숫자 조합 8~20자리로 입력해주세요.</span>
                                 </div>
                                  <span class="cmem_noti" aria-live="polite">
 											<em class="usable_value"><p id="name_msg" style="padding-top: 13px"></p></em>
@@ -1279,30 +1279,29 @@ $(function(){
 			alert('다시 입력');
 			return 
 		}
+		
 
 		$.ajax({
             type: "POST"
-            , url: "<%=contextPath%>/member/join/joinprocess.do"
+            , url: "/regist/register"
             , dataType: "json"
             , data:params
             , success: function (params) {
-               if(params.result == 'SUCCESS'){
+               if(params.success){
             	   alert('회원가입이 완료되었습니다.');
-            	   location.href="<%= contextPath %>/mainPage.jsp";
+            	   location.href="/";
                } else {
             	   alert('회원가입에 실패하였습니다.');
             	   location.reload();
                }
             }, error: function () {
-                alert('정상적으로 처리되지 않았습니다. 계속 문제가 발생되면 SSG고객센터(1577-3419)로 연락 주시기 바랍니다.');
+                alert('정상적으로 처리되지 않았습-니다. 계속 문제가 발생되면 SSG고객센터(1577-3419)로 연락 주시기 바랍니다.');
             }
         });	
 
 		
 	});	
-   
-    
-   
+	
  
    
 	$('.sms_type').on('click', function () {
@@ -1428,14 +1427,14 @@ $("#checkDuplicateLoginIdBtn").on("click", function (){
     var params = null;
     params = "id="+$("#mbrLoginId").val();   
 	 $.ajax({
-		 url:"<%=contextPath%>/member/join/idcheck.do" , 
+		 url:"/regist/idCheckValid" , 
 		 dataType:"json",
 		 type:"GET",
 		 data: params,
 		 cache:false ,
                            //{  "count":1 } 
 		 success: function ( data,  textStatus, jqXHR ){
-			 if( data.count == 0 ){
+			 if(data.success){
 				 alert("사용 가능한 아이디입니다. 회원 가입을 완료하시면 신세계포인트 통합 아이디로 가입되어 있는 신세계 그룹사 사이트의 아이디가 함께 변경됩니다."); 
 				 	$('#id_msg').text('사용가능한 아이디입니다.')
 				 	.css('color','blue');
