@@ -357,7 +357,7 @@
                 <div class="mb_cont">
                     <div class="btns_area btns_fixed">
                         <div class="btn_cts">
-                            <a href="<%= contextPath %>/member/join/auth.do?type=all" class="btn_type01" data-reactingV2-key="00183_000000950|t00060|1">
+                            <a href="/regist/auth?type=all" class="btn_type01" data-reactingV2-key="00183_000000950|t00060|1">
                                 <strong>개인회원</strong>
                                 <span>본인인증 또는 SNS 인증 후 가입</span>
                             </a>
