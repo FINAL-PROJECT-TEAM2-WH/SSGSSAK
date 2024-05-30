@@ -1,4 +1,4 @@
-package ssgssak.team1.sist.login.service;
+package ssgssak.team1.sist.service;
 
 import org.springframework.stereotype.Service;
 

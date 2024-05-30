@@ -1,4 +1,4 @@
-package ssgssak.team1.sist.member.domain;
+package ssgssak.team1.sist.domain;
 
 
 import java.sql.Date;
