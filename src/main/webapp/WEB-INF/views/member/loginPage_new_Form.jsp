@@ -303,7 +303,7 @@
             </div>
             <div class="cmem_cont">
                 <div class="cmem_sec">
-                    <form method="post" id="loginForm" <%-- action="<%=contextPath %>/member/login.do" --%> >
+                    <form method="post" id="loginForm" action="none">
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         <div class="cmem_inpgrp ty_id">
                             <div class="cmem_txt">
@@ -2324,7 +2324,9 @@ $(function(){
 </script> --%>
 <script>
 $('#loginBtn').one('click', function () {
+	
     let params = $('form').serialize();
+   
     $.ajax({
         url: '/login/login',
         dataType: 'json',

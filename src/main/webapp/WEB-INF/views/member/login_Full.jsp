@@ -344,7 +344,8 @@
                 <h2><span class="notranslate">로그인</span></h2>
             </div>
         </div>
-        <form id="login_form" method="post" action="<%=contextPath%>/member/login.do">
+        <form id="login_form" method="post" action="/login/login">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             <div class="cmem_cont">
                 <div class="cmem_sec">
                     
@@ -2268,27 +2269,28 @@ return window.location.pathname.substring(0, window.location.pathname.indexOf("/
 
 
 let contextPath = getContextPath();
-$('#loginBtn_Full').on('click', function () {
+$('#loginBtn_Full').one('click', function () {
    /*  let params = $('#login_form').serialize().submit(); */
 	 let params = $('form').serialize();
+
 	    $.ajax({
-	        url: '<%=contextPath%>/member/loginAjax.do',
+	        url: '/login/login',
 	        dataType: 'json',
 	        type: 'POST',
 	        data: params,
 	        cache: false,
 	        success: function (data) {
-	            if (data) {
-	            	location.href=`\${contextPath}/main/mainPage/mainPage.jsp`;             	
+	            if (data.success) {
+	            	location.href='/';             	
 	            } else {
-	                alert('받은 데이터가 유효하지 않습니다.');
+	            	 alert('아이디와 비밀번호가 다릅니다.')
 	            }
 	        },
 	        error: function (xhr, status, error) {
 	            console.error("오류 - 상태: ", status, " 메시지: ", error);
-	            //alert('오류: ' + error);
+	            alert('오류: ' + error);
 	            
-	            alert('아이디와 비밀번호가 다릅니다.')
+	           
 	            
 	            window.location.reload();
 	        }

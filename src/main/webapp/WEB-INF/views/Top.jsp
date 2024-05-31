@@ -650,7 +650,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 		$('#login_a_tag').text(name + '님 반갑습니다!');
 		$('#regi_a_tag').css('display','none');
 		$('#logoutBtn').css('display','block');
-		$('#like_Page').attr('href','#');
+		$('#like_Page').attr('href','/member/like/');
 		$('#my_Page').attr('href','#');
 	});
 	$('#logoutBtn').on('click', function () {

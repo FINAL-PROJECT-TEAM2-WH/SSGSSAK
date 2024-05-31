@@ -9,7 +9,9 @@
   </settings>
   <typeAliases>
 <!--     <typeAlias type="org.doit.ik.domain.DeptDTO" alias="DeptDTO" />-->
-    <typeAlias type="ssgssak.team1.sist.domain.MemberVO" alias="MemberVO" /> 
+    <typeAlias type="ssgssak.team1.sist.domain.member.MemberVO" alias="MemberVO" /> 
+    <typeAlias type="ssgssak.team1.sist.domain.ship.ShippingPlaceInfoVO" alias="ShippingPlaceInfoVO" /> 
+    <typeAlias type="ssgssak.team1.sist.domain.member.InterestGoodsVO" alias="InterestGoodsVO" />
     <typeAlias type="java.util.Map" alias="Map" />
     <typeAlias type="java.util.HashMap" alias="HashMap" />
     <typeAlias type="java.util.List" alias="List" />
