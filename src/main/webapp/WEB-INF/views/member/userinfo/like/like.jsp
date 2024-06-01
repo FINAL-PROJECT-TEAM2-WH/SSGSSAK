@@ -798,19 +798,21 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
             </a>
         </div>
     </div>
-    <div class="cunit_price">
+    <c:choose>
+    	<c:when test="${product.price eq product.disprice }">
+    	 <div class="cunit_price">
         <div class="opt_price">
                     <span class="blind">할인적용가</span>
                     <em class="ssg_price">${product.price}</em>
-                    <span class="ssg_tx">원<span class="cm_tx_opt">~</span></span>
-                    <div class="ssg_price_ko show_gl hide_ko">(￦47,895)</div>
+                    <span class="ssg_tx">원<span class="cm_tx_opt"></span></span>
+                    <div class="ssg_price_ko show_gl hide_ko"></div>
                 </div>
             <div class="org_price_wrap">
-            <div class="org_price">
+<!--             <div class="org_price">
                     <span class="blind">판매가</span>
                     <em class="ssg_price">51,500</em>
                     <span class="ssg_tx">원</span>
-                </div>
+                </div> -->
             <div class="dtl_price_wrap price-tooltip-wrap hide_gl">
                     <button class="btn_price price-tooltip"><span class="blind">가격 상세보기</span></button>
                     <div class="ly_dtl_price price-tooltip-layer">
@@ -829,6 +831,52 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
                 </div>
             </div>
             </div>
+    	</c:when>
+    	<c:otherwise>
+    	<div class="cunit_price">
+        <div class="opt_price">
+                    <span class="blind">할인적용가</span>
+                    <em class="ssg_price">${product.disprice}</em>
+                    <span class="ssg_tx">원<span class="cm_tx_opt">~</span></span>
+                    <div class="ssg_price_ko show_gl hide_ko">${product.price}</div>
+                </div>
+            <div class="org_price_wrap">
+            <div class="org_price">
+                    <span class="blind">판매가</span>
+                    <em class="ssg_price">${product.price}</em>
+                    <span class="ssg_tx">원</span>
+                </div>
+            <div class="dtl_price_wrap price-tooltip-wrap hide_gl">
+                    <button class="btn_price price-tooltip"><span class="blind">가격 상세보기</span></button>
+                    <div class="ly_dtl_price price-tooltip-layer">
+                        <dl class="org">
+                        <dt>판매가</dt>
+                                <dd>${product.price}</dd>
+                            </dl>
+                    <dl class="dis">
+                    <c:choose>
+                    <c:when test="${product.spcl.length() < 8}">
+                    <dt>${product.spcl} [특가]</dt><dd>${product.cnrt}</dd>
+                    </c:when>
+                    <c:otherwise>
+                    <dt>${product.spcl.substring(0,7)} [특가]</dt><dd>${product.cnrt}</dd>
+                    </c:otherwise>
+                    </c:choose>                     
+                        </dl>
+                    <dl class="sum">
+                            <dt>최적가</dt>
+                            <dd>${product.disprice}</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            </div>
+    	</c:otherwise>
+    </c:choose>
+  
+    
+ 
+   
     <div class="cunit_app">
     <div class="rating">
             <div class="rate_bg">

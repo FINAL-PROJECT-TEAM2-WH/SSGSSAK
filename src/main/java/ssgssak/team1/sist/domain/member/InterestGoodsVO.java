@@ -16,9 +16,11 @@ public class InterestGoodsVO {
 	private long id;
 	private String name;
 	private String content;
+	private String spcl;
 	private String url;
 	private int grade;
 	private int price;
 	private String dname;
 	private int disprice;
+	private int cnrt;
 }
