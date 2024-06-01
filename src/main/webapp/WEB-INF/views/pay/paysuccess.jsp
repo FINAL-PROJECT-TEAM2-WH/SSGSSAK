@@ -9,7 +9,8 @@
 	
 	<link rel="shortcut icon" type="image/x-icon" href="https://sui.ssgcdn.com/ui/common/img/ssg.ico">
 	<link rel="stylesheet" type="text/css" href="https://sui.ssgcdn.com/ui/ssg/css/ssg_global.css?v=20240423">
-	<link rel="stylesheet" type="text/css" href="https://sui.ssgcdn.com/ui/ssg/css/ssg_layout.css?v=20240423">
+	<!-- <link rel="stylesheet" type="text/css" href="https://sui.ssgcdn.com/ui/ssg/css/ssg_layout.css?v=20240423"> -->
+	<link rel="stylesheet" type="text/css" href="../logo.css">
 	<link rel="stylesheet" type="text/css" href="https://sui.ssgcdn.com/ui/ssg/css/ssg_component.css?v=20240423">
 
 	<link rel="stylesheet" type="text/css" href="https://sui.ssgcdn.com/ui/ssg/css/odr_v2.css?v=20240423">
@@ -802,10 +803,10 @@ function setCommonGnbCookie(name, value, expiredays) {
 			
 			<div class="codr_btnarea ty_full3" role="presentation">
 				<ul>
-					<li><a href="http://www.ssg.com">
+					<li><a href="${pageContext.request.contextPath }/productlist/productList.do">
 						<button type="button" class="codr_btn_account"><span>쇼핑 계속하기</span></button>
 					</a></li>
-					<li><a href="https://pay.ssg.com/myssg/orderDetail.ssg?orordNo=2024050855C03D"><button type="button" class="codr_btn_inquire"><span>주문상세조회</span></button></a></li>
+					<li><a href="${pageContext.request.contextPath }/orderRecord.do"><button type="button" class="codr_btn_inquire"><span>주문상세조회</span></button></a></li>
 				</ul>
 			</div>
 

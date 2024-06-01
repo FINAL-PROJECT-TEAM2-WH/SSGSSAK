@@ -14,4 +14,12 @@ public class CouponDTO {
 	private String memid;
 	private int cnumber;
 	private Date cdate;
+	String ctype;
+	int maxamount;
+	int minamount;
+	int discountrate;
+	int issuecond;
+	String cate;
+	Date start;
+	Date end;
 }

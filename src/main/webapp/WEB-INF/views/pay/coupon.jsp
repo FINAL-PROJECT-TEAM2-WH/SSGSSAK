@@ -67,10 +67,11 @@
     </script>
 
     <link rel="preload" href="//sui.ssgcdn.com/ui/ssg/css/ssg_global.css?v=20240424" as="style">
-    <link rel="preload" href="//sui.ssgcdn.com/ui/ssg/css/ssg_layout.css?v=20240424" as="style">
+    <!-- <link rel="preload" href="//sui.ssgcdn.com/ui/ssg/css/ssg_layout.css?v=20240424" as="style"> -->
     <link rel="preload" href="//sui.ssgcdn.com/ui/ssg/css/ssg_component.css?v=20240424" as="style">
     <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/ssg/css/ssg_global.css?v=20240424">
-    <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/ssg/css/ssg_layout.css?v=20240424">
+   <!--  <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/ssg/css/ssg_layout.css?v=20240424"> -->
+   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/logo.css">
     <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/ssg/css/ssg_component.css?v=20240424">
     <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/ssg/css/scom.css?v=20240424">
     <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/ssg/css/com_event.css?v=20240424">
@@ -451,7 +452,7 @@ function setCommonGnbCookie(name, value, expiredays) {
            })
         } catch(e) {}
     </script>
-    <%@include file="/WEB-INF/views/Top.jsp"  %>
+    <%@include file="/WEB-INF/views/Top.jsp" %>
  <div>
 
     <div id="container">
@@ -598,13 +599,13 @@ function setCommonGnbCookie(name, value, expiredays) {
                             <script>
                             	$("#couponbtn").on("click",function(){
                             		$.ajax({
-                            			url : "${pageContext.request.contextPath}/coupon.do",
-                            			dataType : "JSON",
+                            			url : "/coupon.do",
+                            			contentType : "application/json",
                             			type : "POST",
                             			data : JSON.stringify({ cnumber : 11}),
                             			cache : false,
                             			success : function(data){
-                            				if (data == 1) {
+                            				if (data== 1) {
 												alert("쿠폰 발급 완료");
 											} else {
 												alert("쿠폰 발급 실패");
@@ -652,13 +653,13 @@ function setCommonGnbCookie(name, value, expiredays) {
                             <script>
                             $("#coupon2").on("click",function(){
                         		$.ajax({
-                        			url : "${pageContext.request.contextPath}/pay/coupon.do",
-                        			dataType : "JSON",
+                        			url : "${pageContext.request.contextPath}/coupon.do",
+                        			contentType : "application/json",
                         			type : "POST",
-                        			data : { couponnum : 12},
+                        			data : JSON.stringify({  cnumber : 12}),
                         			cache : false,
                         			success : function(data){
-                        				if (data.coupon[0].success == 1) {
+                        				if (data == 1) {
 											alert("쿠폰 발급 완료");
 										} else {
 											alert("쿠폰 발급 실패");

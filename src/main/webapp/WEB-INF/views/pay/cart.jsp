@@ -8,7 +8,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<link rel="shortcut icon" type="image/x-icon" href="https://sui.ssgcdn.com/ui/common/img/ssg.ico">
 	<link rel="stylesheet" type="text/css" href="https://sui.ssgcdn.com/ui/ssg/css/ssg_global.css?v=20240507">
-	<link rel="stylesheet" type="text/css" href="https://sui.ssgcdn.com/ui/ssg/css/ssg_layout.css?v=20240507">
+	<!-- <link rel="stylesheet" type="text/css" href="https://sui.ssgcdn.com/ui/ssg/css/ssg_layout.css?v=20240507"> -->
+	<link rel="stylesheet" type="text/css" href="../logo.css">
 	<link rel="stylesheet" type="text/css" href="https://sui.ssgcdn.com/ui/ssg/css/ssg_component.css?v=20240507">
 
 	<link rel="stylesheet" type="text/css" href="https://sui.ssgcdn.com/ui/ssg/css/odr_v2.css?v=20240507">
@@ -1149,7 +1150,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 									</span>
 
 											<span class="codr_unit_img" aria-hidden="true">
-												<img src="${items.imgurl }" srcset="${items.imgurl}" width="90" height="90"></img>
+												<img src="${items.imgurl}" srcset="${items.imgurl}" width="90" height="90"></img>
 											</span>
 										
 									<div class="codr_unit_nodr cannot_order" id="cannotord_6339576986" style="display:none;">주문불가

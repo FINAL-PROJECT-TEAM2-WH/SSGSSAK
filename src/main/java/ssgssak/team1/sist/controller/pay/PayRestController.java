@@ -22,7 +22,7 @@ public class PayRestController {
 	
 	@PostMapping("/coupon.do")
 	public String coupon(@RequestBody CouponDTO dto , HttpSession session) throws SQLException, Exception {
-		String id =(String) session.getAttribute("id");
+		String id =(String) session.getAttribute("auth");
 		dto.setMemid(id);
 		int result = this.payMapper.checkcoupon(dto);
 		if (result == 1) {
