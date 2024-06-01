@@ -38,17 +38,8 @@ public class MemberController {
 	@GetMapping("/like")
 	public String likeInfo(HttpSession httpSession, Model model) {
 		// id받으면 그걸 바탕으로 좋아요 한 항목들을 뿌려주면 됨. 
-		
 		String id =	(String) httpSession.getAttribute("auth");
-		
-		
 		model.addAttribute("productList",likeService.getInterGoodsList(id));
-	
-		
-		
-		
-		
-		
 		return "/member/userinfo/like/like";
 	}
 	

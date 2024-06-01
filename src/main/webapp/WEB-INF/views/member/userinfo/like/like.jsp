@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+  
 
 <!doctype html>
 <html lang="ko">
@@ -698,6 +699,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 									
 									
 									<!-- 여기서 부터 박으면 됨  -->
+									<input type="hidden" id="csrfToken" name="_csrf" value="${_csrf.token}">
 									<c:choose>
 									<c:when test="${empty productList}">
 									<div class="mylike_nodata"><p class="mylike_nodata_txt">아직 좋아요한 상품이 없습니다</p></div>
@@ -757,7 +759,8 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
                 <input type="hidden" name="notiImgPath" value="${product.url}">
                 <input type="hidden" name="checked" value="N">
                 <input type="hidden" name="useForcedSsgYn" value="N">
-                <button class="cmlike_btn _js_cmlike_btn clickable" onclick="addLike(${product.id});" > <!-- cmlike_btn _js_cmlike_btn clickable -->
+                 
+                <button class="cmlike_btn _js_cmlike_btn clickable" onclick="addLike(${product.id});" >
                     <span class="cmlike_ico">
                         <i class="cmlike_primary_s"></i>
                         <span class="sr_off"><span class="blind">관심상품 취소</span></span>
@@ -838,6 +841,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
     </c:forEach>
     </c:otherwise>   
     </c:choose>
+    
     
     <!-- <div class="cunit_bene">
         <div class="spt_deiv">
@@ -3237,32 +3241,42 @@ $(function(){
 <script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/ui/ssg.common.infinitegrid.js?v=20240424"></script>
 <script>
 function addLike(productid) {
+	let id = '<%=id%>';
+	alert(productid + " " +id);
  	$.ajax({
-        url: '<%=contextPath%>/like/like.do',
+        url: '/memberR/like',
         dataType: 'json',
         type: 'GET',
-        data: { "productid" : productid}, 
+        data: { "productid" : productid, "id" :id}, 
         cache: false,
         success: function (data) {
         	if (data.result == 'Invalid') {
         		if (confirm ('이미 좋아요 누른 항목입니다. 취소하시겠습니까? ')) {
         			alert("ㅇㅋ 취소해줌");
+        			var csrfToken = $('#csrfToken').val();
+        			alert(csrfToken);
         			// 취소하는 ajax 
-        			$.ajax({
-        				url: '<%=contextPath%>/like/like.do',
-        				dataType: 'json',
+        			 $.ajax({
+        				url: '/memberR/like',
+        				contentType: 'application/json',
         				type: 'POST',
-        				data : {"productid" : productid,
-        					"status" : "Invalid"},
+        				data : JSON.stringify({"productid" : productid,
+        					"id" : id}),
         				cache: false,
+        				beforeSend: function(xhr) {
+                            xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+                     },
         				success : function (data) {
-        					if (data.result =='DeleteSuccess') {
-        						location.href = "<%=contextPath%>/memberInfo/likeInfo.do";
+        					if(data.result == 'success') {
+        						alert('삭제 성공');
+        						location.reload();
+        					} else {
+        						alert('삭제 실패');
         					}
         				}, error : function (xhr, status, error){
         					
         				}
-        			});
+        			}); 
         		} else {
         			alert('그대로 냅둘게');
         		}
@@ -3276,11 +3290,12 @@ function addLike(productid) {
 
         }
     });
-} 
+}
 
 /* $('.cmlike_btn_js_cmlike_btn_clickable').on('click', function () {
 	alert('kk');
 }); */
+
 </script>
 
 <script type="text/javascript">

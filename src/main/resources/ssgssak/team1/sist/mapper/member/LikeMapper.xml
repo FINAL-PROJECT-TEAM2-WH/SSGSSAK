@@ -28,4 +28,20 @@ FROM temp tp    LEFT JOIN product pd ON tp.pd = pd.id
 				 ) b 
 				 WHERE row_num = 1 
   </select>
+  
+  <select id="searchLike" resultType="int">
+   SELECT count(*) cnt 
+FROM interestgoods
+WHERE memid = #{id} AND productid = #{productid}
+  </select>
+  
+  <insert id="insertLike">
+  INSERT INTO interestgoods 
+   VALUES (interestGoods_seq.NEXTVAL, #{id}, #{productid}, SYSDATE, 1)
+  </insert>
+  
+  <delete id="likeCancel">
+ DELETE FROM interestgoods 
+ WHERE memid = #{id} AND productid = #{productid}
+  </delete>
 </mapper>

@@ -3,6 +3,7 @@ package ssgssak.team1.sist.service.member;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -23,8 +24,30 @@ public class LikeServiceImpl implements LikeService{
 		
 		log.info("LIkeService.getInterGoods Get IN");
 		
+		
 		return this.likeMapper.getInterGoods(id);		
 	}
+
+
+	@Override
+	@Transactional
+	public boolean like(String id, String productId) {
+		log.info("LikeService.like Get IN");	
+		// 1이면 있는 거 0이면 없는 거
+		if(this.likeMapper.searchLike(id, productId) == 0) {
+			return this.likeMapper.insertLike(id, productId) == 1 ;			
+		} else {
+			return false;
+		}
+	}
+
+
+	@Override
+	public boolean likeCancel(String id, String productId) {
+		return this.likeMapper.likeCancel(id, productId) == 1 ;
+	}
+	
+	
 
 
 

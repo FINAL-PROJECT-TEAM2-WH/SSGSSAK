@@ -11,4 +11,5 @@ public interface LoginMapper {
 	//void insert(BoardVO boardVO);
 	int login(@Param("id") String id, @Param("passwd")String passwd); 
 	int idInvalid(String id);
+	
 }
