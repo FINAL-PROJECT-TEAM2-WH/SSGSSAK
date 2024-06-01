@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssgssak.team1.sist.mapper.pay.PayMapper"> 
+	<insert id="insertcoupon" >
+		insert into couponrecord values (couponrecord_seq.nextval , #{id} , #{couponnum}, sysdate)
+	</insert>
+	<select id="CouponDTO dto" resultType="Integer">
+		select count(*) from couponrecord where memid = #{memid} and cnumber= #{cnumber} 
+	</select>
+</mapper>
