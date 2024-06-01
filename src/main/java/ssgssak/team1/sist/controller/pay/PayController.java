@@ -1,5 +1,6 @@
 package ssgssak.team1.sist.controller.pay;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
@@ -29,8 +30,8 @@ public class PayController {
 		return "/pay/coupon";
 	}
 	@GetMapping("/pay.do")
-	public String pay(HttpServletRequest request , Model model , HttpSession session) {
-		String id = (String)session.getAttribute("auth");
+	public String pay(HttpServletRequest request , Model model , HttpSession session) throws SQLException, Exception {
+		String memid = (String)session.getAttribute("auth");
 		
 		ArrayList<ProductDTO> al = new ArrayList<ProductDTO>();
 		ProductDTO dto = new ProductDTO();
@@ -50,23 +51,27 @@ public class PayController {
 			
 		}
 		System.out.println(al);
-		request.setAttribute("al", al);
+		model.addAttribute("al", al);
 		
 		ArrayList<UserDTO> al2 = new ArrayList<UserDTO>();
-		int result = pi.hasonceship(id);
+		int result = this.payMapper.hasonceship(memid);
 		if (result==0) {
-			al2 = pi.defaulutuserinfo(id);
+			al2 = this.payMapper.defaulutuserinfo(memid);
 		} else {
-			al2 = pi.onceuserinfo(id);
+			al2 = this.payMapper.onceuserinfo(memid);
 		}
 		
-		
-		request.setAttribute("user", al2);
+		model.addAttribute("user", al2);
 		ArrayList<CouponDTO> al3 = new ArrayList<CouponDTO>();
-		al3 = pi.mycouponview(id);
-		request.setAttribute("coupon", al3);
-		request.setAttribute("shipfee", shipfee);
-		conn.close();
-		return "/pay/p2.jsp?";
+		al3 = this.payMapper.mycouponview(memid);
+		model.addAttribute("coupon", al3);
+		model.addAttribute("shipfee", shipfee);
+		return "/pay/p2";
+	}
+	@GetMapping("/changeaddr.do")
+	public String changeaddr(HttpSession session) {
+		String id = (String)session.getAttribute("auth");
+		
+		return "/pay/changeaddr";
 	}
 }

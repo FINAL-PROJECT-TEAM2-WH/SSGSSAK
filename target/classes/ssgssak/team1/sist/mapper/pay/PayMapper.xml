@@ -9,9 +9,31 @@
 	<select id="checkcoupon" resultType="int">
 		select count(*) from couponrecord where memid = #{memid} and cnumber= #{cnumber} 
 	</select>
-	<select id="selectshipfee">
+	<select id="selectshipfee" resultType="int">
 		select defaultshippingfee dsf 
 		from shippingoption s , product p , productoption po 
 		where s.id = p.shippingOptionId and po.productid = p.id and po.id= #{id} 
 	</select>
+	<select id="hasonceship" resultType="int">
+	select count(*) result from shippingplaceinformation where  defaultshipping='이번만배송지' and memid = #{memid} 
+	</select>
+	<select id="defaulutuserinfo" resultType="ssgssak.team1.sist.domain.pay.UserDTO">
+	select  spi.id shipnum ,addressNick , name , phonenum ,roadaddress , email ,p.id as cardnumber , p.cpoint 
+	from member m , shippingplaceinformation spi , points p where m.id = #{memid} and spi.memid = m.id and spi.defaultshipping='기본배송지' and p.id2 = m.id
+	</select>
+	<select  id="onceuserinfo" resultType="ssgssak.team1.sist.domain.pay.UserDTO">
+	select spi.id shipnum, addressNick , name , phonenum ,roadaddress , email ,p.id as cardnumber , p.cpoint 
+	from member m ,shippingplaceinformation spi , points p
+	 where m.id = #{memid} and spi.memid = m.id and spi.defaultshipping='이번만배송지' and p.id2 = m.id 
+	
+	</select>
+	<select id="viewproduct" resultType="ssgssak.team1.sist.domain.pay.ProductDTO">
+	select po.id optionid , pi.imgurl , b.brandname as brand , ss.sellername as seller , p.pdname  , po.optionname , po.optiondesc , po.optionprice as price ,so.defaultshippingfee as deshipfee , sp.spclDscnRt as specialp 
+	 from product p ,productimg pi , brand b ,sellerstore ss ,productoption po ,shippingoption so ,specialprice sp 
+	 where po.id = #{id} and p.id=pi.productid and p.brandid = b.id and ss.id = p.sellerstoreid and po.productid=p.id and 	so.id = p.shippingoptionid and sp.id=p.specialpriceid and pi.imgcontent = 'sum'
+	</select>
+	<select id="mycouponview" resultType="ssgssak.team1.sist.domain.pay.CouponDTO">
+	select ctype,maxamount,minamount,discountrate , cr.cnumber from couponrecord cr , coupon c  where cr.memid = #{memid} and cr.cnumber = c.id 
+	</select>
+	
 </mapper>
