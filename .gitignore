@@ -4,3 +4,4 @@ Servers/
 .project
 .settings/
 .springBeans
+.target/
