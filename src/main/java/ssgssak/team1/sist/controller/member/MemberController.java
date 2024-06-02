@@ -24,6 +24,7 @@ import lombok.extern.log4j.Log4j;
 import ssgssak.team1.sist.mapper.member.LikeMapper;
 import ssgssak.team1.sist.service.member.LikeService;
 import ssgssak.team1.sist.service.member.LoginService;
+import ssgssak.team1.sist.service.member.UserInfoService;
 
 @Controller
 @Log4j
@@ -33,6 +34,9 @@ public class MemberController {
 	
 	@Autowired
 	LikeService likeService ; 
+	
+	@Autowired
+	UserInfoService infoService;
 
 	
 	@GetMapping("/like")
@@ -41,6 +45,15 @@ public class MemberController {
 		String id =	(String) httpSession.getAttribute("auth");
 		model.addAttribute("productList",likeService.getInterGoodsList(id));
 		return "/member/userinfo/like/like";
+	}
+	
+	@GetMapping("/userInfo")
+	public String userInfo(HttpSession httpSession, Model model) {
+		
+		String id = (String) httpSession.getAttribute("auth");
+		model.addAttribute("userinfo", infoService.getUserInfo(id));
+		
+		return "/member/userinfo/userinfo";
 	}
 	
 }

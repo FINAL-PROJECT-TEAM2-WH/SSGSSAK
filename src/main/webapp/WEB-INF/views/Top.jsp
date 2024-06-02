@@ -651,7 +651,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 		$('#regi_a_tag').css('display','none');
 		$('#logoutBtn').css('display','block');
 		$('#like_Page').attr('href','/member/like/');
-		$('#my_Page').attr('href','/member/info/');
+		$('#my_Page').attr('href','/member/userInfo/');
 	});
 	$('#logoutBtn').on('click', function () {
 		location.href = '/login/logout';

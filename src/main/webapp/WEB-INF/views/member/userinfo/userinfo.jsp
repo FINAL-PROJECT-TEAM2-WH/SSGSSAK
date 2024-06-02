@@ -431,7 +431,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
            })
         } catch(e) {}
     </script>
-<%@include file="../Top.jsp" %>
+<%@include file="../../Top.jsp" %>
 
 <div id="category" class="category"></div>
 
@@ -620,7 +620,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
              <h2 class="cmmyssg_user_tit">
              
              <!--  추후에 수정해줄 필요가 있음. get/ post  -->
-            <a href="<%=contextPath %>/userinfo.userinfo.jsp" data-react-tarea-dtl-cd="t00060" class="cmmyssg_user_tittx clickable"><span class="cmmyssg_user_titname">${info.name}님</span></a>
+            <a href="<%=contextPath %>/userinfo.userinfo.jsp" data-react-tarea-dtl-cd="t00060" class="cmmyssg_user_tittx clickable"><span class="cmmyssg_user_titname">${userinfo.name}님</span></a>
             </h2>
             </div>
 
@@ -631,18 +631,18 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
                     </dt>
                     <dd class="cmmyssg_asset_cont" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"tarea_addt_val","value":"쿠폰"}]'>
                         <a href="https://www.ssg.com/myssg/moneyMng/memberCpnOwnList.ssg?myssg=coupon" class="cmmyssg_asset_value clickable" data-react-tarea-dtl-cd="t00060">
-                            <span class="cmmyssg_asset_valuenum">${info.couponNum}</span><span class="cmmyssg_asset_valuetx">장</span>
+                            <span class="cmmyssg_asset_valuenum">${userinfo.couponNum}</span><span class="cmmyssg_asset_valuetx">장</span>
                         </a>
                     </dd>
                 </dl>
                 <div class="cmmyssg_asset_detail">
                     <div class="cmmyssg_asset_row">
                         <span class="cmmyssg_asset_subtit">다운가능한 등급쿠폰</span>
-                        <span class="cmmyssg_asset_subtx">${info.availDC}장</span>
+                        <span class="cmmyssg_asset_subtx">${userinfo.availDownC}장</span>
                     </div>
                     <div class="cmmyssg_asset_row">
                         <span class="cmmyssg_asset_subtit">7일이내 만료예정 쿠폰</span>
-                        <span class="cmmyssg_asset_subtx">${info.leftDays}장</span>
+                        <span class="cmmyssg_asset_subtx">${userinfo.leftDays}장</span>
                     </div>
                 </div>
             </div>
@@ -678,7 +678,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
                             </dt>
                             <dd class="cmmyssg_asset_cont" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"tarea_addt_val","value":"신세계포인트"}]'>
                                 <a href="https://member.ssg.com/myssg/moneyMng/spointDetailList.ssg?menu=spointDetailList" class="cmmyssg_asset_value clickable" data-react-tarea-dtl-cd="t00060">
-                                    <span class="cmmyssg_asset_valuenum">${info.points}</span><span class="cmmyssg_asset_valuetx">p</span>
+                                    <span class="cmmyssg_asset_valuenum">${userinfo.memberPoint}</span><span class="cmmyssg_asset_valuetx">p</span>
                                 </a>
                             </dd>
                         </dl>
@@ -973,7 +973,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
         <div class="cmmyssg_cunit_lst">
           <div class="cunit_lst_v">
             <ul class="cunit_thmb_lst">
-            <c:forEach var="product" items="${likeProductList}" varStatus="status">
+            <c:forEach var="product" items="${userinfo.productList}" varStatus="status">
             <c:if test="${status.index <= 4}">
               <li class="cunit_t180">
                   <!-- https://markup.ssgadm.com/ssgui/01.ssg/pcweb/trunk/dist/html/pages/guide_unit.html -->
@@ -996,7 +996,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
         </div>
     <div class="thmb">
         <a href="/item/itemView.ssg?itemId=1000068529577&siteNo=6004&salestrNo=6005" target="_self"  class="clickable"
-             data-info="${product.productid}" data-index="0" data-position="view" data-unit="img" data-react-tarea-dtl-cd="t00001">
+             data-info="${product.id}" data-index="0" data-position="view" data-unit="img" data-react-tarea-dtl-cd="t00001">
 
             <img src="${product.url}" onerror="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&w=180&h=180&t=d76c1584fe045b57a29d7ca6c88cb0c22e06be85'" class="i1" width="180" height="180" alt="어센틱 올드스쿨 체커보드슬립온 데일리 운동화 스니커즈 22종"  loading="lazy">
                 <div class="cm_bdg_v2 notranslate" aria-label="혜택">
@@ -1014,14 +1014,14 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
                 <input type="hidden" name="attnDivCd" value="10">
                 <input type="hidden" name="attnDivDtlCd" value="10">
                 <input type="hidden" name="siteNo" value="6004">
-                <input type="hidden" name="attnTgtIdnfNo1" value="${product.productid}">
+                <input type="hidden" name="attnTgtIdnfNo1" value="${product.id}">
                 <input type="hidden" name="attnTgtIdnfNo2" value="6005">
                 <input type="hidden" name="uitemId" value="00000">
                 <input type="hidden" name="notiTitle" value="어센틱 올드스쿨 체커보드슬립온 데일리 운동화 스니커즈 22종">
                 <input type="hidden" name="notiImgPath" value="${product.url}">
                 <input type="hidden" name="checked" value="N">
                 <input type="hidden" name="useForcedSsgYn" value="N">
-                <button class="cmlike_btn _js_cmlike_btn clickable" onclick="addLike(${product.productid});" > 
+                <button class="cmlike_btn _js_cmlike_btn clickable" onclick="addLike(${product.id});" > 
                     <span class="cmlike_ico">
                         <i class="cmlike_primary_s"></i>
                         <span class="sr_off"><span class="blind">관심상품 취소</span></span>
@@ -2625,4 +2625,4 @@ $(function(){
 
 <!-- footer asdgasgd-->
 
-    <%@ include file="../footer.jsp" %>
+    <%@ include file="../../footer.jsp" %>
