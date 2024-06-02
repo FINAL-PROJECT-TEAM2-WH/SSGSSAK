@@ -21,6 +21,7 @@
 	<context:component-scan
 		base-package="ssgssak.team1.sist" />
 	<!-- Tiles -->
+	
 	<beans:bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<beans:property name="definitions">
@@ -35,4 +36,10 @@
 			value="org.springframework.web.servlet.view.tiles3.TilesView" />
 		<beans:property name="order" value="1" />
 	</beans:bean>
+	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+   <beans:property name="maxUploadSize" value="-1"></beans:property>
+   <beans:property name="maxInMemorySize" value="10240"></beans:property>
+   <beans:property name="defaultEncoding" value="ISO-8859-1"></beans:property>
+   </beans:bean>
 </beans:beans>

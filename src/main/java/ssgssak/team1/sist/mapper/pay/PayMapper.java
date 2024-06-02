@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import ssgssak.team1.sist.domain.pay.CouponDTO;
+import ssgssak.team1.sist.domain.pay.EnrollDTO;
 import ssgssak.team1.sist.domain.pay.OrderedDTO;
 import ssgssak.team1.sist.domain.pay.ProductDTO;
 import ssgssak.team1.sist.domain.pay.ShippingDTO;
@@ -34,4 +35,15 @@ public interface PayMapper {
 	int insertpaydetail(@Param("optionid") int optionid,@Param("cnumber") int cnumber ,@Param("quantity") int quantity) throws Exception , SQLException;
 	int insertshipinfo(@Param("shipnum") int shipnum,@Param("shipmsg") String shipmsg) throws Exception , SQLException;
 	OrderedDTO selectorderinfo(String memid) throws Exception , SQLException;
+	ArrayList<EnrollDTO> selectcateinfo() throws Exception , SQLException;
+	ArrayList<EnrollDTO> selectbrandinfo() throws Exception , SQLException;
+	ArrayList<EnrollDTO> selectsellerinfo() throws Exception , SQLException;
+	ArrayList<EnrollDTO> selectspecialpinfo() throws Exception , SQLException;
+	ArrayList<EnrollDTO> selectshipinfo() throws Exception , SQLException;
+	int insertproducttable(@Param("cateid") String cateid,@Param("brandid") int brandid,@Param("sellerid") int sellerid, @Param("spp") int spp,@Param("shipo") int shipo, @Param("productn") String productn,@Param("productex") String productex) throws Exception , SQLException;
+	int selectrefoptionid(@Param("optionname") String optionname, @Param("procurrval") long procurrval) throws Exception , SQLException;
+	long selectproductcurrval() throws Exception , SQLException;
+	int insertproductoption(@Param("optionname") String optionname,@Param("optiondes") String optiondes,@Param("refoptionid") int refoptionid,@Param("optionprice") int optionprice,@Param("optionstock")  int optionstock) throws Exception , SQLException;
+	int insertfile(@Param("realpath") String realpath, @Param("procurrval") long procurrval,@Param("type") String type) throws Exception , SQLException;
+
 }

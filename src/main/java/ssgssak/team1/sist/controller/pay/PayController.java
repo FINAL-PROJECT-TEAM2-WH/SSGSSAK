@@ -2,10 +2,13 @@ package ssgssak.team1.sist.controller.pay;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
+import java.io.File;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,10 +16,16 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import ssgssak.team1.sist.domain.pay.CouponDTO;
+import ssgssak.team1.sist.domain.pay.Enroll2DTO;
+import ssgssak.team1.sist.domain.pay.EnrollDTO;
 import ssgssak.team1.sist.domain.pay.OrderedDTO;
 import ssgssak.team1.sist.domain.pay.ProductDTO;
 import ssgssak.team1.sist.domain.pay.ShippingDTO;
@@ -100,4 +109,91 @@ public class PayController {
 		return "/pay/paysuccess";
 	}
 	
+	@GetMapping("/enroll.do")
+	public String itemenroll(Model model) throws SQLException, Exception {
+		
+		ArrayList<EnrollDTO> al = null;
+		al = this.payMapper.selectcateinfo();
+		model.addAttribute("al", al);
+		al = this.payMapper.selectbrandinfo();
+		model.addAttribute("al2", al);
+		al= this.payMapper.selectsellerinfo();
+		model.addAttribute("al3", al);
+		al= this.payMapper.selectspecialpinfo();
+		model.addAttribute("al4", al);
+		al = this.payMapper.selectshipinfo();
+		model.addAttribute("al5", al);
+		
+		return "/pay/itemenroll";
+	}
+	@PostMapping("/enroll.do")
+	public String itemenroll2(Enroll2DTO dto ,Model model, HttpServletRequest request ) throws  SQLException, Exception {
+		
+	
+		String cateid = dto.getCate();
+		int brandid = dto.getBrand();
+		int sellerid = dto.getSeller();
+		int spp = dto.getSpp();
+		int shipo = dto.getShipo();
+		
+		String productn = dto.getProductn(); 
+		String productex = dto.getProductex() ; 
+		System.out.println(dto.toString());
+		this.payMapper.insertproducttable(cateid,brandid,sellerid,spp,shipo,productn,productex);
+		Long procurrval = this.payMapper.selectproductcurrval();
+		int optioncount = dto.getOptioncount();
+		for (int i = 0; i < optioncount; i++) {
+			String optionname = dto.getOptionname().get(i);
+			String optiondes =  dto.getOptiondes().get(i);
+			String refoptiondes = dto.getRefoptiondes().get(i);
+			int refoptionid = 0 ; 
+			System.out.println(refoptiondes);
+			if ( !refoptiondes.equals("none") ) {
+				
+				refoptionid = this.payMapper.selectrefoptionid(optionname,procurrval);
+			}
+			int optionprice = dto.getOptionprice().get(i);
+			int optionstock = dto.getOptionstock().get(i);
+			
+			this.payMapper.insertproductoption(optionname,optiondes,refoptionid,optionprice,optionstock);
+		}
+		MultipartFile file1 = dto.getFile1();
+		ArrayList<MultipartFile> file2 = dto.getFile2();
+		ArrayList<MultipartFile> file3 = dto.getFile3();
+		
+		String uploadrealpath = request.getServletContext().getRealPath("/upload");
+		
+		if (!file1.isEmpty()) {
+			System.out.println(uploadrealpath);
+			String originalname = file1.getOriginalFilename();
+			UUID uuid = UUID.randomUUID();
+			File dest = new File(uploadrealpath,uuid+originalname);
+			file1.transferTo(dest);
+			this.payMapper.insertfile(uploadrealpath+uuid+originalname , procurrval,"sum");
+		}
+		if (!file2.isEmpty()) {
+			for (int i = 0; i < file2.size(); i++) {
+				String originalname = file2.get(i).getOriginalFilename();
+				UUID uuid = UUID.randomUUID();
+				File dest = new File(uploadrealpath,uuid+originalname);
+				file2.get(i).transferTo(dest);
+				this.payMapper.insertfile(uploadrealpath+uuid+originalname , procurrval,"sub");
+			}
+		}
+		if (!file3.isEmpty()) {
+			for (int i = 0; i < file3.size(); i++) {
+				String originalname = file3.get(i).getOriginalFilename();
+				UUID uuid = UUID.randomUUID();
+				File dest = new File(uploadrealpath,uuid+originalname);
+				file3.get(i).transferTo(dest);
+				this.payMapper.insertfile(uploadrealpath+uuid+originalname , procurrval,"other");
+			}
+		}
+	 
+		
+	  
+	
+	
+	return "redirect:/enroll.do";
+	}
 }

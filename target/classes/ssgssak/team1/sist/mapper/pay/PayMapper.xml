@@ -6,10 +6,10 @@
 	<insert id="insertcoupon" >
 		insert into couponrecord values (couponrecord_seq.nextval , #{memid} , #{cnumber}, sysdate)
 	</insert>
-	<select id="checkcoupon" resultType="int">
+	<select id="checkcoupon" resultType="Integer">
 		select count(*) from couponrecord where memid = #{memid} and cnumber= #{cnumber} 
 	</select>
-	<select id="selectshipfee" resultType="int">
+	<select id="selectshipfee" resultType="Integer">
 		select defaultshippingfee dsf 
 		from shippingoption s , product p , productoption po 
 		where s.id = p.shippingOptionId and po.productid = p.id and po.id= #{id} 
@@ -41,7 +41,7 @@
 	<select id="getothershipinfo" resultType="ssgssak.team1.sist.domain.pay.ShippingDTO">
 	select id id2 ,addressNick as addrnick , receiveMem as name , tel, postNum postnum, roadaddress roadaddr , jibunaddress jiaddr, detailaddress detailaddr from shippingplaceinformation where memid = #{id} and defaultshipping !='기본배송지'
 	</select>
-	<select id="resultprice" resultType="int">
+	<select id="resultprice" resultType="Integer">
 	with discount as ( select discountrate from coupon where id = #{usecouponid}) select ( optionprice- optionprice * d.discountrate/100) * #{quantity} resultprice 
 	from productoption po ,discount d where po.id = #{optionid}
 	</select>
@@ -76,5 +76,34 @@
 	           select m.name , p.orderdate , p.id ordernum , spi.id , spi.receivemem ordername , spi.tel phonenum , spi.addressnick addrnick , spi.roadaddress roadaddr ,spi.detailaddress detailaddr , p.orderamount ,so.defaultShippingFee shipamount, pr.points point , p.points usepoint 
 	           from member m , payrecord p , newordernum no , shippinginformation si  ,shippingPlaceInformation spi ,shippingoption so ,product pd ,productoption pop ,paydetail pdt ,pointrecord pr where m.id = #{memid}  and si.orderid = no.newordernum and no.newordernum = p.id and  m.id = p.memid and spi.id = si.shippingplaceid and so.id = pd.shippingoptionid and  pop.productid = pd.id and pop.id = pdt.id3 and pdt.id2 = p.id and pr.id2 = p.id and pr.classify = 2 
 	</select>
-	
+	<select id="selectcateinfo" resultType="ssgssak.team1.sist.domain.pay.EnrollDTO">
+		select id cateid, majorcatename cate1 ,middlecatename cate2,subcatename cate3,minicatename cate4 from category
+	</select>
+	<select id="selectbrandinfo" resultType="ssgssak.team1.sist.domain.pay.EnrollDTO">
+	 select id brandid , brandname from brand
+	</select>
+	<select  id="selectsellerinfo" resultType="ssgssak.team1.sist.domain.pay.EnrollDTO">
+	select id sellerid, sellername from sellerstore
+	</select>
+	<select id="selectspecialpinfo" resultType="ssgssak.team1.sist.domain.pay.EnrollDTO">
+	 select id specialpid , spclnm ,  spclstrdt , spclprcendt ,spcldscnrt from specialprice
+	</select>
+	<select id="selectshipinfo" resultType="ssgssak.team1.sist.domain.pay.EnrollDTO">
+	select id shipid , shippingOptionName sname ,  defaultShippingFee dfee from shippingoption
+	</select>
+	<insert id="insertproducttable">
+	insert into product values ( product_id_seq.nextval ,#{cateid},#{brandid},#{sellerid},${spp},#{shipo},#{productn},#{productex} , sysdate )
+	</insert>
+	<select id="selectproductcurrval" resultType="Long">
+		select product_id_seq.currval seq from dual
+	</select>
+	<select id="selectrefoptionid" resultType="Integer">
+		select id optionid from productoption where optionname = #{optionname} and productid = #{procurrval} 
+	</select>
+	<insert id="insertproductoption">
+	 insert into productoption values ( productoption_id_seq.nextval , product_id_seq.currval ,#{optionname}, #{optiondes},#{refoptionid}, #{optionprice}, #{optionstock}) 
+	</insert>
+	<insert id="insertfile" >
+	 insert into productimg values ( productimg_seq.nextval , #{procurrval} , #{realpath} , #{type})
+	</insert>
 </mapper>

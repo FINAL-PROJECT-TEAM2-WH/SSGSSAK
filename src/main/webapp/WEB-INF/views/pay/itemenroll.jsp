@@ -91,15 +91,15 @@
    <div class="options" id="options" style="display: grid; width: 100%; justify-content: center;  align-items: center;  grid-template-columns: repeat(3,1fr);" >
   	<div style="display: inline-block; width: 100%; margin-left: 5vw;">
   	3-1. 옵션명 입력 
-  	<input type="text" name="optionname1"/>
+  	<input type="text" name="optionname"/>
     3-1 . 옵션설명 입력
-    <input type="text" name="optiondes1" />
+    <input type="text" name="optiondes" />
     3-1. 참조옵션명 입력
-    <input type="text" name="refoptiondes1" disabled/>
+    <input type="text" name="refoptiondes" value="none" readonly="readonly"/>
     3-1. 해당 옵션 가격 입력
-    <input type="text" name="optionprice1" value="0"/>
+    <input type="text" name="optionprice" value="0"/>
      3-1. 해당 옵션 재고 입력
-    <input type="text" name="optionstock1" value="0"/>
+    <input type="text" name="optionstock" value="0"/>
     
    <hr />
    </div>
@@ -118,8 +118,12 @@
     4-1. 상품 대표이미지 등록
     <input type="file" style="width: 20%;" name="file1"/>
     &nbsp; &nbsp; &nbsp;
-    4-1. 상품 이외 이미지 등록
-     <input type="file" style="width: 20%;" name="file2" multiple="multiple"/>
+    <br />
+     4-2. 상품 서브이미지 등록
+    <input type="file" style="width: 20%;" name="file2" multiple="multiple"/>
+    &nbsp; &nbsp; &nbsp;
+    4-3. 상품 이외 이미지 등록
+     <input type="file" style="width: 20%;" name="file3" multiple="multiple"/>
     <hr />
     </div>
    </div>
@@ -160,15 +164,15 @@
 			$("#options").append(`
 				  	<div style="display: inline-block; width: 100%; margin-left: 5vw;">
 				  	3-\${count}. 옵션명 입력 
-				  	<input type="text" name="optionname\${count}"/>
+				  	<input type="text" name="optionname"/>
 				    3-\${count} . 옵션설명 입력
-				    <input type="text" name="optiondes\${count}"/>
+				    <input type="text" name="optiondes"/>
 				    3-\${count}. 참조옵션명 입력
-				    <input type="text" name="refoptiondes\${count}"/>
+				    <input type="text" name="refoptiondes" value="none"/>
 				    3-\${count}. 해당 옵션 가격 입력
-				    <input type="text" name="optionprice\${count}"  value="0" />
+				    <input type="text" name="optionprice"  value="0" />
 				     3-\${count}. 해당 옵션 재고 입력
-				    <input type="text" name="optionstock\${count}"  value="0"/>
+				    <input type="text" name="optionstock"  value="0"/>
 				   <hr />
 				  
 				  </div>`)
