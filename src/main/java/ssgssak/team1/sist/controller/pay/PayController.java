@@ -1,6 +1,9 @@
 package ssgssak.team1.sist.controller.pay;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
@@ -14,7 +17,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import ssgssak.team1.sist.domain.pay.CouponDTO;
+import ssgssak.team1.sist.domain.pay.OrderedDTO;
 import ssgssak.team1.sist.domain.pay.ProductDTO;
+import ssgssak.team1.sist.domain.pay.ShippingDTO;
 import ssgssak.team1.sist.domain.pay.UserDTO;
 import ssgssak.team1.sist.mapper.pay.PayMapper;
 
@@ -69,9 +74,30 @@ public class PayController {
 		return "/pay/p2";
 	}
 	@GetMapping("/changeaddr.do")
-	public String changeaddr(HttpSession session) {
+	public String changeaddr(HttpSession session , Model model) throws SQLException, Exception {
 		String id = (String)session.getAttribute("auth");
+		ArrayList<ShippingDTO> al = null;
+		ArrayList<ShippingDTO> al2 = null;
+
+			al = this.payMapper.getdefaultshipinfo(id);
+			al2 = this.payMapper.getothershipinfo(id);
+			model.addAttribute("al", al);
+		    model.addAttribute("al2", al2);
+			return "/pay/changeaddr";
 		
-		return "/pay/changeaddr";
 	}
+	@GetMapping("/paysuccess.do")
+	public String paysuccess(HttpSession session, Model model) throws SQLException, Exception {
+		
+		String id = (String) session.getAttribute("auth");
+		String pattern = "yyyy년 MM월 dd일 (E)";
+		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+		String today = sdf.format(System.currentTimeMillis());
+		model.addAttribute("today", today);
+		OrderedDTO al = this.payMapper.selectorderinfo(id);
+	      model.addAttribute("al", al);
+		log.info(al.toString());
+		return "/pay/paysuccess";
+	}
+	
 }

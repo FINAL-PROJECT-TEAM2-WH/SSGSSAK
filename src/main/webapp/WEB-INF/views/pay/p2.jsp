@@ -8699,6 +8699,9 @@ if(subdomain.indexOf('emart') !== -1 || subdomain.indexOf('m-emart') !== -1 ) {
 					
 					$("#processOrderButton").on("click",function(){
 						let usepoint = $("#ssgpoint").val();
+						if (isNaN(usepoint)) {
+							usepoint = 0;
+						}
 						while ((match=regex1.exec(payresult))!=null) {
 							selectedoptionids.push(match[1]);
 							
@@ -8716,19 +8719,29 @@ if(subdomain.indexOf('emart') !== -1 || subdomain.indexOf('m-emart') !== -1 ) {
 						let shippingmsg = $("#shipmsg").val();
 						
 						let alldata = {
-							optionids : JSON.stringify(selectedoptionids),
-							usecouponids : JSON.stringify(selectedcouponids),
+							optionids : selectedoptionids,
+							usecouponids : selectedcouponids,
 							usepoint : usepoint,
-							quantity : JSON.stringify(quantity),
+							quantity : quantity,
 							shipnum : selectedshipnum,
-							shipmsg : JSON.stringify(shippingmsg)
+							shipmsg : shippingmsg
 						};
 						
-						$.post("${pageContext.request.contextPath}/pay/pay.do" , alldata , function(response){
-							
-							location.href = "${pageContext.request.contextPath}"+response.url ;
-						});
 						
+						$.ajax({
+						    url: "${pageContext.request.contextPath}/pay.do",
+						    type: "POST",
+						    data: JSON.stringify(alldata),
+						    contentType: "application/json; charset=utf-8",
+						    dataType: "text",
+						    success: function(data) {
+						        location.href = "${pageContext.request.contextPath}" + data;
+						    },
+						    error: function(jqXHR, textStatus, errorThrown) {
+						        console.error("Error:", textStatus, errorThrown);
+						    }
+						
+					 })
 					})
 		           	</script>
 <script type="text/javascript" id="">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","1668002603429849");fbq("track","PageView");</script>
