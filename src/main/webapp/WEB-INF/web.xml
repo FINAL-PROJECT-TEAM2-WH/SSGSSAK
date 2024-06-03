@@ -63,6 +63,5 @@
 		</init-param>
 	</servlet>
 	
-	<mvc:resources mapping="/SSGSSAK/pay/image/**" location="file:C:/s_final_Project/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/SSGSSAK/SSGSSAK/pay/image/"/>
 	
 </web-app>

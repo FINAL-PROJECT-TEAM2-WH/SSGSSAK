@@ -7,12 +7,47 @@
 
     <!-- 에러 : spring-security-4.2.xsd 수정. -->	
 	 		
-	<security:http pattern="/static/**" security="none"></security:http>	
-	<security:http pattern="/design/**" security="none"></security:http>	
+	<security:http pattern="/static/**" security="none"></security:http>   
+   <security:http pattern="/design/**" security="none"></security:http>
+   <security:http pattern="/css/**" security="none"></security:http>
+   <security:http pattern="/js/**" security="none"></security:http>
 	
-	<security:http> 
-	   <security:form-login/>  
-	</security:http>	
+	<security:http use-expressions="true"> 
+      <!-- 시큐리티 접근 권한 설정 --> 
+      <!-- <security:intercept-url pattern="요청URL" 
+      access="권한 체크(권한명, 표현식 p681)"/> -->
+      <!-- 
+      <security:intercept-url pattern="/user/loginForm.htm" access="permitAll" />
+      <security:intercept-url pattern="/admin/manager/**" access="hasAuthority('ROLE_MANAGER')" />
+      <security:intercept-url pattern="/member/**" access="isAuthenticated()" />
+      <security:intercept-url pattern="/**" access="permitAll" />
+       --> 
+      <security:intercept-url pattern="/member/*" access="isAuthenticated()"/>
+      <security:intercept-url pattern="/memberR/*" access="isAuthenticated()"/>
+      <!-- <security:intercept-url pattern="" access="hasRole('ROLE_ADMIN')"/> -->
+      <security:intercept-url pattern="/**" access="permitAll" />
+      
+      <!-- <security:form-login/>   -->
+      
+       <!-- 1) 접근 금지 발생시 특정URL로 이동 : error-page 설정. --> 
+      <!-- <security:access-denied-handler error-page="/common/accessError.htm"/> -->
+       <!-- 2) 접근 금지 발생시 직접 구현 -->
+       <security:access-denied-handler ref="customAccessDeniedHandler" />
+       
+      <!-- 커스텀 로인 페이지 -->
+      <security:form-login
+        login-page="/login/full" 
+        authentication-success-handler-ref="customLoginSuccessHandler"
+        authentication-failure-url="/login/full?error=true"
+        default-target-url="/"
+      />
+      
+      <security:logout logout-url="/login/logout"
+        invalidate-session="true"
+        logout-success-url="/" 
+      />
+      
+   </security:http>   	
 	
 	<security:authentication-manager> 
 	</security:authentication-manager>
