@@ -94,7 +94,7 @@ public class ReviewServiceImpl implements ReviewService{
 				try {
 					multipartFile.transferTo(dest);
 					
-					reviewImgMapper.inserReviewImg(uploadRealPath+filesystemName);
+					reviewImgMapper.insertReviewImg(uploadRealPath+filesystemName);
 					
 				} catch (IllegalStateException | IOException e) {
 					System.out.println("이미지 입력 실패");

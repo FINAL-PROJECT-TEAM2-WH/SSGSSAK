@@ -3558,7 +3558,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 					                let url = '/pay.do?' + params.join('&');
 					                window.location.href = url;
 								}
-/* 									
+									
 								    fetch('/SSGSSAK/product/CheckLogin.do')//고치기
 								        .then(response => response.json())
 								        .then(data => {
@@ -3574,7 +3574,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 								        })
 								        .catch(error => console.error(error));
 								}
-								 */
+								 
 								
     		function handleCart() {
 
@@ -12726,7 +12726,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 																			</div>
 																		</div>
 																	</div>
-																</div>
+																
 															</li>
 															
 															</c:forEach>

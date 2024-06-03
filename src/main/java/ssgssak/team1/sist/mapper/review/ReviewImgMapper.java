@@ -9,5 +9,5 @@ public interface ReviewImgMapper {
 
 	List<ReviewImgDTO> select(long productcode) throws SQLException;
 
-	void inserReviewImg(String reviewImgUrl) throws SQLException;
+	void insertReviewImg(String reviewImgUrl) throws SQLException;
 }//class

@@ -13,6 +13,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import oracle.jdbc.proxy.annotation.Post;
 import ssgssak.team1.sist.domain.review.ReviewDTO;
+import ssgssak.team1.sist.service.product.ProductOptionService;
+import ssgssak.team1.sist.service.product.ProductService;
 import ssgssak.team1.sist.service.review.ReviewImgService;
 import ssgssak.team1.sist.service.review.ReviewService;
 
@@ -24,23 +26,25 @@ public class ReviewController {
 
 	private ReviewService reviewService;
 	private ReviewImgService reviewImgService;
+	private ProductService productService;
+	private ProductOptionService productOptionService;
 	
-	/* /SSGSSAK/review/review.do?productcode=${product.id}&auth=${auth} */
+ 	/* /SSGSSAK/review/review.do?productcode=${product.id}&auth=${auth} */
 	@GetMapping("/review.do")
-	public String regReview(Model model,@RequestParam("productcode")long id,@RequestParam("auth")String auth) {
+	public String regReview(Model model
+			,@RequestParam("productcode")long id
+			,@RequestParam("auth")String auth
+			) {
 		log.info("review regStrart.. "+log);
-		
+		model.addAttribute("product", this.productService.get(id));
+		model.addAttribute("productoption", this.productOptionService.get(id));
 		return "review/review";
 	}//reg
 	
 	
-	@GetMapping("/WriteReview.do")
-	public String submitReview(Model model) {
-		
-		return "redirect:/SSGSSAK/review/review";
-	}
+
 	//등록
-	@PostMapping("/WriteReview.do")
+	@PostMapping("/review.do")
 	public String submitReview(@ModelAttribute ReviewDTO reviewDTO
 								,@RequestParam("reviewImg")MultipartFile [] reviewImg,Model model) {
 		
