@@ -86,7 +86,7 @@
                                         </a>
                                     </li>
                                     <li class="ssg_mall_menu_item ssg_mall_menu_item_emart" data-react-unit-type="text" data-react-unit-text='[{"type":"text","value":"이마트몰"}]'>
-                                        <a href="<%= contextPath %>/productlist/productList.do?categoryId=04040303&currentPage=1" class="clickable" data-react-tarea="공통|몰이동_레이어|이마트몰_클릭" data-react-tarea-dtl-cd="t00060">
+                                        <a href="productList?categoryId=&currentPage=1" class="clickable" data-react-tarea="공통|몰이동_레이어|이마트몰_클릭" data-react-tarea-dtl-cd="t00060">
                                             <span class="blind">이마트몰</span>
                                         </a>
                                     </li>
