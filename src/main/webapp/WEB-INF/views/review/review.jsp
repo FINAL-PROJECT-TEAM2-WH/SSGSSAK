@@ -231,5 +231,7 @@ input[type="submit"]:hover {
             window.close();
         </script>
     </c:if>
+    
+
 </body>
 </html>

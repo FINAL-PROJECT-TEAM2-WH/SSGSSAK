@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%-- <%@page import="review.domain.ReviewDTO"%> --%>
+ <%@page import="ssgssak.team1.sist.domain.review.ReviewDTO"%> 
 <%-- <%@page import="org.apache.jasper.tagplugins.jstl.core.If"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -2767,7 +2767,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 
 		
 		
-<%-- 		고치기
+
 							<%
 							
 							List<ReviewDTO> reviews = (List<ReviewDTO>) request.getAttribute("reviews");
@@ -2784,7 +2784,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 							}
 							request.setAttribute("averageGrade",averageGrade );
 							
-							%> --%>
+							%> 
 							<!-- 리뷰 -->
 							<div class="cdtl_review_wrap"
 								data-react-tarea-cd="00006_000000005">
@@ -3558,7 +3558,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 					                let url = '/pay.do?' + params.join('&');
 					                window.location.href = url;
 								}
-									
+									/* 고치기
 								    fetch('/SSGSSAK/product/CheckLogin.do')//고치기
 								        .then(response => response.json())
 								        .then(data => {
@@ -3574,7 +3574,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 								        })
 								        .catch(error => console.error(error));
 								}
-								 
+								  */
 								
     		function handleCart() {
 
@@ -12271,8 +12271,8 @@ function setCommonGnbCookie(name, value, expiredays) {
 											    int q3ReviewCount1 = 0;
 											    int q3ReviewCount2 = 0;
 											    int q3ReviewCount3 = 0;
-/* 고치기
-											    for (review.domain.ReviewDTO review : reviews) {
+
+											    for (ssgssak.team1.sist.domain.review.ReviewDTO review : reviews) { 
 											        if (review.getQ1() == 1) {
 											            q1TotalGrade += review.getGrade();
 											            q1ReviewCount1++;
@@ -12300,7 +12300,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 											            q3ReviewCount3++;
 											        }
 											    }
- */
+ 
 											    int q1TotalReviews = q1ReviewCount1 + q1ReviewCount2 + q1ReviewCount3;
 											    int q2TotalReviews = q2ReviewCount1 + q2ReviewCount2 + q2ReviewCount3;
 											    int q3TotalReviews = q3ReviewCount1 + q3ReviewCount2 + q3ReviewCount3;

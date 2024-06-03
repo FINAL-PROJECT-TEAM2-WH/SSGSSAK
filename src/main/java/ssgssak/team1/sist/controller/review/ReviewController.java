@@ -1,5 +1,9 @@
 package ssgssak.team1.sist.controller.review;
 
+import java.sql.SQLException;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,13 +48,24 @@ public class ReviewController {
 	
 
 	//등록
-	@PostMapping("/review.do")
+	@PostMapping("/WriteReview.do")
 	public String submitReview(@ModelAttribute ReviewDTO reviewDTO
-								,@RequestParam("reviewImg")MultipartFile [] reviewImg,Model model) {
+								,@RequestParam("reviewImg")MultipartFile [] reviewImg,Model model
+								,HttpServletRequest request) throws SQLException {
 		
+		int rowCount = reviewService.insertReview(reviewDTO, reviewImg, request );
 		
-		return "redirect:/SSGSSAK/review/review";
+	      if (rowCount == 1) {
+	            model.addAttribute("message", "리뷰 입력 성공");
+	            model.addAttribute("success", true);
+	        } else {
+	            model.addAttribute("message", "리뷰 입력 실패");
+	            model.addAttribute("success", false);
+	        }
+
+		
+		return "/review/result";
 	}
-	
+
 }//class
 

@@ -51,7 +51,7 @@
 	
 	<!-- 총 페이지 가져오기 int getTotalPages(int numberPerPage, long productcode) throws SQLException; -->
 	<select id="getTotalPages" resultType="Integer">
-		SELECT CEIL(COUNT(*) / ?) 
+		SELECT CEIL(COUNT(*) / #{numberPerPage}) 
 		FROM review 
 		WHERE PRODUCTID = #{id}		
 	</select>

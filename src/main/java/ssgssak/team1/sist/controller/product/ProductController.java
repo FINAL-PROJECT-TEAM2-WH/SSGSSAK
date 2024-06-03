@@ -47,6 +47,8 @@ public class ProductController {
         int numberPerPage = 5;
 
         
+        model.addAttribute("",this.reviewService.getTotalRecords());
+        model.addAttribute("getTotalPages", this.reviewService.getTotalPages(numberPerPage, id));
         model.addAttribute("reviewImg", this.reviewImgService.getReviewImg(id));
         model.addAttribute("reviews",this.reviewService.select(id));
         model.addAttribute("pagedReviews", this.reviewService.selectP(currentPage, numberPerPage, id));

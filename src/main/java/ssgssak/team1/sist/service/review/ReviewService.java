@@ -24,6 +24,6 @@ public interface ReviewService {
 	//완료 총페이지 가져오기
 	int getTotalPages(int numberPerPage, long id) throws SQLException;
 	
-	void insertReview(ReviewDTO reviewDTO,MultipartFile[] reviewImg,HttpServletRequest request) throws SQLException;
+	int insertReview(ReviewDTO reviewDTO,MultipartFile[] reviewImg,HttpServletRequest request) throws SQLException;
 	
 }//classs

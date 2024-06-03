@@ -17,7 +17,7 @@ public interface ReviewMapper {
 	//완료 총페이지 가져오기
 	int getTotalRecords() throws SQLException;
 	//완료 총페이지 가져오기
-	int getTotalPages(int numberPerPage, long id) throws SQLException;
+	int getTotalPages(@Param("numberPerPage")int numberPerPage, @Param("id") long id) throws SQLException;
 	
 	
 	//int getTotalPages(int numberPerPage, int searchCondition, String searchWord) throws SQLException;
@@ -25,7 +25,16 @@ public interface ReviewMapper {
 	
 	//int insertReview(long productid,String memid,int productOptionId,String reviewContent,String reviewType,double grade ,int q1,int q2,int q3 ) throws SQLException;
 
-	void insertReview(long productid,String memid,int productOptionId,String reviewContent,String reviewType,double grade ,int q1,int q2,int q3)throws SQLException;
+	void insertReview(@Param("productid") long productid,
+	        @Param("memid") String memid,
+	        @Param("productOptionId") int productOptionId,
+	        @Param("reviewContent") String reviewContent,
+	        @Param("reviewType") String reviewType,
+	        @Param("grade") double grade,
+	        @Param("q1") int q1,
+	        @Param("q2") int q2,
+	        @Param("q3") int q3
+	        )throws SQLException;
 
 	
 

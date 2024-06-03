@@ -22,4 +22,10 @@ public class ReviewImgServiceImpl implements ReviewImgService{
 		return this.reviewImgMapper.select(id);
 	}
 
+	@Override
+	public void insertReviewImg(String reviewImgUrl) throws ClassNotFoundException, SQLException {
+		
+		this.reviewImgMapper.insertReviewImg(reviewImgUrl);		
+	}
+
 }//class

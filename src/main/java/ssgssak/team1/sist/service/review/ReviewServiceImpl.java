@@ -26,7 +26,7 @@ public class ReviewServiceImpl implements ReviewService{
 	
 	private ReviewMapper reviewMapper;
 	private ReviewImgMapper reviewImgMapper;
-	
+	private ReviewImgService reviewImgService;
 	
 	
 	@Override
@@ -67,44 +67,42 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 
-	@Override
-	public void insertReview(ReviewDTO reviewDTO, MultipartFile[] reviewImg, HttpServletRequest request)
-			throws SQLException {
-		
-		reviewMapper.insertReview(reviewDTO.getProductId(), reviewDTO.getMemid()
-				, reviewDTO.getProductOptionId(), reviewDTO.getReviewContent()
-				, reviewDTO.getReviewType(), reviewDTO.getGrade()
-				,reviewDTO.getQ1(), reviewDTO.getQ2()
-				, reviewDTO.getQ3());
-		
-		String uploadRealPath = null;
-		
-		for (MultipartFile multipartFile : reviewImg) {
-			if (!multipartFile.isEmpty()) {
-				uploadRealPath = request.getServletContext().getRealPath("/SSGSSAK/review/images");
-				System.out.println(" > uploadRealPath : "+ uploadRealPath);
-				
-				//파일체크
-				String originalFilename = multipartFile.getOriginalFilename();
-				String filesystemName = getFileNameCheck(uploadRealPath, originalFilename);
-				System.out.println("originalFilename : "+originalFilename);
-				System.out.println("filesystemName : "+filesystemName);
-				
-				File dest = new File(originalFilename, filesystemName);
-				try {
-					multipartFile.transferTo(dest);
-					
-					reviewImgMapper.insertReviewImg(uploadRealPath+filesystemName);
-					
-				} catch (IllegalStateException | IOException e) {
-					System.out.println("이미지 입력 실패");
-					e.printStackTrace();
-				}
-				
-			}//if
-		}//for
-		
-	}//insert
+    @Override
+    public int insertReview(ReviewDTO reviewDTO, MultipartFile[] reviewImg, HttpServletRequest request) throws SQLException {
+        reviewMapper.insertReview(
+            reviewDTO.getProductId(), reviewDTO.getMemid(),
+            reviewDTO.getProductOptionId(), reviewDTO.getReviewContent(),
+            reviewDTO.getReviewType(), reviewDTO.getGrade(),
+            reviewDTO.getQ1(), reviewDTO.getQ2(), reviewDTO.getQ3()
+        );
+
+        String uploadRealPath = request.getServletContext().getRealPath("/resources/images");
+        System.out.println(" > uploadRealPath : " + uploadRealPath);
+        File uploadDir = new File(uploadRealPath);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs();
+        }
+
+        for (MultipartFile multipartFile : reviewImg) {
+            if (!multipartFile.isEmpty()) {
+                String originalFilename = multipartFile.getOriginalFilename();
+                String filesystemName = getFileNameCheck(uploadRealPath, originalFilename);
+                System.out.println("originalFilename : " + originalFilename);
+                System.out.println("filesystemName : " + filesystemName);
+
+                File dest = new File(uploadRealPath, filesystemName);
+                try {
+                    multipartFile.transferTo(dest);
+                    reviewImgService.insertReviewImg("\\resources\\images\\" + filesystemName);
+                    System.out.println("Saved file path: " + "/resources/images/" + filesystemName);
+                } catch (IllegalStateException | IOException | ClassNotFoundException e) {
+                    log.error("파일 저장 실패", e);
+                    throw new SQLException("파일 저장 실패", e);
+                }
+            }
+        }
+        return 1; // 성공 시 1 반환
+    }
 	
 	private String getFileNameCheck(String uploadRealPath,String originalFilename) {
 		int index =1;
