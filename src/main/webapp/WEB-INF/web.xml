@@ -44,7 +44,11 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
 	<!-- <filter>
+=======
+	<filter>
+>>>>>>> af82384d1f3a1e13cbd13b6ddc3da066f1b280d8
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy
 		</filter-class>
@@ -52,7 +56,9 @@
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
+<<<<<<< HEAD
 	</filter-mapping> -->
+
 
 	<servlet>
 		<servlet-name>jsp</servlet-name>
