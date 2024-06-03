@@ -26,7 +26,7 @@
     <typeAlias type="ssgssak.team1.sist.domain.member.InterestGoodsVO" alias="InterestGoodsVO" />
     <typeAlias type="ssgssak.team1.sist.domain.search.SearchVO" alias="SearchVO"/> 
     <typeAlias type="ssgssak.team1.sist.domain.search.Criteria" alias="Criteria"/> 
-    <typeAlias type="ssgssak.team1.sist.domain.search.PageDTO" alias="PageDTO"/> 
+    <typeAlias type="ssgssak.team1.sist.domain.search.PageDTO" alias="PageDTO2"/> 
     <typeAlias type="ssgssak.team1.sist.domain.search.PriceVO" alias="PriceVO"/> 
     <typeAlias type="ssgssak.team1.sist.domain.search.BrandCateCountVO" alias="BrandCateCountVO"/>
     <typeAlias type="java.util.Map" alias="Map" />

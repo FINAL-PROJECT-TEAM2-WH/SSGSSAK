@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ssgssak.team1.sist.mapper.search.SearchMapper">
 
-	<select id="searchResultList" resultType="SearchVO" parameterType="pageDTO">
+	<select id="searchResultList" resultType="SearchVO" parameterType="PageDTO2">
 	 <bind name="pattern" value="'%' + pageDTO.searchWord + '%'" />
 		SELECT DISTINCT po.productid productid , c3.* 
         FROM productoption po JOIN (
