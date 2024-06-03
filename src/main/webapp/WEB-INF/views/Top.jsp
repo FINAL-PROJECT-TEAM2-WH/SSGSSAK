@@ -79,7 +79,7 @@
                             <div class="ssg_mall_menu_container" aria-hidden="true" tabindex="-1" data-react-tarea-cd="00042_000000090">
                                 <ul class="ssg_mall_menu_list">
                                     <li class="ssg_mall_menu_item ssg_mall_menu_item_ssg is-active" data-react-unit-type="text" data-react-unit-text='[{"type":"text","value":"SSG"}]'>
-                                        <a href="<%= contextPath %>/mainPage.jsp" class="clickable" data-react-tarea="공통|몰이동_레이어|SSG_클릭" data-react-tarea-dtl-cd="t00060" onclick="javascript:setCommonGnbCookie('useGnbAdvertCk','',-1);">
+                                        <a href="/x	" class="clickable" data-react-tarea="공통|몰이동_레이어|SSG_클릭" data-react-tarea-dtl-cd="t00060" onclick="javascript:setCommonGnbCookie('useGnbAdvertCk','',-1);">
                                             <span class="blind">SSG.COM</span>
                                         </a>
                                     </li>
@@ -650,8 +650,8 @@ function setCommonGnbCookie(name, value, expiredays) {
 		$('#login_a_tag').text(name + '님 반갑습니다!');
 		$('#regi_a_tag').css('display','none');
 		$('#logoutBtn').css('display','block');
-		$('#like_Page').attr('href','#');
-		$('#my_Page').attr('href','#');
+		$('#like_Page').attr('href','/member/like/');
+		$('#my_Page').attr('href','/member/userInfo/');
 	});
 	$('#logoutBtn').on('click', function () {
 		location.href = '/login/logout';

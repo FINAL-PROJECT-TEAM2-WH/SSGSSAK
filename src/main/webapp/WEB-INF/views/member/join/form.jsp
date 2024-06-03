@@ -357,15 +357,11 @@
 					</span>
                         </dt>
                         <dd class="cmem_dd">
-                            
-                                
-                                
-                                
                                     <input type="hidden" id="isDuplicateMbrLoginId"/>
                                     <div class="cmem_inpgrp ty_id">
                                         <div class="cmem_txt" id="idIpt">
-                                                <input type="text" placeholder="영어 또는 숫자로 6~20자리로 입력해주세요." class="translated" id="mbrLoginId" name="id" maxlength="20"/>
-                                            
+                                                <input type="text" placeholder="영어 또는 숫자로 6~20자리로 입력해주세요." class="translated" id="mbrLoginId" name="mbr.id" maxlength="20"/>
+                                            <input type="hidden" name="shipinfo.memid" id="mbrhiddenid"/>
                                         </div>
                                         <button type="button" class="cmem_btn cmem_btn_gray" id="checkDuplicateLoginIdBtn">
                                             <span>중복확인</span>
@@ -388,7 +384,7 @@
                         <dd class="cmem_dd">
                             <div class="cmem_inpgrp ty_pw">
                                 <div class="cmem_txt">
-                                    <input type="password" placeholder="영문, 숫자 조합 8~20자리로 입력해주세요." id="pwd" name="passwd" class="translated" maxlength="20"/><span class="trans_placeholder blind" data-default-txt="영문, 숫자 조합 8~20자리로 입력해주세요.">영문, 숫자 조합 8~20자리로 입력해주세요.</span>
+                                    <input type="password" placeholder="영문, 숫자 조합 8~20자리로 입력해주세요." id="pwd" name="mbr.passwd" class="translated" maxlength="20"/><span class="trans_placeholder blind" data-default-txt="영문, 숫자 조합 8~20자리로 입력해주세요.">영문, 숫자 조합 8~20자리로 입력해주세요.</span>
                                 </div>
                             </div>
                         </dd>
@@ -422,7 +418,8 @@
                         <dd class="cmem_dd">
                             <div class="cmem_inpgrp ty_pw">
                                 <div class="cmem_txt">
-                                    <input type="text" placeholder="きみのなまえわ" id="mbrname" name="name" class="translated" maxlength="20"/><span class="trans_placeholder blind" data-default-txt="영문, 숫자 조합 8~20자리로 입력해주세요.">영문, 숫자 조합 8~20자리로 입력해주세요.</span>
+                                    <input type="text" placeholder="きみのなまえわ" id="mbrname" name="mbr.name" class="translated" maxlength="20"/><span class="trans_placeholder blind" data-default-txt="영문, 숫자 조합 8~20자리로 입력해주세요.">영문, 숫자 조합 8~20자리로 입력해주세요.</span>
+                                	
                                 </div>
                                  <span class="cmem_noti" aria-live="polite">
 											<em class="usable_value"><p id="name_msg" style="padding-top: 13px"></p></em>
@@ -450,9 +447,9 @@
                         <dd class="cmem_dd">
                             <div class="cmem_inpgrp">
                                 <div class="cmem_txt">
-                                    <input type="text" title="우편번호" id="zipcd" name="zipcode" readonly="" onclick="openPopupSearchZip();" />
-                                    <input type="hidden" id="roadAddress" name="mbrDto.roadAddress" readonly=""/>
-                                    <input type="hidden" id="jibunAddress" name="mbrDto.jibunAddress" readonly=""/>
+                                    <input type="text" title="우편번호" id="zipcd" name="shipinfo.postNum" readonly="" onclick="openPopupSearchZip();" />
+                                    <input type="hidden" id="roadAddress" name="shipinfo.roadAddress" readonly=""/>
+                                    <input type="hidden" id="jibunAddress" name="shipinfo.jibunAddress" readonly=""/>
                                 </div>
                                 <button type="button" class="cmem_btn cmem_btn_gray" onclick="openPopupSearchZip();"><span>우편번호 찾기</span></button>
                             </div>
@@ -512,7 +509,7 @@
                         <dd class="cmem_dd">
                             <div class="cmem_inpgrp ty_id" style="">
                                 <div class="cmem_txt">
-                                    <input type="text" id="email_input" placeholder="자주 사용하시는 이메일 주소를 입력해주세요." class="translated" name="email" maxlength="50"/><span class="trans_placeholder blind" data-default-txt="자주 사용하시는 이메일 주소를 입력해주세요.">자주 사용하시는 이메일 주소를 입력해주세요.</span>
+                                    <input type="text" id="email_input" placeholder="자주 사용하시는 이메일 주소를 입력해주세요." class="translated" name="mbr.email" maxlength="50"/><span class="trans_placeholder blind" data-default-txt="자주 사용하시는 이메일 주소를 입력해주세요.">자주 사용하시는 이메일 주소를 입력해주세요.</span>
                                 </div>
                                  <span class="cmem_noti" aria-live="polite">
 											<em class="usable_value"><p id="email_msg" style="padding-top: 13px"></p></em>
@@ -1274,13 +1271,11 @@ $(function(){
 	// 이메일도 마찬가지임. 
 	$('#btnSubmit_join').on('click', function () {
 		let params = $('#joinForm').serialize();
-		
 		if (!isvalidValue(checkValidvalue)){
 			alert('다시 입력');
 			return 
-		}
-		
-
+		}		
+		alert(params);
 		$.ajax({
             type: "POST"
             , url: "/regist/register"
@@ -1398,7 +1393,7 @@ var tag = '';
 function openPopupSearchZip() {
 	new daum.Postcode({
 	    oncomplete: function(data) {
-	        var addrTag = `<strong class="info_tit">도로명</strong><span class="info_cont">\${data.roadAddress}</span><strong class="info_tit">지번</strong><span class="info_cont">\${data.jibunAddress}</span><div class="cmem_inpgrp ty_pw"><div class="cmem_txt"><input type="text" id="sample4_detailAddress" class="d_form" name="mbrDto.detailAddress" placeholder="상세주소"></div><span class="cmem_noti" aria-live="polite">
+	        var addrTag = `<strong class="info_tit">도로명</strong><span class="info_cont">\${data.roadAddress}</span><strong class="info_tit">지번</strong><span class="info_cont">\${data.jibunAddress}</span><div class="cmem_inpgrp ty_pw"><div class="cmem_txt"><input type="text" id="sample4_detailAddress" class="d_form" name="shipinfo.detailAddress" placeholder="상세주소"></div><span class="cmem_noti" aria-live="polite">
 				<em class="usable_value"><p id="address_msg" style="padding-top: 13px"></p></em>
 				</span></div>`
 	    	$('#zipcd').val(data.zonecode);	
@@ -1439,6 +1434,7 @@ $("#checkDuplicateLoginIdBtn").on("click", function (){
 				 	$('#id_msg').text('사용가능한 아이디입니다.')
 				 	.css('color','blue');
 				 	checkValidvalue.ID = 'Y';
+				 $('#mbrhiddenid').val($("#mbrLoginId").val());
 			 }else {  // 1
 				 $('#id_msg')
 			 	.css('color','red')
