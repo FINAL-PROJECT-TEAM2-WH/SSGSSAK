@@ -1,5 +1,7 @@
 package ssgssak.team1.sist.register.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -17,9 +19,9 @@ import lombok.extern.log4j.Log4j;
 public class RegisterController {
 		
 	
-	// 페이지 이동.
+	// �럹�씠吏� �씠�룞.
 	
-	// 약관 분기 시키는 mapping
+	// �빟愿� 遺꾧린 �떆�궎�뒗 mapping
 	@GetMapping("/board")
 	public String divideAgreement() {
 	
@@ -27,7 +29,7 @@ public class RegisterController {
 	}
 	
 	
-	// 회원가입 페이지 넘기는 Mapping
+	// �쉶�썝媛��엯 �럹�씠吏� �꽆湲곕뒗 Mapping
 	@GetMapping("/auth")
 	public String authDivision(HttpServletRequest request) {
 		log.info("authDivision GET IN....");

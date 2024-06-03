@@ -1,6 +1,8 @@
 package ssgssak.team1.sist.login.controller;
 
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -33,7 +34,7 @@ public class LoginController {
 
 	@GetMapping(value = {"/popup", "/full"})
 	public String getLoginView(HttpServletRequest request, HttpServletResponse response) {
-		// 세션 체크해서 
+		
 		log.info("> getLoginView get in...");
 		String servletPath = request.getServletPath();
 		String path = "";
@@ -55,14 +56,14 @@ public class LoginController {
 		HttpSession session = request.getSession();
 		
 		
-		// 값 들어가는 것까지 체크했음. \
+		
 		int invalidVal = loginService.idInvalid(id);
 		System.out.println(invalidVal);
 		System.out.println(id);
 		if ( invalidVal == 0 ) {
 			System.out.println("k");
 			result.put("success", false);	
-			result.put("message", "존재하지 않는 ID입니다.");
+			result.put("message", "議댁옱�븯吏� �븡�뒗 ID�엯�땲�떎.");
 		} else {
 			if (loginService.login(id,passwd)) {
 				session.setAttribute("auth", id);
@@ -71,7 +72,7 @@ public class LoginController {
 			} else {
 				result.put("success", false);
 				System.out.println("2");
-				result.put("message", "ID 혹은 비밀번호가 맞지 않습니다. " );
+				result.put("message", "ID �샊�� 鍮꾨�踰덊샇媛� 留욎� �븡�뒿�땲�떎. " );
 			}
 		}
 		return ResponseEntity.ok(result);
