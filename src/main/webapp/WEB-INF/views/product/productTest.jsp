@@ -34,9 +34,9 @@
 
 <h3><a href="/product/view?productid=3000000000001">/product/view</a></h3>
 <h3><a href="/SSGSSAK/product/product.do?productcode=1000026532717">헤어크림 </a></h3>
-<h3><a href="/SSGSSAK/product/product.doproductcode=1000587702102">정장 </a></h3>
-<h3><a href="/SSGSSAK/product/product.doproductcode=1000059288917">뮤직뱅크사세요</a></h3>
-<h3><a href="/SSGSSAK/product/product.doproductcode=1000597094621">테스트 </a></h3>
+<h3><a href="/SSGSSAK/product/product.do?productcode=1000587702102">정장 </a></h3>
+<h3><a href="/SSGSSAK/product/product.do?productcode=1000059288917">뮤직뱅크사세요</a></h3>
+<h3><a href="/SSGSSAK/product/product.do?productcode=1000597094621">테스트 </a></h3>
 <h3><a href="/SSGSSAK/review/review.do?productcode=1000059288917">리뷰등록하기</a></h3>
 
 <img alt="" src="\resources\images\1000026532717_i1_1100.avif">
