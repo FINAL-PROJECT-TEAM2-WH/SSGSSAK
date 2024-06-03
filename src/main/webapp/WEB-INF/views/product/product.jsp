@@ -3555,7 +3555,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 					                    }
 					                });
 
-					                let url = '/SSGSSAK/pay/pay.do?' + params.join('&');
+					                let url = '/pay.do?' + params.join('&');
 					                window.location.href = url;
 								}
 /* 									

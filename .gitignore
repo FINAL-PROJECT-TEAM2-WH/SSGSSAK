@@ -4,4 +4,8 @@ Servers/
 .project
 .settings/
 .springBeans
-.target/
+/target
+bin/
+images/
+*.log
+
