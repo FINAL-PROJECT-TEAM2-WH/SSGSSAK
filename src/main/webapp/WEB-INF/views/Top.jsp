@@ -30,6 +30,7 @@
 
 <div id="gnbBanrDiv" style="display:none">
  
+ 
 </div>
 <!-- IE Upgrade 캠페인 --><div class="gnb_bnr_wrap" id="_ieEdgeTopBanner" data-cookie="ieUpgradeBanner">
     <div class="gnb_bnr_s gnb_bnr_ie" id="checkUpgrade">
@@ -568,13 +569,13 @@ cmjump_rank_lst
 	
 	// 키보드 온 프레스 해서 엔터 눌렀을때도 마찬가지로 작동하도록 만들기
 	
-<%-- 	$("#ssgSearchBtn").on("click", function(){
+		$("#ssgSearchBtn").on("click", function(){
 		var searchWord = $("#ssg_searchQuery").val();
 		
-		// 검색작업이 일어나고 검색된 페이지를 뿌려야한다.
-		location.href = `<%= request.getContextPath() %>/searchQuery.do?searchWord=\${ searchWord }`;
+		location.href = `/searchQuery?searchWord=\${ searchWord }`;
 		
-	}) --%>
+	}) 
+	
 	
 </script>
 <!-- //최근 본 상품 -->
