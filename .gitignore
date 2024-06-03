@@ -3,12 +3,9 @@ Servers/
 .classpath
 .project
 .settings/
-<<<<<<< HEAD
-.springBeans
-=======
 .springBeans
 /target
 bin/
 images/
 *.log
->>>>>>> af82384d1f3a1e13cbd13b6ddc3da066f1b280d8
+
