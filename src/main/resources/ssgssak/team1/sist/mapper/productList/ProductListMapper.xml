@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="ssgssak.team1.sist.mapper.productList.ProductListMapper">
+	<!-- <delete id="delete"> DELETE FROM tbl_board WHERE bno=#{bno} </delete> -->
+
+
+	<select id="selectProdList" resultType="ProductListDTO"
+		parameterType="PageDTO">
+		SELECT *
+		FROM (
+		SELECT ROWNUM no, t.*
+		FROM (
+		SELECT
+		p.ID,
+		MAX(p.SHIPPINGOPTIONID) AS SHIPPINGOPTIONID,
+		MAX(p.sellerstoreid) AS
+		SELLERSTOREID,
+		MAX(s.SELLERNAME) AS SELLERNAME,
+		MAX(p.brandid) AS
+		BRANDID,
+		MAX(b.brandname) AS BRANDNAME,
+		MAX(p.PDNAME) AS PDNAME,
+		MAX(p.UPDATEDAY) AS UPDATEDAY,
+		COALESCE(MAX(o.optionPrice), 0) AS
+		optionPrice,
+		COALESCE(MAX(o.optionPrice) - ((MAX(o.optionPrice) / 100)
+		* MAX(c.spclDscnRt)), 0) AS sprice,
+		COALESCE(MAX(c.spclDscnRt), 0) AS
+		discount,
+		COALESCE(MAX(reviewData.reviewCount), 0) AS reviewCount,
+		COALESCE(MAX(reviewData.averageGrade), 0) AS averageGrade,
+		MAX(productimg.IMGURL) AS imgurl
+		FROM
+		PRODUCT p
+		JOIN BRAND b ON p.BRANDID = b.ID
+		JOIN sellerstore s ON p.SELLERSTOREID
+		= s.id
+		LEFT JOIN productOption o ON p.ID = o.productid
+		LEFT JOIN
+		specialprice c ON p.specialPriceId = c.id
+		LEFT JOIN (
+		SELECT productId,
+		COUNT(*) AS reviewCount, AVG(grade) AS averageGrade
+		FROM review
+		GROUP BY
+		productId
+		) reviewData ON p.ID = reviewData.productId
+		LEFT JOIN (
+        SELECT DISTINCT productid, IMGURL
+        FROM productimg
+        WHERE IMGCONTENT = 'sum'
+        ) productimg ON p.id = productimg.productid
+		WHERE
+		TO_CHAR(p.CATEGORYID) LIKE #{categoryId} || '%'
+		GROUP BY p.id
+		) t
+		) b
+		WHERE no BETWEEN #{start} AND #{end}
+	</select>
+
+
+
+	<select id="getTotalPages" resultType="int">
+		SELECT
+		CEIL(COUNT(*)/#{numberPerPage}) FROM product WHERE CATEGORYID LIKE
+		#{categoryId} || '%'
+	</select>
+
+	<select id="getProdCount" resultType="int">
+		SELECT COUNT(*) FROM
+		product WHERE CATEGORYID LIKE #{categoryId} || '%'
+	</select>
+
+
+	<select id="selectMajorCate" resultType="MajorCateDTO">
+		SELECT DISTINCT
+		majorCateName, id
+		FROM category
+		WHERE id LIKE '%000000'
+		AND majorCateName
+		IS NOT NULL
+	</select>
+
+	<select id="selectMiddleCate" resultType="MiddleCateDTO">
+		SELECT DISTINCT
+		middleCateName, id
+		FROM category
+		WHERE id LIKE SUBSTR(#{categoryId}, 1,
+		2) || '%0000'
+		AND middleCateName IS NOT NULL
+	</select>
+
+	<select id="selectSubCate" resultType="SubCateDTO">
+		SELECT DISTINCT
+		subCateName, id
+		FROM category
+		WHERE id LIKE SUBSTR(#{categoryId}, 1, 4)
+		|| '%00'
+		AND subCateName IS NOT NULL
+	</select>
+
+	<select id="selectMiniCate" resultType="MiniCateDTO">
+		SELECT DISTINCT
+		miniCateName, id
+		FROM category
+		WHERE id LIKE SUBSTR(#{categoryId}, 1, 6)
+		|| '%'
+		AND miniCateName IS NOT NULL
+	</select>
+
+	<select id="selectCurrentCate" resultType="CurrentCateDTO">
+		SELECT *
+		FROM category
+		WHERE id = #{categoryId}
+	</select>
+
+
+
+
+
+
+<select id="imgurlSelect" resultType="String">
+
+</select>
+
+</mapper>

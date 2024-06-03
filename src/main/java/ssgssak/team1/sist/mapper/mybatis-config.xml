@@ -9,6 +9,18 @@
   </settings>
   <typeAliases>
 <!--     <typeAlias type="org.doit.ik.domain.DeptDTO" alias="DeptDTO" />-->
+
+<!-- 		명건 DTO -->
+    <typeAlias type="ssgssak.team1.sist.domain.productList.AllCateDTO" alias="AllCateDTO" /> 
+    <typeAlias type="ssgssak.team1.sist.domain.productList.MajorCateDTO" alias="MajorCateDTO" /> 
+    <typeAlias type="ssgssak.team1.sist.domain.productList.MiddleCateDTO" alias="MiddleCateDTO" /> 
+    <typeAlias type="ssgssak.team1.sist.domain.productList.SubCateDTO" alias="SubCateDTO" /> 
+    <typeAlias type="ssgssak.team1.sist.domain.productList.MiniCateDTO" alias="MiniCateDTO" /> 
+    <typeAlias type="ssgssak.team1.sist.domain.productList.CurrentCateDTO" alias="CurrentCateDTO" /> 
+    <typeAlias type="ssgssak.team1.sist.domain.productList.ProductListDTO" alias="ProductListDTO" /> 
+    <typeAlias type="ssgssak.team1.sist.domain.productList.PageDTO" alias="PageDTO" /> 
+<!--       명건 DTO 끝 -->
+
     <typeAlias type="ssgssak.team1.sist.domain.member.MemberVO" alias="MemberVO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.ship.ShippingPlaceInfoVO" alias="ShippingPlaceInfoVO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.member.InterestGoodsVO" alias="InterestGoodsVO" />
