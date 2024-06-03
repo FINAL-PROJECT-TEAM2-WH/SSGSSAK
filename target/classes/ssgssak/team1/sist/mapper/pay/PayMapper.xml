@@ -74,7 +74,7 @@
 	 select id newordernum from payrecord  where memid = #{memid}  order by id desc)
 	           where rownum = 1) 
 	           select m.name , p.orderdate , p.id ordernum , spi.id , spi.receivemem ordername , spi.tel phonenum , spi.addressnick addrnick , spi.roadaddress roadaddr ,spi.detailaddress detailaddr , p.orderamount ,so.defaultShippingFee shipamount, pr.points point , p.points usepoint 
-	           from member m , payrecord p , newordernum no , shippinginformation si  ,shippingPlaceInformation spi ,shippingoption so ,product pd ,productoption pop ,paydetail pdt ,pointrecord pr where m.id = #{memid}  and si.orderid = no.newordernum and no.newordernum = p.id and  m.id = p.memid and spi.id = si.shippingplaceid and so.id = pd.shippingoptionid and  pop.productid = pd.id and pop.id = pdt.id3 and pdt.id2 = p.id and pr.id2 = p.id and pr.classify = 2 
+	           from member m , payrecord p , newordernum no , shippinginformation si  ,shippingPlaceInformation spi ,shippingoption so ,product pd ,productoption pop ,paydetail pdt ,pointrecord pr where m.id = #{memid}  and si.orderid = no.newordernum and no.newordernum = p.id and  m.id = p.memid and spi.id = si.shippingplaceid and so.id = pd.shippingoptionid and  pop.productid = pd.id and pop.id = pdt.id3 and pdt.id2 = p.id and pr.id2 = p.id and pr.classify = 2 and rownum=1 
 	</select>
 	<select id="selectcateinfo" resultType="ssgssak.team1.sist.domain.pay.EnrollDTO">
 		select id cateid, majorcatename cate1 ,middlecatename cate2,subcatename cate3,minicatename cate4 from category
