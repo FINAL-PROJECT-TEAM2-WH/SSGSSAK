@@ -344,8 +344,10 @@
                 <h2><span class="notranslate">로그인</span></h2>
             </div>
         </div>
+
         <form id="login_form" method="post" action="/login/login">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
             <div class="cmem_cont">
                 <div class="cmem_sec">
                     
@@ -2269,6 +2271,7 @@ return window.location.pathname.substring(0, window.location.pathname.indexOf("/
 
 
 let contextPath = getContextPath();
+
 $('#loginBtn_Full').one('click', function () {
    /*  let params = $('#login_form').serialize().submit(); */
 	 let params = $('form').serialize();
@@ -2284,13 +2287,14 @@ $('#loginBtn_Full').one('click', function () {
 	            	location.href='/';             	
 	            } else {
 	            	 alert('아이디와 비밀번호가 다릅니다.')
+
 	            }
 	        },
 	        error: function (xhr, status, error) {
 	            console.error("오류 - 상태: ", status, " 메시지: ", error);
 	            alert('오류: ' + error);
 	            
-	           
+	    
 	            
 	            window.location.reload();
 	        }
