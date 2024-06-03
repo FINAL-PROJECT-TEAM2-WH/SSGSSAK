@@ -5,7 +5,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,11 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-import ssgssak.team1.sist.domain.TermsDTO;
-import ssgssak.team1.sist.domain.member.MemberVO;
 import ssgssak.team1.sist.domain.member.UserFormDTO;
-import ssgssak.team1.sist.domain.ship.ShippingPlaceInfoVO;
-import ssgssak.team1.sist.service.member.LoginService;
 import ssgssak.team1.sist.service.member.RegistService;
 
 
@@ -28,6 +26,7 @@ import ssgssak.team1.sist.service.member.RegistService;
 @RequestMapping("/regist")
 public class RegisterController {
 		
+	private PasswordEncoder passwordEncoder;
 	
 	RegistService registService;
 	// 페이지 이동.
@@ -123,6 +122,8 @@ public class RegisterController {
 		return ResponseEntity.ok(result);
 	}
 	
+	
+	
 	@PostMapping("/register")
 	public ResponseEntity<Map<String, Object>> register(UserFormDTO userform){
 		log.info("> registerPOST get in...");
@@ -140,6 +141,10 @@ public class RegisterController {
 		userform.getShipinfo().setTel(tel);
 		userform.getShipinfo().setReceivemem(userform.getMbr().getName());
 				
+		String pwd = userform.getMbr().getPwd();
+		System.out.println(pwd);
+		System.out.println(this.passwordEncoder.encode(pwd));
+		userform.getMbr().setPwd(this.passwordEncoder.encode(pwd));
 		/*
 		 * 
 		 * System.out.println(userform.getMbr().getName());

@@ -8,8 +8,8 @@
 	WHERE bno=#{bno}
 	</delete> -->	
   <insert id="registerMember" parameterType="MemberVO">
-	  INSERT INTO member (id, email, phonenum, name, passwd, birthd, registerdate,updatedate, loginnotification, login2notification, privilege, enabled)
-        VALUES (#{mbrvo.id}, #{mbrvo.email}, #{mbrvo.phoneNum}, #{mbrvo.name}, #{mbrvo.passwd},SYSDATE, SYSDATE, SYSDATE, '0', '0', 'member', 'N')
+	  INSERT INTO member (id, email, phonenum, name, passwd, birthd, registerdate,updatedate, loginnotification, login2notification, enabled)
+        VALUES (#{mbrvo.id}, #{mbrvo.email}, #{mbrvo.phoneNum}, #{mbrvo.name}, #{mbrvo.pwd},SYSDATE, SYSDATE, SYSDATE, '0', '0', 'N')
   </insert>	 
   
   <insert id="registerShipinfo" parameterType="ShippingPlaceInfoVO">

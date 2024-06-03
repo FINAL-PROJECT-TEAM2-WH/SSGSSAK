@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssgssak.team1.sist.mapper.member.MemberMapper"> 
+	<resultMap type="MemberVO" id="memberMap">
+	  <id property="id" column="id" />
+     <!--  <result property="id" column="id" /> -->
+      <result property="pwd" column="pwd" />
+      <result property="name" column="name" />
+      <collection property="authList" resultMap="authMap"></collection>
+	 </resultMap>
+	 <resultMap type="AuthVO" id="authMap">
+	   <result property="username" column="username" />
+	   <result property="authority" column="authority" />  
+	 </resultMap>
+	 <!-- public MemberVO read(@Param("userid") String userid) throws ClassNotFoundException, SQLException ; -->
+	 <select id="read" resultMap="memberMap">
+	   with temp AS (
+SELECT m.id, m.passwd, m.name, m.enabled, a.authid authid
+       FROM  member  m LEFT JOIN auth a ON m.id = a.memid
+       WHERE m.id = #{userid}
+)
+SELECT  t.id, t.passwd pwd, t.name, t.id username,  a.authname authority
+FROm temp t left join authority a on t.authid = a.id
+	 </select>
+</mapper>

@@ -312,15 +312,20 @@
                     <ul class="gnb_util" id="util_right">
                         <li id="gnbUserInfoArea" class="gnb_tx_user notranslate gnbUserInfoArea" style="display:none;"><a href="javascript:void(0);"></a></li>
                          <sec:authorize access="isAnonymous()">
-                        <li id="loginBtn" style="display:none;"><a id="login_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그인" href="#" onclick="" title="새창 열림">로그인</a></li>
-                        <li id="joinBtn" style="display:none;"><a id="regi_a_tag" class="clickable" data-react-tarea="몰공통|GNB|회원가입" href="#">회원가입</a></li>
+                        <li id="loginBtn" style="display:block;"><a id="login_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그인" href="#" onclick="" title="새창 열림">로그인</a></li>
+                        <li id="joinBtn" style="display:block;"><a id="regi_a_tag" class="clickable" data-react-tarea="몰공통|GNB|회원가입" href="#">회원가입</a></li>
                         </sec:authorize>
                         <sec:authorize access="isAuthenticated()">
-                        <li id="logoutBtn" style="display:none;"><a id="logout_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그아웃" href="#">로그아웃</a></li>
+                         <li id="userinfoBtn" style="display:block;"><a id="login_a_tag" clas	s="clickable" data-react-tarea="몰공통|GNB|로그인" href="#" onclick="" title="새창 열림"><sec:authentication property="principal.username"/>님 환영합니다</a></li>
+                        <form id="logoutform" action="/login/logout" method="post">
+                         <li id="logoutBtn" style="display:block;"><a id="logout_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그아웃" href="#">로그아웃</a></li>
+                        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>                      
+                        </form>                      
                         </sec:authorize>
-                        <li><a class="clickable" data-react-tarea="몰공통|GNB|고객센터" href="<%= contextPath %>/customer/main.jsp;">고객센터</a></li>
+                        <li><a class="clickable" data-react-tarea="몰공통|GNB|고객센터" href="#">고객센터</a></li>
                     </ul>
                 </div>
+       
                 
                 <!-- 서블릿에서 filter로 걸러서 회원 로그인 하게끔 만들어야함.  -->
                 <div class="gnb_renew_menu">
@@ -356,13 +361,13 @@
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
                         <li>
-                            <a href="/login/full" class="btn_like clickable" data-react-tarea="몰공통|GNB|MY_MY클립" id="like_Page" >
+                            <a href="/member/like" class="btn_like clickable" data-react-tarea="몰공통|GNB|MY_MY클립" id="like_Page" >
                                 <i class="icon ty_sm icon_heart" aria-hidden="true"></i>
                                 <span class="blind">좋아요</span>
                             </a>
                         </li>
                         <li>
-                            <a href="/login/full" class="btn_myssg clickable" data-react-tarea="몰공통|GNB|MY_MYSSG" id="my_Page">
+                            <a href="/member/userInfo" class="btn_myssg clickable" data-react-tarea="몰공통|GNB|MY_MYSSG" id="my_Page">
                                 <i class="icon ty_sm icon_person" aria-hidden="true"></i>
                                 <span class="blind">MY SSG</span>
                             </a>
@@ -630,7 +635,7 @@ cmjump_rank_lst
 
 
 <script>
-var loginYn  = 'N';
+/* var loginYn  = 'N';
 var cookies = document.cookie.split('; ');
 for(var i = 0; i < cookies.length; i++){
     var value  = cookies[i].split('=');
@@ -647,7 +652,7 @@ if(loginYn == 'T'){
     document.getElementById('loginBtn').style.display = "";
     document.getElementById('joinBtn').style.display = "";
     document.getElementById('logoutBtn').style.display = "none";
-}
+} */
 
 
 
@@ -675,7 +680,11 @@ function setCommonGnbCookie(name, value, expiredays) {
     document.cookie = strCookie;
 }
 </script>
-
+<script>
+$('#logoutBtn').on('click', function () {
+	$('#logoutform').submit();
+})
+</script>
 <%-- <%
  	String id = (String)session.getValue("auth");
 	if ( id != null) {

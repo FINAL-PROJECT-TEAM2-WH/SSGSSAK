@@ -10,6 +10,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,12 +40,15 @@ public class MemberController {
 	
 	@Autowired
 	UserInfoService infoService;
-
+	
 	
 	@GetMapping("/like")
 	public String likeInfo(HttpSession httpSession, Model model) {
 		// id받으면 그걸 바탕으로 좋아요 한 항목들을 뿌려주면 됨. 
-		String id =	(String) httpSession.getAttribute("auth");
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String id = userDetails.getUsername();
+		System.out.println(id);
 		model.addAttribute("productList",likeService.getInterGoodsList(id));
 		return "/member/userinfo/like/like";
 	}

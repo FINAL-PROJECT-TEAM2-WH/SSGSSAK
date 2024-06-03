@@ -345,7 +345,7 @@
             </div>
         </div>
 
-        <form id="login_form" method="post" action="/login/login">
+        <form id="login_form" method="post" action="/login">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
             <div class="cmem_cont">
@@ -354,7 +354,7 @@
                     <div class="cmem_inpgrp ty_id">
                         <div class="cmem_txt">
                             <label for="mem_id" class="blind">아이디</label>
-                            <input type="text" name="mbrLoginId" id="mem_id" maxlength="50" placeholder="아이디">
+                            <input type="text" name="username" id="mem_id" maxlength="50" placeholder="아이디">
                         </div>
                     </div>
                     <div class="cmem_inpgrp ty_pw">
@@ -2271,13 +2271,12 @@ return window.location.pathname.substring(0, window.location.pathname.indexOf("/
 
 
 let contextPath = getContextPath();
-
+/* 
 $('#loginBtn_Full').one('click', function () {
-   /*  let params = $('#login_form').serialize().submit(); */
 	 let params = $('form').serialize();
 
 	    $.ajax({
-	        url: '/login/login',
+	        url: '/login',
 	        dataType: 'json',
 	        type: 'POST',
 	        data: params,
@@ -2299,7 +2298,7 @@ $('#loginBtn_Full').one('click', function () {
 	            window.location.reload();
 	        }
 	    });
-});
+}); */
 
 </script>
 
