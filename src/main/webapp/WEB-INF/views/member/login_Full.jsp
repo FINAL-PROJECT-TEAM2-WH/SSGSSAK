@@ -345,7 +345,7 @@
             </div>
         </div>
 
-        <form id="login_form" method="post" action="/login">
+        <form id="login_form" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
             <div class="cmem_cont">
@@ -372,7 +372,7 @@
 				</span>
                     </div>
                     <div class="cmem_btnarea">
-                        <button type="submit" class="cmem_btn cmem_btn_ornge" id="loginBtn_Full"><span>로그인</span></button>
+                        <button type="button" class="cmem_btn cmem_btn_ornge" id="loginBtn_Full"><span>로그인</span></button>
                     </div>
                     <ul class="cmem_sns_login notranslate">
                         <li>
@@ -2271,7 +2271,7 @@ return window.location.pathname.substring(0, window.location.pathname.indexOf("/
 
 
 let contextPath = getContextPath();
-/* 
+
 $('#loginBtn_Full').one('click', function () {
 	 let params = $('form').serialize();
 
@@ -2282,7 +2282,7 @@ $('#loginBtn_Full').one('click', function () {
 	        data: params,
 	        cache: false,
 	        success: function (data) {
-	            if (data.success) {
+	            if (data.result) {
 	            	location.href='/';             	
 	            } else {
 	            	 alert('아이디와 비밀번호가 다릅니다.')
@@ -2298,7 +2298,7 @@ $('#loginBtn_Full').one('click', function () {
 	            window.location.reload();
 	        }
 	    });
-}); */
+});
 
 </script>
 

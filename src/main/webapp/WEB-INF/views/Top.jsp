@@ -316,12 +316,15 @@
                         <li id="joinBtn" style="display:block;"><a id="regi_a_tag" class="clickable" data-react-tarea="몰공통|GNB|회원가입" href="#">회원가입</a></li>
                         </sec:authorize>
                         <sec:authorize access="isAuthenticated()">
-                         <li id="userinfoBtn" style="display:block;"><a id="login_a_tag" clas	s="clickable" data-react-tarea="몰공통|GNB|로그인" href="#" onclick="" title="새창 열림"><sec:authentication property="principal.username"/>님 환영합니다</a></li>
+                         <li id="userinfoBtn" style="display:block;"><a id="login_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그인" href="#" onclick="" title="새창 열림"><sec:authentication property="principal.username"/>님 환영합니다</a></li>
                         <form id="logoutform" action="/login/logout" method="post">
                          <li id="logoutBtn" style="display:block;"><a id="logout_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그아웃" href="#">로그아웃</a></li>
                         <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>                      
                         </form>                      
                         </sec:authorize>
+                         <sec:authorize access="hasRole('admin')">
+                         <li id="enrollBtn" style="display:block;"><a id="enroll_tag" class="clickable" href="/enroll.do">상품등록</a></li>
+                         </sec:authorize>
                         <li><a class="clickable" data-react-tarea="몰공통|GNB|고객센터" href="#">고객센터</a></li>
                     </ul>
                 </div>
@@ -679,6 +682,58 @@ function setCommonGnbCookie(name, value, expiredays) {
 
     document.cookie = strCookie;
 }
+
+function addLike(productid) {
+
+ 	$.ajax({
+        url: '/memberR/like',
+        dataType: 'json',
+        type: 'GET',
+        data: { "productid" : productid}, 
+        cache: false,
+        success: function (data) {
+        	if (data.result == 'Invalid') {
+        		if (confirm ('이미 좋아요 누른 항목입니다. 취소하시겠습니까? ')) {
+        			//alert("ㅇㅋ 취소해줌");
+        			var csrfToken = $('#csrfToken').val();
+        			//alert(csrfToken);
+        			// 취소하는 ajax 
+        			 $.ajax({
+        				url: '/memberR/like',
+        				contentType: 'application/json',
+        				type: 'POST',
+        				data : JSON.stringify({"productid" : productid
+        					}),
+        				cache: false,
+        				beforeSend: function(xhr) {
+                            xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+                     },
+        				success : function (data) {
+        					if(data.result == 'success') {
+        						alert('삭제 성공');
+        						location.reload();
+        					} else {
+        						alert('삭제 실패');
+        					}
+        				}, error : function (xhr, status, error){
+        					
+        				}
+        			}); 
+        		} else {
+        			alert('그대로 냅둘게');
+        		}
+        	} else if ( data.result == 'Success') {
+        		alert('좋아요 성공임');
+        	} else if ( data.result == 'Fail') {
+        		alert('좋아요 실패임 ');
+        	}
+        },
+        error: function (xhr, status, error) {
+
+        }
+    });
+} 
+
 </script>
 <script>
 $('#logoutBtn').on('click', function () {

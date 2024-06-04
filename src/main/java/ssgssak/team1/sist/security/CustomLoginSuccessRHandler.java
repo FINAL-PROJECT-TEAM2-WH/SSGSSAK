@@ -20,29 +20,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j;
 
 
-@Component("customLoginSuccessHandler")
+@Component("customLoginSuccessRHandler")
 @Log4j
-public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
+public class CustomLoginSuccessRHandler implements AuthenticationSuccessHandler{
 
 
-	ObjectMapper objectMapper = new ObjectMapper();
 	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-			log.warn("> Login Success...");
-
-			response.setStatus(HttpServletResponse.SC_OK);
-	        Map<String, Object> data = new HashMap();
-	        data.put("result", "success");
+			log.warn("> Login R Success...");
 
 	      List<String> roleNames = new ArrayList();      
 	      authentication.getAuthorities().forEach( auth -> {
 	         roleNames.add(auth.getAuthority());
 	      });
 	      log.warn("> ROLE NAMES : " + roleNames );
-	      response.setCharacterEncoding("UTF-8");
-	      response.getWriter().write(objectMapper.writeValueAsString(data));
+	     response.sendRedirect("/");
 	      /*
 	      if ( roleNames.contains("ROLE_ADMIN") ) {
 	         response.sendRedirect("/");

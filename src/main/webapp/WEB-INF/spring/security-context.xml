@@ -42,6 +42,13 @@
         default-target-url="/"
       />
       
+     <security:form-login
+        login-page="/login/popup" 
+        authentication-success-handler-ref="customLoginSuccessHandler"
+        authentication-failure-url="/login/popup?error=true"
+        default-target-url="/"
+      /> 
+      
       <security:logout logout-url="/login/logout"
         invalidate-session="true"
         logout-success-url="/" 

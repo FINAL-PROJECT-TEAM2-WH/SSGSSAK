@@ -2,6 +2,7 @@ package ssgssak.team1.sist.controller.member;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import ssgssak.team1.sist.domain.member.InterestGoodsVO;
 import ssgssak.team1.sist.mapper.member.LikeMapper;
 import ssgssak.team1.sist.service.member.LikeService;
 import ssgssak.team1.sist.service.member.LoginService;
@@ -49,14 +51,23 @@ public class MemberController {
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		String id = userDetails.getUsername();
 		System.out.println(id);
-		model.addAttribute("productList",likeService.getInterGoodsList(id));
+		List<InterestGoodsVO> list = likeService.getInterGoodsList(id);
+		model.addAttribute("productList",list);
+		model.addAttribute("listSize", list.isEmpty() ? 0 : list.size());
 		return "/member/userinfo/like/like";
 	}
 	
 	@GetMapping("/userInfo")
 	public String userInfo(HttpSession httpSession, Model model) {
 		
-		String id = (String) httpSession.getAttribute("auth");
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String id = userDetails.getUsername();
+		List<InterestGoodsVO> list = likeService.getInterGoodsList(id);
+
+		model.addAttribute("interSize", list.isEmpty() ? 0 : list.size());
+
+		
 		model.addAttribute("userinfo", infoService.getUserInfo(id));
 		
 		return "/member/userinfo/userinfo";

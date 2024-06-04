@@ -661,7 +661,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 		</div>
 		<div class="mylike_filter" role="radiogroup" data-react-tarea-cd="00133_000000557">
 			<a href="/myssg/myClip/main.ssg?attnDivCd=10&mbrAttnGrpSeq=0" class="mylike_filter_btn on clickable" role="radio" aria-checked="true"
-         data-react-unit-type="text" data-react-unit-text='[{"type":"text","value":"상품"}]' data-react-tarea-dtl-cd="t00060" data-react-tarea="좋아요|유형탭|메뉴_클릭">상품 (${countList[0]})</a>
+         data-react-unit-type="text" data-react-unit-text='[{"type":"text","value":"상품"}]' data-react-tarea-dtl-cd="t00060" data-react-tarea="좋아요|유형탭|메뉴_클릭">상품 (${listSize})</a>
 			<a href="/myssg/myClip/main.ssg?attnDivCd=30&mbrAttnGrpSeq=0" class="mylike_filter_btn clickable" role="radio" aria-checked="false"
          data-react-unit-type="text" data-react-unit-text='[{"type":"text","value":"브랜드&스토어"}]' data-react-tarea-dtl-cd="t00060" data-react-tarea="좋아요|유형탭|메뉴_클릭">브랜드&amp;스토어 (${countList[1]})</a>
 			<a href="/myssg/myClip/main.ssg?attnDivCd=20&mbrAttnGrpSeq=0" class="mylike_filter_btn clickable" role="radio" aria-checked="false"
@@ -760,7 +760,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
                 <input type="hidden" name="checked" value="N">
                 <input type="hidden" name="useForcedSsgYn" value="N">
                  
-               <button class="cmlike_btn _js_cmlike_btn clickable" <%-- onclick="addLike(${product.id});" --%> >
+               <button class="cmlike_btn _js_cmlike_btn clickable"  onclick="addLike(${product.id});"> >
                     <span class="cmlike_ico">
                         <i class="cmlike_primary_s"></i>
                         <span class="sr_off"><span class="blind">관심상품 취소</span></span>
@@ -3288,13 +3288,13 @@ $(function(){
 </script>
 <script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/ui/ssg.common.infinitegrid.js?v=20240424"></script>
 <script>
-/* function addLike(productid) {
+function addLike(productid) {
 
  	$.ajax({
         url: '/memberR/like',
         dataType: 'json',
         type: 'GET',
-        data: { "productid" : productid, "id" :id}, 
+        data: { "productid" : productid}, 
         cache: false,
         success: function (data) {
         	if (data.result == 'Invalid') {
@@ -3307,8 +3307,8 @@ $(function(){
         				url: '/memberR/like',
         				contentType: 'application/json',
         				type: 'POST',
-        				data : JSON.stringify({"productid" : productid,
-        					"id" : id}),
+        				data : JSON.stringify({"productid" : productid
+        					}),
         				cache: false,
         				beforeSend: function(xhr) {
                             xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
@@ -3337,7 +3337,7 @@ $(function(){
 
         }
     });
-} */
+} 
 
 /* $('.cmlike_btn_js_cmlike_btn_clickable').on('click', function () {
 	alert('kk');
