@@ -34,11 +34,13 @@
  
 	<!-- List<ReviewDTO> selectP (int currentPage, int numberPerPage,long productcode) throws SQLException ;  -->	
 	<select id="selectP" resultType="ssgssak.team1.sist.domain.review.ReviewDTO">
-		SELECT * 
+    		SELECT * 
 		FROM (
 	                SELECT ROWNUM no, t.* FROM (
-	                    SELECT r.ID, r.PRODUCTID, r.MEMID, r.PRODUCTOPTIONID, r.REVIEWCONTENT, r.REVIEWDATE, r.REVIEWTYPE, r.GRADE, r.Q1, r.Q2, r.Q3
-	                    FROM review r WHERE r.PRODUCTID = #{id} ORDER BY r.ID DESC
+	                    SELECT r.ID, r.PRODUCTID, r.MEMID, r.PRODUCTOPTIONID, r.REVIEWCONTENT, r.REVIEWDATE, r.REVIEWTYPE, r.GRADE, r.Q1, r.Q2, r.Q3,po.OPTIONNAME
+	                    FROM review r JOIN productoption po
+                        ON r.productoptionid = po.id
+                        WHERE r.PRODUCTID = #{id} ORDER BY r.ID DESC
 	                ) t
 	            ) WHERE no BETWEEN #{currentPage} AND #{numberPerPage}
 	</select>

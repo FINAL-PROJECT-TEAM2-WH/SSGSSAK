@@ -2584,7 +2584,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 													<ul class="cdtl_pager_lst"
 														style="width: auto; position: relative; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
 														<c:forEach var="images" items="${product.images}" varStatus="status">
-															<c:if test="${status.index==1}">
+															<c:if test="${images.imgContent eq 'sub'}">
 																	<li
 																		style="float: none; list-style: none; position: relative; width: 90px; margin-bottom: 14px;">
 																		<a href="javascript:void(0);"
@@ -2809,21 +2809,16 @@ function setCommonGnbCookie(name, value, expiredays) {
 														class="num">${fn:length(reviews)}</span>건)</span>
 												</div>
 												<div class="mndtl_mediall_summary_list">
+												<!--고치기 -->
+												<c:forEach items="${reviewImg}" begin="0" end="2" var="rvImg">
 													<div class="mndtl_figure_thmb">
 														<img
-															src="https://simg.ssgcdn.com/trans.ssg?src=/uphoto/202405/20240508013122_1219128179_0_1.jpg&amp;w=500&amp;h=500&amp;autoOrient=true&amp;t=70dcf7921666cec257af20da9800093556c0ec36"
+															src="${rvImg.reviewImgUrl}"
 															alt="시몽 테르미크 150ml [No.1 헤어에센스-손상모발용]">
 													</div>
-													<div class="mndtl_figure_thmb">
-														<img
-															src="https://simg.ssgcdn.com/trans.ssg?src=/uphoto/202404/20240430091649_1218560369_0_1.jpg&amp;w=500&amp;h=500&amp;autoOrient=true&amp;t=b223a0a9fd6cbd9c034361ce89a0bda59594f0c6"
-															alt="시몽 테르미크 150ml [No.1 헤어에센스-손상모발용]">
-													</div>
-													<div class="mndtl_figure_thmb">
-														<img
-															src="https://simg.ssgcdn.com/trans.ssg?src=/uphoto/202404/20240427154446_1218435476_0_1.jpg&amp;w=500&amp;h=500&amp;autoOrient=true&amp;t=7e8b66b6f796dbdd01fdfe4cbc6d586bd5ebef8e"
-															alt="시몽 테르미크 150ml [No.1 헤어에센스-손상모발용]">
-													</div>
+												</c:forEach>
+												
+
 												</div>
 											</a>
 										</div>
@@ -3558,7 +3553,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 					                let url = '/pay.do?' + params.join('&');
 					                window.location.href = url;
 								}
-									/* 고치기
+					/* 				
 								    fetch('/SSGSSAK/product/CheckLogin.do')//고치기
 								        .then(response => response.json())
 								        .then(data => {
@@ -3573,8 +3568,8 @@ function setCommonGnbCookie(name, value, expiredays) {
 								            }
 								        })
 								        .catch(error => console.error(error));
-								}
-								  */
+								} */
+								  
 								
     		function handleCart() {
 
@@ -12150,7 +12145,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 												<div class="cdtl_capture_img">
 													  <img src="${product.images[0].imgUrl}" alt="상세 이미지" style="width: 100%; height: auto; margin: 0; padding: 0;">
 												</div>
-
+										<%-- 		 고치기
 												<div class="cdtl_detail_img">
 													<c:forEach var="image" items="${product.images}"
 														varStatus="status">
@@ -12158,7 +12153,19 @@ function setCommonGnbCookie(name, value, expiredays) {
 															onerror="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=1200&amp;h=1200&amp;t=2ca8e91106bfe8f410b8440ea403e5acdc70084a'">
 													</c:forEach>
 												</div>
-
+												 --%>
+												  
+												<div class="cdtl_detail_img">
+													<c:set var="index" value="1"/>
+													<c:forEach var="image" items="${product.images}">
+													    <c:if test="${image.imgContent eq 'other'}">                                                 
+													        <img src="${image.imgUrl}" alt="상품이미지${index}"
+													            onerror="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=1200&amp;h=1200&amp;t=2ca8e91106bfe8f410b8440ea403e5acdc70084a'">
+													        <c:set var="index" value="${index + 1}"/>
+													    </c:if>
+													</c:forEach>
+												</div>
+ 
 												<div class="cdtl_capture_img">
 													<div class="cdtl_tmpl_cont ty_grocery">
 														<!-- SSG.Tip -->
@@ -12627,7 +12634,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 																				<div class="rvw_item_label rvw_item_rating">
 																					<span>${review.grade }</span>
 																				</div>
-																				<div class="rvw_item_label rvw_item_type"  >${review.productOptionId}</div>
+																			 	<div class="rvw_item_label rvw_item_type"  >${review.optionName}</div>
 																				<div class="rvw_item_label rvw_item_user_id">${review.memid}</div>
 																				<div class="rvw_item_label rvw_item_date">${review.reviewDate}</div>
 																				<div class="rvw_item_label rvw_item_order">${startNo}</div>

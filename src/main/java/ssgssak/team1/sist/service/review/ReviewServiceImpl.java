@@ -93,7 +93,7 @@ public class ReviewServiceImpl implements ReviewService{
                 File dest = new File(uploadRealPath, filesystemName);
                 try {
                     multipartFile.transferTo(dest);
-                    reviewImgService.insertReviewImg("\\resources\\images\\" + filesystemName);
+                    reviewImgService.insertReviewImg("/resources/images/" + filesystemName);
                     System.out.println("Saved file path: " + "/resources/images/" + filesystemName);
                 } catch (IllegalStateException | IOException | ClassNotFoundException e) {
                     log.error("파일 저장 실패", e);
