@@ -106,4 +106,9 @@
 	<insert id="insertfile" >
 	 insert into productimg values ( productimg_seq.nextval , #{procurrval} , #{realpath} , #{type})
 	</insert>
+	<select id="cart" resultType="ssgssak.team1.sist.domain.pay.CartDTO">
+	 select sc.id2 optionid , sc.scount , pi.imgurl ,ss.sellername, b.brandname , po.optionname , po.optionprice price, so.defaultshippingfee shipfee
+	  from shoppingcart sc , productimg pi , product p, brand b , sellerstore ss , productoption po , shippingoption so
+	  where sc.memid = #{id} and sc.id2 = po.id and pi.productid = p.id and pi.imgcontent = 'sum' and p.id = po.productid and b.id = p.brandid and ss.id = p.sellerstoreid and so.id = p.shippingoptionid
+	</select>
 </mapper>

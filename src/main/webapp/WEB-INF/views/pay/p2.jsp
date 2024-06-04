@@ -8693,11 +8693,12 @@ if(subdomain.indexOf('emart') !== -1 || subdomain.indexOf('m-emart') !== -1 ) {
 		           	let regex1 = /optionid=([^,]+)/g ; 
 		           	let regex2 = /quantity=([^)]+)/g ;
  		           	let match ;
-					let selectedoptionids = [];
-					let selectedcouponids = [];
-					let quantity = [] ;
+					
 					
 					$("#processOrderButton").on("click",function(){
+						let selectedoptionids = [];
+						let selectedcouponids = [];
+						let quantity = [] ;
 						let usepoint = $("#ssgpoint").val();
 						if (isNaN(usepoint)) {
 							usepoint = 0;

@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Iterator;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import ssgssak.team1.sist.domain.pay.CartDTO;
 import ssgssak.team1.sist.domain.pay.CouponDTO;
 import ssgssak.team1.sist.domain.pay.Enroll2DTO;
 import ssgssak.team1.sist.domain.pay.EnrollDTO;
@@ -195,5 +197,16 @@ public class PayController {
 	
 	
 	return "redirect:/enroll.do";
+	}
+	@GetMapping("/cart.do")
+	public String cart(HttpSession session,Model model) throws SQLException, Exception {
+		String id = (String) session.getAttribute("auth");
+		List<CartDTO> al = this.payMapper.cart(id);
+		List<ShippingDTO> al2 = this.payMapper.getdefaultshipinfo(id);
+		
+		model.addAttribute("al",al);
+		model.addAttribute("al2",al2);
+		return "/pay/cart";
+		
 	}
 }
