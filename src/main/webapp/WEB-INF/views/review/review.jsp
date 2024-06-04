@@ -130,7 +130,7 @@ input[type="submit"]:hover {
 </head>
 <body>
     <h1>리뷰 등록</h1>
-    <form action="WriteReview.do" method="post" enctype="multipart/form-data">
+    <form action="WriteReview.do" method="post" enctype="multipart/form-data" >
         <div>
             <label for="productId">제품 ID:</label>
             <input type="text" id="productId" name="productId" value="${product.id}" readonly="readonly">
@@ -228,10 +228,17 @@ input[type="submit"]:hover {
     <c:if test="${success}">
         <script type="text/javascript">
             alert("리뷰 등록 성공");
-            window.close();
+            function refreshWindow() {
+                if (window.opener) {
+                    window.opener.location.reload();
+                } else {
+                    console.log("부모창이 없습니다.");
+                    console.warn('부모창이 없습니다.');
+                }
+                window.close();
+            }
+            refreshWindow();
         </script>
     </c:if>
-    
-
 </body>
 </html>

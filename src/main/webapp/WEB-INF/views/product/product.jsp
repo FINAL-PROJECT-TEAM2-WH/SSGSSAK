@@ -12487,7 +12487,16 @@ function setCommonGnbCookie(name, value, expiredays) {
 														var url = `/SSGSSAK/review/review.do?productcode=${product.id}&auth=${auth}`;
 														var windowName = "newReviewWindow";
 														var windowSize = "width=635,height=665";
-														window.open(url, windowName, windowSize + ",resizable=yes");
+														var reviewWindow = window.open(url, windowName, windowSize + ",resizable=yes");
+														reviewWindow.onunload =function(){
+															if (reviewWindow.opener) {
+															reviewWindow.opener.location.reload();	
+															}//if
+														}//fu
+														
+														
+														
+													}
 /* 														고치기
 														$.ajax({
 															url: '/SSGSSAK/product/CheckLogin.do',
@@ -12508,9 +12517,10 @@ function setCommonGnbCookie(name, value, expiredays) {
 																console.error(error);
 															}
 														});
+													}
 														 */
 														
-													}
+													
 												</script>
 
 													<%
