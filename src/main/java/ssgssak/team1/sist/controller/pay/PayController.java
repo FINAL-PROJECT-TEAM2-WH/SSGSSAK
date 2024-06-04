@@ -171,7 +171,7 @@ public class PayController {
 			UUID uuid = UUID.randomUUID();
 			File dest = new File(uploadrealpath,uuid+originalname);
 			file1.transferTo(dest);
-			this.payMapper.insertfile(uploadrealpath+uuid+originalname , procurrval,"sum");
+			this.payMapper.insertfile("/resources/images/"+uuid+originalname , procurrval,"sum");
 		}
 		if (!file2.isEmpty()) {
 			for (int i = 0; i < file2.size(); i++) {
@@ -179,7 +179,7 @@ public class PayController {
 				UUID uuid = UUID.randomUUID();
 				File dest = new File(uploadrealpath,uuid+originalname);
 				file2.get(i).transferTo(dest);
-				this.payMapper.insertfile(uploadrealpath+uuid+originalname , procurrval,"sub");
+				this.payMapper.insertfile("/resources/images/"+uuid+originalname , procurrval,"sub");
 			}
 		}
 		if (!file3.isEmpty()) {
@@ -188,7 +188,7 @@ public class PayController {
 				UUID uuid = UUID.randomUUID();
 				File dest = new File(uploadrealpath,uuid+originalname);
 				file3.get(i).transferTo(dest);
-				this.payMapper.insertfile(uploadrealpath+uuid+originalname , procurrval,"other");
+				this.payMapper.insertfile("/resources/images/"+uuid+originalname , procurrval,"other");
 			}
 		}
 	 

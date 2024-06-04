@@ -8603,7 +8603,7 @@ if(subdomain.indexOf('emart') !== -1 || subdomain.indexOf('m-emart') !== -1 ) {
 	  					           let totaldisc = 0 ;
 	  					           for (var i = 0; i < optionids.length; i++) {
 	  					        	 
-	  					        	 totaldisc += parseInt($("#price" + i).val()) * $("#couponselect"+optionids[i]).val().split('/')[1]/100 ;
+	  					        	 totaldisc += Math.round( parseInt($("#price" + i).val()) * $("#couponselect"+optionids[i]).val().split('/')[1]/100) ;
 										
 									}
 	  					        	
