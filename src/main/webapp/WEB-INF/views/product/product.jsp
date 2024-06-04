@@ -2457,7 +2457,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 				<!-- 로케이션추가(s) -->
 				
 				
-				<%-- <%@ include file="../productlist/catevar_prodVer.jsp" %> --%>
+				 <%@ include file="../productList/catevar_prodVer.jsp" %> 
 				
 				
 				
