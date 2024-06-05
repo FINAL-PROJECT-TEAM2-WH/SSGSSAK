@@ -1,6 +1,9 @@
 package ssgssak.team1.sist.mapper.member;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import ssgssak.team1.sist.domain.member.MemberVO;
 
 @Mapper
 public interface UserInfoMapper {
@@ -10,5 +13,7 @@ public interface UserInfoMapper {
 	public int getPCoupons(String id);
 	public int getSevenDaysLeftC(String id);
 	public int availDownCoupon(String id);
+	
+	public int updateInfo(@Param("mbrvo")MemberVO mbrvo);
 	
 }

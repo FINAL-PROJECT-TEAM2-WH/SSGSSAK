@@ -304,19 +304,19 @@
             <div class="cmem_cont">
                 <div class="cmem_sec">
 
-                    <form method="post" id="loginForm" action="none">
+                    <form method="post" id="loginForm">
 
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         <div class="cmem_inpgrp ty_id">
                             <div class="cmem_txt">
                                 <label for="mem_id" class="blind">아이디</label>
-                                <input type="text" name="mbrLoginId" id="mem_id" maxlength="50" placeholder="아이디">
+                                <input type="text" name="username" id="id" maxlength="50" placeholder="아이디">
                             </div>
                         </div>
                         <div class="cmem_inpgrp ty_pw">
                             <div class="cmem_txt">
                                 <label for="mem_pw" class="blind">비밀번호</label>
-                                <input type="password" name="password" id="mem_pw" placeholder="비밀번호">
+                                <input type="password" name="password" id="pwd" placeholder="비밀번호">
                             </div>
                         </div>
                         <div class="cmem_login_support">
@@ -2327,10 +2327,10 @@ $(function(){
 <script>
 $('#loginBtn').one('click', function () {
 
-    let params = $('form').serialize();
+    let params = $('#loginForm').serialize();
    
     $.ajax({
-        url: '/login/login',
+        url: '/login',
         dataType: 'json',
         type: 'POST',
         data: params,

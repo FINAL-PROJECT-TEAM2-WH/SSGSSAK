@@ -35,4 +35,11 @@ public class RegistServiceImpl implements RegistService{
 		return rowCount == 2;	
 	}
 
+	@Override
+	public boolean setAuth(String id) {
+		log.info(" > RegistServiceImpl.setAuth()");
+		
+		return this.registerMapper.setAuth(id) == 1 ;
+	}
+
 }
