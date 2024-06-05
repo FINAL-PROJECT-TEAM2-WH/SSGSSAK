@@ -11,6 +11,7 @@
 <!--     <typeAlias type="org.doit.ik.domain.DeptDTO" alias="DeptDTO" />-->
 
 <!-- 		명건 DTO -->
+
     <typeAlias type="ssgssak.team1.sist.domain.productList.AllCateDTO" alias="AllCateDTO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.productList.MajorCateDTO" alias="MajorCateDTO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.productList.MiddleCateDTO" alias="MiddleCateDTO" /> 
@@ -19,6 +20,7 @@
     <typeAlias type="ssgssak.team1.sist.domain.productList.CurrentCateDTO" alias="CurrentCateDTO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.productList.ProductListDTO" alias="ProductListDTO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.productList.PageDTO" alias="PageDTO" /> 
+
 <!--       명건 DTO 끝 -->
 
     <typeAlias type="ssgssak.team1.sist.domain.member.MemberVO" alias="MemberVO" /> 

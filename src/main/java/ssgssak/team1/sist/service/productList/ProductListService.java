@@ -1,11 +1,13 @@
 package ssgssak.team1.sist.service.productList;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import ssgssak.team1.sist.domain.productList.AllCateDTO;
+import ssgssak.team1.sist.domain.productList.MajorCateDTO;
 import ssgssak.team1.sist.domain.productList.ProductListDTO;
 
 @Service
@@ -17,6 +19,10 @@ public interface ProductListService {
 
     public int getTotalPages(String categoryId, int numberPerPage) throws SQLException;
 
+    
+    
+    public ArrayList<MajorCateDTO> majorSelectCate() throws SQLException;
+    
     public AllCateDTO selectCate(String categoryId) throws SQLException;
 
     

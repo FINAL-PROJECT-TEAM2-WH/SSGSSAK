@@ -1,8 +1,6 @@
 package ssgssak.team1.sist.controller;
 
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
-
 import java.util.Locale;
 
 import org.springframework.stereotype.Controller;
@@ -33,6 +31,8 @@ public class MainController {
 	@GetMapping(value = {"/", "/SSGSSAK/mainPage/main"})
 	public String main(Locale locale, Model model) {
 		log.info("Welcome home! The client locale is {}.");
+
+		
 		
 		return "mainPage/main";
 	}
