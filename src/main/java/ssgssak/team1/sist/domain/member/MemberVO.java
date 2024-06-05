@@ -27,7 +27,6 @@ public class MemberVO {
 	private Date registerDate;
 	private char loginNotification;
 	private char login2Notification;
-	private String privilege;	
 	private char enabled;
 	
 	private List<AuthVO> authList;

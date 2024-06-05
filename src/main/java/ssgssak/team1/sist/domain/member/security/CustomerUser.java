@@ -8,8 +8,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import ssgssak.team1.sist.domain.member.MemberVO;
+import ssgssak.team1.sist.domain.ship.ShippingPlaceInfoVO;
 
 @Getter
 public class CustomerUser extends User{
@@ -22,6 +24,8 @@ public class CustomerUser extends User{
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 	}
 	
+	
+	
 	public CustomerUser(MemberVO member) {
 		
 		super( member.getId(),member.getPwd()
@@ -33,5 +37,6 @@ public class CustomerUser extends User{
 			 );
 		this.member = member; // ***
 	}
+	
 	
 }

@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import ssgssak.team1.sist.domain.member.InterestGoodsVO;
+import ssgssak.team1.sist.domain.member.MemberVO;
+import ssgssak.team1.sist.domain.member.security.CustomerUser;
 import ssgssak.team1.sist.mapper.member.LikeMapper;
 import ssgssak.team1.sist.service.member.LikeService;
 import ssgssak.team1.sist.service.member.LoginService;
@@ -45,7 +48,7 @@ public class MemberController {
 	
 	
 	@GetMapping("/like")
-	public String likeInfo(HttpSession httpSession, Model model) {
+	public String likeInfo(Model model) {
 		// id받으면 그걸 바탕으로 좋아요 한 항목들을 뿌려주면 됨. 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -58,11 +61,12 @@ public class MemberController {
 	}
 	
 	@GetMapping("/userInfo")
-	public String userInfo(HttpSession httpSession, Model model) {
+	public String userInfo(Model model) {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		String id = userDetails.getUsername();
+		CustomerUser  customerDetail =(CustomerUser) authentication.getPrincipal();
+		String id = customerDetail.getUsername();
+		
 		List<InterestGoodsVO> list = likeService.getInterGoodsList(id);
 
 		model.addAttribute("interSize", list.isEmpty() ? 0 : list.size());
@@ -71,6 +75,38 @@ public class MemberController {
 		model.addAttribute("userinfo", infoService.getUserInfo(id));
 		
 		return "/member/userinfo/userinfo";
+	}
+	
+	@GetMapping("/changeInfo")
+	public String changeInfo(Model model) {
+		// id, 이름 , phone, Email
+		log.info("> MemberController.changeInfo GET IN()");
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		CustomerUser customerUser = (CustomerUser) authentication.getPrincipal();		
+	
+		model.addAttribute("memberVO", customerUser.getMember());
+		
+		return "/member/userinfo/myInfoMng/changeInfo";
+	}
+	
+	@PostMapping("/changeInfo")
+	public ResponseEntity<Map<String, Object>> changeInfo(MemberVO vo) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		CustomerUser customerUser = (CustomerUser) authentication.getPrincipal();
+		log.info("> MemberController.changeInfo POST IN()");
+		Map <String, Object> map = new HashMap();
+	
+		if(this.infoService.updateInfo(vo)) {
+			map.put("resultCode", "SUCCESS");
+			map.put("resultMsg", "변경에 성공하였습니다.");
+			
+		}
+		else {
+			map.put("resultCode", "fail");
+			map.put("resultMsg", "변경에 실패하였습니다.");
+		}
+	
+		return ResponseEntity.ok(map);
 	}
 	
 }

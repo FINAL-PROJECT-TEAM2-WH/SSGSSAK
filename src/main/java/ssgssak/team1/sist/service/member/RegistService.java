@@ -7,4 +7,5 @@ public interface RegistService {
 	
 	public boolean idInvalid(String id);
 	public boolean register(MemberVO memberVO, ShippingPlaceInfoVO shipInfoVO);
+	public boolean setAuth(String id);
 }

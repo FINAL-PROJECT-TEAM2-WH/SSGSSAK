@@ -33,6 +33,13 @@ public class UserInfoServiceImpl implements UserInfoService{
 		.availDownC(this.userinfoMapper.availDownCoupon(id))
 		.productList(this.likeMapper.getInterGoods(id)).build();
 	}
+
+	@Override
+	public boolean updateInfo(MemberVO vo) {
+		
+		
+		return this.userinfoMapper.updateInfo(vo) >= 1 ;
+	}
  
 
 }

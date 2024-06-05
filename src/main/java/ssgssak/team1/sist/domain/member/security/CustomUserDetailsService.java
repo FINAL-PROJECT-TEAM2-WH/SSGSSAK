@@ -20,9 +20,9 @@ implements UserDetailsService {
 	@Autowired
 	private MemberMapper memberMapper;
 
-	// UserDetails ÀÎÁõ¹ÞÀº »ç¿ëÀÚÀÇ Á¤º¸¸¦ 
-	// read(id) -> MemberVO   ->   UserDetails Å¸ÀÔ º¯È¯
-	//                   CustomerUserÅ¬·¡½º
+	// UserDetails ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+	// read(id) -> MemberVO   ->   UserDetails Å¸ï¿½ï¿½ ï¿½ï¿½È¯
+	//                   CustomerUserÅ¬ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		log.warn("> MemberMapper.Load User By UserName : " + username);
@@ -33,7 +33,7 @@ implements UserDetailsService {
 			System.out.println(" > MemberMapper.Load User By UserName : " );
 			e.printStackTrace();
 		}
-		return vo == null ? null : new CustomerUser(vo);
+		return vo == null ? null : new CustomerUser(vo);	
 	}
 
 }

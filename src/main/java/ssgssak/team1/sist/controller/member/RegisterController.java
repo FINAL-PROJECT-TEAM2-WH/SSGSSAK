@@ -162,7 +162,11 @@ public class RegisterController {
 	
 		if (registService.register(userform.getMbr(), userform.getShipinfo())) {
 			// 회원가입에 성공한 경우. 
-			result.put("success", true);				
+			
+			if (registService.setAuth(userform.getMbr().getId())) {
+				result.put("success", true);
+			}
+							
 		} else {
 			// 회원가입에 실패한 경우. 
 			result.put("success", false);

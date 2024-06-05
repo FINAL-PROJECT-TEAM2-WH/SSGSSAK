@@ -16,4 +16,8 @@
   INSERT INTO shippingplaceinformation 
   		VALUES (SEQSHIPPLACEINFO.NEXTVAL,#{shipinfovo.memid},'기본배송지',#{shipinfovo.receivemem},#{shipinfovo.roadAddress},#{shipinfovo.jibunAddress},#{shipinfovo.detailAddress},#{shipinfovo.tel},#{shipinfovo.postNum}, '기본배송지')   
   </insert>
+  
+  <insert id="setAuth">
+  	INSERT INTO AUTH VALUES (#{id}, 1)
+  </insert>
 </mapper>

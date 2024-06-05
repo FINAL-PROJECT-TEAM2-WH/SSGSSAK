@@ -8,6 +8,8 @@
      <!--  <result property="id" column="id" /> -->
       <result property="pwd" column="pwd" />
       <result property="name" column="name" />
+      <result property="email" column="email" />
+      <result property="phoneNum" column="phoneNum" />
       <collection property="authList" resultMap="authMap"></collection>
 	 </resultMap>
 	 <resultMap type="AuthVO" id="authMap">
@@ -17,11 +19,11 @@
 	 <!-- public MemberVO read(@Param("userid") String userid) throws ClassNotFoundException, SQLException ; -->
 	 <select id="read" resultMap="memberMap">
 	   with temp AS (
-SELECT m.id, m.passwd, m.name, m.enabled, a.authid authid
+SELECT m.id, m.passwd, m.name name, m.email,m.phonenum phoneNum, m.enabled, a.authid authid
        FROM  member  m LEFT JOIN auth a ON m.id = a.memid
        WHERE m.id = #{userid}
 )
-SELECT  t.id, t.passwd pwd, t.name, t.id username,  a.authname authority
+SELECT  t.id, t.passwd pwd, t.email, t.name name, t.id username,t.phonenum, a.authname authority
 FROm temp t left join authority a on t.authid = a.id
 	 </select>
 </mapper>
