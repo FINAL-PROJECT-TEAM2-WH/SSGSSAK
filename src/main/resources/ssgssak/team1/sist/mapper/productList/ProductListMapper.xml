@@ -31,7 +31,7 @@
 		COALESCE(MAX(c.spclDscnRt), 0) AS
 		discount,
 		COALESCE(MAX(reviewData.reviewCount), 0) AS reviewCount,
-		COALESCE(MAX(reviewData.averageGrade), 0) AS averageGrade,
+		COALESCE(MAX(reviewData.averageGrade), 0) AS avgGrade,
 		MAX(productimg.IMGURL) AS imgurl
 		FROM
 		PRODUCT p
@@ -116,14 +116,52 @@
 		FROM category
 		WHERE id = #{categoryId}
 	</select>
+	
+	
+	
+	
+	
+	<select id="selectProdMiddleCate" resultType="MiddleCateDTO">
+		SELECT DISTINCT c.id, c.middleCateName 
+		FROM category c 
+		JOIN product p ON SUBSTR(p.categoryId, 1, 2) = SUBSTR(c.id, 1, 2) 
+		WHERE p.id = #{id}
+		AND SUBSTR(c.id, 5, 8) = '0000' 
+		AND c.middleCateName IS NOT NULL
+	</select>
+	
+	
+	<select id="selectProdSubCate" resultType="SubCateDTO">
+		SELECT DISTINCT c.id, c.subCateName 
+		FROM category c 
+		JOIN product p ON SUBSTR(p.categoryId, 1, 4) = SUBSTR(c.id, 1, 4) 
+		WHERE p.id = #{id} 
+		AND SUBSTR(c.id, 7, 8) = '00' 
+		AND c.subCateName IS NOT NULL
+	</select>
+	
+	
+	<select id="selectProdMiniCate" resultType="MiniCateDTO">
+		SELECT DISTINCT c.id, c.miniCateName 
+		FROM category c
+		JOIN product p ON SUBSTR(p.categoryId, 1, 6) = SUBSTR(c.id, 1, 6) 
+		WHERE p.id = #{id}
+		AND c.miniCateName IS NOT NULL
+	</select>
+	
+	
+	<select id="selectProdCurrentCate" resultType="CurrentCateDTO">
+		SELECT c.id, c.majorcatename,c.middlecatename,c.subcatename, c.minicatename
+		FROM product p JOIN category c ON p.categoryid = c.id
+		WHERE p.id = #{id}
+	</select>
+	
+	
+	
+	
 
 
+	
 
-
-
-
-<select id="imgurlSelect" resultType="String">
-
-</select>
 
 </mapper>

@@ -67,4 +67,22 @@ public class ProductListServiceImpl implements ProductListService {
 	}
 
 
+	@Override
+	public AllCateDTO selectProdCate(long id) throws SQLException {
+		ArrayList<MajorCateDTO> mjcDtoList = productListMapper.selectMajorCate();
+		ArrayList<MiddleCateDTO> mdcDtoList = productListMapper.selectProdMiddleCate(id);
+	    ArrayList<SubCateDTO> scDtoList = productListMapper.selectProdSubCate(id);
+	    ArrayList<MiniCateDTO> mncDtoList = productListMapper.selectProdMiniCate(id);
+	    CurrentCateDTO crtCateDto = productListMapper.selectProdCurrentCate(id);
+	    
+		return AllCateDTO.builder()
+    			.mjcDtoList(mjcDtoList)
+    			.mdcDtoList(mdcDtoList)
+    			.scDtoList(scDtoList)
+    			.mncDtoList(mncDtoList)
+    			.crtCateDto(crtCateDto)
+    			.build();
+	}
+
+
 }

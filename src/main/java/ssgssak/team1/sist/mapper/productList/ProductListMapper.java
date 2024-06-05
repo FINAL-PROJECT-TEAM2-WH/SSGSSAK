@@ -29,10 +29,18 @@ public interface ProductListMapper {
 
 
 	 ArrayList<MajorCateDTO> selectMajorCate() throws SQLException;
+	 
+	 
+	 
 	 ArrayList<MiddleCateDTO> selectMiddleCate(@Param("categoryId") String categoryId) throws SQLException;
 	 ArrayList<SubCateDTO> selectSubCate(@Param("categoryId") String categoryId) throws SQLException;
 	 ArrayList<MiniCateDTO> selectMiniCate(@Param("categoryId") String categoryId) throws SQLException;
 	 CurrentCateDTO selectCurrentCate(@Param("categoryId") String categoryId) throws SQLException;
+	 
+	 ArrayList<MiddleCateDTO> selectProdMiddleCate(@Param("id") long id) throws SQLException;
+	 ArrayList<SubCateDTO> selectProdSubCate(@Param("id") long id) throws SQLException;
+	 ArrayList<MiniCateDTO> selectProdMiniCate(@Param("id") long id) throws SQLException;
+	 CurrentCateDTO selectProdCurrentCate(@Param("id") long id) throws SQLException;
 
 	
 

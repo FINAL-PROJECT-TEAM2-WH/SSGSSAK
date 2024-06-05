@@ -19,4 +19,7 @@ public interface ProductListService {
 
     public AllCateDTO selectCate(String categoryId) throws SQLException;
 
+    
+    public AllCateDTO selectProdCate(long id) throws SQLException;
+
 }
