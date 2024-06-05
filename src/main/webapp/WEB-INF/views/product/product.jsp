@@ -12627,14 +12627,14 @@ function setCommonGnbCookie(name, value, expiredays) {
 														</div>
 													</div>
 													<div class="rvw_expansion_panel_container">
-														<ul class="rvw_expansion_panel_list" id="item_rvw_list">
 														<c:set var="totalRecords" value="${fn:length(reviews)}" />
 												<c:set var="currentPage" value="${currentPage}" />
 												<c:set var="numberPerPage" value="${numberPerPage}" />
+														<ul class="rvw_expansion_panel_list" id="item_rvw_list">
 														
 														    <c:set value="${totalRecords - (currentPage-1) * numberPerPage}" var="startNo"/>
 														    <c:forEach var="review" items="${pagedReviews}">
-															<li class="rvw_expansion_panel"
+															<%-- <li class="rvw_expansion_panel"
 																data-postngid="1184443604">
 																<div class="rvw_expansion_panel_head">
 																	<a href="javascript:void(0)" role="button"
@@ -12681,14 +12681,11 @@ function setCommonGnbCookie(name, value, expiredays) {
 																		<div class="rvw_item_view">
 																			<div class="rvw_item_img_view">
 																				<div class="rvw_item_img_list">
-																						<c:forEach var="reviewImg" items="${reviewImg}">
-																							<c:if test="${reviewImg.reviewId==review.id}">
+																						<c:forEach var="reviewImg" items="${review.reviewImgUrl}">
 																								<div class="rvw_item_img">
 																									<img src="${reviewImg.reviewImgUrl}"alt="">
 																								</div>
-																							</c:if>
 																						</c:forEach>
-																	
 																					</div>
 																				</div>
 																			</div>
@@ -12745,14 +12742,14 @@ function setCommonGnbCookie(name, value, expiredays) {
 																	</div>
 																
 															</li>
-															
+															 --%>
 															</c:forEach>
 
 														</ul>
 													</div>
 
-														
-														<div class="pagination">
+<%-- 						기존페이징								
+	<div class="pagination">
         <c:if test="${currentPage > 1}">
             <a href="/SSGSSAK/product/product.do?productcode=${product.id}&currentPage=${currentPage - 1}">&laquo; 이전</a>
         </c:if>
@@ -12764,7 +12761,180 @@ function setCommonGnbCookie(name, value, expiredays) {
             <a href="/SSGSSAK/product/product.do?productcode=${product.id}&currentPage=${currentPage + 1}">다음 &raquo;</a>
         </c:if>
     </div>
+     --%>
+     
+   	<div class="pagination">
+        <c:if test="${currentPage > 1}">
+            <a href="javascript:void(0);" onclick="fn_go_page(${currentPage - 1})">&laquo; 이전</a>
+        </c:if>
+        <c:forEach begin="1" end="${totalPages}" var="i">
+            <a href="javascript:void(0);" onclick="fn_go_page(${i})" class="${i == currentPage ? 'active' : ''}">${i}</a>
+        </c:forEach>
+        <c:if test="${currentPage < totalPages}">
+            <a href="javascript:void(0);" onclick="fn_go_page(${currentPage + 1})">다음 &raquo;</a>
+        </c:if>
+    </div>
     
+    <script type="text/javascript">
+    	//페이징 startNo 처리하는코드
+    	let currentPage = 1;
+    	let totalPages =1;
+    	const numberPerPage =5;
+    	
+    
+		function fn_go_page(pageNo) {
+			currentPage = pageNo;
+			const submitObj = {
+			pageIndex : pageNo,
+			productcode : ${product.id}
+			};
+			
+			//submitObj.searchWrd = $("#searchWrd").val();//서치워드
+			
+			$.ajax({
+				url:"/SSGSSAK/productR/review.do",
+				method: "POST",
+				contentType: "application/json;charset=UTF-8",
+				dataType:"json",
+				data:JSON.stringify(submitObj),
+				success:function(data,callback,xhr){			
+					console.log(data);
+					mkReviews(data.reviews,data.totalRecords);
+					mkPagination(data.totalPages,data.currentPage);
+				},error : function(xhr,errorType){
+					alert("실패" + errorType);
+				}//err
+				
+			})//ajx
+			
+			
+			
+		}//fucn
+
+		
+		function mkReviews(reviews,totalRecords) {
+			
+				$("#item_rvw_list").empty();
+				let startNo = totalRecords -(currentPage -1) * numberPerPage;
+			reviews.forEach(review=>{
+				
+				const reviewHtml = ` 
+					<li class="rvw_expansion_panel" data-postngid="\${review.id}">
+                    <div class="rvw_expansion_panel_head">
+                    <a href="javascript:void(0)" role="button" class="rvw_expansion_panel_trigger">
+                        <div class="rvw_item is-horizontal">
+                            <div class="rvw_item_info">
+                                <div class="rvw_item_label rvw_item_rating">
+                                    <span>\${review.grade}</span>
+                                </div>
+                                <div class="rvw_item_label rvw_item_type">\${review.optionName}</div>
+                                <div class="rvw_item_label rvw_item_user_id">\${review.memid}</div>
+                                <div class="rvw_item_label rvw_item_date">\${review.reviewDate}</div>
+                                <div class="rvw_item_label rvw_item_order">\${review.order}</div>
+                                <button type="button" class="rvw_item_btn_block"
+                                    onclick="javascript:fn_PopupItemError('/review/pReviewReportError.ssg?itemId=1000026532717&amp;siteNo=7012&amp;postngId=${review.id}', 800, 480);">
+                                    <span>신고/차단</span>
+                                </button>
+                            </div>
+                            <p class="rvw_item_text">\${review.reviewContent}</p>
+                            <div class="rvw_panel_expand_hide_group">
+                                <div class="rvw_item_thumb_group">
+                                    \${review.reviewImgUrl.slice(0, 2).map(img => `
+                                        <div class="rvw_item_thumb">
+                                            <img src="\${img.reviewImgUrl}" alt="">
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="rvw_expansion_panel_body">
+                    <div class="rvw_item">
+                        <div class="rvw_item_view">
+                            <div class="rvw_item_img_view">
+                                <div class="rvw_item_img_list">
+                                    \${review.reviewImgUrl.map(img => `
+                                        <div class="rvw_item_img">
+                                            <img src="\${img.reviewImgUrl}" alt="">
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rvw_item_controller">
+                            <button type="button" class="rvw_item_button_prev">
+                                <i class="icon_chevron_left_ssg"> <span class="blind">이전 STEP 보기</span></i>
+                            </button>
+                            <div class="rvw_item_pagination">
+                                <span class="rvw_item_pagination_current">1</span>
+                                <span class="rvw_item_pagination_divider">/</span>
+                                <span class="rvw_item_pagination_total">2</span>
+                            </div>
+                            <button type="button" class="rvw_item_button_next">
+                                <i class="icon_chevron_right_ssg"> <span class="blind">다음 STEP 보기</span></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="rvw_item_desc">
+                        <div class="rvw_item_table">
+                            <table>
+                                <colgroup>
+                                    <col width="76px">
+                                    <col width="*">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">만족도</th>
+                                        <td>보통이에요</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">포장 만족도</th>
+                                        <td>보통이에요</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">재구매 의사</th>
+                                        <td>보통이에요</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="rvw_item_scrollable">
+                            <p class="rvw_item_text">\${review.reviewContent}</p>
+                        </div>
+                        <div class="rvw_chip_group">
+                            <span class="rvw_chip">#개운한느낌</span>
+                            <span class="rvw_chip">#손상케어용</span>
+                            <span class="rvw_chip">#데일리용</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            `;
+			$("#item_rvw_list").append(reviewHtml);
+			startNo--;
+			});//for
+		}//mkreviews
+		
+		
+	    function mkPagination(total, current) {
+	        totalPages = total;
+	        $(".pagination").empty();
+	        const prevPageHtml = `<a href="javascript:void(0);" onclick="fn_go_page(\${currentPage - 1})">&laquo; 이전</a>`;
+	        $(".pagination").append(prevPageHtml);
+
+	        for (let i = 1; i <= total; i++) {
+	            const pageHtml = `<a href="javascript:void(0);" onclick="fn_go_page(\${i})" class="\${i === current ? 'active' : ''}">\${i}</a>`;
+	            $(".pagination").append(pageHtml);
+	        }
+
+	        const nextPageHtml = `<a href="javascript:void(0);" onclick="fn_go_page(\${currentPage + 1})">다음 &raquo;</a>`;
+	        $(".pagination").append(nextPageHtml);
+	        
+	    }//mkp
+	    fn_go_page(1);
+    </script>
+	    /* fn_go_page(1);초기해줄까말까 .. */
 
     
 													

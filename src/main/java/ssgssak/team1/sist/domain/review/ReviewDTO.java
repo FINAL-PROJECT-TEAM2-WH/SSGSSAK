@@ -33,4 +33,6 @@ public class ReviewDTO {
 
 
   private String optionName; 
+  
+  private List<ReviewImgDTO> reviewImgUrl;
 }

@@ -44,7 +44,7 @@ public class ProductController {
         log.info(">상품상세보기 view");
         String currentPageParam = request.getParameter("currentPage");
         int currentPage = currentPageParam != null ? Integer.parseInt(currentPageParam) : 1;
-        int numberPerPage = 5;
+        int numberPerPage = 7;
 
         
         model.addAttribute("numberPerPage",numberPerPage);

@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import ssgssak.team1.sist.domain.review.ReviewDTO;
+import ssgssak.team1.sist.domain.review.ReviewImgDTO;
 import ssgssak.team1.sist.mapper.review.ReviewImgMapper;
 import ssgssak.team1.sist.mapper.review.ReviewMapper;
 
@@ -32,14 +33,24 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public List<ReviewDTO> selectP(int currentPage, int numberPerPage, long id) throws SQLException {		
 		log.info("> 페이징리뷰 확인 .. " + log);
-		return this.reviewMapper.selectP(currentPage, numberPerPage, id);
+		List<ReviewDTO> reviews = this.reviewMapper.selectP(currentPage, numberPerPage, id);
+		for (ReviewDTO review : reviews) {
+			List<ReviewImgDTO> reviewImges = this.reviewImgMapper.selectP(review.getId());
+			review.setReviewImgUrl(reviewImges);
+		}//for
+		
+		return reviews;
 	}
 
 
 	@Override
 	public List<ReviewDTO> select(long id) throws SQLException {
-		log.info("> 리뷰리스트 확인 .. " + log);
-		return this.reviewMapper.select(id);
+		List<ReviewDTO> reviews = this.reviewMapper.select(id);
+		for (ReviewDTO review : reviews) {
+			List<ReviewImgDTO> reviewImages = this.reviewImgMapper.select(review.getId());
+			review.setReviewImgUrl(reviewImages);
+		}
+		return reviews;
 	}
 
 
