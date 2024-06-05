@@ -12,8 +12,8 @@ import lombok.ToString;
 @ToString
 public class Criteria {
 
-	private int pageNum; // �쁽�옱 �럹�씠吏� 踰덊샇 諛쏅뒗 蹂��닔
-	private int amount; // �븳�럹�씠吏��뿉 異쒕젰�븷 寃뚯떆湲� 媛��닔
+	private int pageNum; 
+	private int amount;
 	private String searchWord;
 	public Criteria(int pageNum, int amout) {
 		super();
@@ -25,9 +25,6 @@ public class Criteria {
 		this(1, 20);
 	}
 	
-	// pageNum=2&amount=10&type=T&keyword=�솉湲몃룞
-	// 荑쇰━�뒪�듃留� 留뚮뱾�뼱二쇰뒗 湲곕뒫
-	// UriComponenetsBuilder
 	public String getListLink() {
 		UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
 				.queryParam("pageNum", this.pageNum)

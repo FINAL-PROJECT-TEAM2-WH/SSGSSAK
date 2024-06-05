@@ -482,10 +482,10 @@ function execDaumPostcode() {
 				// 여기서 회원 id 값도 같이 넘기기
 			//  memid : ${ param.memid }
 				memid : "<%= memid %>"
-			,	addrnick : $("#shpplocAntnmNm").val()
-			,	receiveMem : $("#rcptpeNm").val()
+			,	addressnick : $("#shpplocAntnmNm").val()
+			,	receivemem : $("#rcptpeNm").val()
 			,	tel : $("#hpno1 option:selected").val() +"-"+ $("#hpno2").val() +"-"+ $("#hpno3").val()
-			,	postNum : $("#postNum").val()
+			,	postnum : $("#postNum").val()
 			, 	roadAddress : $("#roadAddress").val()
 			,   jibunAddress : $("#jibunAddress").val()
 			,   detailAddress : $("#detailAddress").val()
@@ -494,7 +494,7 @@ function execDaumPostcode() {
 			type: "POST",
 			datatype : 'json',
 			/* ajax url 줄때 서버단이라면 contextPath 추가 꼭 해주기 */
-			url: contextPath + "/shippingPlaceInsert.do",
+			url: contextPath + "/member/userinfo/shipping/shippingPlaceInsert",
 			contentType : 'application/json', 
 		    data : JSON.stringify(datas),
 			cache : false,

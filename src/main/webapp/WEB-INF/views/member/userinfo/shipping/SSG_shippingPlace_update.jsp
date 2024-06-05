@@ -486,7 +486,7 @@ function execDaumPostcode() {
 			var tels = datas.tel.split('-');
 			$("#hiddenId").val(datas.id);
 			$("#addressnick").val(datas.addressnick);
-			$("#rcptpeNm").val(datas.receiveMem);
+			$("#rcptpeNm").val(datas.receivemem);
 			$('#hpno1').val(tels[0]).attr('selected', true);
 			$("#hpno2").val(tels[1]);
 			$("#hpno3").val(tels[2]);

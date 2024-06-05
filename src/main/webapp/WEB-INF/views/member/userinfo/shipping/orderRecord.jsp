@@ -265,7 +265,7 @@
 </script>
 	<script type="text/javascript"
 		src="https://sui.ssgcdn.com/ui/ssg/js/affiliate/affiliateGnb.js?v=20240507"></script>
-	<%@ include file="../../Top.jsp"%>
+	<%@ include file="../../../Top.jsp"%>
 	<!-- MYSSG UI 변경 대응 -->
 	<hr>
 	<div id="container" class="cmmyssg_wrap" class="">
@@ -795,6 +795,7 @@
 				<input type="hidden" name="orordNo" value="2024041502F004" />
 				<dl class="codr_odrdeliv_head">
 					<dt>
+						<input type="hidden" value="${entry.key}" id="orderDate">
 						<span class="codr_odrdeliv_odrdate notranslate">${ entry.key }</span>
 						<span class="codr_odrdeliv_odrnum"> <em>주문번호</em>
 							${ entry.value }
@@ -1051,11 +1052,11 @@
 <script>
 	function orderDelete(button){
 		//alert("삭제버튼");
-		var value = button.value;
+		var value = button.value;	
 		var isConfirmed = confirm("정말로 이 주문을 삭제하시겠습니까?");
-		
+		var orderDate = $("#orderDate").val();
 		  if (isConfirmed) {
-			  location.href = `<%= request.getContextPath() %>/OrderRecordDelete.do?orderId=`+value;
+			  location.href = `<%= request.getContextPath() %>/OrderRecordDelete.do?orderId=value&orderDate=orderDate`;
 			  alert("주문 삭제 완료");
 		  }else{
 			  console.log("주문 삭제 취소");
@@ -1065,8 +1066,9 @@
 	function orderDetail(button){
 		//alert('상세보기 버튼');
 		let orderId = button.value;
+		var orderDate = $("#orderDate").val();
 		//alert(orderId);
-		location.href = `<%= request.getContextPath() %>/orderDetail.do?orderId=`+orderId;
+		location.href = "/member/userinfo/shipping/orderDetail?orderId=" + orderId + "&orderDate=" + orderDate;
 	}
 </script>
 		<script type="text/javascript"
