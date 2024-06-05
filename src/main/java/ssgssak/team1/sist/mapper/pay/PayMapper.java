@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import ssgssak.team1.sist.domain.pay.CartDTO;
 import ssgssak.team1.sist.domain.pay.CouponDTO;
 import ssgssak.team1.sist.domain.pay.EnrollDTO;
 import ssgssak.team1.sist.domain.pay.OrderedDTO;
@@ -45,5 +46,5 @@ public interface PayMapper {
 	long selectproductcurrval() throws Exception , SQLException;
 	int insertproductoption(@Param("optionname") String optionname,@Param("optiondes") String optiondes,@Param("refoptionid") int refoptionid,@Param("optionprice") int optionprice,@Param("optionstock")  int optionstock) throws Exception , SQLException;
 	int insertfile(@Param("realpath") String realpath, @Param("procurrval") long procurrval,@Param("type") String type) throws Exception , SQLException;
-
+	List<CartDTO> cart(String id) throws Exception , SQLException;
 }
