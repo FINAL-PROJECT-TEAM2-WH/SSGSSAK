@@ -4,13 +4,13 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ssgssak.team1.sist.mapper.member.UserInfoMapper"> 
 <select id="getPoint" resultType="int">
-SELECT SUM(pr.points) memberPoint
+SELECT NVL(SUM(pr.points),0) memberPoint  
 FROM pointrecord pr LEFT JOIN points p ON pr.cardNumber = p.id 
-WHERE p.id2 = #{id} 
+WHERE p.id2 = #{id}
 </select>
 
 <select id="getPCoupons" resultType="int">
- SELECT COUNT(cnumber) couponNum 
+ SELECT NVL(COUNT(cnumber),0) couponNum 
 FROM couponrecord 
 WHERE memid = #{id} 
 </select>
@@ -36,4 +36,12 @@ SELECT name
 FROM member
 WHERE id = #{id}
 </select>
+
+<update id="updateInfo" parameterType="MemberVO">
+UPDATE member
+SET phonenum = #{mbrvo.phoneNum}, email = #{mbrvo.email}
+WHERE id = #{mbrvo.id}
+</update>
+
+
 </mapper>

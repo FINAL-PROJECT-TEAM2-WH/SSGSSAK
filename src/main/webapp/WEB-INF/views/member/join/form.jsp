@@ -386,7 +386,7 @@
                             <div class="cmem_inpgrp ty_pw">
                                 <div class="cmem_txt">
 
-                                    <input type="password" placeholder="영문, 숫자 조합 8~20자리로 입력해주세요." id="pwd" name="mbr.passwd" class="translated" maxlength="20"/><span class="trans_placeholder blind" data-default-txt="영문, 숫자 조합 8~20자리로 입력해주세요.">영문, 숫자 조합 8~20자리로 입력해주세요.</span>
+                                    <input type="password" placeholder="영문, 숫자 조합 8~20자리로 입력해주세요." id="pwd" name="mbr.pwd" class="translated" maxlength="20"/><span class="trans_placeholder blind" data-default-txt="영문, 숫자 조합 8~20자리로 입력해주세요.">영문, 숫자 조합 8~20자리로 입력해주세요.</span>
 
 
                                 </div>

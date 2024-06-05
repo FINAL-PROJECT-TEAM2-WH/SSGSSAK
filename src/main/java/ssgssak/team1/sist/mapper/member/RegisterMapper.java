@@ -10,4 +10,5 @@ import ssgssak.team1.sist.domain.ship.ShippingPlaceInfoVO;
 public interface RegisterMapper {
 	int registerMember(@Param("mbrvo")MemberVO mbrvo);
 	int registerShipinfo(@Param("shipinfovo")ShippingPlaceInfoVO shipInfoVO);
+	int setAuth(String id);
 }

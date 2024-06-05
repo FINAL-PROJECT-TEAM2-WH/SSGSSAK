@@ -26,6 +26,7 @@
     <typeAlias type="ssgssak.team1.sist.domain.member.MemberVO" alias="MemberVO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.ship.ShippingPlaceInfoVO" alias="ShippingPlaceInfoVO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.member.InterestGoodsVO" alias="InterestGoodsVO" />
+    <typeAlias type="ssgssak.team1.sist.domain.member.AuthVO" alias="AuthVO"/>
     <typeAlias type="ssgssak.team1.sist.domain.search.SearchVO" alias="SearchVO"/> 
     <typeAlias type="ssgssak.team1.sist.domain.search.Criteria" alias="Criteria"/> 
     <typeAlias type="ssgssak.team1.sist.domain.search.PageDTO" alias="PageDTO2"/> 

@@ -345,7 +345,7 @@
             </div>
         </div>
 
-        <form id="login_form" method="post" action="/login/login">
+        <form id="login_form" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
             <div class="cmem_cont">
@@ -354,7 +354,7 @@
                     <div class="cmem_inpgrp ty_id">
                         <div class="cmem_txt">
                             <label for="mem_id" class="blind">아이디</label>
-                            <input type="text" name="mbrLoginId" id="mem_id" maxlength="50" placeholder="아이디">
+                            <input type="text" name="username" id="mem_id" maxlength="50" placeholder="아이디">
                         </div>
                     </div>
                     <div class="cmem_inpgrp ty_pw">
@@ -372,7 +372,7 @@
 				</span>
                     </div>
                     <div class="cmem_btnarea">
-                        <button type="submit" class="cmem_btn cmem_btn_ornge" id="loginBtn_Full"><span>로그인</span></button>
+                        <button type="button" class="cmem_btn cmem_btn_ornge" id="loginBtn_Full"><span>로그인</span></button>
                     </div>
                     <ul class="cmem_sns_login notranslate">
                         <li>
@@ -2273,17 +2273,16 @@ return window.location.pathname.substring(0, window.location.pathname.indexOf("/
 let contextPath = getContextPath();
 
 $('#loginBtn_Full').one('click', function () {
-   /*  let params = $('#login_form').serialize().submit(); */
 	 let params = $('form').serialize();
 
 	    $.ajax({
-	        url: '/login/login',
+	        url: '/login',
 	        dataType: 'json',
 	        type: 'POST',
 	        data: params,
 	        cache: false,
 	        success: function (data) {
-	            if (data.success) {
+	            if (data.result) {
 	            	location.href='/';             	
 	            } else {
 	            	 alert('아이디와 비밀번호가 다릅니다.')

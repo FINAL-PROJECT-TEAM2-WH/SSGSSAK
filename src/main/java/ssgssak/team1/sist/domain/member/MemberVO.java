@@ -2,6 +2,7 @@ package ssgssak.team1.sist.domain.member;
 
 
 import java.sql.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,12 +22,13 @@ public class MemberVO {
 	private String email;
 	private String phoneNum;
 	private String name;
-	private String passwd;
+	private String pwd;
 	private Date birthD;
 	private Date registerDate;
 	private char loginNotification;
 	private char login2Notification;
-	private String privilege;	
 	private char enabled;
+	
+	private List<AuthVO> authList;
 
 }
