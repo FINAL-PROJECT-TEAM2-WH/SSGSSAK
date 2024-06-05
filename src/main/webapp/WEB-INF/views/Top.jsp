@@ -2,6 +2,7 @@
 <%@page import="java.net.http.HttpRequest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
          <% String contextPath = request.getContextPath(); %>       
          
 <script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/common/sentry.bundle.min.js" crossorigin="anonymous"></script>
@@ -307,18 +308,32 @@
                 <div class="gnb_renew_util" data-react-tarea-cd="00042_000000090">
                     <input type="hidden" value="Y" id="universeOpenYn"/>
                     <div class="gnb_mmbrs ty_universe" id="gnbMbrspText_universe" style="display: none" data-react-unit-type="text" data-react-unit-text='[{"type":"tarea_addt_val","value":"멤버십영역"}]' data-react-unit-id=""></div>
+                   
                     <ul class="gnb_util" id="util_right">
                         <li id="gnbUserInfoArea" class="gnb_tx_user notranslate gnbUserInfoArea" style="display:none;"><a href="javascript:void(0);"></a></li>
-                        <li id="loginBtn" style="display:none;"><a id="login_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그인" href="#" onclick="" title="새창 열림">로그인</a></li>
-                        <li id="joinBtn" style="display:none;"><a id="regi_a_tag" class="clickable" data-react-tarea="몰공통|GNB|회원가입" href="#">회원가입</a></li>
-                        <li id="logoutBtn" style="display:none;"><a id="logout_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그아웃" href="#">로그아웃</a></li>
-                        <li><a class="clickable" data-react-tarea="몰공통|GNB|고객센터" href="<%= contextPath %>/customer/main.jsp;">고객센터</a></li>
+                         <sec:authorize access="isAnonymous()">
+                        <li id="loginBtn" style="display:block;"><a id="login_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그인" href="#" onclick="" title="새창 열림">로그인</a></li>
+                        <li id="joinBtn" style="display:block;"><a id="regi_a_tag" class="clickable" data-react-tarea="몰공통|GNB|회원가입" href="#">회원가입</a></li>
+                        </sec:authorize>
+                        <sec:authorize access="isAuthenticated()">
+                         <li id="userinfoBtn" style="display:block;"><a id="login_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그인" href="#" onclick="" title="새창 열림"><sec:authentication property="principal.username"/>님 환영합니다</a></li>
+                        <form id="logoutform" action="/login/logout" method="post">
+                         <li id="logoutBtn" style="display:block;"><a id="logout_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그아웃" href="#">로그아웃</a></li>
+                        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>                      
+                        </form>                      
+                        </sec:authorize>
+                         <sec:authorize access="hasRole('admin')">
+                         <li id="enrollBtn" style="display:block;"><a id="enroll_tag" class="clickable" href="/enroll.do">상품등록</a></li>
+                         </sec:authorize>
+                        <li><a class="clickable" data-react-tarea="몰공통|GNB|고객센터" href="#">고객센터</a></li>
                     </ul>
                 </div>
+       
                 
                 <!-- 서블릿에서 filter로 걸러서 회원 로그인 하게끔 만들어야함.  -->
                 <div class="gnb_renew_menu">
                     <ul class="gnb_menu" data-react-tarea-cd="00042_000000090">
+                    <sec:authorize access="isAnonymous()">
                         <li>
                             <a href="/login/full" class="btn_like clickable" data-react-tarea="몰공통|GNB|MY_MY클립" id="like_Page" >
                                 <i class="icon ty_sm icon_heart" aria-hidden="true"></i>
@@ -332,13 +347,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<%= contextPath %>/orderRecord.do" class="btn_order clickable" data-react-tarea="몰공통|GNB|주문배송조회" onclick="javascript:setCommonGnbCookie('useGnbAdvertCk','',-1);">
+                            <a href="/login/full" class="btn_order clickable" data-react-tarea="몰공통|GNB|주문배송조회" onclick="javascript:setCommonGnbCookie('useGnbAdvertCk','',-1);">
                                 <i class="icon ty_sm icon_truck" aria-hidden="true"></i>
                                 <span class="blind">주문배송조회</span>
                             </a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/pay/cart.do" class="btn_cart clickable" data-react-tarea="몰공통|GNB|장바구니_클릭" >
+                            <a href="/login/full" class="btn_cart clickable" data-react-tarea="몰공통|GNB|장바구니_클릭" >
                                 <i class="icon ty_sm icon_cart" aria-hidden="true"></i>
                                 <span class="cmnoti_push" id="mbrCartCntInfo" style="display:none;">
                                     <span class="blind">장바구니에 담긴 상품 수</span>
@@ -346,6 +361,37 @@
                                 </span>
                             </a>
                         </li>
+                    </sec:authorize>
+                    <sec:authorize access="isAuthenticated()">
+                        <li>
+                            <a href="/member/like" class="btn_like clickable" data-react-tarea="몰공통|GNB|MY_MY클립" id="like_Page" >
+                                <i class="icon ty_sm icon_heart" aria-hidden="true"></i>
+                                <span class="blind">좋아요</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/member/userInfo" class="btn_myssg clickable" data-react-tarea="몰공통|GNB|MY_MYSSG" id="my_Page">
+                                <i class="icon ty_sm icon_person" aria-hidden="true"></i>
+                                <span class="blind">MY SSG</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a href="<%= contextPath %>/orderRecord.do" class="btn_order clickable" data-react-tarea="몰공통|GNB|주문배송조회" onclick="javascript:setCommonGnbCookie('useGnbAdvertCk','',-1);">
+                                <i class="icon ty_sm icon_truck" aria-hidden="true"></i>
+                                <span class="blind">주문배송조회</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/cart.do" class="btn_cart clickable" data-react-tarea="몰공통|GNB|장바구니_클릭" >
+                                <i class="icon ty_sm icon_cart" aria-hidden="true"></i>
+                                <span class="cmnoti_push" id="mbrCartCntInfo" style="display:none;">
+                                    <span class="blind">장바구니에 담긴 상품 수</span>
+                                    <span class="cmnoti_num" id="mbrCartCntSpan"></span>
+                                </span>
+                            </a>
+                        </li>
+                        </sec:authorize>
                         <li data-react-unit-type="text" data-react-unit-text='[{"type":"tarea_addt_val","value":"최근본"}]'>
                             <a href="#" onclick="javascript:historySsg.getHistoryList()" class="btn_history js_history_open clickable" data-react-tarea="공통|GNB|최근본_클릭" data-react-tarea-dtl-cd="t00060">
                                 <i class="icon ty_sm icon_eye" id="icon_eye" aria-hidden="true"></i>
@@ -592,7 +638,7 @@ cmjump_rank_lst
 
 
 <script>
-var loginYn  = 'N';
+/* var loginYn  = 'N';
 var cookies = document.cookie.split('; ');
 for(var i = 0; i < cookies.length; i++){
     var value  = cookies[i].split('=');
@@ -609,7 +655,7 @@ if(loginYn == 'T'){
     document.getElementById('loginBtn').style.display = "";
     document.getElementById('joinBtn').style.display = "";
     document.getElementById('logoutBtn').style.display = "none";
-}
+} */
 
 
 
@@ -636,9 +682,65 @@ function setCommonGnbCookie(name, value, expiredays) {
 
     document.cookie = strCookie;
 }
-</script>
 
-<%
+function addLike(productid) {
+
+ 	$.ajax({
+        url: '/memberR/like',
+        dataType: 'json',
+        type: 'GET',
+        data: { "productid" : productid}, 
+        cache: false,
+        success: function (data) {
+        	if (data.result == 'Invalid') {
+        		if (confirm ('이미 좋아요 누른 항목입니다. 취소하시겠습니까? ')) {
+        			//alert("ㅇㅋ 취소해줌");
+        			var csrfToken = $('#csrfToken').val();
+        			//alert(csrfToken);
+        			// 취소하는 ajax 
+        			 $.ajax({
+        				url: '/memberR/like',
+        				contentType: 'application/json',
+        				type: 'POST',
+        				data : JSON.stringify({"productid" : productid
+        					}),
+        				cache: false,
+        				beforeSend: function(xhr) {
+                            xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+                     },
+        				success : function (data) {
+        					if(data.result == 'success') {
+        						alert('삭제 성공');
+        						location.reload();
+        					} else {
+        						alert('삭제 실패');
+        					}
+        				}, error : function (xhr, status, error){
+        					
+        				}
+        			}); 
+        		} else {
+        			alert('그대로 냅둘게');
+        		}
+        	} else if ( data.result == 'Success') {
+        		alert('좋아요 성공임');
+        	} else if ( data.result == 'Fail') {
+        		alert('좋아요 실패임 ');
+        	}
+        },
+        error: function (xhr, status, error) {
+
+        }
+    });
+} 
+
+</script>
+<script>
+$('#logoutBtn').on('click', function () {
+	$('#logoutform').submit();
+})
+</script>
+<%-- <%
  	String id = (String)session.getValue("auth");
 	if ( id != null) {
  		%>
@@ -663,7 +765,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 </script>
  		<% 
  	} else {
-%> 
+%>  --%>
 <script>
 $('#loginBtn').on('click', function () {
 	window.open("/login/popup",'loginPage','width=750,height=590,left=500,top=300','resizable=no','_blank');
@@ -674,7 +776,7 @@ $('#joinBtn').on('click', function () {
 });
 </script>
 
-<% 
+<%-- <% 
 }
 %>
-
+ --%>

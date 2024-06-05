@@ -1300,14 +1300,14 @@ isMsa=Y
 																value="//sitem.ssgcdn.com/91/01/71/item/1000587710191_i1_290.jpg">
 																<input type="hidden" name="checked" value="N"> <input
 																type="hidden" name="useForcedSsgYn" value="N">
-																<button class="cmlike_btn _js_cmlike_btn clickable"
-																	data-position="clip" data-react-tarea-dtl-cd="t00003">
-																	<span class="cmlike_ico"> <i
-																		class="cmlike_primary_s"></i> <span class="sr_off"><span
-																			class="blind">관심상품 취소</span></span> <span class="sr_on"><span
-																			class="blind">관심상품 등록</span></span>
-																	</span>
-																</button>
+																<button class="cmlike_btn _js_cmlike_btn clickable"  onclick="addLike(${svo.productid});">
+												                    <span class="cmlike_ico">
+												                        <i class="cmlike_primary_s"></i>
+												                        <span class="sr_off"><span class="blind">관심상품 취소</span></span>
+												                        <span class="sr_on"><span class="blind">관심상품 등록</span></span>
+												                    </span>
+												                </button> 
+																<input type="hidden" id="csrfToken" name="_csrf" value="${_csrf.token}">
 															</span>
 														</div>
 													</div>
