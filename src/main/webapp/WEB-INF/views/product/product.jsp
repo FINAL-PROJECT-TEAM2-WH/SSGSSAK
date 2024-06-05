@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html lang="ko">
 <head>
 <style>
@@ -12475,16 +12475,17 @@ function setCommonGnbCookie(name, value, expiredays) {
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 											<section class="rvw_section rvw_section_pht"
 												id="review_img_vod">
+												
 												<div class="rvw_section_heading">
 													<span class="rvw_heading_title">포토&amp;동영상 리뷰(${photoReviewCount+videoReviewCount})</span>
-													<%
-													if (session.getAttribute("auth") != null) {
-													%>
+													
+													<sec:authorize access="isAuthenticated()">
+													<input type="hidden" id="kk" value="<sec:authentication property='principal.username'/>" /> 
 													<a href="#" onclick="openReviewWindow();return false;">리뷰등록하기</a>
 													<script type="text/javascript">
 													function openReviewWindow() {
-														
-														var url = `/SSGSSAK/review/review.do?productcode=${product.id}&auth=${auth}`;
+														let kk = $('#kk').val();
+														var url = `/SSGSSAK/review/review.do?productcode=${product.id}&auth=\${kk}`;
 														var windowName = "newReviewWindow";
 														var windowSize = "width=635,height=665";
 														var reviewWindow = window.open(url, windowName, windowSize + ",resizable=yes");
@@ -12492,7 +12493,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 															if (reviewWindow.opener) {
 															reviewWindow.opener.location.reload();	
 															}//if
-														}//fu
+														}//fu */
 														
 														
 														
@@ -12522,10 +12523,8 @@ function setCommonGnbCookie(name, value, expiredays) {
 														
 													
 												</script>
-
-													<%
-													}
-													%>
+</sec:authorize>
+												
 													<div class="rvw_heading_end">
 														<button type="button" class="rvw_pht_all_popup_trigger">
 															<span>더보기</span>
@@ -12762,7 +12761,7 @@ function setCommonGnbCookie(name, value, expiredays) {
         </c:if>
     </div>
      --%>
-     
+     <input type="hidden" id="csrfToken" value="${_csrf.token}"/> 
    	<div class="pagination">
         <c:if test="${currentPage > 1}">
             <a href="javascript:void(0);" onclick="fn_go_page(${currentPage - 1})">&laquo; 이전</a>
@@ -12788,7 +12787,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 			pageIndex : pageNo,
 			productcode : ${product.id}
 			};
-			
+			var csrfToken = $('#csrfToken').val();
 			//submitObj.searchWrd = $("#searchWrd").val();//서치워드
 			
 			$.ajax({
@@ -12797,12 +12796,15 @@ function setCommonGnbCookie(name, value, expiredays) {
 				contentType: "application/json;charset=UTF-8",
 				dataType:"json",
 				data:JSON.stringify(submitObj),
+				beforeSend: function(xhr) {
+                   xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+             		},
 				success:function(data,callback,xhr){			
 					console.log(data);
 					mkReviews(data.reviews,data.totalRecords);
 					mkPagination(data.totalPages,data.currentPage);
 				},error : function(xhr,errorType){
-					alert("실패" + errorType);
+					alert("리뷰 로드 실패" + errorType);
 				}//err
 				
 			})//ajx
@@ -12932,7 +12934,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 	        $(".pagination").append(nextPageHtml);
 	        
 	    }//mkp
-	    fn_go_page(1);
+	     fn_go_page(1); 
     </script>
 	    /* fn_go_page(1);초기해줄까말까 .. */
 

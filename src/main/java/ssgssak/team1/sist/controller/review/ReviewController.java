@@ -40,6 +40,7 @@ public class ReviewController {
 			,@RequestParam("auth")String auth
 			) {
 		log.info("review regStrart.. "+log);
+		model.addAttribute("auth",auth);
 		model.addAttribute("product", this.productService.get(id));
 		model.addAttribute("productoption", this.productOptionService.get(id));
 		return "review/review";
