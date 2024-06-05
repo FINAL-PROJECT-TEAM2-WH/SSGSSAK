@@ -50,6 +50,9 @@ public class ProductController {
         int numberPerPage = 5;
         AllCateDTO selectCate = this.productListService.selectProdCate(id);
         
+        model.addAttribute("numberPerPage",numberPerPage);
+        model.addAttribute("totalRecords",this.reviewService.getTotalRecords());
+        model.addAttribute("totalPages", this.reviewService.getTotalPages(numberPerPage, id));
         model.addAttribute("selectCate", selectCate);
         model.addAttribute("crtCateDto", selectCate.getCrtCateDto());
         model.addAttribute("reviewImg", this.reviewImgService.getReviewImg(id));

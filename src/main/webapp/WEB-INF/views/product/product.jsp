@@ -1,12 +1,12 @@
 <%@page import="java.util.List"%>
-<%-- <%@page import="review.domain.ReviewDTO"%> --%>
+ <%@page import="ssgssak.team1.sist.domain.review.ReviewDTO"%> 
 <%-- <%@page import="org.apache.jasper.tagplugins.jstl.core.If"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html lang="ko">
 <head>
 <style>
@@ -2584,7 +2584,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 													<ul class="cdtl_pager_lst"
 														style="width: auto; position: relative; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
 														<c:forEach var="images" items="${product.images}" varStatus="status">
-															<c:if test="${status.index==1}">
+															<c:if test="${images.imgContent eq 'sub'}">
 																	<li
 																		style="float: none; list-style: none; position: relative; width: 90px; margin-bottom: 14px;">
 																		<a href="javascript:void(0);"
@@ -2767,7 +2767,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 
 		
 		
-<%-- 		고치기
+
 							<%
 							
 							List<ReviewDTO> reviews = (List<ReviewDTO>) request.getAttribute("reviews");
@@ -2784,7 +2784,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 							}
 							request.setAttribute("averageGrade",averageGrade );
 							
-							%> --%>
+							%> 
 							<!-- 리뷰 -->
 							<div class="cdtl_review_wrap"
 								data-react-tarea-cd="00006_000000005">
@@ -2809,21 +2809,16 @@ function setCommonGnbCookie(name, value, expiredays) {
 														class="num">${fn:length(reviews)}</span>건)</span>
 												</div>
 												<div class="mndtl_mediall_summary_list">
+												<!--고치기 -->
+												<c:forEach items="${reviewImg}" begin="0" end="2" var="rvImg">
 													<div class="mndtl_figure_thmb">
 														<img
-															src="https://simg.ssgcdn.com/trans.ssg?src=/uphoto/202405/20240508013122_1219128179_0_1.jpg&amp;w=500&amp;h=500&amp;autoOrient=true&amp;t=70dcf7921666cec257af20da9800093556c0ec36"
+															src="${rvImg.reviewImgUrl}"
 															alt="시몽 테르미크 150ml [No.1 헤어에센스-손상모발용]">
 													</div>
-													<div class="mndtl_figure_thmb">
-														<img
-															src="https://simg.ssgcdn.com/trans.ssg?src=/uphoto/202404/20240430091649_1218560369_0_1.jpg&amp;w=500&amp;h=500&amp;autoOrient=true&amp;t=b223a0a9fd6cbd9c034361ce89a0bda59594f0c6"
-															alt="시몽 테르미크 150ml [No.1 헤어에센스-손상모발용]">
-													</div>
-													<div class="mndtl_figure_thmb">
-														<img
-															src="https://simg.ssgcdn.com/trans.ssg?src=/uphoto/202404/20240427154446_1218435476_0_1.jpg&amp;w=500&amp;h=500&amp;autoOrient=true&amp;t=7e8b66b6f796dbdd01fdfe4cbc6d586bd5ebef8e"
-															alt="시몽 테르미크 150ml [No.1 헤어에센스-손상모발용]">
-													</div>
+												</c:forEach>
+												
+
 												</div>
 											</a>
 										</div>
@@ -3558,7 +3553,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 					                let url = '/pay.do?' + params.join('&');
 					                window.location.href = url;
 								}
-/* 									
+					/* 				
 								    fetch('/SSGSSAK/product/CheckLogin.do')//고치기
 								        .then(response => response.json())
 								        .then(data => {
@@ -3573,8 +3568,8 @@ function setCommonGnbCookie(name, value, expiredays) {
 								            }
 								        })
 								        .catch(error => console.error(error));
-								}
-								 */
+								} */
+								  
 								
     		function handleCart() {
 
@@ -12150,7 +12145,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 												<div class="cdtl_capture_img">
 													  <img src="${product.images[0].imgUrl}" alt="상세 이미지" style="width: 100%; height: auto; margin: 0; padding: 0;">
 												</div>
-
+										<%-- 		 고치기
 												<div class="cdtl_detail_img">
 													<c:forEach var="image" items="${product.images}"
 														varStatus="status">
@@ -12158,7 +12153,19 @@ function setCommonGnbCookie(name, value, expiredays) {
 															onerror="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=1200&amp;h=1200&amp;t=2ca8e91106bfe8f410b8440ea403e5acdc70084a'">
 													</c:forEach>
 												</div>
-
+												 --%>
+												  
+												<div class="cdtl_detail_img">
+													<c:set var="index" value="1"/>
+													<c:forEach var="image" items="${product.images}">
+													    <c:if test="${image.imgContent eq 'other'}">                                                 
+													        <img src="${image.imgUrl}" alt="상품이미지${index}"
+													            onerror="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=1200&amp;h=1200&amp;t=2ca8e91106bfe8f410b8440ea403e5acdc70084a'">
+													        <c:set var="index" value="${index + 1}"/>
+													    </c:if>
+													</c:forEach>
+												</div>
+ 
 												<div class="cdtl_capture_img">
 													<div class="cdtl_tmpl_cont ty_grocery">
 														<!-- SSG.Tip -->
@@ -12271,8 +12278,8 @@ function setCommonGnbCookie(name, value, expiredays) {
 											    int q3ReviewCount1 = 0;
 											    int q3ReviewCount2 = 0;
 											    int q3ReviewCount3 = 0;
-/* 고치기
-											    for (review.domain.ReviewDTO review : reviews) {
+
+											    for (ssgssak.team1.sist.domain.review.ReviewDTO review : reviews) { 
 											        if (review.getQ1() == 1) {
 											            q1TotalGrade += review.getGrade();
 											            q1ReviewCount1++;
@@ -12300,7 +12307,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 											            q3ReviewCount3++;
 											        }
 											    }
- */
+ 
 											    int q1TotalReviews = q1ReviewCount1 + q1ReviewCount2 + q1ReviewCount3;
 											    int q2TotalReviews = q2ReviewCount1 + q2ReviewCount2 + q2ReviewCount3;
 											    int q3TotalReviews = q3ReviewCount1 + q3ReviewCount2 + q3ReviewCount3;
@@ -12468,19 +12475,29 @@ function setCommonGnbCookie(name, value, expiredays) {
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 											<section class="rvw_section rvw_section_pht"
 												id="review_img_vod">
+												
 												<div class="rvw_section_heading">
 													<span class="rvw_heading_title">포토&amp;동영상 리뷰(${photoReviewCount+videoReviewCount})</span>
-													<%
-													if (session.getAttribute("auth") != null) {
-													%>
+													
+													<sec:authorize access="isAuthenticated()">
+													<input type="hidden" id="kk" value="<sec:authentication property='principal.username'/>" /> 
 													<a href="#" onclick="openReviewWindow();return false;">리뷰등록하기</a>
 													<script type="text/javascript">
 													function openReviewWindow() {
-														
-														var url = `/SSGSSAK/review/review.do?productcode=${product.id}&auth=${auth}`;
+														let kk = $('#kk').val();
+														var url = `/SSGSSAK/review/review.do?productcode=${product.id}&auth=\${kk}`;
 														var windowName = "newReviewWindow";
 														var windowSize = "width=635,height=665";
-														window.open(url, windowName, windowSize + ",resizable=yes");
+														var reviewWindow = window.open(url, windowName, windowSize + ",resizable=yes");
+														reviewWindow.onunload =function(){
+															if (reviewWindow.opener) {
+															reviewWindow.opener.location.reload();	
+															}//if
+														}//fu */
+														
+														
+														
+													}
 /* 														고치기
 														$.ajax({
 															url: '/SSGSSAK/product/CheckLogin.do',
@@ -12501,14 +12518,13 @@ function setCommonGnbCookie(name, value, expiredays) {
 																console.error(error);
 															}
 														});
+													}
 														 */
 														
-													}
+													
 												</script>
-
-													<%
-													}
-													%>
+</sec:authorize>
+												
 													<div class="rvw_heading_end">
 														<button type="button" class="rvw_pht_all_popup_trigger">
 															<span>더보기</span>
@@ -12610,14 +12626,14 @@ function setCommonGnbCookie(name, value, expiredays) {
 														</div>
 													</div>
 													<div class="rvw_expansion_panel_container">
-														<ul class="rvw_expansion_panel_list" id="item_rvw_list">
 														<c:set var="totalRecords" value="${fn:length(reviews)}" />
 												<c:set var="currentPage" value="${currentPage}" />
 												<c:set var="numberPerPage" value="${numberPerPage}" />
+														<ul class="rvw_expansion_panel_list" id="item_rvw_list">
 														
 														    <c:set value="${totalRecords - (currentPage-1) * numberPerPage}" var="startNo"/>
 														    <c:forEach var="review" items="${pagedReviews}">
-															<li class="rvw_expansion_panel"
+															<%-- <li class="rvw_expansion_panel"
 																data-postngid="1184443604">
 																<div class="rvw_expansion_panel_head">
 																	<a href="javascript:void(0)" role="button"
@@ -12627,7 +12643,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 																				<div class="rvw_item_label rvw_item_rating">
 																					<span>${review.grade }</span>
 																				</div>
-																				<div class="rvw_item_label rvw_item_type"  >${review.productOptionId}</div>
+																			 	<div class="rvw_item_label rvw_item_type"  >${review.optionName}</div>
 																				<div class="rvw_item_label rvw_item_user_id">${review.memid}</div>
 																				<div class="rvw_item_label rvw_item_date">${review.reviewDate}</div>
 																				<div class="rvw_item_label rvw_item_order">${startNo}</div>
@@ -12664,14 +12680,11 @@ function setCommonGnbCookie(name, value, expiredays) {
 																		<div class="rvw_item_view">
 																			<div class="rvw_item_img_view">
 																				<div class="rvw_item_img_list">
-																						<c:forEach var="reviewImg" items="${reviewImg}">
-																							<c:if test="${reviewImg.reviewId==review.id}">
+																						<c:forEach var="reviewImg" items="${review.reviewImgUrl}">
 																								<div class="rvw_item_img">
 																									<img src="${reviewImg.reviewImgUrl}"alt="">
 																								</div>
-																							</c:if>
 																						</c:forEach>
-																	
 																					</div>
 																				</div>
 																			</div>
@@ -12726,16 +12739,16 @@ function setCommonGnbCookie(name, value, expiredays) {
 																			</div>
 																		</div>
 																	</div>
-																</div>
+																
 															</li>
-															
+															 --%>
 															</c:forEach>
 
 														</ul>
 													</div>
 
-														
-														<div class="pagination">
+<%-- 						기존페이징								
+	<div class="pagination">
         <c:if test="${currentPage > 1}">
             <a href="/SSGSSAK/product/product.do?productcode=${product.id}&currentPage=${currentPage - 1}">&laquo; 이전</a>
         </c:if>
@@ -12747,7 +12760,183 @@ function setCommonGnbCookie(name, value, expiredays) {
             <a href="/SSGSSAK/product/product.do?productcode=${product.id}&currentPage=${currentPage + 1}">다음 &raquo;</a>
         </c:if>
     </div>
+     --%>
+     <input type="hidden" id="csrfToken" value="${_csrf.token}"/> 
+   	<div class="pagination">
+        <c:if test="${currentPage > 1}">
+            <a href="javascript:void(0);" onclick="fn_go_page(${currentPage - 1})">&laquo; 이전</a>
+        </c:if>
+        <c:forEach begin="1" end="${totalPages}" var="i">
+            <a href="javascript:void(0);" onclick="fn_go_page(${i})" class="${i == currentPage ? 'active' : ''}">${i}</a>
+        </c:forEach>
+        <c:if test="${currentPage < totalPages}">
+            <a href="javascript:void(0);" onclick="fn_go_page(${currentPage + 1})">다음 &raquo;</a>
+        </c:if>
+    </div>
     
+    <script type="text/javascript">
+    	//페이징 startNo 처리하는코드
+    	let currentPage = 1;
+    	let totalPages =1;
+    	const numberPerPage =5;
+    	
+    
+		function fn_go_page(pageNo) {
+			currentPage = pageNo;
+			const submitObj = {
+			pageIndex : pageNo,
+			productcode : ${product.id}
+			};
+			var csrfToken = $('#csrfToken').val();
+			//submitObj.searchWrd = $("#searchWrd").val();//서치워드
+			
+			$.ajax({
+				url:"/SSGSSAK/productR/review.do",
+				method: "POST",
+				contentType: "application/json;charset=UTF-8",
+				dataType:"json",
+				data:JSON.stringify(submitObj),
+				beforeSend: function(xhr) {
+                   xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+             		},
+				success:function(data,callback,xhr){			
+					console.log(data);
+					mkReviews(data.reviews,data.totalRecords);
+					mkPagination(data.totalPages,data.currentPage);
+				},error : function(xhr,errorType){
+					alert("리뷰 로드 실패" + errorType);
+				}//err
+				
+			})//ajx
+			
+			
+			
+		}//fucn
+
+		
+		function mkReviews(reviews,totalRecords) {
+			
+				$("#item_rvw_list").empty();
+				let startNo = totalRecords -(currentPage -1) * numberPerPage;
+			reviews.forEach(review=>{
+				
+				const reviewHtml = ` 
+					<li class="rvw_expansion_panel" data-postngid="\${review.id}">
+                    <div class="rvw_expansion_panel_head">
+                    <a href="javascript:void(0)" role="button" class="rvw_expansion_panel_trigger">
+                        <div class="rvw_item is-horizontal">
+                            <div class="rvw_item_info">
+                                <div class="rvw_item_label rvw_item_rating">
+                                    <span>\${review.grade}</span>
+                                </div>
+                                <div class="rvw_item_label rvw_item_type">\${review.optionName}</div>
+                                <div class="rvw_item_label rvw_item_user_id">\${review.memid}</div>
+                                <div class="rvw_item_label rvw_item_date">\${review.reviewDate}</div>
+                                <div class="rvw_item_label rvw_item_order">\${review.order}</div>
+                                <button type="button" class="rvw_item_btn_block"
+                                    onclick="javascript:fn_PopupItemError('/review/pReviewReportError.ssg?itemId=1000026532717&amp;siteNo=7012&amp;postngId=${review.id}', 800, 480);">
+                                    <span>신고/차단</span>
+                                </button>
+                            </div>
+                            <p class="rvw_item_text">\${review.reviewContent}</p>
+                            <div class="rvw_panel_expand_hide_group">
+                                <div class="rvw_item_thumb_group">
+                                    \${review.reviewImgUrl.slice(0, 2).map(img => `
+                                        <div class="rvw_item_thumb">
+                                            <img src="\${img.reviewImgUrl}" alt="">
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="rvw_expansion_panel_body">
+                    <div class="rvw_item">
+                        <div class="rvw_item_view">
+                            <div class="rvw_item_img_view">
+                                <div class="rvw_item_img_list">
+                                    \${review.reviewImgUrl.map(img => `
+                                        <div class="rvw_item_img">
+                                            <img src="\${img.reviewImgUrl}" alt="">
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rvw_item_controller">
+                            <button type="button" class="rvw_item_button_prev">
+                                <i class="icon_chevron_left_ssg"> <span class="blind">이전 STEP 보기</span></i>
+                            </button>
+                            <div class="rvw_item_pagination">
+                                <span class="rvw_item_pagination_current">1</span>
+                                <span class="rvw_item_pagination_divider">/</span>
+                                <span class="rvw_item_pagination_total">2</span>
+                            </div>
+                            <button type="button" class="rvw_item_button_next">
+                                <i class="icon_chevron_right_ssg"> <span class="blind">다음 STEP 보기</span></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="rvw_item_desc">
+                        <div class="rvw_item_table">
+                            <table>
+                                <colgroup>
+                                    <col width="76px">
+                                    <col width="*">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">만족도</th>
+                                        <td>보통이에요</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">포장 만족도</th>
+                                        <td>보통이에요</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">재구매 의사</th>
+                                        <td>보통이에요</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="rvw_item_scrollable">
+                            <p class="rvw_item_text">\${review.reviewContent}</p>
+                        </div>
+                        <div class="rvw_chip_group">
+                            <span class="rvw_chip">#개운한느낌</span>
+                            <span class="rvw_chip">#손상케어용</span>
+                            <span class="rvw_chip">#데일리용</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            `;
+			$("#item_rvw_list").append(reviewHtml);
+			startNo--;
+			});//for
+		}//mkreviews
+		
+		
+	    function mkPagination(total, current) {
+	        totalPages = total;
+	        $(".pagination").empty();
+	        const prevPageHtml = `<a href="javascript:void(0);" onclick="fn_go_page(\${currentPage - 1})">&laquo; 이전</a>`;
+	        $(".pagination").append(prevPageHtml);
+
+	        for (let i = 1; i <= total; i++) {
+	            const pageHtml = `<a href="javascript:void(0);" onclick="fn_go_page(\${i})" class="\${i === current ? 'active' : ''}">\${i}</a>`;
+	            $(".pagination").append(pageHtml);
+	        }
+
+	        const nextPageHtml = `<a href="javascript:void(0);" onclick="fn_go_page(\${currentPage + 1})">다음 &raquo;</a>`;
+	        $(".pagination").append(nextPageHtml);
+	        
+	    }//mkp
+	     fn_go_page(1); 
+    </script>
+	    /* fn_go_page(1);초기해줄까말까 .. */
 
     
 													

@@ -39,6 +39,8 @@
 <h3><a href="/SSGSSAK/product/product.do?productcode=1000597094621">테스트 </a></h3>
 <h3><a href="/SSGSSAK/review/review.do?productcode=1000059288917">리뷰등록하기</a></h3>
 
+
+<img alt="" src="\resources\images\스크린샷 2024-04-03 233813.png">
 <img alt="" src="\resources\images\1000026532717_i1_1100.avif">
 </div>
 

@@ -9,5 +9,6 @@ public interface ReviewImgService {
 
 	List<ReviewImgDTO> getReviewImg(long productcode) throws ClassNotFoundException, SQLException;
 	
+	void insertReviewImg(String reviewImgUrl) throws ClassNotFoundException, SQLException; 
 	
 }//class

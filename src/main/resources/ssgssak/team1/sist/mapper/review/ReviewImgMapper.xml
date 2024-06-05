@@ -7,12 +7,25 @@
 	
 	<!-- List<ReviewImgDTO> select(long productcode) throws SQLException; -->
 
+		<select id="selectP" resultType="ssgssak.team1.sist.domain.review.ReviewImgDTO">
+			SELECT *
+			FROM reviewImg
+			WHERE reviewId = ${reviewId}
+		
+	<!-- 		SELECT ri.ID, ri.REVIEWID, ri.REVIEWIMGURL
+			FROM product p
+			JOIN review r ON p.id= r.productid
+			JOIN reviewImg ri ON r.id=ri.reviewid
+			WHERE p.id = #{id} -->
+		</select>
 		<select id="select" resultType="ssgssak.team1.sist.domain.review.ReviewImgDTO">
+
 			SELECT ri.ID, ri.REVIEWID, ri.REVIEWIMGURL
 			FROM product p
 			JOIN review r ON p.id= r.productid
 			JOIN reviewImg ri ON r.id=ri.reviewid
-			WHERE p.id = #{id}
+			WHERE p.id = #{id} 
+			
 		</select>
 		
 		<!-- int insertReviewImg(String reviewImgUrl) throws SQLException; -->

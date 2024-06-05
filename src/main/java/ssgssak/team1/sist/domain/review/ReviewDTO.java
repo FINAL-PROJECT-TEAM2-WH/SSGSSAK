@@ -32,4 +32,7 @@ public class ReviewDTO {
   private int q3 ;
 
 
+  private String optionName; 
+  
+  private List<ReviewImgDTO> reviewImgUrl;
 }
