@@ -9,7 +9,7 @@
 	<link rel="shortcut icon" type="image/x-icon" href="https://sui.ssgcdn.com/ui/common/img/ssg.ico">
 	<link rel="stylesheet" type="text/css" href="https://sui.ssgcdn.com/ui/ssg/css/ssg_global.css?v=20240507">
 	<!-- <link rel="stylesheet" type="text/css" href="https://sui.ssgcdn.com/ui/ssg/css/ssg_layout.css?v=20240507"> -->
-	<link rel="stylesheet" type="text/css" href="../logo.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/logo.css">
 	<link rel="stylesheet" type="text/css" href="https://sui.ssgcdn.com/ui/ssg/css/ssg_component.css?v=20240507">
 
 	<link rel="stylesheet" type="text/css" href="https://sui.ssgcdn.com/ui/ssg/css/odr_v2.css?v=20240507">
@@ -254,7 +254,7 @@
     <input type="hidden" name="showTripTapActvYn" value="Y">
     <input type="hidden" name="siteNo" value="6005">
     <input type="hidden" name="fromgnb" value="">
-    <%@include file="/Top.jsp" %>
+    <%@include file="/WEB-INF/views/Top.jsp" %>
 <!-- 최근 본 상품 -->
 <aside id="history" class="drawer_menu drawer_right" role="complementary" aria-label="최근 본 상품 리스트">
   <div class="ssg_history_wrap drawer_wrap" id="_ssg_history_wrap" tabindex="0" data-react-tarea-cd="00042_000000455">

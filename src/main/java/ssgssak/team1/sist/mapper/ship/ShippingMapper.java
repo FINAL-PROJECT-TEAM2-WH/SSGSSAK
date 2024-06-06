@@ -36,4 +36,8 @@ public interface ShippingMapper {
 	
 	public ShippingPlaceInfoVO ShippingPlaceUpView(@Param("id") long id) throws Exception;
 	
+	public int ShippingPlaceDelete(@Param("id") long id) throws Exception;
+	
+	public int shippingStatusEdit(@Param("id") long id, @Param("status") String status) throws Exception;
+	
 }

@@ -335,7 +335,7 @@
     var emergencyItemIds = "";
 //]]>
 </script>
-	<%@ include file="../../Top.jsp"%>
+	<%@ include file="../../../Top.jsp"%>
 	<div id="category" class="category"></div>
 	<div id="container" class="cmmyssg_wrap">
 		<!-- SSG -->
@@ -353,7 +353,7 @@
 						<a href="http://www.ssg.com/myssg/main.ssg"
 							class="cmmyssg_user_tittx clickable"
 							data-react-tarea-dtl-cd="t00060"><span
-							class="cmmyssg_user_titname">${info.name} 님</span>의 My SSG</a>
+							class="cmmyssg_user_titname">${memberVO.name} 님</span>의 My SSG</a>
 					</h2>
 				</div>
 			</div>
@@ -593,6 +593,7 @@
 </script>
 		<div id="content" class="content_myssg">
 			<form id="submitForm_update" name="submitForm" method="post">
+			<input type="hidden" name="id" value="${memberVO.id}">
 				<h2 class="stit">
 					<span>회원정보 변경</span>
 				</h2>
@@ -611,7 +612,7 @@
 								src="//sui.ssgcdn.com/ui/ssg/img/mem/ico_star.gif" alt="필수" /></span>
 							<div class="insert" id="idCheckDiv">
 
-								<span>${info.id}</span>
+								<span>${memberVO.id}</span>
 
 
 							</div>
@@ -620,7 +621,7 @@
 							<span class="label">이름 <img
 								src="//sui.ssgcdn.com/ui/ssg/img/mem/ico_star.gif" alt="필수" /></span>
 							<div class="insert">
-								<span id="mbrNm">${info.name}</span>
+								<span id="mbrNm">${memberVO.name}</span>
 							</div>
 						</div>
 
@@ -641,25 +642,26 @@
 									<option value="018" addtOptnVal1="" addtOptnVal2="">018</option>
 									<option value="019" addtOptnVal1="" addtOptnVal2="">019</option> -->
 										<option value=010
-											<c:if test="${info.prePhoneNum == 010}">selected</c:if>>010</option>
+											<c:if test="${memberVO.phoneNum.substring(0,3) == 010}">selected</c:if>>010</option>
 										<option value=011
-											<c:if test="${info.prePhoneNum == 011}">selected</c:if>>011</option>
+											<c:if test="${memberVO.phoneNum.substring(0,3) == 011}">selected</c:if>>011</option>
 										<option value=016
-											<c:if test="${info.prePhoneNum == 016}">selected</c:if>>016</option>
+											<c:if test="${memberVO.phoneNum.substring(0,3) == 016}">selected</c:if>>016</option>
 										<option value=017
-											<c:if test="${info.prePhoneNum == 017}">selected</c:if>>017</option>
+											<c:if test="${memberVO.phoneNum.substring(0,3) == 017}">selected</c:if>>017</option>
 										<option value=018
-											<c:if test="${info.prePhoneNum == 018}">selected</c:if>>018</option>
+											<c:if test="${memberVO.phoneNum.substring(0,3) == 018}">selected</c:if>>018</option>
 										<option value=019
-											<c:if test="${info.prePhoneNum == 019}">selected</c:if>>019</option>
+											<c:if test="${memberVO.phoneNum.substring(0,3) == 019}">selected</c:if>>019</option>
 									</select> <span>-</span> 
 									<input type="tel" id="mbrCntsELno" title="휴대폰 번호 뒷자리" placeholder="- 없이 뒷자리를 입력해주세요."
-									value="${info.postPhoneNum}" class="input_text small" name="mbrCntsELno"
+									value="${memberVO.phoneNum.substring(3).replaceAll('-','')}" class="input_text small" name="mbrCntsELno"
 										style="width: 136px; ime-mode: disabled;" />
 								</div>
+								<input type="hidden" id="mbrPhoneNum" name="phoneNum" value=""/>
 								 <span class="cmem_noti" aria-live="polite">
 											<em class="usable_value"><p id="mbrCntsELno_msg" style="padding-top: 13px"></p></em>
-								</span>
+								</span>	
 							</div>
 						</div>
 						<div class="field" id="emailChg01">
@@ -667,7 +669,7 @@
 								src="//sui.ssgcdn.com/ui/ssg/img/mem/ico_star.gif" alt="필수" /></label>
 							<div class="insert">
 								<input type="text" id="email" name="email"
-									placeholder="자주 사용하시는 이메일 주소를 입력해주세요." value="${info.email}"
+									placeholder="자주 사용하시는 이메일 주소를 입력해주세요." value="${memberVO.email}"
 									class="input_text small" style="width: 250px" />
 							</div>
 							 <span class="cmem_noti" aria-live="polite">
@@ -688,6 +690,7 @@
 						<li>주문 정보는 회원 정보에 등록된 휴대폰번호 및 이메일주소로 안내됩니다.</li>
 					</ul>
 				</div>
+				<input type="hidden" id="csrfToken" name="_csrf" value="${_csrf.token}">
 			</form>
 		</div>
 		<script type="text/javascript"
@@ -904,8 +907,8 @@ $(function(){
 	 */
 	 
 	 const checkValidvalue = {
-			    PHONENUM : "N",
-			    EMAIL : "N"
+			    PHONENUM : "Y",
+			    EMAIL : "Y"
 			}
 	 const pattern = new RegExp('^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+');
 	
@@ -959,10 +962,19 @@ $(function(){
 				alert('다시 입력');
 				return null;
 			} else {
-		    let result = $('#submitForm_update').serialize();
-		    
+				let preNum = $('#mbrCntsano').val();
+				let postNum = $('#mbrCntsELno').val();
+				if(postNum.length == 7 ) {
+					postNum = postNum.substring(0,3) + '-' + postNum.substring(3);
+				} else {
+					postNum = postNum.substring(0,4) + '-' + postNum.substring(4);
+				}
+				$('#mbrPhoneNum').val(preNum+"-"+postNum);					
+				
+				let result = $('#submitForm_update').serialize();
+ 
 		    $.ajax({
-		        url: '<%=contextPath%>/memberInfo/changeInfo.do',
+		        url: '/member/changeInfo',
 		        dataType: 'json',
 		        type: 'POST',
 		        data:result,
@@ -970,7 +982,7 @@ $(function(){
 		        success: function (data) {
 		        	if (data.resultCode == "SUCCESS") {
 					alert(data.resultMsg);
-					document.location.href = '<%=contextPath%>/memberInfo/changeInfo.do';
+					location.reload();
 					} else {
 					alert(data.resultMsg);
 					document.location.reload();
@@ -1061,4 +1073,4 @@ $(function(){
 
 	</div>
 	<!-- footer -->
-	<%@include file="../../footer.jsp"%>
+	<%@include file="../../../footer.jsp"%>

@@ -1248,33 +1248,24 @@ isMsa=Y
 																onclick="frontCommCart.put(this, '');"
 																data-info="1000068529577" data-idx="0"
 																data-position="cart" data-unit="img"
-																data-react-tarea="좋아요|상품|상품_장바구니|어센틱 올드스쿨 체커보드슬립온 데일리 운동화 스니커즈 22종"
-																data-react-tarea-dtl-cd="t00002"><span
-																class="blind">장바구니</span></a> <span style="display: none"
-																class="disp_cart_data" data-cart-type="10"
-																data-cart-inflo-site-no="6005" data-cart-ordqty="1"></span> <span
-																class="cmlike"> <input
-																type="hidden" name="attnDivCd" value="10"> <input
-																type="hidden" name="attnDivDtlCd" value="10"> <input
-																type="hidden" name="siteNo" value="6004"> <input
-																type="hidden" name="attnTgtIdnfNo1"
-																value="<%-- ${product.id} --%>"> <input
-																type="hidden" name="attnTgtIdnfNo2" value="6005">
-																<input type="hidden" name="uitemId" value="00000">
-																<input type="hidden" name="notiTitle"
-																value="어센틱 올드스쿨 체커보드슬립온 데일리 운동화 스니커즈 22종"> <input
-																type="hidden" name="notiImgPath" value="">
-																<input type="hidden" name="checked" value="N"> 
-																<button class="cmlike_btn _js_cmlike_btn clickable"
-																	onclick="addLike(${svo.productid})">
-																	 <span class="cmlike_ico"> <i
-																		class="cmlike_primary_s"></i> <span class="sr_off"><span
-																			class="blind">관심상품 취소</span></span> <span class="sr_on"><span
-																			class="blind">관심상품 등록</span></span>
-																			
-																	</span>
-																	
-																</button>
+																data-react-tarea-dtl-cd="t00002"><span class="blind">장바구니</span></a>
+															<span style="display: none" class="disp_cart_data"
+																data-cart-type="10" data-cart-inflo-site-no="6005"
+																data-cart-ordqty="1">{"advertBidId":"","giftBtnShowType":"","bsplItemDivCd":null,"giftBtnActType":"Y","itemChrctDivCd":"10","itemLnkd":"/item/itemView.ssg?itemId=1000587710191&siteNo=6004&salestrNo=6005&tlidSrchWd=노트북&srchPgNo=1&src_area=ssglist","giftBtnMsg":"","bothSsgMorningShppYn":"N","shppTypeDtlCd":"22","goItemDetailYn":"Y","drctPurchYn":"N","itemId":"1000587710191","dealItemYn":"N","advertExtensTeryDivCd":"","cleaningLabYn":"N","siteNo":"6004","useForcedSsg":"N","cartPsblType":"","uitemId":"00000","infloSiteNo":"6005","salestrNo":"6005","msgItemDetail":"이
+																상품은 옵션이 있는 상품 입니다.\n상품상세에서 옵션을 선택해주세요."}</span> <span
+																class="cmlike _js_cmlike interestIt"> value="${ svo.pdname }">
+																<input type="hidden" name="notiImgPath"
+																value="//sitem.ssgcdn.com/91/01/71/item/1000587710191_i1_290.jpg">
+																<input type="hidden" name="checked" value="N"> <input
+																type="hidden" name="useForcedSsgYn" value="N">
+																<button class="cmlike_btn _js_cmlike_btn clickable"  onclick="addLike(${svo.productid});">
+												                    <span class="cmlike_ico">
+												                        <i class="cmlike_primary_s"></i>
+												                        <span class="sr_off"><span class="blind">관심상품 취소</span></span>
+												                        <span class="sr_on"><span class="blind">관심상품 등록</span></span>
+												                    </span>
+												                </button> 
+																<input type="hidden" id="csrfToken" name="_csrf" value="${_csrf.token}">
 															</span>
 														</div>
 													</div>

@@ -80,6 +80,18 @@ public class ShippingServiceImpl implements ShippingService {
 		
 		return this.shippingMapper.ShippingPlaceUpView(id);
 	}
+
+	@Override
+	public int ShippingPlaceDelete(long id) throws Exception {
+		
+		return this.shippingMapper.ShippingPlaceDelete(id);
+	}
+
+	@Override
+	public int shippingStatusEdit(String memid, long id, String status) throws Exception {
+		this.shippingMapper.defaultShippingUpdate(memid);
+		return this.shippingMapper.shippingStatusEdit(id, status);
+	}
 	
 	
 	

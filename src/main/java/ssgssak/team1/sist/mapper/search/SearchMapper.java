@@ -27,4 +27,6 @@ public interface SearchMapper {
 	public  ArrayList<BrandCateCountVO> getSearchCateCount(@Param("searchWord") String searchWord) throws Exception;
 	
 	public ArrayList<BrandCateCountVO> getSearchBrandMap(@Param("searchWord") String searchWord) throws Exception;
+
+	public int insertSearch(@Param("searchWord") String searchWord, @Param("memid") String memid, @Param("datetime") String datetime) throws Exception;
 }

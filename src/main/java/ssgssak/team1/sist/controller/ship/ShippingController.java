@@ -10,6 +10,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,8 +39,9 @@ public class ShippingController {
 	
 	@GetMapping("/shippingPlaceList")
 	public String shipPlaceList(HttpServletRequest request, Criteria criteria, Model model) throws Exception {
-		HttpSession hSession = request.getSession(false);
-		String memid = (String)hSession.getAttribute("auth");
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String memid = userDetails.getUsername();
 		criteria.setAmount(10);
 		int total = this.shippingService.getShipPlaceTotal(memid);
 		PageDTO pdto = new PageDTO(criteria, total);
@@ -53,14 +57,16 @@ public class ShippingController {
         return "/member/userinfo/shipping/SSG_shippingPlace_insert"; 
     }
 
+	@ResponseBody
 	@PostMapping("/shippingPlaceInsert")
 	public ResponseEntity<String> shippingPlaceInsert(@RequestBody ShippingPlaceInfoVO shippingPlaceInfoVO, HttpServletRequest request) throws Exception {
 		log.info("shippingPlaceInsert...");
-		HttpSession hSession = request.getSession(false);
-		String memid = (String)hSession.getAttribute("auth");
-		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String memid = userDetails.getUsername();
+		System.out.println("여기로 들어왔나??");
 		this.shippingService.shippingPlaceInsert(memid, shippingPlaceInfoVO);
-		ResponseEntity<String> rentity = new ResponseEntity<String>(HttpStatus.OK);
+		ResponseEntity<String> rentity = new ResponseEntity<String>("주소추가성공", HttpStatus.OK);
 		return rentity;
 	}
 	
@@ -76,8 +82,9 @@ public class ShippingController {
 	public Map<String, Object> shippingPlaceUpdateView(@RequestParam int id, HttpServletRequest request) throws Exception{
 		log.info("shippingPlaceUpdateView Controller>>>...");
 		Map<String, Object> viewMap = new HashMap<String, Object>();
-		HttpSession hSession = request.getSession(false);
-		String memid = (String)hSession.getAttribute("auth");
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String memid = userDetails.getUsername();
 		
 		ShippingPlaceInfoVO svo = this.shippingService.ShippingPlaceUpView(id);
 		viewMap.put("memid", svo.getMemid());
@@ -93,4 +100,21 @@ public class ShippingController {
 		return viewMap;
 	}
 	
+	
+	@GetMapping("/ShippingPlaceDelete")
+	public String shippingPlaceDelete(@RequestParam("id") long id) throws Exception {
+		log.info("shippingPlaceDelete controller...");
+		this.shippingService.ShippingPlaceDelete(id);
+		return "redirect:/member/userinfo/shipping/shippingPlaceList";
+	}
+	
+	@GetMapping("/ShippingStatusEdit")
+	public String ShippingStatusEdit(@RequestParam("status") String status, @RequestParam("id") long id) throws Exception {
+		log.info("ShippingStatusEdit controller...");
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String memid = userDetails.getUsername();
+		this.shippingService.shippingStatusEdit(memid, id, status);
+		return "redirect:/member/userinfo/shipping/shippingPlaceList";
+	}
 }

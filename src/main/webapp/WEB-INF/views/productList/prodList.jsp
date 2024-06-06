@@ -1007,7 +1007,7 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 															<input type="hidden" name="checked" value="N"> <input
 															type="hidden" name="useForcedSsgYn" value="N">
 
-
+<input type="hidden" id="csrfToken" name="_csrf" value="${_csrf.token}">
 															<button class="cmlike_btn _js_cmlike_btn clickable"
 																onclick="addLike(${productList[loop.index].id})">
 																<span class="cmlike_ico"> <i
@@ -1173,47 +1173,6 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 // 	alert("됨?");
 // };
 
-function addLike(productid) {
- 	$.ajax({
-        url: '/SSGSSAK/like/like.do',
-        dataType: 'json',
-        type: 'GET',
-        data: { "productid" : productid}, 
-        cache: false,
-        success: function (data) {
-        	if (data.result == 'Invalid') {
-        		if (confirm ('이미 좋아요 누른 항목입니다. 취소하시겠습니까? ')) {
-        			alert("ㅇㅋ 취소해줌");
-        			// 취소하는 ajax 
-        			$.ajax({
-        				url: '/SSGSSAK/like/like.do',
-        				dataType: 'json',
-        				type: 'POST',
-        				data : {"productid" : productid,
-        					"status" : "Invalid"},
-        				cache: false,
-        				success : function (data) {
-        					if (data.result =='DeleteSuccess') {
-        						location.href = "/SSGSSAK/memberInfo/likeInfo.do";
-        					}
-        				}, error : function (xhr, status, error){
-        					
-        				}
-        			});
-        		} else {
-        			alert('그대로 냅둘게');
-        		}
-        	} else if ( data.result == 'Success') {
-        		alert('좋아요 성공임');
-        	} else if ( data.result == 'Fail') {
-        		alert('좋아요 실패임 ' + data.message);
-        	}
-        },
-        error: function (xhr, status, error) {
-
-        }
-    });
-} 
 
 /* $('.cmlike_btn_js_cmlike_btn_clickable').on('click', function () {
 	alert('kk');

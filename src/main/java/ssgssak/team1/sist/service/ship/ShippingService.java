@@ -27,4 +27,8 @@ public interface ShippingService {
 	public int shippingPlaceInsert(String memid, ShippingPlaceInfoVO shippingPlaceInfoVO) throws Exception;
 	
 	public ShippingPlaceInfoVO ShippingPlaceUpView(long id) throws Exception;
+	
+	public int ShippingPlaceDelete(long id) throws Exception;
+	
+	public int shippingStatusEdit(String memid, long id, String status) throws Exception; 
 }

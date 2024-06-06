@@ -3,6 +3,9 @@ package ssgssak.team1.sist.controller.search;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +36,15 @@ public class SearchController {
 			@RequestParam(value="selectVal", defaultValue = "vest") String selectVal, 
 			@RequestParam(value="radionVal", defaultValue = "") String radionVal, Model model) throws Exception {
 		log.info(">> searchQuery Controller");
+		if( searchWord.equals("") ) {
+			criteria.setSearchWord(" ");
+			searchWord = " ";
+		}
 		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String memid = userDetails.getUsername();
+		this.searchService.insertSearch(memid, searchWord);
 		if( selectVal.equals("vest") ) {
 			selectVal = null;
 		}

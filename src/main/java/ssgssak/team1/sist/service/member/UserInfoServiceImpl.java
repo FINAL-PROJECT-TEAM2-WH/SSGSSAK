@@ -27,11 +27,18 @@ public class UserInfoServiceImpl implements UserInfoService{
 		return UserInfoDTO.builder()
 		.id(id)
 		.name(this.userinfoMapper.getUserName(id))
-		.memberPoint(this.userinfoMapper.getPoint(id))
+		.memberPoint(this.userinfoMapper.getPoint(id) )
 		.couponNum(this.userinfoMapper.getPCoupons(id))
-		.leftDays(this.userinfoMapper.getSevenDaysLeftC(id))
+		.leftDays(this.userinfoMapper.getPCoupons(id) != 0 ? this.userinfoMapper.getSevenDaysLeftC(id) : 0)
 		.availDownC(this.userinfoMapper.availDownCoupon(id))
 		.productList(this.likeMapper.getInterGoods(id)).build();
+	}
+
+	@Override
+	public boolean updateInfo(MemberVO vo) {
+		
+		
+		return this.userinfoMapper.updateInfo(vo) >= 1 ;
 	}
  
 

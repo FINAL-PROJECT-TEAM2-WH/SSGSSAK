@@ -1,14 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ page import="org.springframework.security.core.Authentication" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="ssgssak.team1.sist.domain.member.security.CustomerUser" %>
 <%
-	HttpSession memSession = request.getSession(false); // 세션이 없으면 새로 생성하지 않음
-	String memid = null;
-	if (memSession != null && memSession.getAttribute("auth") != null) {
-		memid = (String) memSession.getAttribute("auth");
-	} else {
-	    // 여기는 로그인 페이지로 다시 이동
-	    response.sendRedirect("../../member/login.jsp");
-	}
-%> 
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		CustomerUser  customerDetail =(CustomerUser) authentication.getPrincipal();
+		String memid = customerDetail.getUsername();
+%>  
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
 <head>

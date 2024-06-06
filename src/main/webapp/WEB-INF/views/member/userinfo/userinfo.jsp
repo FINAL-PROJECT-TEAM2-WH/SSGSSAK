@@ -967,8 +967,8 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
   <div class="cmmyssg_sec" data-react-tarea-cd="00034_000000009">
         <div class="cmmyssg_subject" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"tarea_addt_val","value":전체보기"}]'>
           <h3 class="cmmyssg_subject_tit" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"tarea_addt_val","value":좋아요"}]'><a href="https://www.ssg.com/myssg/myClip/main.ssg?myssg=myclipMenu" class="clickable" data-react-tarea-dtl-cd="t00060">좋아요</a></h3>
-          <span class="cmmyssg_subject_count">${countList[0]}</span>
-            <a href="<%=contextPath%>/memberInfo/likeInfo.do/" class="cmmyssg_subject_btnmore clickable"  data-react-tarea-dtl-cd="t00060">전체보기</a>
+          <span class="cmmyssg_subject_count">${interSize}</span>
+            <a href="/member/like/" class="cmmyssg_subject_btnmore clickable"  data-react-tarea-dtl-cd="t00060">전체보기</a>
           </div>
         <div class="cmmyssg_cunit_lst">
           <div class="cunit_lst_v">

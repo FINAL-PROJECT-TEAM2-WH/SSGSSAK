@@ -1,13 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ page import="org.springframework.security.core.Authentication" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="ssgssak.team1.sist.domain.member.security.CustomerUser" %>
 <%
-	HttpSession memSession = request.getSession(false); // 세션이 없으면 새로 생성하지 않음
-	String memid = null;
-	if (memSession != null && memSession.getAttribute("auth") != null) {
-		memid = (String) memSession.getAttribute("auth");
-	} else {
-	    // 여기는 로그인 페이지로 다시 이동
-	    response.sendRedirect("../../member/login.jsp");
-	}
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		CustomerUser  customerDetail =(CustomerUser) authentication.getPrincipal();
+		String memid = customerDetail.getUsername();
 %> 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
@@ -476,11 +475,9 @@ function execDaumPostcode() {
 <script type="text/javascript" src="/comm/js/memberJs.ssg"></script>
 <script>
 	$("#shippingPlaceInsert").on("click", function(){
-		//alert("click했다~~");
-		var contextPath = "<%= request.getContextPath() %>";
+		
 		var datas = {
 				// 여기서 회원 id 값도 같이 넘기기
-			//  memid : ${ param.memid }
 				memid : "<%= memid %>"
 			,	addressnick : $("#shpplocAntnmNm").val()
 			,	receivemem : $("#rcptpeNm").val()
@@ -492,22 +489,20 @@ function execDaumPostcode() {
 		}
 		$.ajax({
 			type: "POST",
-			datatype : 'json',
+			dataType : 'json',
 			/* ajax url 줄때 서버단이라면 contextPath 추가 꼭 해주기 */
-			url: contextPath + "/member/userinfo/shipping/shippingPlaceInsert",
+			url: "/member/userinfo/shipping/shippingPlaceInsert",
 			contentType : 'application/json', 
 		    data : JSON.stringify(datas),
 			cache : false,
-			success : function(res){
+			success : function(){
 				alert("주소 추가 성공");
-				console.log(res.code);
 				window.opener.parent.location.reload();
 				window.close();
 			},
 			error : function(){
-				//alert("실패")
+				alert("실패")
 				window.close();
-				console(res.code);
 			}
 		})
 	})

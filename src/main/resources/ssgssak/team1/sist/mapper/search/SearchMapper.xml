@@ -168,4 +168,7 @@
 				ORDER BY productcount DESC 
 	</select>
 	
+	<insert id="insertSearch">
+		INSERT INTO search (id, memid, searchWord, searchhour) VALUES ( SEQ_SEARCH.NEXTVAL, #{memid}, #{searchWord}, #{datetime} ) 
+	</insert>
 </mapper>

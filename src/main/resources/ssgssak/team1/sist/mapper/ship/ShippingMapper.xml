@@ -125,4 +125,15 @@
 		WHERE id = ${id}
 	</select>
 	
+	<delete id="ShippingPlaceDelete">
+		 DELETE FROM shippingPlaceInformation 
+		WHERE id = ${id}	
+	</delete>
+	
+	<update id="shippingStatusEdit">
+		UPDATE shippingPlaceInformation 
+		SET DEFAULTSHIPPING = #{status}
+		WHERE id = ${id}
+	</update>
+	
 </mapper>

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%
 	HttpSession hsession = request.getSession(false);
 	String mid = (String)hsession.getAttribute("auth");
@@ -687,7 +688,7 @@
 		var $row = $(element).closest('tr');
 	    var spdtoId = $row.find('.spdtoHidden').val();
 	    //alert( spdtoId );
-	    location.href = `<%= contextPath %>/ShippingPlaceDelete.do?id=\${spdtoId}`;
+	    location.href = `/member/userinfo/shipping/ShippingPlaceDelete?id=\${spdtoId}`;
 	}
 	
 	
@@ -697,7 +698,7 @@
 			alert("배송지를 체크해주세요");
 		}else{
 			//alert(defaultVal); 
-			location.href = `<%= contextPath %>/ShippingStatusEdit.do?id=\${defaultVal}&memid=<%= memid %>&status=기본배송지`
+			location.href = `/member/userinfo/shipping/ShippingStatusEdit?id=\${defaultVal}&&status=기본배송지`
 		}
 	})
 	
@@ -707,7 +708,7 @@
 			alert("배송지를 체크해주세요");
 		}else{
 			//alert(ebunmanVal);
-			location.href = `<%= contextPath %>/ShippingStatusEdit.do?id=\${ebunmanVal}&memid=<%= memid %>&status=이번만배송지`
+			location.href = `/member/userinfo/shipping/ShippingStatusEdit?id=\${ebunmanVal}&&status=이번만배송지`
 		}
 	})
 	

@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +33,9 @@ public class OrderController {
 	public String orderRecord(HttpServletRequest request, Model model) throws Exception {
 		log.info(">> orderRecord Controller");
 		
-		HttpSession hSession = request.getSession(false);
-		String memid = (String)hSession.getAttribute("auth");
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String memid = userDetails.getUsername();
 		ArrayList<OrderRecordVO> olist = null;
 		LinkedHashMap<String, String> dhm = null;
 		
@@ -48,8 +52,9 @@ public class OrderController {
 	@GetMapping("/orderDetail")
 	public String orderDetail(HttpServletRequest request, Model model, String orderId, String orderDate) throws Exception {
 		log.info(">>> orderDetail Controller...");
-		HttpSession hSession = request.getSession(false);
-		String memid = (String)hSession.getAttribute("auth");
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String memid = userDetails.getUsername();
 		String[] temp = orderId.split("/");
 		ArrayList<Long> ids = new ArrayList<Long>();
 		for (int i = 0; i < temp.length; i++) {
