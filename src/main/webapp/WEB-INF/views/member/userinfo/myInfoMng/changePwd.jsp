@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> %>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
 <head>
@@ -328,7 +328,7 @@
     var emergencyItemIds = "";
 //]]>
 </script>
-<%@include file="../../Top.jsp" %>
+<%@include file="../../../Top.jsp" %>
 <div id="category" class="category"></div>
 			<div id="container"  class="cmmyssg_wrap" >
 				<!-- SSG -->
@@ -341,7 +341,7 @@
             <div class="cmmyssg_user" data-react-tarea-cd="00034_000000001">
                 <div class="cmmyssg_user_info">
                     <h2 class="cmmyssg_user_tit" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"tarea_addt_val","value":"이름"}]'>
-                        <a href="http://www.ssg.com/myssg/main.ssg" class="cmmyssg_user_tittx clickable" data-react-tarea-dtl-cd="t00060"><span class="cmmyssg_user_titname"><%=id %></span>의 My SSG</a>
+                        <a href="http://www.ssg.com/myssg/main.ssg" class="cmmyssg_user_tittx clickable" data-react-tarea-dtl-cd="t00060"><span class="cmmyssg_user_titname"><sec:authentication property="principal.username"/></span>의 My SSG</a>
                     </h2>
                 </div>
             </div>
@@ -557,7 +557,8 @@
 
 <div id="content" class="content_myssg">
     <h2 class="stit"><span>비밀번호 변경</span></h2>
-    <form id="submitForm" method="post" action="<%= contextPath %>/memberInfo/changepwd.do">
+    <form id="submitForm_pwd" method="post">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         <div class="password_change existing">
 
             <fieldset class="fieldset large">
@@ -935,14 +936,32 @@ $(function(){
 			alert('다시 입력');
 			return 
 		}
-
-			$('#submitForm').submit();
-			// 추가용 허허허허
-			
-/* 		}	 */
+		
+		let result = $('#submitForm_pwd').serialize();
+		
+		$.ajax({
+	        url: '/member/changePwd',
+	        dataType: 'json',
+	        type: 'POST',
+	        data:result,
+	        cache: false,
+	        success: function (data) {
+	        	if (data.resultCode == "SUCCESS") {
+				alert(data.resultMsg);
+				
+				$('#logoutform').submit();
+				} else {
+				alert(data.resultMsg);
+				document.location.reload();
+				}
+	        },
+	        error: function () {
+				alert("시스템 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+			}
+	    });
 	});
 </script>
 
 </div>
 		<!-- footer -->
-	<%@include file="../../footer.jsp" %>
+	<%@include file="../../../footer.jsp" %>

@@ -539,7 +539,7 @@
                 </div>
 
                 
-                
+                <!-- js 객체 선언해서 짤라서 들어가면 좋을 듯 . -->
                     <div class="cmem_sec_cont">
                         <div class="cmem_terms ty_left">
                             <div class="cmem_term_tit">
@@ -582,15 +582,15 @@
                             <h4>SSG.COM</h4>
                         </div>
                         <div class="cmem_term_box">
-                            <span class="cmem_chk"><input type="checkbox" id="ssgInfoRcvAgree" data-type="agree40019" name="ssgInfoRcvAgreeDto.mbrSvcAgreeTypeCd" value="10" checked="checked"><label for="ssgInfoRcvAgree"><em>(선택)</em> 마케팅 정보 제공을 위한 개인정보 수집 및 이용 동의</label></span>
+                            <span class="cmem_chk"><input type="checkbox" id="ssgInfoRcvAgree" data-type="agree40019" name="agreeinfo.ssgInfoRcvAgree_type" value="10" checked="checked"><label for="ssgInfoRcvAgree"><em>(선택)</em> 마케팅 정보 제공을 위한 개인정보 수집 및 이용 동의</label></span>
                             <button type="button" class="cmem_btn cmem_btn_gray" title="새창열림" onclick="viewPolicy('signup_terms_scom02')"><span>내용보기</span></button>
                         </div>
                         <ul class="cmem_termlst" id="agree40019">
                             <li>
-                                <span class="cmem_chk"><input type="checkbox" id="emailRcvYn" name="ssgInfoRcvAgreeDto.emailRcvYn" value="Y" checked="checked"><label for="emailRcvYn">이메일</label></span>
+                                <span class="cmem_chk"><input type="checkbox" id="emailRcvYn" name="agreeinfo.ssgInfoRcvAgree=10_email" value="Y" checked="checked"><label for="emailRcvYn">이메일</label></span>
                             </li>
                             <li>
-                                <span class="cmem_chk"><input type="checkbox" id="smsRcvYn" name="ssgInfoRcvAgreeDto.smsRcvYn" value="Y" checked="checked"><label for="smsRcvYn">문자</label></span>
+                                <span class="cmem_chk"><input type="checkbox" id="smsRcvYn" name="agreeinfo.ssgInfoRcvAgree=10_sms" value="Y" checked="checked"><label for="smsRcvYn">문자</label></span>
                             </li>
                         </ul>
                         <span class="cmem_noti">

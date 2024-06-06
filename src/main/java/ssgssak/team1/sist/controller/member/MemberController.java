@@ -11,10 +11,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,6 +47,9 @@ public class MemberController {
 	
 	@Autowired
 	UserInfoService infoService;
+	
+	PasswordEncoder passwordEncoder;
+	
 	
 	
 	@GetMapping("/like")
@@ -82,9 +87,9 @@ public class MemberController {
 		// id, 이름 , phone, Email
 		log.info("> MemberController.changeInfo GET IN()");
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		CustomerUser customerUser = (CustomerUser) authentication.getPrincipal();		
-	
-		model.addAttribute("memberVO", customerUser.getMember());
+		CustomerUser customerUser = (CustomerUser) authentication.getPrincipal();	
+		String id = customerUser.getUsername();
+		model.addAttribute("userInfoVO", this.infoService.getUserInfo(id));
 		
 		return "/member/userinfo/myInfoMng/changeInfo";
 	}
@@ -92,13 +97,24 @@ public class MemberController {
 	@PostMapping("/changeInfo")
 	public ResponseEntity<Map<String, Object>> changeInfo(MemberVO vo) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		CustomerUser customerUser = (CustomerUser) authentication.getPrincipal();
+		CustomerUser  customerUser = (CustomerUser) authentication.getPrincipal();
+		String id = customerUser.getUsername();
 		log.info("> MemberController.changeInfo POST IN()");
 		Map <String, Object> map = new HashMap();
 	
 		if(this.infoService.updateInfo(vo)) {
 			map.put("resultCode", "SUCCESS");
 			map.put("resultMsg", "변경에 성공하였습니다.");
+			customerUser.getMember().setPhoneNum(vo.getPhoneNum());
+			customerUser.getMember().setEmail(vo.getEmail());
+			
+			Authentication newAuth = new UsernamePasswordAuthenticationToken(
+					customerUser,
+					authentication.getCredentials(),
+					customerUser.getAuthorities()
+					);
+			SecurityContextHolder.getContext().setAuthentication(newAuth);
+			
 			
 		}
 		else {
@@ -107,6 +123,44 @@ public class MemberController {
 		}
 	
 		return ResponseEntity.ok(map);
+	}
+	
+	@GetMapping("/changePwd")
+	public String changePwd() {
+		log.info("> MemberController.changePwd GET IN()");
+		
+		return "/member/userinfo/myInfoMng/changePwd";
+	}
+	
+	
+	
+	@PostMapping("/changePwd")
+	public ResponseEntity<Map<String, Object>> changePwd(String pwd){
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		CustomerUser customerUser = (CustomerUser) authentication.getPrincipal();	
+		String id = customerUser.getUsername();
+		Map <String, Object> map = new HashMap();
+		if (this.infoService.updatePwd(id, passwordEncoder.encode(pwd))) {
+			map.put("resultCode", "SUCCESS");
+			map.put("resultMsg", "변경에 성공하였습니다.");
+			
+		} else {
+			map.put("resultCode", "fail");
+			map.put("resultMsg", "변경에 실패하였습니다.");
+		}
+		
+		return ResponseEntity.ok(map);
+
+	}
+	
+	@GetMapping("/agreeInfo")
+	public String agreeInfo() {
+		// 약관 정보 긁어오기 
+		// 약관 정보부터 들어가야 함. ㅋㅅㅋ 
+		
+		
+		
+		return "/member/userinfo/myInfoMng/infoRcvAgree";
 	}
 	
 }

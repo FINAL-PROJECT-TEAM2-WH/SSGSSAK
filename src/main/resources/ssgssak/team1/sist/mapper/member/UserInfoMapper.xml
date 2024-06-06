@@ -9,18 +9,30 @@ FROM pointrecord pr LEFT JOIN points p ON pr.cardNumber = p.id
 WHERE p.id2 = #{id}
 </select>
 
+<select id="getMemberInfo" resultType="MemberVO">
+SELECT id, email, phonenum, name
+FROM member
+WHERE id = #{id}
+</select>
+
 <select id="getPCoupons" resultType="int">
- SELECT NVL(COUNT(cnumber),0) couponNum 
-FROM couponrecord 
-WHERE memid = #{id} 
+<![CDATA[
+ SELECT count(*)
+FROM (SELECT trunc(c.endd) - trunc(SYSDATE) leftDays
+ FROM couponrecord cr LEFT JOIN coupon c ON cr.cnumber = c.id 
+WHERE cr.memid =#{id})
+WHERE leftDays >= 0
+ ]]>
 </select>
 
 <select id="getSevenDaysLeftC" resultType="int">
-SELECT *
-FROM (SELECT trunc(c.endd) - trunc(SYSDATE) leftDays
- FROM couponrecord cr LEFT JOIN coupon c ON cr.cnumber = c.id 
-WHERE cr.memid = #{id})
-WHERE leftDays >= 0
+<![CDATA[
+SELECT count(*)
+	FROM (SELECT trunc(c.endd) - trunc(SYSDATE) leftDays
+	 	FROM couponrecord cr LEFT JOIN coupon c ON cr.cnumber = c.id 
+		WHERE cr.memid = #{id}) tp 
+WHERE leftDays >= 0 AND leftDays <= 7
+ ]]>
 </select>
 
 <select id="availDownCoupon" resultType="int">
@@ -31,11 +43,6 @@ SELECT cr.cnumber
 FROM couponrecord cr  
 WHERE cr.memid = #{id} ) 
 </select>
-<select id="getUserName" resultType="String">
-SELECT name
-FROM member
-WHERE id = #{id}
-</select>
 
 <update id="updateInfo" parameterType="MemberVO">
 UPDATE member
@@ -43,5 +50,10 @@ SET phonenum = #{mbrvo.phoneNum}, email = #{mbrvo.email}
 WHERE id = #{mbrvo.id}
 </update>
 
+<update id="changePwd" >
+UPDATE member
+SET passwd = #{passwd}
+WHERE id = #{id}
+</update>
 
 </mapper>

@@ -23,10 +23,10 @@ public class UserInfoServiceImpl implements UserInfoService{
 	private LikeMapper likeMapper;
 	
 	@Override
-	public UserInfoDTO getUserInfo(String id) {	
+	public UserInfoDTO getUserInfo(String id) {
+		// DTO 두 개로 수정하는 게 더 좋아호이긴 함. 
 		return UserInfoDTO.builder()
-		.id(id)
-		.name(this.userinfoMapper.getUserName(id))
+		.memberVO(this.userinfoMapper.getMemberInfo(id))
 		.memberPoint(this.userinfoMapper.getPoint(id) )
 		.couponNum(this.userinfoMapper.getPCoupons(id))
 		.leftDays(this.userinfoMapper.getPCoupons(id) != 0 ? this.userinfoMapper.getSevenDaysLeftC(id) : 0)
@@ -40,6 +40,15 @@ public class UserInfoServiceImpl implements UserInfoService{
 		
 		return this.userinfoMapper.updateInfo(vo) >= 1 ;
 	}
+
+	@Override
+	public boolean updatePwd(String id, String pwd) {
+		return this.userinfoMapper.changePwd(id, pwd) == 1 ;
+	}
+	
+	
+	
+	
  
 
 }
