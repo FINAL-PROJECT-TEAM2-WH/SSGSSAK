@@ -584,10 +584,10 @@
         <h3 class="sstit">마케팅 정보 수신 동의</h3>
     </div>
     <form id="returnForm" method="post">
-        
+       
             <div class="free_selected_wrp">
                 <div class="free_selected_agree">
-                    <input type="checkbox" id="isAddtInfoAgree" name="addtInfoAgree" class="checkbox" value="10" >
+                    <input type="checkbox" id="isAddtInfoAgree" name="ssgInfoRcvAgree" class="checkbox" value="10" <c:if test="${not empty agreeMap['ssgInfoRcvAgree=10']}">checked="checked"</c:if>/>
                     <label for="isAddtInfoAgree" class="label_noraml"><em>(선택)</em> 마케팅 정보 제공을 위한 개인정보 수집 및 이용 동의</label>
                     <a href="javascript:void(0);" onclick="viewPolicy('signup_terms_scom02')" class="btn small normal" title="새창열림"><span>내용보기</span></a>
                 </div>
@@ -598,8 +598,8 @@
                 <dd>
                     <div class="em_point">
 					<span class="option_select small">
-						<label for="email01"><input type="checkbox" id="email" name="emailRcvYn" value="Y" title="이메일 선택" class="checkbox" />이메일</label>
-						<label for="emailsms"><input type="checkbox" id="sms" name="smsRcvYn" value="Y" title="문자 선택" class="checkbox" > 문자</label>
+						<label for="email01"><input type="checkbox" id="email" name="ssgInfoRcvAgree_type" value="Y" title="이메일 선택" class="checkbox"  <c:if test="${not empty agreeMap['ssgInfoRcvAgree=10_sms']}">checked="checked"</c:if>/>이메일</label>
+						<label for="emailsms"><input type="checkbox" id="sms" name="ssgInfoRcvAgree_type" value="Y" title="문자 선택" class="checkbox"  <c:if test="${not empty agreeMap['ssgInfoRcvAgree=10_email']}">checked="checked"</c:if>/> 문자</label>
 					</span>
                     </div>
                     <p>마케팅 정보 수신 동의를 하시면 SSG.COM 상품 · 서비스 및 이벤트 정보를 받으실 수 있습니다.</p>
@@ -1155,45 +1155,20 @@ $(function(){
         console.log("tracing e: " + e);
     }
 </script>
+
+
+
+
+<script>
 <%-- 
-<%
-	Map<String,String> infoMap = (Map <String, String>)request.getAttribute("info");
-	System.out.print(infoMap.containsKey("ssgInfoRcvAgree=10"));
-	if (infoMap.containsKey("ssgInfoRcvAgree=10")){
-%>
-
-<%
-if ( infoMap.get("ssgInfoRcvAgree=10").equalsIgnoreCase("true")){
-%>
-<script>
+ ${agreeMap.ssgInfoRcvAgree=10
 	$('#isAddtInfoAgree').prop('checked',true);
-</script>
-<%
-}
-%>
 
-	<% 
-	System.out.print(infoMap.containsKey("ssgInfoRcvAgree=10_email"));
-		if (infoMap.containsKey("ssgInfoRcvAgree=10_email")){
-	%>
-<script>
 $('#email').prop('checked',true );
-</script>
-<% 		
-		}
-%>	
-<% 	
-		if (infoMap.containsKey("ssgInfoRcvAgree=10_sms")){
-%>		
-<script>
+
 $('#sms').prop('checked',true );
-</script>
-<% 
-		}
-		
-	};
-%>
-<script>
+
+
 $('#submitBtn_agreeInfo').on('click', function () {
 	let params = $('#returnForm').serialize();
 	alert(params);
@@ -1216,8 +1191,8 @@ $('#submitBtn_agreeInfo').on('click', function () {
         }
 	})
 	
-});
-</script> --%>
+}); --%>
+</script> 
 <!-- 
 <script type="text/javascript" defer="defer">
     var csbot = ""

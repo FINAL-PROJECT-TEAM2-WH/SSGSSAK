@@ -55,5 +55,10 @@ UPDATE member
 SET passwd = #{passwd}
 WHERE id = #{id}
 </update>
+<select id="getAgreement" resultType="String">
+SELECT name
+FROM agreement ag left join terms tr ON ag.terms_id = tr.id
+WHERE ag.memid = #{id} AND tr.necessary ='N'
+</select>
 
 </mapper>

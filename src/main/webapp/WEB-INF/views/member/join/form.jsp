@@ -546,26 +546,26 @@
                                 <h4>신세계포인트</h4>
                             </div>
                             <div class="cmem_term_box">
-                                <span class="cmem_chk"><input type="checkbox" id="chkAgree10" class="checkbox" data-type="agree10" value="10" name="mbrSvcAgreeTypeCd" checked="checked"/><label for="chkAgree10"><em>(선택)</em> 서비스·이벤트정보 제공 및 분석을 위한 개인정보 수집 및 이용 동의</label></span>
+                                <span class="cmem_chk"><input type="checkbox" id="chkAgree10" class="checkbox" data-type="agree10" value="mbrSvcAgreeTypeCd=10" name="agreeinfo.mbrSvcAgreeTypeCd" checked="checked"/><label for="chkAgree10"><em>(선택)</em> 서비스·이벤트정보 제공 및 분석을 위한 개인정보 수집 및 이용 동의</label></span>
                                 <button type="button" class="cmem_btn cmem_btn_gray" title="새창열림" onclick="viewPolicy('signup_terms03')"><span>내용보기</span></button>
                             </div>
                             <div class="cmem_term_box">
-                                <span class="cmem_chk"><input type="checkbox" id="chkAgree20" class="checkbox" data-type="agree10" value="20" name="mbrSvcAgreeTypeCd" checked="checked"/><label for="chkAgree20"><em>(선택)</em> 선택 정보 이마트/신세계백화점 공동 개인정보 수집 및 이용 동의</label></span>
+                                <span class="cmem_chk"><input type="checkbox" id="chkAgree20" class="checkbox" data-type="agree10" value="mbrSvcAgreeTypeCd=20" name="agreeinfo.mbrSvcAgreeTypeCd" checked="checked"/><label for="chkAgree20"><em>(선택)</em> 선택 정보 이마트/신세계백화점 공동 개인정보 수집 및 이용 동의</label></span>
                                 <button type="button" class="cmem_btn cmem_btn_gray" title="새창열림" onclick="viewPolicy('signup_terms04')"><span>내용보기</span></button>
                             </div>
 
                             <ul class="cmem_termlst" id="agree10">
                                 <li>
-                                    <span class="cmem_chk"><input type="checkbox" class="sms_type" id="mail" name="infoRcvMediaCd" value="email" checked="checked"/><label for="mail">이메일</label></span>
+                                    <span class="cmem_chk"><input type="checkbox" class="sms_type" id="mail" name="agreeinfo.infoRcvMediaCd" value="mbrSvcAgreeTypeCd=20_email" checked="checked"/><label for="mail">이메일</label></span>
                                 </li>
                                 <li>
-                                    <span class="cmem_chk"><input type="checkbox"  class="sms_type" id="sms" name="infoRcvMediaCd" value="sms" checked="checked"/><label for="sms">문자</label></span>
+                                    <span class="cmem_chk"><input type="checkbox"  class="sms_type" id="sms" name="agreeinfo.infoRcvMediaCd" value="mbrSvcAgreeTypeCd=20_sms" checked="checked"/><label for="sms">문자</label></span>
                                 </li>
                                 <li>
-                                    <span class="cmem_chk"><input type="checkbox"  class="sms_type" id="post" name="infoRcvMediaCd" value="post" checked="checked"/><label for="post">우편물</label></span>
+                                    <span class="cmem_chk"><input type="checkbox"  class="sms_type" id="post" name="agreeinfo.infoRcvMediaCd" value="mbrSvcAgreeTypeCd=20_post" checked="checked"/><label for="post">우편물</label></span>
                                 </li>
                                 <li>
-                                    <span class="cmem_chk"><input type="checkbox"  class="sms_type" id="tel" name="infoRcvMediaCd" value="tel" checked="checked"/><label for="tel">텔레마케팅</label></span>
+                                    <span class="cmem_chk"><input type="checkbox"  class="sms_type" id="tel" name="agreeinfo.infoRcvMediaCd" value="mbrSvcAgreeTypeCd=20_tel" checked="checked"/><label for="tel">텔레마케팅</label></span>
                                 </li>
                             </ul>
                             <span class="cmem_noti">
@@ -582,15 +582,15 @@
                             <h4>SSG.COM</h4>
                         </div>
                         <div class="cmem_term_box">
-                            <span class="cmem_chk"><input type="checkbox" id="ssgInfoRcvAgree" data-type="agree40019" name="agreeinfo.ssgInfoRcvAgree_type" value="10" checked="checked"><label for="ssgInfoRcvAgree"><em>(선택)</em> 마케팅 정보 제공을 위한 개인정보 수집 및 이용 동의</label></span>
+                            <span class="cmem_chk"><input type="checkbox" id="ssgInfoRcvAgree" data-type="agree40019" name="agreeinfo.ssgInfoRcvAgree_type" value="ssgInfoRcvAgree=10" checked="checked"><label for="ssgInfoRcvAgree"><em>(선택)</em> 마케팅 정보 제공을 위한 개인정보 수집 및 이용 동의</label></span>
                             <button type="button" class="cmem_btn cmem_btn_gray" title="새창열림" onclick="viewPolicy('signup_terms_scom02')"><span>내용보기</span></button>
                         </div>
                         <ul class="cmem_termlst" id="agree40019">
                             <li>
-                                <span class="cmem_chk"><input type="checkbox" id="emailRcvYn" name="agreeinfo.ssgInfoRcvAgree=10_email" value="Y" checked="checked"><label for="emailRcvYn">이메일</label></span>
+                                <span class="cmem_chk"><input type="checkbox" id="emailRcvYn" name="agreeinfo.ssgInfoRcvAgree" value="ssgInfoRcvAgree=10_email" checked="checked"><label for="emailRcvYn">이메일</label></span>
                             </li>
                             <li>
-                                <span class="cmem_chk"><input type="checkbox" id="smsRcvYn" name="agreeinfo.ssgInfoRcvAgree=10_sms" value="Y" checked="checked"><label for="smsRcvYn">문자</label></span>
+                                <span class="cmem_chk"><input type="checkbox" id="smsRcvYn" name="agreeinfo.ssgInfoRcvAgree" value="ssgInfoRcvAgree=10_sms" checked="checked"><label for="smsRcvYn">문자</label></span>
                             </li>
                         </ul>
                         <span class="cmem_noti">

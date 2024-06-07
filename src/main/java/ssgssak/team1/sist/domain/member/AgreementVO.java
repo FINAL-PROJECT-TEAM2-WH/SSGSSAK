@@ -16,10 +16,8 @@ import ssgssak.team1.sist.domain.ship.ShippingPlaceInfoVO;
 @NoArgsConstructor
 @Builder
 public class AgreementVO {
-	private int termsId;
-	private String memid;
-	private String status ;
-	private Date agreeDate;
-	
-
+	private String mbrSvcAgreeTypeCd;
+	private String infoRcvMediaCd ;
+	private String ssgInfoRcvAgree;
+	private String ssgInfoRcvAgree_type;
 }

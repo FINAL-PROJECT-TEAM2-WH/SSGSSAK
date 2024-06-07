@@ -159,8 +159,12 @@ public class RegisterController {
 		 * System.out.println(phoneNum.toString());
 		 * System.out.println(infoVO.toString());
 		 */
-	
-		if (registService.register(userform.getMbr(), userform.getShipinfo())) {
+		System.out.println(userform.getAgreeinfo().getInfoRcvMediaCd());
+		System.out.println(userform.getAgreeinfo().getMbrSvcAgreeTypeCd());
+		System.out.println(userform.getAgreeinfo().getSsgInfoRcvAgree());
+		System.out.println(userform.getAgreeinfo().getSsgInfoRcvAgree_type());
+		
+		if (registService.register(userform.getMbr(), userform.getShipinfo(), userform.getAgreeinfo())) {
 			// 회원가입에 성공한 경우. 
 			
 			if (registService.setAuth(userform.getMbr().getId())) {

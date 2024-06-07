@@ -1,5 +1,7 @@
 package ssgssak.team1.sist.mapper.member;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,5 +18,6 @@ public interface UserInfoMapper {
 	public int changePwd(@Param("id") String id , @Param("passwd") String passwd);
 	
 	public int updateInfo(@Param("mbrvo")MemberVO mbrvo);
+	public List<String> getAgreement(String id);
 	
 }

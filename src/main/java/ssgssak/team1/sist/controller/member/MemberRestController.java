@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import ssgssak.team1.sist.domain.member.AgreementVO;
 import ssgssak.team1.sist.domain.member.LikeDTO;
 import ssgssak.team1.sist.service.member.LikeService;
+import ssgssak.team1.sist.service.member.UserInfoService;
 
 @RestController
 @Log4j
@@ -27,6 +29,9 @@ public class MemberRestController {
 
 	@Autowired
 	LikeService likeService;
+	
+	@Autowired
+	UserInfoService userInfoService;
 	
 	// insert 
 	@GetMapping("/like")
@@ -65,6 +70,17 @@ public class MemberRestController {
 			  result += "\"fail\"}";
 		  }
 		 return result;
+	  }
+	  
+	  @PostMapping(value = "/ssgInfoRcvAgree")
+	  public String changeRcvAgree(AgreementVO agreementVO) {
+		  Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+			String id = userDetails.getUsername();
+			this.userInfoService.changeAgr(id, agreementVO,"ssgInfoRcvAgree");
+			
+			String result = "";
+		return result;
 	  }
 	 
 }

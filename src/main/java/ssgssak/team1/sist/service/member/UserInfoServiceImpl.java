@@ -1,11 +1,14 @@
 package ssgssak.team1.sist.service.member;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import ssgssak.team1.sist.domain.member.AgreementVO;
 import ssgssak.team1.sist.domain.member.MemberVO;
 import ssgssak.team1.sist.domain.member.UserInfoDTO;
 import ssgssak.team1.sist.domain.ship.ShippingPlaceInfoVO;
@@ -44,6 +47,41 @@ public class UserInfoServiceImpl implements UserInfoService{
 	@Override
 	public boolean updatePwd(String id, String pwd) {
 		return this.userinfoMapper.changePwd(id, pwd) == 1 ;
+	}
+
+	@Override
+	public List<String> getUseragreement(String id) {
+		
+		return this.userinfoMapper.getAgreement(id);
+	}
+
+	@Override
+	public boolean changeAgr(String id, AgreementVO agreementVO, String divide) {
+		if (divide.contains("ssgInfoRcvAgree")) {
+			if ( agreementVO.getSsgInfoRcvAgree() != null) {
+				// null 아닐 때 => 동의 O
+				for (String str : agreementVO.getSsgInfoRcvAgree().split(",")) {
+					// agreement에서 id 값으로 검색해서 만약에 값이 없으면 추가하는 구문을 넣어줘야함. 
+					this.userinfoMapper.changeAgree()
+				}
+			} else {
+				// null 일 때 => 동의 X
+				// agreement에서 검색해서 만약에 값이 있으면 제거하는 구문을 넣어줘야함. 
+				
+			}
+			if (agreementVO.getSsgInfoRcvAgree_type() != null) {
+				// 동일 
+			} else {
+				// 동일 
+			}
+			
+		}
+		
+		if (divide.contains(""))
+		
+		
+		
+		return false;
 	}
 	
 	

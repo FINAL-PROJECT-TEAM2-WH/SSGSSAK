@@ -4,6 +4,7 @@ package ssgssak.team1.sist.controller.member;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -154,11 +155,18 @@ public class MemberController {
 	}
 	
 	@GetMapping("/agreeInfo")
-	public String agreeInfo() {
+	public String agreeInfo(Model model) {
 		// 약관 정보 긁어오기 
 		// 약관 정보부터 들어가야 함. ㅋㅅㅋ 
-		
-		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		CustomerUser customerUser = (CustomerUser) authentication.getPrincipal();	
+		String id = customerUser.getUsername();
+		Map<String,String> agreeMap = new HashMap();
+		for( String str : this.infoService.getUseragreement(id)) {
+			System.out.println(str);
+			agreeMap.put(str, str);
+		};	
+		model.addAttribute("agreeMap", agreeMap);
 		
 		return "/member/userinfo/myInfoMng/infoRcvAgree";
 	}
