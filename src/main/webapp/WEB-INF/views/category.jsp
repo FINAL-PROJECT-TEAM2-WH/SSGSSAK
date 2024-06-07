@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="skip_gnb" class="ssg_navbar react-area">
     <div class="ssg_navbar_inner" data-react-tarea-cd="00042_000000090">
         <div class="cmgnb_ctg" data-react-unit-type="text" data-react-unit-text='[{"type":"tarea_addt_val","value":"카테고리"}]'>
@@ -12,12 +12,25 @@
                 <div class="cmctg_dimmed"></div>
                 <div class="cmctg_cont">
                     <ul class="cmctg_list" role="menubar"> 
+                    
+                    <c:forEach items="${mjc.mjcDtoList}" var="mdl">
+                        <li class="cmctg_top_mn" data-ctg-code="5410000001">
+                                <a role="menuitem" href="prodList?categoryId${mdl.id}" class="cmctg_top_lnk clickable" aria-expanded="false" data-react-tarea="SSG공통|GNB 띠메뉴|SSG카테고리|패션의류">
+                                    <span class="cmctg_lnk_txt">${mdl.majorCateName}</span>
+                                    </a>
+                                <div class="cmctg_sub_area" aria-hidden="true"></div>
+                            </li>
+                    </c:forEach>
+                    
                         <li class="cmctg_top_mn" data-ctg-code="5410000001">
                                 <a role="menuitem" href="#" class="cmctg_top_lnk clickable" aria-expanded="false" data-react-tarea="SSG공통|GNB 띠메뉴|SSG카테고리|패션의류">
                                     <span class="cmctg_lnk_txt">패션의류</span>
                                     </a>
                                 <div class="cmctg_sub_area" aria-hidden="true"></div>
                             </li>
+                            
+                            
+                            
                         <li class="cmctg_top_mn" data-ctg-code="1000015891">
                                 <a role="menuitem" href="#" class="cmctg_top_lnk clickable" aria-expanded="false" data-react-tarea="SSG공통|GNB 띠메뉴|SSG카테고리|패션잡화">
                                     <span class="cmctg_lnk_txt">패션잡화</span>
