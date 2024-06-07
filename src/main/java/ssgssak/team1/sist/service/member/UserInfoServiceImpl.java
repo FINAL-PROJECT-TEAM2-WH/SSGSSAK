@@ -24,6 +24,7 @@ public class UserInfoServiceImpl implements UserInfoService{
 	
 	private UserInfoMapper userinfoMapper;
 	private LikeMapper likeMapper;
+	private RegisterMapper registerMapper;
 	
 	@Override
 	public UserInfoDTO getUserInfo(String id) {
@@ -60,13 +61,29 @@ public class UserInfoServiceImpl implements UserInfoService{
 		if (divide.contains("ssgInfoRcvAgree")) {
 			if ( agreementVO.getSsgInfoRcvAgree() != null) {
 				// null 아닐 때 => 동의 O
-				for (String str : agreementVO.getSsgInfoRcvAgree().split(",")) {
+				for (String terms : agreementVO.getSsgInfoRcvAgree().split(",")) {
 					// agreement에서 id 값으로 검색해서 만약에 값이 없으면 추가하는 구문을 넣어줘야함. 
-					this.userinfoMapper.changeAgree()
-				}
+					if (this.userinfoMapper.searchAgree(id,terms) == 1) {
+						// 값이 있으면 
+						continue;
+					} else {
+						String termsId = this.registerMapper.searchAgreement(terms);
+						// N인 친구일 수도 있음. N 체크 
+						if (this.userinfoMapper.checkN(id, termsId) == 1) {
+							this.userinfoMapper.updateAgree(id, termsId);
+						} else {
+							this.userinfoMapper.insertAgree(id,termsId);
+						}	
+					} // else 
+				} // for-each
 			} else {
 				// null 일 때 => 동의 X
 				// agreement에서 검색해서 만약에 값이 있으면 제거하는 구문을 넣어줘야함. 
+				if (this.userinfoMapper.searchByREG(id, divide) != null ) {
+					for(String termsid: this.userinfoMapper.searchByREG(id,  divide)) {
+						this.userinfoMapper.deleteAgree(id, termsid);
+					}
+				} 
 				
 			}
 			if (agreementVO.getSsgInfoRcvAgree_type() != null) {
@@ -81,6 +98,7 @@ public class UserInfoServiceImpl implements UserInfoService{
 		
 		
 		
+		return false;
 		return false;
 	}
 	

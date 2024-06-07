@@ -61,4 +61,37 @@ FROM agreement ag left join terms tr ON ag.terms_id = tr.id
 WHERE ag.memid = #{id} AND tr.necessary ='N'
 </select>
 
+<select id="searchAgree" resultType="int">
+
+SELECT  COUNT(*)
+FROm agreement at left join terms ts ON at.terms_id = ts.id
+WHERE ts.name = #{terms} AND at.memid = #{id} AND at.status='Y'
+</select>
+
+<insert id="insertAgree">
+INSERT INTO agreement VALUES (agreement_seq.NEXTVAL, #{termsid}, #{id}, 'Y', SYSDATE)
+</insert>
+
+<select id="checkN">
+SELECT COUNT(*)
+FROM agreement
+WHERE memid = #{id} AND terms_id = #{termsid} AND status = 'N'
+</select>
+
+<update id="updateAgree">
+UPDATE agreement
+SET status = 'Y'
+WHERE memid = #{id} AND terms_id = #{termsid}
+</update>
+
+<select id="searchByREG" resultType="String">
+SELECT ts.id
+FROM agreement at left join terms ts ON at.terms_id = ts.id
+WHERE at.memid = #{id} AND REGEXP_LIKE(ts.name, #{terms}) AND at.status = 'Y';
+</select>
+<delete id="deleteAgree">
+DELETE FROM agreement
+WHERE memid = #{id} AND terms_id = #{termsid}
+</delete>
+
 </mapper>

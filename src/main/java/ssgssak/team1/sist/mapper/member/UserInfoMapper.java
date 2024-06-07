@@ -16,8 +16,12 @@ public interface UserInfoMapper {
 	public int getSevenDaysLeftC(String id);
 	public int availDownCoupon(String id);
 	public int changePwd(@Param("id") String id , @Param("passwd") String passwd);
-	
+	public int searchAgree(@Param("id")String id, @Param("terms")String terms);
+	public int insertAgree(@Param("id")String id, @Param("termsid")String termsid);
 	public int updateInfo(@Param("mbrvo")MemberVO mbrvo);
 	public List<String> getAgreement(String id);
-	
+	public int checkN(@Param("id")String id, @Param("termsid")String termsid);
+	public int updateAgree(@Param("id")String id, @Param("termsid")String termsid);
+	public List<String> searchByREG(@Param("id") String id, @Param("terms")String terms);
+	public int deleteAgree(@Param("id")String id, @Param("termsid")String termsid);
 }
