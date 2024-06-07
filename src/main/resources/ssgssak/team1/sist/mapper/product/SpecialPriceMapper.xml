@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="ssgssak.team1.sist.mapper.product.SpecialPriceMapper">
+	
+	<!-- SpecialPriceDTO view(long productcode) throws SQLException; -->
+	<select id="view" resultType="ssgssak.team1.sist.domain.product.SpecialPriceDTO">
+		SELECT s.ID, SPCLIMG, SPCLNM, SPCLSTRDT, SPCLPRCENDT, SPCLDSCNRT 
+		FROM SPECIALPRICE s JOIN product p ON s.id  = p.SPECIALPRICEID 
+		WHERE p.id = #{id}
+	</select>
+	
+
+</mapper>

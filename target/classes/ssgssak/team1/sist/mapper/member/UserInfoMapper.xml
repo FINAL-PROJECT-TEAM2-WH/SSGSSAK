@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssgssak.team1.sist.mapper.member.UserInfoMapper"> 
+<select id="getPoint" resultType="int">
+SELECT SUM(pr.points) memberPoint
+FROM pointrecord pr LEFT JOIN points p ON pr.cardNumber = p.id 
+WHERE p.id2 = #{id} 
+</select>
+
+<select id="getPCoupons" resultType="int">
+ SELECT COUNT(cnumber) couponNum 
+FROM couponrecord 
+WHERE memid = #{id} 
+</select>
+
+<select id="getSevenDaysLeftC" resultType="int">
+SELECT *
+FROM (SELECT trunc(c.endd) - trunc(SYSDATE) leftDays
+ FROM couponrecord cr LEFT JOIN coupon c ON cr.cnumber = c.id 
+WHERE cr.memid = #{id})
+WHERE leftDays >= 0
+</select>
+
+<select id="availDownCoupon" resultType="int">
+SELECT COUNT(*) availDownC 
+FROM coupon c 
+WHERE id NOT IN ( 
+SELECT cr.cnumber 
+FROM couponrecord cr  
+WHERE cr.memid = #{id} ) 
+</select>
+<select id="getUserName" resultType="String">
+SELECT name
+FROM member
+WHERE id = #{id}
+</select>
+</mapper>

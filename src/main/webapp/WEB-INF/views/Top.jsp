@@ -30,6 +30,7 @@
 
 <div id="gnbBanrDiv" style="display:none">
  
+ 
 </div>
 <!-- IE Upgrade 캠페인 --><div class="gnb_bnr_wrap" id="_ieEdgeTopBanner" data-cookie="ieUpgradeBanner">
     <div class="gnb_bnr_s gnb_bnr_ie" id="checkUpgrade">
@@ -79,12 +80,14 @@
                             <div class="ssg_mall_menu_container" aria-hidden="true" tabindex="-1" data-react-tarea-cd="00042_000000090">
                                 <ul class="ssg_mall_menu_list">
                                     <li class="ssg_mall_menu_item ssg_mall_menu_item_ssg is-active" data-react-unit-type="text" data-react-unit-text='[{"type":"text","value":"SSG"}]'>
-                                        <a href="<%= contextPath %>/mainPage.jsp" class="clickable" data-react-tarea="공통|몰이동_레이어|SSG_클릭" data-react-tarea-dtl-cd="t00060" onclick="javascript:setCommonGnbCookie('useGnbAdvertCk','',-1);">
+
+                                        <a href="/" class="clickable" data-react-tarea="공통|몰이동_레이어|SSG_클릭" data-react-tarea-dtl-cd="t00060" onclick="javascript:setCommonGnbCookie('useGnbAdvertCk','',-1);">
+
                                             <span class="blind">SSG.COM</span>
                                         </a>
                                     </li>
                                     <li class="ssg_mall_menu_item ssg_mall_menu_item_emart" data-react-unit-type="text" data-react-unit-text='[{"type":"text","value":"이마트몰"}]'>
-                                        <a href="<%= contextPath %>/productlist/productList.do?categoryId=04040303&currentPage=1" class="clickable" data-react-tarea="공통|몰이동_레이어|이마트몰_클릭" data-react-tarea-dtl-cd="t00060">
+                                        <a href="productList?categoryId=&currentPage=1" class="clickable" data-react-tarea="공통|몰이동_레이어|이마트몰_클릭" data-react-tarea-dtl-cd="t00060">
                                             <span class="blind">이마트몰</span>
                                         </a>
                                     </li>
@@ -566,13 +569,13 @@ cmjump_rank_lst
 	
 	// 키보드 온 프레스 해서 엔터 눌렀을때도 마찬가지로 작동하도록 만들기
 	
-<%-- 	$("#ssgSearchBtn").on("click", function(){
+		$("#ssgSearchBtn").on("click", function(){
 		var searchWord = $("#ssg_searchQuery").val();
 		
-		// 검색작업이 일어나고 검색된 페이지를 뿌려야한다.
-		location.href = `<%= request.getContextPath() %>/searchQuery.do?searchWord=\${ searchWord }`;
+		location.href = `/searchQuery?searchWord=\${ searchWord }`;
 		
-	}) --%>
+	}) 
+	
 	
 </script>
 <!-- //최근 본 상품 -->
@@ -650,8 +653,8 @@ function setCommonGnbCookie(name, value, expiredays) {
 		$('#login_a_tag').text(name + '님 반갑습니다!');
 		$('#regi_a_tag').css('display','none');
 		$('#logoutBtn').css('display','block');
-		$('#like_Page').attr('href','#');
-		$('#my_Page').attr('href','#');
+		$('#like_Page').attr('href','/member/like/');
+		$('#my_Page').attr('href','/member/userInfo/');
 	});
 	$('#logoutBtn').on('click', function () {
 		location.href = '/login/logout';
