@@ -7,6 +7,7 @@
 <head>
 	<meta charset="utf-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="csrf-token" content="${_csrf.token}"/> 
 	<link rel="shortcut icon" type="image/x-icon" href="//sui.ssgcdn.com/ui/common/img/ssg.ico">
 	
 	<title class="notranslate">
@@ -1160,26 +1161,33 @@ $(function(){
 
 
 <script>
-<%-- 
- ${agreeMap.ssgInfoRcvAgree=10
-	$('#isAddtInfoAgree').prop('checked',true);
 
-$('#email').prop('checked',true );
 
-$('#sms').prop('checked',true );
 
 
 $('#submitBtn_agreeInfo').on('click', function () {
 	let params = $('#returnForm').serialize();
-	alert(params);
+	var csrfToken = $('meta[name="csrf-token"]').attr('content');
 	$.ajax({
-		url: '<%=contextPath%>/member/memberInfo/agreeInfo.do',
+		url: '/memberR/ssgInfoRcvAgree',
         dataType: 'json',
         type: 'POST',
         data: params,
         cache: false,
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+        },
         success: function (data) {
-        	alert(data);
+        	$.ajax({
+        		url:'/memberR/ssgInfoRcvAgree',
+        		dataType:'json',
+        		data:params,
+        		cache:false,
+        		success: function (data) {
+        			// 갖고 오는 값으로 체크 . 
+        			
+        		}      		
+        	})
         },
         error: function (xhr, status, error) {
             console.error("오류 - 상태: ", status, " 메시지: ", error);
@@ -1191,7 +1199,7 @@ $('#submitBtn_agreeInfo').on('click', function () {
         }
 	})
 	
-}); --%>
+}); 
 </script> 
 <!-- 
 <script type="text/javascript" defer="defer">

@@ -87,7 +87,7 @@ WHERE memid = #{id} AND terms_id = #{termsid}
 <select id="searchByREG" resultType="String">
 SELECT ts.id
 FROM agreement at left join terms ts ON at.terms_id = ts.id
-WHERE at.memid = #{id} AND REGEXP_LIKE(ts.name, #{terms}) AND at.status = 'Y';
+WHERE at.memid = #{id} AND REGEXP_LIKE(ts.name, #{terms}) AND at.status = 'Y'
 </select>
 <delete id="deleteAgree">
 DELETE FROM agreement

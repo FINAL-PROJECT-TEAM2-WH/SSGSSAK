@@ -74,6 +74,7 @@ public class MemberRestController {
 	  
 	  @PostMapping(value = "/ssgInfoRcvAgree")
 	  public String changeRcvAgree(AgreementVO agreementVO) {
+		  log.info("MemberRestController.changeRcvAgree() POST IN");
 		  Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 			String id = userDetails.getUsername();
@@ -82,6 +83,18 @@ public class MemberRestController {
 			String result = "";
 		return result;
 	  }
+	  
+	  @GetMapping("/ssgInfoRcvAgree")
+		public String changeRcvAgree() {
+		  log.info("MemberRestController.changeRcvAgree() GET IN");
+		  Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+			String id = userDetails.getUsername();
+			// 아까 체크해서 변경됐을 값을 다시 검색해서 체크하는 값 key 이름 : Value는 : selected?이렇게 가도 될 듯 . 
+			
+			
+			return null;
+		}
 	 
 }
 

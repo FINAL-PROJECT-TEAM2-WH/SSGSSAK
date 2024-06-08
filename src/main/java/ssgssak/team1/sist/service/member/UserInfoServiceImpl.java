@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -56,6 +57,9 @@ public class UserInfoServiceImpl implements UserInfoService{
 		return this.userinfoMapper.getAgreement(id);
 	}
 
+	
+	// 시간 나면 데이터 수정해야됨 . 
+	
 	@Override
 	public boolean changeAgr(String id, AgreementVO agreementVO, String divide) {
 		if (divide.contains("ssgInfoRcvAgree")) {
@@ -87,20 +91,33 @@ public class UserInfoServiceImpl implements UserInfoService{
 				
 			}
 			if (agreementVO.getSsgInfoRcvAgree_type() != null) {
-				// 동일 
+				for (String terms : agreementVO.getSsgInfoRcvAgree_type().split(",")) {
+					// agreement에서 id 값으로 검색해서 만약에 값이 없으면 추가하는 구문을 넣어줘야함. 
+					if (this.userinfoMapper.searchAgree(id,terms) == 1) {
+						// 값이 있으면 
+						continue;
+					} else {
+						String termsId = this.registerMapper.searchAgreement(terms);
+						// N인 친구일 수도 있음. N 체크 
+						if (this.userinfoMapper.checkN(id, termsId) == 1) {
+							this.userinfoMapper.updateAgree(id, termsId);
+						} else {
+							this.userinfoMapper.insertAgree(id,termsId);
+						}	
+					} // else 
+				}
 			} else {
-				// 동일 
+				if (this.userinfoMapper.searchByREG(id, divide) != null ) {
+					for(String termsid: this.userinfoMapper.searchByREG(id,  divide)) {
+						this.userinfoMapper.deleteAgree(id, termsid);
+					}
+				} 
 			}
-			
 		}
-		
-		if (divide.contains(""))
-		
-		
-		
-		return false;
-		return false;
+		return true;
 	}
+	
+	
 	
 	
 	
