@@ -20,13 +20,13 @@
   <insert id="setAuth">
   	INSERT INTO AUTH VALUES (#{id}, 1)
   </insert>
-  
-  <select id="searchAgreement" resultType="String">
+
+   <select id="searchAgreement" resultType="String">
   SELECT *
   FROM terms
   WHERE name = #{agreetitle}
   </select>
-  
+   
   <select id="searchRAgreement" resultType="String">
   SELECT id
   FROM terms

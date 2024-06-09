@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import ssgssak.team1.sist.domain.member.AgreementVO;
 import ssgssak.team1.sist.domain.member.MemberVO;
 
 @Mapper
@@ -23,5 +24,7 @@ public interface UserInfoMapper {
 	public int checkN(@Param("id")String id, @Param("termsid")String termsid);
 	public int updateAgree(@Param("id")String id, @Param("termsid")String termsid);
 	public List<String> searchByREG(@Param("id") String id, @Param("terms")String terms);
-	public int deleteAgree(@Param("id")String id, @Param("termsid")String termsid);
+	public int deleteAgree(@Param("id")String id, @Param("termsid")String termsid);	
+	public AgreementVO searchAgreement(@Param("id")String id, @Param("searchKeyword")String searchKeyword);
+	
 }

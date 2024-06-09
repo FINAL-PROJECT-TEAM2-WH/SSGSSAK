@@ -64,18 +64,25 @@ public class UserInfoServiceImpl implements UserInfoService{
 	public boolean changeAgr(String id, AgreementVO agreementVO, String divide) {
 		if (divide.contains("ssgInfoRcvAgree")) {
 			if ( agreementVO.getSsgInfoRcvAgree() != null) {
+				System.out.println("1");
 				// null 아닐 때 => 동의 O
 				for (String terms : agreementVO.getSsgInfoRcvAgree().split(",")) {
 					// agreement에서 id 값으로 검색해서 만약에 값이 없으면 추가하는 구문을 넣어줘야함. 
 					if (this.userinfoMapper.searchAgree(id,terms) == 1) {
+						System.out.println("2");
 						// 값이 있으면 
 						continue;
 					} else {
+						System.out.println("terms : " + terms);
 						String termsId = this.registerMapper.searchAgreement(terms);
+						
+						System.out.println("termsId : " + termsId);
 						// N인 친구일 수도 있음. N 체크 
 						if (this.userinfoMapper.checkN(id, termsId) == 1) {
-							this.userinfoMapper.updateAgree(id, termsId);
+							System.out.println("3");
+							this.userinfoMapper.updateAgree(id,termsId);
 						} else {
+							System.out.println("4");
 							this.userinfoMapper.insertAgree(id,termsId);
 						}	
 					} // else 
@@ -97,7 +104,10 @@ public class UserInfoServiceImpl implements UserInfoService{
 						// 값이 있으면 
 						continue;
 					} else {
+						System.out.println("-".repeat(50));
+						System.out.println(terms);
 						String termsId = this.registerMapper.searchAgreement(terms);
+						System.out.println(termsId);
 						// N인 친구일 수도 있음. N 체크 
 						if (this.userinfoMapper.checkN(id, termsId) == 1) {
 							this.userinfoMapper.updateAgree(id, termsId);
@@ -115,6 +125,12 @@ public class UserInfoServiceImpl implements UserInfoService{
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public AgreementVO getAgreement(String id, String searchKeyword) {
+		log.info(" > userinfoService.getAgreement() ");
+		return this.userinfoMapper.searchAgreement(id, searchKeyword);
 	}
 	
 	

@@ -20,4 +20,6 @@ public class AgreementVO {
 	private String infoRcvMediaCd ;
 	private String ssgInfoRcvAgree;
 	private String ssgInfoRcvAgree_type;
+	private String name;
+	private String status;
 }

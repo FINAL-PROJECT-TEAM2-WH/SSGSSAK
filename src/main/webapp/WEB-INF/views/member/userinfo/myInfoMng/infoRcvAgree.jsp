@@ -588,7 +588,7 @@
        
             <div class="free_selected_wrp">
                 <div class="free_selected_agree">
-                    <input type="checkbox" id="isAddtInfoAgree" name="ssgInfoRcvAgree" class="checkbox" value="10" <c:if test="${not empty agreeMap['ssgInfoRcvAgree=10']}">checked="checked"</c:if>/>
+                    <input type="checkbox" id="isAddtInfoAgree" name="ssgInfoRcvAgree" class="checkbox" value="ssgInfoRcvAgree=10" <c:if test="${not empty agreeMap['ssgInfoRcvAgree=10']}">checked="checked"</c:if>/>
                     <label for="isAddtInfoAgree" class="label_noraml"><em>(선택)</em> 마케팅 정보 제공을 위한 개인정보 수집 및 이용 동의</label>
                     <a href="javascript:void(0);" onclick="viewPolicy('signup_terms_scom02')" class="btn small normal" title="새창열림"><span>내용보기</span></a>
                 </div>
@@ -599,8 +599,8 @@
                 <dd>
                     <div class="em_point">
 					<span class="option_select small">
-						<label for="email01"><input type="checkbox" id="email" name="ssgInfoRcvAgree_type" value="Y" title="이메일 선택" class="checkbox"  <c:if test="${not empty agreeMap['ssgInfoRcvAgree=10_sms']}">checked="checked"</c:if>/>이메일</label>
-						<label for="emailsms"><input type="checkbox" id="sms" name="ssgInfoRcvAgree_type" value="Y" title="문자 선택" class="checkbox"  <c:if test="${not empty agreeMap['ssgInfoRcvAgree=10_email']}">checked="checked"</c:if>/> 문자</label>
+						<label for="email01"><input type="checkbox" id="email" name="ssgInfoRcvAgree_type" value="ssgInfoRcvAgree=10_email" title="이메일 선택" class="checkbox"  <c:if test="${not empty agreeMap['ssgInfoRcvAgree=10_sms']}">checked="checked"</c:if>/>이메일</label>
+						<label for="emailsms"><input type="checkbox" id="sms" name="ssgInfoRcvAgree_type" value="ssgInfoRcvAgree=10_sms" title="문자 선택" class="checkbox"  <c:if test="${not empty agreeMap['ssgInfoRcvAgree=10_email']}">checked="checked"</c:if>/> 문자</label>
 					</span>
                     </div>
                     <p>마케팅 정보 수신 동의를 하시면 SSG.COM 상품 · 서비스 및 이벤트 정보를 받으실 수 있습니다.</p>
@@ -1178,16 +1178,26 @@ $('#submitBtn_agreeInfo').on('click', function () {
             xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
         },
         success: function (data) {
-        	$.ajax({
-        		url:'/memberR/ssgInfoRcvAgree',
-        		dataType:'json',
-        		data:params,
-        		cache:false,
-        		success: function (data) {
-        			// 갖고 오는 값으로 체크 . 
-        			
-        		}      		
-        	})
+        	alert(data.result);
+			if(data.result == 'success') {
+				$.ajax({
+	        		url:'/memberR/ssgInfoRcvAgree',
+	        		dataType:'json',
+	        		cache:false,
+	        		success: function (data) {
+					alert(data.status);
+	        			
+	        		}, error :  function (xhr, status, error) {
+	                    console.error("오류 - 상태: ", status, " 메시지: ", error);
+	                    //alert('오류: ' + error);
+	                    
+	                    alert('정보 변경에 실패하였습니다. ')
+	                    
+	                    window.location.reload();
+	                }    		
+	        	})
+			}
+        	
         },
         error: function (xhr, status, error) {
             console.error("오류 - 상태: ", status, " 메시지: ", error);

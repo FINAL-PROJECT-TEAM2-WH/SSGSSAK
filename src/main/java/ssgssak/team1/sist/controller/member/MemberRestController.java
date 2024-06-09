@@ -1,5 +1,8 @@
 package ssgssak.team1.sist.controller.member;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -73,27 +76,29 @@ public class MemberRestController {
 	  }
 	  
 	  @PostMapping(value = "/ssgInfoRcvAgree")
-	  public String changeRcvAgree(AgreementVO agreementVO) {
+	  public  Map<String, Object> changeRcvAgree(AgreementVO agreementVO) {
 		  log.info("MemberRestController.changeRcvAgree() POST IN");
 		  Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 			String id = userDetails.getUsername();
-			this.userInfoService.changeAgr(id, agreementVO,"ssgInfoRcvAgree");
-			
-			String result = "";
-		return result;
+			 Map<String, Object> response = new HashMap();
+		      
+			if(this.userInfoService.changeAgr(id, agreementVO,"ssgInfoRcvAgree")) {
+				 response.put("result", "success");
+			} else {
+				 response.put("result", "fail");
+			}
+		return response;
 	  }
 	  
 	  @GetMapping("/ssgInfoRcvAgree")
-		public String changeRcvAgree() {
+		public AgreementVO changeRcvAgree() {
 		  log.info("MemberRestController.changeRcvAgree() GET IN");
 		  Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 			String id = userDetails.getUsername();
-			// 아까 체크해서 변경됐을 값을 다시 검색해서 체크하는 값 key 이름 : Value는 : selected?이렇게 가도 될 듯 . 
-			
-			
-			return null;
+			// 아까 체크해서 변경됐을 값을 다시 검색해서 체크하는 값 key 이름 : Value는 : selected?이렇게 가도 될 듯 . 	
+			return userInfoService.getAgreement(id, "ssgInfoRcvAgree");
 		}
 	 
 }

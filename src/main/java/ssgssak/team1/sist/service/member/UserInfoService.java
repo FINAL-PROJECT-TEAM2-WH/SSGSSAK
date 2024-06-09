@@ -12,4 +12,5 @@ public interface UserInfoService {
 	public boolean updatePwd(String id, String pwd);
 	public List<String> getUseragreement(String id);
 	public boolean changeAgr(String id, AgreementVO agreementVO, String divide);
+	public AgreementVO getAgreement(String id, String searchKeyword);
 }
