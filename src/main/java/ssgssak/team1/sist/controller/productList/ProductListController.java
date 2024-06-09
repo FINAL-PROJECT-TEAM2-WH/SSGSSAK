@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.extern.log4j.Log4j;
@@ -23,14 +24,19 @@ import ssgssak.team1.sist.service.productList.ProductListService;
 public class ProductListController {
 
 	@Autowired
-	private ProductListService productListService;
+	private final ProductListService productListService;
+	
+    public ProductListController(ProductListService productListService) {
+        this.productListService = productListService;
+    }
 
 	@GetMapping("/productList")
 	public String getProductList(@RequestParam(name = "categoryId", required = false) String categoryId,
-			@RequestParam(name = "currentPage", defaultValue = "1") int currentPage,
-			Model model) throws SQLException {
+								 @RequestParam(name = "currentPage", defaultValue = "1") int currentPage,
+								 @RequestParam(name = "sort", required = false) String sort,
+								 Model model) throws SQLException {
 		int numberOfPageBlock = 10; // 최대 페이지 수
-		int numberPerPage = 8; // 페이지당 상품 수
+		int numberPerPage = 12; // 페이지당 상품 수
 		int start = (currentPage-1)*numberPerPage +1;
 		int end = start + numberPerPage-1;
 		System.out.println("categoryId = " +  categoryId);
@@ -66,7 +72,7 @@ public class ProductListController {
 
 		System.out.println("pstart = " + pDto.getStart());
 		System.out.println("pend = " + pDto.getEnd());
-		List<ProductListDTO> productList = productListService.selectProdList(categoryId, currentPage, numberPerPage, start, end);
+		List<ProductListDTO> productList = productListService.selectProdList(categoryId, currentPage, numberPerPage, start, end,sort);
 		System.out.println("selectCate.getCrtCateDto() = " + selectCate.getCrtCateDto());
 
 		model.addAttribute("productList", productList);
@@ -80,7 +86,7 @@ public class ProductListController {
 		return "productList/prodList";
 	}
 
-
+/*
 
 	@GetMapping("/topCategory")
 	public String selectTopCate(Model model) throws SQLException {
@@ -89,4 +95,22 @@ public class ProductListController {
 		model.addAttribute("mjc", mjc);
 		return "category";
 	}
+	
+*/	
+	
+    @ModelAttribute("mjc")
+    public ArrayList<MajorCateDTO> majorCategories() throws SQLException {
+    	log.info("전역으로감???");
+        return productListService.majorSelectCate();
+    }
+	
+	
+	//이미지테스트용
+	@GetMapping("/CATEST")
+	public String IMGTEST(Model model)  {
+		log.info("로딩됨??");
+
+		return "productList/CATEST";
+	}
+
 }

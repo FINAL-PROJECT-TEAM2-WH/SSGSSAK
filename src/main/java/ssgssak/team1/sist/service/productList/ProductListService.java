@@ -13,7 +13,7 @@ import ssgssak.team1.sist.domain.productList.ProductListDTO;
 @Service
 public interface ProductListService {
 
-    public List<ProductListDTO> selectProdList(String categoryId, int currentPage, int numberPerPage, int start, int end) throws SQLException;
+    public List<ProductListDTO> selectProdList(String categoryId, int currentPage, int numberPerPage, int start, int end, String sort) throws SQLException;
 
     public int getProdCount(String categoryId) throws SQLException;
 

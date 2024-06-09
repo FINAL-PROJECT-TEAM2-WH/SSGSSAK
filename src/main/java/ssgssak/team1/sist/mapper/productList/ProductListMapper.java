@@ -19,7 +19,8 @@ public interface ProductListMapper {
 											, @Param("currentPage") int currentPage
 											, @Param("numberPerPage") int numberPerPage
 											, @Param("start") int start
-											, @Param("end") int end) throws SQLException;
+											, @Param("end") int end
+											, @Param("sort") String sort) throws SQLException;
 	// 총 페이지 수 
 
 	int getTotalPages( @Param("categoryId") String categoryId

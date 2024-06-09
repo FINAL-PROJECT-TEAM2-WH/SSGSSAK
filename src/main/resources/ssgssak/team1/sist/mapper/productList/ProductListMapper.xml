@@ -7,8 +7,7 @@
 	<!-- <delete id="delete"> DELETE FROM tbl_board WHERE bno=#{bno} </delete> -->
 
 
-	<select id="selectProdList" resultType="ProductListDTO"
-		parameterType="PageDTO">
+	<select id="selectProdList" resultType="ProductListDTO"	parameterType="map">
 		SELECT *
 		FROM (
 		SELECT ROWNUM no, t.*
@@ -16,49 +15,60 @@
 		SELECT
 		p.ID,
 		MAX(p.SHIPPINGOPTIONID) AS SHIPPINGOPTIONID,
-		MAX(p.sellerstoreid) AS
-		SELLERSTOREID,
+		MAX(p.sellerstoreid) AS	SELLERSTOREID,
 		MAX(s.SELLERNAME) AS SELLERNAME,
-		MAX(p.brandid) AS
-		BRANDID,
+		MAX(p.brandid) AS BRANDID,
 		MAX(b.brandname) AS BRANDNAME,
 		MAX(p.PDNAME) AS PDNAME,
 		MAX(p.UPDATEDAY) AS UPDATEDAY,
-		COALESCE(MAX(o.optionPrice), 0) AS
-		optionPrice,
-		COALESCE(MAX(o.optionPrice) - ((MAX(o.optionPrice) / 100)
-		* MAX(c.spclDscnRt)), 0) AS sprice,
-		COALESCE(MAX(c.spclDscnRt), 0) AS
-		discount,
+		COALESCE(MAX(o.optionPrice), 0) AS optionPrice,
+		COALESCE(MAX(o.optionPrice) - ((MAX(o.optionPrice) / 100) * MAX(c.spclDscnRt)), 0) AS sprice,
+		COALESCE(MAX(c.spclDscnRt), 0) AS discount,
 		COALESCE(MAX(reviewData.reviewCount), 0) AS reviewCount,
-		COALESCE(MAX(reviewData.averageGrade), 0) AS avgGrade,
+		COALESCE(MAX(reviewData.avgGrade), 0) AS avgGrade,
 		MAX(productimg.IMGURL) AS imgurl
 		FROM
 		PRODUCT p
 		JOIN BRAND b ON p.BRANDID = b.ID
-		JOIN sellerstore s ON p.SELLERSTOREID
-		= s.id
+		JOIN sellerstore s ON p.SELLERSTOREID = s.id
 		LEFT JOIN productOption o ON p.ID = o.productid
-		LEFT JOIN
-		specialprice c ON p.specialPriceId = c.id
+		LEFT JOIN specialprice c ON p.specialPriceId = c.id
 		LEFT JOIN (
 		SELECT productId,
-		COUNT(*) AS reviewCount, AVG(grade) AS averageGrade
+		COUNT(*) AS reviewCount, 
+		AVG(grade) AS avgGrade
 		FROM review
-		GROUP BY
-		productId
+		GROUP BY productId
 		) reviewData ON p.ID = reviewData.productId
 		LEFT JOIN (
         SELECT DISTINCT productid, IMGURL
         FROM productimg
-        WHERE IMGCONTENT = 'sum'
+        WHERE IMGCONTENT = 'sum' OR IMGCONTENT LIKE 'SUM'
         ) productimg ON p.id = productimg.productid
-		WHERE
-		TO_CHAR(p.CATEGORYID) LIKE #{categoryId} || '%'
+		WHERE TO_CHAR(p.CATEGORYID) LIKE #{categoryId} || '%'
 		GROUP BY p.id
+	<if test="sort != null">
+        <if test="sort == 'priceAsc'">
+            ORDER BY sprice ASC
+        </if>
+        <if test="sort == 'priceDesc'">
+            ORDER BY sprice DESC
+        </if>
+        <if test="sort == 'discount'">
+            ORDER BY discount DESC
+        </if>
+        <if test="sort == 'new'">
+            ORDER BY UPDATEDAY DESC
+        </if>
+        <if test="sort == 'review'">
+            ORDER BY reviewCount DESC
+        </if>
+    </if>
 		) t
+
 		) b
 		WHERE no BETWEEN #{start} AND #{end}
+
 	</select>
 
 

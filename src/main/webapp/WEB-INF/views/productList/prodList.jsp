@@ -928,8 +928,8 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 
 				<div class="toolbar_sort_group v2">
 					<div class="com_tmpl">
-<!-- 						추천순.jsp있던자리 -->
-						
+<!-- 						productSort.jsp있던자리 -->
+				<%@ include file="productSort.jsp"%>
 						
 					</div>
 				</div>
@@ -1115,7 +1115,7 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 					<div class="com_paginate notranslate" style="width: 100%">
 						<c:if test="${ pDto.prev }">
 							<a class="btn_prev"
-								href="?categoryId=${crtCateDto.id}&currentPage=${pDto.start-1}"
+								href="?categoryId=${crtCateDto.id}&currentPage=${pDto.start-1}&sort=${param.sort}"
 								title="이전">
 						</c:if>
 
@@ -1129,7 +1129,7 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 								</c:when>
 
 								<c:otherwise>
-									<a href="?categoryId=${crtCateDto.id}&currentPage=${i}">${i}</a>
+									<a href="?categoryId=${crtCateDto.id}&currentPage=${i}&sort=${param.sort}">${i}</a>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
@@ -1139,7 +1139,7 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 
 						<c:if test="${ pDto.next }">
 							<a class="btn_next on"
-								href="?categoryId=${crtCateDto.id}&currentPage=${pDto.end+1}"
+								href="?categoryId=${crtCateDto.id}&currentPage=${pDto.end+1}&sort=${param.sort}"
 								title="다음">
 						</c:if>
 
@@ -1200,8 +1200,8 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 	<script type="text/javascript"
 		src="//sui.ssgcdn.com/ui/m_ssg/js/ui/mcom.webview.js?v=20240424"></script>
 
-	<!-- 	<script type="text/javascript" -->
-	<!-- 		src="//sui.ssgcdn.com/ui/ssg/js/common/clipJs.js?v=20240424"></script> -->
+	<!-- 	<script type="text/javascript" 
+	 		src="//sui.ssgcdn.com/ui/ssg/js/common/clipJs.js?v=20240424"></script> -->
 
 	<script type="text/javascript"
 		src="//sui.ssgcdn.com/ui/ssg/js/ui/ui.datepicker.js?v=20240424"></script>
@@ -1226,20 +1226,28 @@ $(function(){
         }
     });
 });
-</script>
-	<script id="_dropdown-selected" type="text/x-jquery-tmpl">
-    <span class="txt{{if label == "추천순"}} has-tooltip{{/if}}">{{= label}}</span>
-    <span class="sel_arrow">&nbsp;</span>
-    {{if label == "추천순"}}
-            <button type="button" class="ssg-tooltip"><span class="blind">추천순 설명 보기</span></button>
-    {{/if}}
+
+
 </script>
 
-	<script id="_dropdown-list" type="text/x-jquery-tmpl">
+
+
+  
+<script id="_dropdown-selected" type="text/x-jquery-tmpl">
+
+    <span class="txt{{if label == "등록순"}} has-tooltip{{/if}}">{{= label}}</span>
+    <span class="sel_arrow">&nbsp;</span>
+    {{if label == "등록순"}}
+            <button type="button" class="ssg-tooltip"><span class="blind">추천순 설명 보기</span></button>
+    {{/if}}
+
+</script>
+
+<script id="_dropdown-list" type="text/x-jquery-tmpl">
     {{each(index, row) items}}
         {{if value !== "0"}}
             {{if selected}}
-                {{if label == "추천순"}}
+                {{if label == "등록순"}}
                 <li class="selected" data-index="{{= index}}">
                     <a href="#"><span class="txt">{{= label}}</span></a>
                     <button type="button" class="ssg-tooltip"><span class="blind">추천순 설명 보기</span></button>
@@ -1249,7 +1257,7 @@ $(function(){
                     <a href="#"><span class="txt">{{= label}}</span></a>
                 </li>
                 {{/if}}
-            {{else label == "추천순"}}
+            {{else label == "등록순"}}
                 <li data-index="{{= index}}">
                     <a href="#"><span class="txt">{{= label}}</span></a>
                     <button type="button" class="ssg-tooltip"><span class="blind">추천순 설명 보기</span></button>
@@ -1262,6 +1270,8 @@ $(function(){
         {{/if}}
     {{/each}}
 </script>
+
+
 	<script id="_dropdown" type="text/x-jquery-tmpl">
     <div class="tmpl_drop_opt">
         <a href="#" class="tmpl_drop_select _drop_select">
@@ -1276,21 +1286,79 @@ $(function(){
         </div>
     </div>
 </script>
+  <!--  
+<script id="_dropdown-selected" type="text/x-jquery-tmpl">
+
+    <span class="txt{{if label == "등록순"}} has-tooltip{{/if}}">{{= label}}</span>
+    <span class="sel_arrow">&nbsp;</span>
+    {{if label == "등록순"}}
+            <button type="button" class="ssg-tooltip"><span class="blind">추천순 설명 보기</span></button>
+    {{/if}}
+
+</script>
+
+	<script id="_dropdown-list" type="text/x-jquery-tmpl">
+    {{each(index, row) items}}
+        {{if value !== "0"}}
+            {{if selected}}
+                {{if label == "등록순"}}
+                <li class="selected" data-index="{{= index}}">
+                    <a href="#"><span class="txt">{{= label}}</span></a>
+                    <button type="button" class="ssg-tooltip"><span class="blind">추천순 설명 보기</span></button>
+                </li>
+                {{else}}
+                <li class="selected" data-index="{{= index}}">
+                    <a href="#"><span class="txt">{{= label}}</span></a>
+                </li>
+                {{/if}}
+            {{else label == "등록순"}}
+                <li data-index="{{= index}}">
+                    <a href="#"><span class="txt">{{= label}}</span></a>
+                    <button type="button" class="ssg-tooltip"><span class="blind">추천순 설명 보기</span></button>
+                </li>
+            {{else}}
+                <li {{if disabled}}class="disabled"{{/if}} data-index="{{= index}}">
+                    <a href="#"><span class="txt">{{= label}}</span></a>
+                </li>
+            {{/if}}
+        {{/if}}
+    {{/each}}
+</script>
+
+
+	<script id="_dropdown" type="text/x-jquery-tmpl">
+    <div class="tmpl_drop_opt">
+        <a href="#" class="tmpl_drop_select _drop_select">
+            {{tmpl(selected) "#_dropdown-selected"}}
+        </a>
+        <div class="tmpl_drop_scroll">
+            <ul class="tmpl_drop_list _drop_list">
+                {{if items}}
+                    {{tmpl "#_dropdown-list"}}
+                {{/if}}
+            </ul>
+        </div>
+    </div>
+</script>
+-->
+
 	<script type="text/javascript"
 		src="//sui.ssgcdn.com/ui/ssg/js/ui/ssg.view.cmfilter.js?v=20240424"></script>
 	<script type="text/javascript"
 		src="//sui.ssgcdn.com/ui/ssg/js/ui/ssg.view.category_v2.js?v=20240424"></script>
 
-	<!-- 기존상품리스트JS파일		 -->
-	<!-- 	<script type="text/javascript" -->
-	<!-- 		src="//sui.ssgcdn.com/ui/ssg/js/disp/category/category-common.js?v=20240424"></script> -->
-	<!-- 기존상품리스트JS파일		 -->
+<!--  기존상품리스트JS파일		 -->
+<!--  	<script type="text/javascript" 
+	src="//sui.ssgcdn.com/ui/ssg/js/disp/category/category-common.js?v=20240424"></script> 
+ -->
+<!--  기존상품리스트JS파일 -->
 
 
-
+<!-- 
 	<script type="text/javascript"
 		src="//sui.ssgcdn.com/ui/ssg/js/disp/category/category-action.js?v=20240424"
 		data-keepssgem="N"></script>
+		 -->
 	<script type="text/javascript"
 		src="//sui.ssgcdn.com/ui/ssg/js/shareJs.js?v=20240424"></script>
 	<script type="text/javascript">

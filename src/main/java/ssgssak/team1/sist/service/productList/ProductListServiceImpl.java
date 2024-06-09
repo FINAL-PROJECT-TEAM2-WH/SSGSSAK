@@ -31,11 +31,11 @@ public class ProductListServiceImpl implements ProductListService {
 
 
 
-	public List<ProductListDTO> selectProdList(String categoryId, int currentPage, int numberPerPage, int start, int end) throws SQLException {
+	public List<ProductListDTO> selectProdList(String categoryId, int currentPage, int numberPerPage, int start, int end, String sort) throws SQLException {
 		System.out.println("currentPage = " + currentPage);
 		
 
-		return productListMapper.selectProdList(categoryId, currentPage, numberPerPage,start,end);
+		return productListMapper.selectProdList(categoryId, currentPage, numberPerPage,start,end,sort);
 	}
 	
 
