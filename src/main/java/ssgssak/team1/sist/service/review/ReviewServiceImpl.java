@@ -31,9 +31,12 @@ public class ReviewServiceImpl implements ReviewService{
 	
 	
 	@Override
-	public List<ReviewDTO> selectP(int currentPage, int numberPerPage, long id) throws SQLException {		
+	public List<ReviewDTO> selectP(int currentPage, int numberPerPage, long id,String sort,String reviewType) throws SQLException {		
 		log.info("> 페이징리뷰 확인 .. " + log);
-		List<ReviewDTO> reviews = this.reviewMapper.selectP(currentPage, numberPerPage, id);
+		System.out.println("review ServiceImple : "+sort);
+		System.out.println("review ServiceImple : "+reviewType);
+		List<ReviewDTO> reviews = this.reviewMapper.selectP(currentPage, numberPerPage,id,sort,reviewType);
+		
 		for (ReviewDTO review : reviews) {
 			List<ReviewImgDTO> reviewImges = this.reviewImgMapper.selectP(review.getId());
 			review.setReviewImgUrl(reviewImges);
@@ -62,9 +65,9 @@ public class ReviewServiceImpl implements ReviewService{
 
 
 	@Override
-	public int getTotalPages(int numberPerPage, long productcode) throws SQLException {
+	public int getTotalPages(int numberPerPage, long productcode,String reviewType) throws SQLException {
 		
-		return this.reviewMapper.getTotalPages(numberPerPage, productcode);
+		return this.reviewMapper.getTotalPages(numberPerPage, productcode,reviewType);
 	}
 
 
@@ -130,6 +133,59 @@ public class ReviewServiceImpl implements ReviewService{
 		}//while
 		
 	}
+
+
+	@Override
+	public List<ReviewDTO> selectUP(int currentPage, int numberPerPage, String auth, String sort, String reviewType)
+			throws SQLException {
+		
+		log.info("> 페이징리뷰 확인 .. " + log);
+		System.out.println("review ServiceImple : "+sort);
+		System.out.println("review ServiceImple : "+reviewType);
+		List<ReviewDTO> reviews = this.reviewMapper.selectUP(currentPage, numberPerPage,auth,sort,reviewType);
+		
+		for (ReviewDTO review : reviews) {
+			List<ReviewImgDTO> reviewImges = this.reviewImgMapper.selectP(review.getId());
+			review.setReviewImgUrl(reviewImges);
+		}//for
+		
+		return reviews;
+	}
+
+
+	@Override
+	public int getUserTotalRecords(String auth) throws SQLException {
+		
+		return this.reviewMapper.getUserTotalRecords(auth);
+	}
+
+
+	@Override
+	public int getUserTotalPages(int numberPerPage, String auth, String reviewType) throws SQLException {
+		
+		return this.reviewMapper.getUserTotalPages(numberPerPage, auth, reviewType);
+	}
+
+
+	@Override
+	public List<ReviewDTO> selectU(String auth) throws SQLException {
+		
+		return this.reviewMapper.selectU(auth);
+	}
+
+
+
+	
+	@Override
+	public int deleteReview(int reviewId) throws Exception {
+		log.info("reviewId : " + reviewId);
+	    reviewMapper.deleteReviewImg(reviewId);
+	    int result = reviewMapper.deleteReview(reviewId);
+	    log.info("reviewId: " + reviewId + " result: " + result);
+	    return result;
+	}
+
+
 
 	
 

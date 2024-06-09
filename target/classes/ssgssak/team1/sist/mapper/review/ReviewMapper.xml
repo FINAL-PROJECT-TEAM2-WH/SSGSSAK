@@ -34,16 +34,41 @@
  
 	<!-- List<ReviewDTO> selectP (int currentPage, int numberPerPage,long productcode) throws SQLException ;  -->	
 	<select id="selectP" resultType="ssgssak.team1.sist.domain.review.ReviewDTO">
-    		SELECT * 
-		FROM (
-	                SELECT ROWNUM no, t.* FROM (
-	                    SELECT r.ID, r.PRODUCTID, r.MEMID, r.PRODUCTOPTIONID, r.REVIEWCONTENT, r.REVIEWDATE, r.REVIEWTYPE, r.GRADE, r.Q1, r.Q2, r.Q3,po.OPTIONNAME
-	                    FROM review r JOIN productoption po
-                        ON r.productoptionid = po.id
-                        WHERE r.PRODUCTID = #{id} ORDER BY r.ID DESC
-	                ) t
-	            ) WHERE no BETWEEN #{currentPage} AND #{numberPerPage}
-	</select>
+    
+    SELECT * 
+    FROM (
+        SELECT ROWNUM no, t.* 
+        FROM (
+            SELECT r.ID, r.PRODUCTID, r.MEMID, r.PRODUCTOPTIONID, r.REVIEWCONTENT, r.REVIEWDATE, r.REVIEWTYPE, r.GRADE, r.Q1, r.Q2, r.Q3, po.OPTIONNAME
+            FROM review r 
+            JOIN productoption po ON r.productoptionid = po.id
+            WHERE r.PRODUCTID = #{id}
+            <if test="reviewType != null and reviewType != ''"> 
+              AND r.REVIEWTYPE = '${reviewType}'
+            </if>
+            ORDER BY 
+            <choose>
+              <when test="sort == '최신순'">
+                r.ID DESC
+              </when>            
+              <when test="sort == '평점높은순'">
+                r.GRADE DESC
+              </when>            
+              <when test="sort == '평점낮은순'">
+                r.GRADE ASC
+              </when>            
+              <otherwise>
+                r.ID DESC
+              </otherwise>
+            </choose>
+        ) t
+        WHERE ROWNUM <![CDATA[ <= ]]> #{numberPerPage} * #{currentPage}
+    ) 
+    WHERE no <![CDATA[ > ]]> #{numberPerPage} * (#{currentPage} - 1)
+   
+</select>
+
+
 	
 	<!--  총 레코드 가져오기 int getTotalRecords() throws SQLException; -->
 	<select id="getTotalRecords" resultType="Integer">
@@ -55,7 +80,10 @@
 	<select id="getTotalPages" resultType="Integer">
 		SELECT CEIL(COUNT(*) / #{numberPerPage}) 
 		FROM review 
-		WHERE PRODUCTID = #{id}		
+		WHERE PRODUCTID = #{id}
+		<if test="reviewType != null and reviewType !=''" >
+			AND REVIEWTYPE = '${reviewType}'
+		</if>		
 	</select>
 	
 	<!--리뷰입력 int insertReview(String reviewImgUrl) throws SQLException; -->
@@ -64,6 +92,85 @@
 	        VALUES (review_seq.NEXTVAL, #{productid}, #{memid}, #{productOptionId}, #{reviewContent}, sysdate, #{reviewType}, #{grade}, #{q1}, #{q2}, #{q3}) 
 	</insert>
 
+
+
+
+	<!-- 유저리뷰 -->
+	<select id="selectUP" resultType="ssgssak.team1.sist.domain.review.ReviewDTO">
+	    SELECT * 
+    FROM (
+        SELECT ROWNUM no, t.* 
+        FROM (
+            SELECT  r.ID, r.PRODUCTID, r.MEMID, r.PRODUCTOPTIONID, r.REVIEWCONTENT, r.REVIEWDATE, r.REVIEWTYPE, r.GRADE, r.Q1, r.Q2, r.Q3, po.OPTIONNAME
+            FROM review r JOIN member m
+                            ON r.memid = m.id
+                            JOIN productoption po
+                            ON r.productoptionid = po.id
+            WHERE m.id= #{auth}
+              <if test="reviewType != null and reviewType != ''"> 
+              AND r.REVIEWTYPE = '${reviewType}'
+            </if>
+            ORDER BY 
+              <choose>
+              <when test="sort == '최신순'">
+                r.ID DESC
+              </when>            
+              <when test="sort == '평점높은순'">
+                r.GRADE DESC
+              </when>            
+              <when test="sort == '평점낮은순'">
+                r.GRADE ASC
+              </when>            
+              <otherwise>
+                r.ID DESC
+              </otherwise>
+            </choose>
+        ) t
+        WHERE ROWNUM <![CDATA[ <= ]]> #{numberPerPage} * #{currentPage}
+    ) 
+    WHERE no <![CDATA[ > ]]> #{numberPerPage} * (#{currentPage} - 1)
+	</select>
+	<!-- int getUserTotalRecords( @Param("auth") String auth) throws SQLException; -->
+		<select id="getUserTotalRecords" resultType="Integer">
+		SELECT COUNT(*)
+		 FROM review r JOIN member m
+                            ON r.memid = m.id
+		 WHERE m.id = #{auth}
+	</select>
+	 <!-- int getUserTotalPages(@Param("numberPerPage")int numberPerPage, @Param("auth") String auth,@Param("reviewType")String reviewType) throws SQLException; -->
+		<select id="getUserTotalPages" resultType="Integer">
+		SELECT CEIL(COUNT(*) / #{numberPerPage}) 
+		FROM review r JOIN member m
+                            ON r.memid = m.id
+		 WHERE m.id = #{auth}
+		<if test="reviewType != null and reviewType !=''" >
+			AND REVIEWTYPE = '${reviewType}'
+		</if>		
+	</select>
 	
+	 <!-- 유저 리뷰리스트 List<ReviewDTO> selectU(@Param("auth")String auth) throws SQLException; -->
+	 <select id="selectU" resultType="ssgssak.team1.sist.domain.review.ReviewDTO">
+	 	SELECT  r.ID, r.PRODUCTID, r.MEMID, r.PRODUCTOPTIONID, r.REVIEWCONTENT, r.REVIEWDATE, r.REVIEWTYPE, r.GRADE, r.Q1, r.Q2, r.Q3, po.OPTIONNAME
+            FROM review r JOIN member m
+                            ON r.memid = m.id
+                            JOIN productoption po
+                            ON r.productoptionid = po.id
+            WHERE m.id =#{auth}
+	 </select>
 	
+<!-- 		 int deleteReview(@Param("reviewId")int reviewId)throws Exception;
+	 int deleteReviewImg(@Param("reviewId")int reviewId)throws Exception; -->
+<delete id="deleteReview">
+
+    DELETE FROM review WHERE id = #{reviewId}
+</delete>
+
+<delete id="deleteReviewImg">
+
+    DELETE FROM reviewImg WHERE reviewId = #{reviewId}
+
+</delete>
+
 </mapper>
+
+

@@ -2459,90 +2459,6 @@ function setCommonGnbCookie(name, value, expiredays) {
 				
 				 <%@ include file="../productList/catevar_prodVer.jsp" %> 
 				
-				
-				
-				
-				
-				
-<!-- 				<div id="location" class="cate_location notranslate react-area"> -->
-<!-- 					<div class="lo_depth_01"> -->
-<!-- 						<a href="/" class="lo_menu clickable" -->
-<!-- 							data-react-tarea="상품상세|카테고리 로케이션|사이트">SSG.COM</a> <span -->
-<!-- 							class="lo_line">/</span> -->
-<!-- 					</div> -->
-
-<!-- 					<div class="lo_depth_01"> -->
-<!-- 						<a href="/disp/category.ssg?ctgId=6000193712" -->
-<!-- 							class="lo_menu lo_arr clickable" -->
-<!-- 							data-react-tarea="상품상세|카테고리 로케이션|대카테고리">헤어케어</a> -->
-<!-- 						<div id="lo_menu01" class="lo_depth_02 n2"> -->
-<!-- 							<ul> -->
-<!-- 								<li><a href="/disp/category.ssg?ctgId=6000193710" -->
-<!-- 									data-react-tarea="상품상세|카테고리 로케이션|대카테고리" class="clickable ">스킨케어</a></li> -->
-<!-- 								<li><a href="/disp/category.ssg?ctgId=6000193714" -->
-<!-- 									data-react-tarea="상품상세|카테고리 로케이션|대카테고리" class="clickable ">메이크업</a></li> -->
-<!-- 								<li><a href="/disp/category.ssg?ctgId=6000193711" -->
-<!-- 									data-react-tarea="상품상세|카테고리 로케이션|대카테고리" class="clickable ">향수</a></li> -->
-<!-- 								<li><a href="/disp/category.ssg?ctgId=6000193712" -->
-<!-- 									data-react-tarea="상품상세|카테고리 로케이션|대카테고리" -->
-<!-- 									class="clickable  active">헤어케어</a></li> -->
-<!-- 								<li><a href="/disp/category.ssg?ctgId=6000193713" -->
-<!-- 									data-react-tarea="상품상세|카테고리 로케이션|대카테고리" class="clickable ">바디케어</a></li> -->
-<!-- 								<li><a href="/disp/category.ssg?ctgId=6000193716" -->
-<!-- 									data-react-tarea="상품상세|카테고리 로케이션|대카테고리" class="clickable ">미용기기/소품</a></li> -->
-<!-- 								<li><a href="/disp/category.ssg?ctgId=6000086414" -->
-<!-- 									data-react-tarea="상품상세|카테고리 로케이션|대카테고리" class="clickable ">남성화장품</a></li> -->
-<!-- 								<li><a href="/disp/category.ssg?ctgId=6000239178" -->
-<!-- 									data-react-tarea="상품상세|카테고리 로케이션|대카테고리" class="clickable ">뷰티선물세트</a></li> -->
-<!-- 							</ul> -->
-<!-- 						</div> -->
-<!-- 						<span class="lo_line">/</span> -->
-<!-- 					</div> -->
-<!-- 					<div class="lo_depth_01"> -->
-<!-- 						<a href="/disp/category.ssg?ctgId=6000194533" -->
-<!-- 							class="lo_menu lo_arr clickable" -->
-<!-- 							data-react-tarea="상품상세|카테고리 로케이션|중카테고리">트리트먼트/케어</a> -->
-<!-- 						<div id="lo_menu02" class="lo_depth_02 n2"> -->
-<!-- 							<ul> -->
-<!-- 								<li><a href="/disp/category.ssg?dispCtgId=6000194531" -->
-<!-- 									data-react-tarea="상품상세|카테고리 로케이션|중카테고리" class="clickable ">샴푸</a></li> -->
-<!-- 								<li><a href="/disp/category.ssg?dispCtgId=6000194532" -->
-<!-- 									data-react-tarea="상품상세|카테고리 로케이션|중카테고리" class="clickable ">린스/컨디셔너</a></li> -->
-<!-- 								<li><a href="/disp/category.ssg?dispCtgId=6000194533" -->
-<!-- 									data-react-tarea="상품상세|카테고리 로케이션|중카테고리" -->
-<!-- 									class="clickable  active">트리트먼트/케어</a></li> -->
-<!-- 								<li><a href="/disp/category.ssg?dispCtgId=6000194534" -->
-<!-- 									data-react-tarea="상품상세|카테고리 로케이션|중카테고리" class="clickable ">헤어스타일링</a></li> -->
-<!-- 								<li><a href="/disp/category.ssg?dispCtgId=6000194535" -->
-<!-- 									data-react-tarea="상품상세|카테고리 로케이션|중카테고리" class="clickable ">헤어컬러/펌</a></li> -->
-<!-- 							</ul> -->
-<!-- 						</div> -->
-<!-- 						<span class="lo_line">/</span> -->
-<!-- 					</div> -->
-<!-- 					<div class="lo_depth_01"> -->
-<!-- 						<a href="/disp/category.ssg?ctgId=6000194543" -->
-<!-- 							class="lo_menu lo_arr clickable" -->
-<!-- 							data-react-tarea="상품상세|카테고리 로케이션|소카테고리">헤어에센스/오일/세럼</a> -->
-<!-- 						<div id="lo_menu03" class="lo_depth_02 n2"> -->
-<!-- 							<ul> -->
-<!-- 								<li><a href="/disp/category.ssg?dispCtgId=6000194541" -->
-<!-- 									data-react-tarea="상품상세|카테고리 로케이션|소카테고리" class="clickable ">헤어트리트먼트</a></li> -->
-<!-- 								<li><a href="/disp/category.ssg?dispCtgId=6000194542" -->
-<!-- 									data-react-tarea="상품상세|카테고리 로케이션|소카테고리" class="clickable ">헤어팩/마스크</a></li> -->
-<!-- 								<li><a href="/disp/category.ssg?dispCtgId=6000194543" -->
-<!-- 									data-react-tarea="상품상세|카테고리 로케이션|소카테고리" -->
-<!-- 									class="clickable  active">헤어에센스/오일/세럼</a></li> -->
-<!-- 								<li><a href="/disp/category.ssg?dispCtgId=6000194544" -->
-<!-- 									data-react-tarea="상품상세|카테고리 로케이션|소카테고리" class="clickable ">헤어퍼퓸/헤어미스트</a></li> -->
-<!-- 							</ul> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-
-
-
-
-
 				<div class="cdtl_cm_detail v3 ty_ssg ty_grocery react-area"
 					data-globalid="item_view" data-react-comm-type="item"
 					data-react-comm-id="1000026532717" data-react-salestr-no="1020"
@@ -2559,12 +2475,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 											<c:set value="${pdimg.imgUrl}" var="sumimg"/>
 										</c:if>
 									</c:forEach>
-									
-											<img
-										src="${sumimg}"
-										width="550" height="550" alt="상품이미지1"
-										
-										id="mainImg">
+									<img src="${sumimg}"	width="550" height="550" alt="상품이미지1" id="mainImg">
 									</span>
 									<!-- 상품맵핑추가(맵핑있을시 on추가) -->
 									<div id="point_map" class="cmpt_point_wrap">
@@ -3535,8 +3446,11 @@ function setCommonGnbCookie(name, value, expiredays) {
         
     </script>
 
+<%-- 								<input type="hidden" id="csrfParameterName" value="${_csrf.parameterName}"/> 
+									var csrfToken = $('#csrfToken').
+									var csrfParameterName = $("#csrfParameterName").val(); --%>
 								<script type="text/javascript">
-    		
+								
 								function handlePurchase() {
 									let params = [];
 					                let index = 1;
@@ -3549,7 +3463,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 					                        index++;
 					                    }
 					                });
-
+										
 					                let url = '/pay.do?' + params.join('&');
 					                window.location.href = url;
 								}
@@ -12063,7 +11977,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 											href="#cdtl_ItemComment" class="clickable"
 											data-react-tarea-dtl-cd="t00014"
 											data-react-tarea="상품상세|TAB영역|상품평">고객리뷰 <span
-												class="count">(<em id="postngNlistCnt">1,546</em><span
+												class="count">(<em id="postngNlistCnt">${fn:length(reviews)}</em><span
 													class="blind">건</span>)
 											</span></a></li>
 										<li data-react-unit-type="text"
@@ -12071,8 +11985,8 @@ function setCommonGnbCookie(name, value, expiredays) {
 											<a href="#cdtl_ItemQna" class="notranslate clickable"
 											data-react-tarea-dtl-cd="t00014"
 											data-react-tarea="상품상세|TAB영역|상품Q&amp;A"> <span
-												class="tx_ko"> 상품 Q&amp;A<span class="count">(<em
-														id="qaTotalCntTab">92</em><span class="blind">건</span>)
+												class="tx_ko"> 상품 Q&amp;A<span class="count"><!-- (<em
+														id="qaTotalCntTab">92</em><span class="blind">건</span>) -->
 												</span>
 											</span>
 										</a>
@@ -12137,7 +12051,8 @@ function setCommonGnbCookie(name, value, expiredays) {
 											<!-- [D] 발렉스 -->
 											<!--[D] 미식관 -->
 											<!-- [D] 삼성, 엘지전자 설치상품 -->
-											<div class="cdtl_sec cdtl_seller_html ty_1800">
+											<!-- 고치기 -->
+											<div class="cdtl_sec cdtl_seller_html ty_1800 active">
 												<h4 class="blind">상품 상세 정보</h4>
 
 												<div class="blind" id="itemNutritionGrid"></div>
@@ -12158,8 +12073,8 @@ function setCommonGnbCookie(name, value, expiredays) {
 												<div class="cdtl_detail_img">
 													<c:set var="index" value="1"/>
 													<c:forEach var="image" items="${product.images}">
-													    <c:if test="${image.imgContent eq 'other'}">                                                 
-													        <img src="${image.imgUrl}" alt="상품이미지${index}"
+													    <c:if test="${image.imgContent eq 'other' ||image.imgContent eq 'sub'}">                                                 
+													        <img src="${image.imgUrl}" alt="상품이미지${index+1}"
 													            onerror="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=1200&amp;h=1200&amp;t=2ca8e91106bfe8f410b8440ea403e5acdc70084a'">
 													        <c:set var="index" value="${index + 1}"/>
 													    </c:if>
@@ -12173,10 +12088,11 @@ function setCommonGnbCookie(name, value, expiredays) {
 												</div>
 												<div class="cdtl_seller_html_collapse">
 													<!-- 활성시 active -->
+													<!-- 고치기
 													<button type="button" class="btn_collapse ctrl_collapse">
 														<span class="collapse_on">상세정보 펼쳐보기</span> <span
 															class="collapse_off">상세정보 접기</span>
-													</button>
+													</button> -->
 												</div>
 											</div>
 
@@ -12560,30 +12476,62 @@ function setCommonGnbCookie(name, value, expiredays) {
 															<div class="rvw_radio_group" id="allReviewOptionGroup">
 																<div class="rvw_radio rvw_section_select_option"
 																	data-react-unit-type="text"
-																	data-react-unit-text="[{&quot;type&quot;:&quot;text&quot;,&quot;value&quot;:&quot;전체&quot;}]">
-																	<input type="radio" name="selected" id="rdo01"
-																		class="blind" checked="" value="10"
-																		onclick="javascript:getPcCommentFilter(this);">
-																	<label for="rdo01" class="clickable"
-																		data-react-tarea-dtl-cd="t00013"
-																		data-react-tarea="상품상세|상품평|전체보기">전체(${fn:length(reviews)})</label>
+																	data-react-unit-text="[{&quot;type&quot;:&quot;text&quot;,&quot;value&quot;:&quot;일반&quot;}]">
+																	<input type="radio" name="selectedT" id="전체"
+																		class="blind" checked="" value=""
+																		onclick="fn_go_page(1)">
+																	<label for="전체" class="clickable"
+																		>전체(${fn:length(reviews)})</label>
+																</div>
+																<div class="rvw_radio rvw_section_select_option"
+																	data-react-unit-type="text"
+																	data-react-unit-text="[{&quot;type&quot;:&quot;text&quot;,&quot;value&quot;:&quot;일반&quot;}]">
+																	<input type="radio" name="selectedT" id="일반"
+																		class="blind"  value="일반"
+																		onclick="fn_go_page(1)">
+																	<c:set var="nomalReviewCount" value="0" />
+																	<c:forEach var="review" items="${reviews}">
+																		<c:if
+																			test="${review.reviewType == '일반'}">
+																			<c:set var="nomalReviewCount"
+																				value="${nomalReviewCount + 1}" />
+																		</c:if>
+																	</c:forEach>
+																	<label for="일반" class="clickable"
+																		>일반(${fn:length(reviews)})</label>
 																</div>
 																<div class="rvw_radio rvw_section_select_option"
 																	data-react-unit-type="text"
 																	data-react-unit-text="[{&quot;type&quot;:&quot;text&quot;,&quot;value&quot;:&quot;포토&quot;}]">
-																	<input type="radio" name="selected" id="rdo02"
-																		class="blind" value="20" />
+																	<input type="radio" name="selectedT" id="포토"
+																		class="blind" value="포토" onclick="fn_go_page(1)"/>
 																	<c:set var="photoReviewCount" value="0" />
 																	<c:forEach var="review" items="${reviews}">
 																		<c:if
-																			test="${review.reviewType == '포토' || review.reviewType == '동영상'}">
+																			test="${review.reviewType == '포토'}">
 																			<c:set var="photoReviewCount"
 																				value="${photoReviewCount + 1}" />
 																		</c:if>
 																	</c:forEach>
-																	<label for="rdo02" class="clickable"
-																		data-react-tarea-dtl-cd="t00013"
-																		data-react-tarea="상품상세|상품평|포토모아보기">포토&동영상(${photoReviewCount})</label>
+																	<label for="포토" class="clickable"
+																		>포토(${photoReviewCount})</label>
+																		
+																	</div>
+																	<div class="rvw_radio rvw_section_select_option"
+																	data-react-unit-type="text"
+																	data-react-unit-text="[{&quot;type&quot;:&quot;text&quot;,&quot;value&quot;:&quot;동영상&quot;}]">
+																	<input type="radio" name="selectedT" id="동영상"
+																		class="blind" value="동영상" onclick="fn_go_page(1)"/>
+																	<c:set var="videoReviewCount" value="0" />
+																	<c:forEach var="review" items="${reviews}">
+																		<c:if
+																			test="${review.reviewType == '동영상'}">
+																			<c:set var="videoReviewCount"
+																				value="${videoReviewCount + 1}" />
+																		</c:if>
+																	</c:forEach>
+																	<label for="동영상" class="clickable"
+																		>동영상(${videoReviewCount})</label>
 																		
 																	</div>
 																</div>			
@@ -12591,36 +12539,12 @@ function setCommonGnbCookie(name, value, expiredays) {
 																<div class="rvw_section_flex_end">
 															<div class="rvw_section_select_option">
 																<div class="rvw_dropdown">
-																	<select class="blind" id="cmt_select_sort">
-																		<option value="05">추천순</option>
-																		<option value="01">최신순</option>
-																		<option value="02">평점높은순</option>
-																		<option value="04">평점낮은순</option>
+																	<select  id="cmt_select_sort" onchange="fn_go_page(1)">
+																		<option value="최신순">최신순</option>
+																		<option value="평점높은순">평점높은순</option>
+																		<option value="평점낮은순">평점낮은순</option>
 																	</select>
-																	<div class="rvw_dropdown_content">
-																		<div class="rvw_dropdown_trigger">
-																			<a href="javascript:void(0)" role="button"> <span
-																				id="spanSortColNm">추천순</span>
-																			</a>
-																		</div>
-																		<div class="rvw_dropdown_list">
-																			<a href="javascript:void(0)"
-																				data-react-tarea="상품상세|상품평|추천순"
-																				class="rvw_dropdown_option is-selected clickable"
-																				role="button" data-value="05">추천순</a> <a
-																				href="javascript:void(0)"
-																				data-react-tarea="상품상세|상품평|최신순"
-																				class="rvw_dropdown_option clickable" role="button"
-																				data-value="01">최신순</a> <a href="javascript:void(0)"
-																				data-react-tarea="상품상세|상품평|평점높은순"
-																				class="rvw_dropdown_option clickable" role="button"
-																				data-value="02">평점높은순</a> <a
-																				href="javascript:void(0)"
-																				data-react-tarea="상품상세|상품평|평점낮은순"
-																				class="rvw_dropdown_option clickable" role="button"
-																				data-value="04">평점낮은순</a>
-																		</div>
-																	</div>
+																	
 																</div>
 															</div>
 														</div>
@@ -12632,8 +12556,8 @@ function setCommonGnbCookie(name, value, expiredays) {
 														<ul class="rvw_expansion_panel_list" id="item_rvw_list">
 														
 														    <c:set value="${totalRecords - (currentPage-1) * numberPerPage}" var="startNo"/>
-														    <c:forEach var="review" items="${pagedReviews}">
-															<%-- <li class="rvw_expansion_panel"
+						<%-- 							 	    <c:forEach var="review" items="${pagedReviews}">
+															 <li class="rvw_expansion_panel"
 																data-postngid="1184443604">
 																<div class="rvw_expansion_panel_head">
 																	<a href="javascript:void(0)" role="button"
@@ -12741,29 +12665,16 @@ function setCommonGnbCookie(name, value, expiredays) {
 																	</div>
 																
 															</li>
-															 --%>
+															 
 															</c:forEach>
-
+  --%>
 														</ul>
 													</div>
 
-<%-- 						기존페이징								
-	<div class="pagination">
-        <c:if test="${currentPage > 1}">
-            <a href="/SSGSSAK/product/product.do?productcode=${product.id}&currentPage=${currentPage - 1}">&laquo; 이전</a>
-        </c:if>
-        <c:forEach begin="1" end="${totalPages}" var="i">
-            <a href="/SSGSSAK/product/product.do?productcode=${product.id}&currentPage=${i}"
-               class="${i == currentPage ? 'active' : ''}">${i}</a>
-        </c:forEach>
-        <c:if test="${currentPage < totalPages}">
-            <a href="/SSGSSAK/product/product.do?productcode=${product.id}&currentPage=${currentPage + 1}">다음 &raquo;</a>
-        </c:if>
-    </div>
-     --%>
-     <input type="hidden" id="csrfToken" value="${_csrf.token}"/> 
+
+     <input type="hidden" id="csrfToken" value="${_csrf.token}"/>     
    	<div class="pagination">
-        <c:if test="${currentPage > 1}">
+<%--          <c:if test="${currentPage > 1}">
             <a href="javascript:void(0);" onclick="fn_go_page(${currentPage - 1})">&laquo; 이전</a>
         </c:if>
         <c:forEach begin="1" end="${totalPages}" var="i">
@@ -12771,21 +12682,27 @@ function setCommonGnbCookie(name, value, expiredays) {
         </c:forEach>
         <c:if test="${currentPage < totalPages}">
             <a href="javascript:void(0);" onclick="fn_go_page(${currentPage + 1})">다음 &raquo;</a>
-        </c:if>
-    </div>
+        </c:if>   --%>
+    </div> 
     
     <script type="text/javascript">
+
     	//페이징 startNo 처리하는코드
     	let currentPage = 1;
     	let totalPages =1;
     	const numberPerPage =5;
-    	
+		
     
 		function fn_go_page(pageNo) {
 			currentPage = pageNo;
+			const sort =$("#cmt_select_sort").val();
+			const reviewType = $("input[name='selectedT']:checked").val();
+
 			const submitObj = {
 			pageIndex : pageNo,
-			productcode : ${product.id}
+			productcode : ${product.id},
+			sort : sort,
+			reviewType : reviewType
 			};
 			var csrfToken = $('#csrfToken').val();
 			//submitObj.searchWrd = $("#searchWrd").val();//서치워드
@@ -12803,6 +12720,8 @@ function setCommonGnbCookie(name, value, expiredays) {
 					console.log(data);
 					mkReviews(data.reviews,data.totalRecords);
 					mkPagination(data.totalPages,data.currentPage);
+					totalPages = data.totalPages; // 동적으로 totalPages 설정
+	                currentPage = data.currentPage; // 동적으로 currentPage 설정
 				},error : function(xhr,errorType){
 					alert("리뷰 로드 실패" + errorType);
 				}//err
@@ -12813,13 +12732,22 @@ function setCommonGnbCookie(name, value, expiredays) {
 			
 		}//fucn
 
+		function formatDate(timestamp) {
+	        const date = new Date(timestamp);
+	        const year = date.getFullYear();
+	        const month = ('0' + (date.getMonth() + 1)).slice(-2);
+	        const day = ('0' + date.getDate()).slice(-2);
+	        return `\${year}-\${month}-\${day}`;
+	    }
+		
+		
 		
 		function mkReviews(reviews,totalRecords) {
 			
 				$("#item_rvw_list").empty();
 				let startNo = totalRecords -(currentPage -1) * numberPerPage;
 			reviews.forEach(review=>{
-				
+				 const formattedDate = formatDate(review.reviewDate);
 				const reviewHtml = ` 
 					<li class="rvw_expansion_panel" data-postngid="\${review.id}">
                     <div class="rvw_expansion_panel_head">
@@ -12831,8 +12759,8 @@ function setCommonGnbCookie(name, value, expiredays) {
                                 </div>
                                 <div class="rvw_item_label rvw_item_type">\${review.optionName}</div>
                                 <div class="rvw_item_label rvw_item_user_id">\${review.memid}</div>
-                                <div class="rvw_item_label rvw_item_date">\${review.reviewDate}</div>
-                                <div class="rvw_item_label rvw_item_order">\${review.order}</div>
+                                <div class="rvw_item_label rvw_item_date">\${formattedDate}</div>
+                                <div class="rvw_item_label rvw_item_order">\${startNo}</div>
                                 <button type="button" class="rvw_item_btn_block"
                                     onclick="javascript:fn_PopupItemError('/review/pReviewReportError.ssg?itemId=1000026532717&amp;siteNo=7012&amp;postngId=${review.id}', 800, 480);">
                                     <span>신고/차단</span>
@@ -12920,25 +12848,52 @@ function setCommonGnbCookie(name, value, expiredays) {
 		
 		
 	    function mkPagination(total, current) {
-	        totalPages = total;
+			
+	    	 totalPages = Number(total);
+	    	 currentPage = Number(current);
 	        $(".pagination").empty();
-	        const prevPageHtml = `<a href="javascript:void(0);" onclick="fn_go_page(\${currentPage - 1})">&laquo; 이전</a>`;
-	        $(".pagination").append(prevPageHtml);
+	        
+/* 
+		        const prevPageHtml = `<a href="javascript:void(0);" onclick="fn_go_page(\${currentPage - 1})">&laquo; 이전</a>`;
+		        $(".pagination").append(prevPageHtml);				
+		 */
 
 	        for (let i = 1; i <= total; i++) {
 	            const pageHtml = `<a href="javascript:void(0);" onclick="fn_go_page(\${i})" class="\${i === current ? 'active' : ''}">\${i}</a>`;
 	            $(".pagination").append(pageHtml);
 	        }
-
-	        const nextPageHtml = `<a href="javascript:void(0);" onclick="fn_go_page(\${currentPage + 1})">다음 &raquo;</a>`;
-	        $(".pagination").append(nextPageHtml);
+		/* 
+		        const nextPageHtml = `<a href="javascript:void(0);" onclick="fn_go_page(\${currentPage + 1})">다음 &raquo;</a>`;
+		        $(".pagination").append(nextPageHtml);
+ */
 	        
 	    }//mkp
-	     fn_go_page(1); 
+	    $(document).ready(function() {
+	        fn_go_page(1);
+	    });
     </script>
-	    /* fn_go_page(1);초기해줄까말까 .. */
 
-    
+<!--     	    function mkPagination(total, current) {
+			
+	    	 totalPages = total;
+	    	 currentPage = current;
+	        $(".pagination").empty();
+	        
+	        if (currentpage>1) {
+		        const prevPageHtml = `<a href="javascript:void(0);" onclick="fn_go_page(\${currentPage - 1})">&laquo; 이전</a>`;
+		        $(".pagination").append(prevPageHtml);				
+			}//
+
+	        for (let i = 1; i <= total; i++) {
+	            const pageHtml = `<a href="javascript:void(0);" onclick="fn_go_page(\${i})" class="\${i === current ? 'active' : ''}">\${i}</a>`;
+	            $(".pagination").append(pageHtml);
+	        }
+			if (currentPage<totalPages) {
+		        const nextPageHtml = `<a href="javascript:void(0);" onclick="fn_go_page(\${currentPage + 1})">다음 &raquo;</a>`;
+		        $(".pagination").append(nextPageHtml);
+			}
+	        
+	    }//mkp -->
 													
 												</div>
 											</section>
@@ -13148,7 +13103,7 @@ function setCommonGnbCookie(name, value, expiredays) {
                   html += '<div class="rvw_item_label rvw_item_rating"><span>' + review.recomEvalScr + '</span></div>';
                   html += '<div class="rvw_item_label rvw_item_type">' + review.postngClsCdNm + '</div>';
                   html += '<div class="rvw_item_label rvw_item_user_id">' + review.mbrLoginId + '</div>';
-                  html += '<div class="rvw_item_label rvw_item_date">' + review.strRegDts + '</div>';
+                  html += '<div class="rvw_item_label rvw_item_date">' + review.reviewDate + '</div>';
                   html += '<button type="button" class="rvw_item_btn_block" onclick="javascript:window.open(\'/review/mReviewReportError.ssg?itemId=' + review.itemId + '&siteNo=' + review.siteNo + '&postngId=' + review.postngId + '\')"><span>신고/차단</span></button>';
                   html += '</div>';
 
@@ -13270,7 +13225,7 @@ function setCommonGnbCookie(name, value, expiredays) {
             $('.cdtl_ly_write').removeClass('on');
         });
         showPcCommentImgVod();
-
+/* 고치기
         // 드롭다운
         ssg.View.review.Event.emitter.on(ssg.View.review.Event.CHANGE_DROPDOWN_OPTION, function(params) {
           if(params.target.id == 'cmt_select_sort'){
@@ -13283,8 +13238,8 @@ function setCommonGnbCookie(name, value, expiredays) {
             getPcCommentAttrFilter(params.value, '');
           }
         })
-
-        // NLP필터
+ */
+   /*      // NLP필터
         ssg.View.review.Event.emitter.on(ssg.View.review.Event.CLICK_FILTER, function(params) {
           if(params.isActive == true){
             $('#nlpEntyId').val(params.originalEvent.target.attributes[1].value);
@@ -13294,7 +13249,7 @@ function setCommonGnbCookie(name, value, expiredays) {
           }
           fn_GoCommentPage(1);
         })
-
+ */
         //btn chatGPT 좋아요
         $('.btn_good button').on('click', function () {
             let chk = $(this).siblings('button').hasClass('on');
