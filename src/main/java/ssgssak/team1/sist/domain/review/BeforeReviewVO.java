@@ -26,7 +26,7 @@ public class BeforeReviewVO {
 	private String pMethod;
 	private int present;
 	private int quantity;
-	private int productId;
+	private long productId;
 	private int categoryId;
 	private int specialPriceId;
 	private int shippingOptionId;

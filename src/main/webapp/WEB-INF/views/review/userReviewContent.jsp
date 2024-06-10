@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div id="content" class="content_myssg myrvct activity_administration react-area">
 	<!-- [D] #367781 프리미엄 상품평 이벤트 배너 	-->
 	
@@ -35,7 +36,7 @@
 	  	</div>
 		<div class="review_count">
 			<div class="review_count_item">
-				<p class="review_count_item_info">일반리뷰 <em><strong>0/</strong>40</em> <span>건</span> </p>
+				<p class="review_count_item_info">일반리뷰 <em><strong>${fn:length(reviews)}/</strong>40</em> <span>건</span> </p>
 				
 					
 				
@@ -63,7 +64,7 @@
 	<div class="review_lst_wrap">
 		<div class="review_lst_tab">
 			<button type="button" class="review_lst_tab_button" data-id="" onclick="beforeReview()"><span>작성 가능한 리뷰</span></button>
-			<button type="button" class="review_lst_tab_button active" data-id=""><span>작성한 리뷰</span></button>
+			<button type="button" class="review_lst_tab_button active" data-id="" onclick="fn_go_page(1)"><span>작성한 리뷰</span></button>
 		</div>
 		
 		<!-- [D] 작성 가능한 리뷰 -->
@@ -197,68 +198,13 @@
 			<div id="pdtList">
 			<!-- 시작 고치기 -->
 				<div class="codr_unit" id="codr_unitT">
-<%-- 		                                	<table>
-												<caption><span class="blind">상품유닛 목록형</span></caption>
-												<colgroup>
-													<col style="width:80px">
-													<col>
-													<col style="width:180px">
-												</colgroup>
-												<tbody>
-		                                    	<tr class="codr_unit_area" name="divItemUnit">
-	<td class="codr_thmb">
-		<div class="codr_unit_thmb">
-            <input type="hidden" id="ordItemGrp__ForceShppcstBdnMainCd" value="XX">
-			<a href="http://www.ssg.com/item/itemView.ssg?itemId=0000009961677&amp;siteNo=6004&amp;salestrNo=6005" target="_blank">
-								<span class="codr_unit_img">
-									<img src="https://sitem.ssgcdn.com/77/16/96/item/0000009961677_i1_80.jpg" srcset="https://sitem.ssgcdn.com/77/16/96/item/0000009961677_i1_160.jpg 2x" alt="상품이미지" onerror="javascript:this.src='https://sui.ssgcdn.com/ui/sd/img/common/noImg_80.gif';this.alt='상품 이미지 준비중입니다.';"></span>
-							</a>
-						</div>
-	</td>
-	<td class="codr_unit_cont">
-		<div class="codr_unit_type ty_top">
-				</div>
-			<p class="codr_unit_tit notranslate">
-			<a href="http://www.ssg.com/item/itemView.ssg?itemId=0000009961677&amp;siteNo=6004&amp;salestrNo=6005" target="_blank">
-								<strong class="codr_unit_brd"><span>알파</span></strong>
-								<span class="codr_unit_name"><span>[알파] 수정테이프 ACT-5055 (5mmx5M) 색상랜덤 1입</span></span>
-							</a>
-						</p>
-			<span class="codr_unit_line"></span>
-				<div class="codr_unit_info">
-					[1045741]옵션없음</div>
-						<div id="div_pre_uitemNm_20240609BF087C1" class="codr_unit_info" style="display: none;" data-pre-uitem-id="00001">
-                <del>[1045741]옵션없음</del>
-            </div>
-		<div class="codr_unit_type">
-			</div> </td>
-	<td class="codr_unit_pricewrap">
-                <div class="codr_unit_newprice notranslate">
-    					<span class="blind">판매가격</span> <em class="ssg_price notranslate">900</em> <span class="ssg_tx">원</span>
-    					</div>
-                    <div class="codr_unit_oldprice">
-    						<del>
-    							<span class="blind">정상가격</span>
-    							<em class="ssg_price notranslate">1,000</em>
-    						</del>
-    						<span class="ssg_tx">원</span>
-    					</div>
-    					<span class="codr_unit_line"></span>
-    				<span class="codr_unit_count">
-						<strong class="blind">상품수량</strong>
-						<em class="num notranslate">
-						1</em><span class="notranslate">개</span>
-						</span>
-                </td>
-			</tr>
-</tbody>
-		                                	</table> --%>
+
 		                                </div>
 
 <ul class="review_lst_table">
 	<!--리뷰 입력하는곳 고치기 -->
 		<section class="rvw_section rvw_section_all">
-												<div class="rvw_section_content">
+												<div class="rvw_section_content" >
 													<div
 														class="rvw_section_flex_group rvw_section_select_options">
 														<div class="rvw_section_flex_start">
@@ -348,7 +294,7 @@
 														</ul>
 													</div>
 
-
+<input type="hidden" id="kk" value="<sec:authentication property='principal.username'/>" /> 
      <input type="hidden" id="csrfToken" value="${_csrf.token}"/>     
    	<div class="pagination">
     </div> 
@@ -368,6 +314,7 @@
 		
     
 		function fn_go_page(pageNo) {
+			
 			currentPage = pageNo;
 			const sort =$("#cmt_select_sort").val();
 			const reviewType = $("input[name='selectedT']:checked").val();
@@ -415,7 +362,11 @@
 		
 		
 		function mkReviews(reviews,totalRecords) {
-			
+	        
+				$(".rvw_section_content").show();
+	        	$("#item_rvw_list").show();
+	        	$(".pagination").show();
+				$("#codr_unitT").empty();
 				$("#item_rvw_list").empty();
 				if (reviews.length === 0) {
 			        const noDataHtml = `<li class="none_data"><p class="none_data_tx">해당 기간에 구매 내역이 없습니다</p></li>`;
@@ -438,10 +389,6 @@
                                 <div class="rvw_item_label rvw_item_user_id">\${review.memid}</div>
                                 <div class="rvw_item_label rvw_item_date">\${formattedDate}</div>
                                 <div class="rvw_item_label rvw_item_order">\${startNo}</div>
-                                <button type="button" class="rvw_item_btn_block"
-                                    onclick="javascript:fn_PopupItemError('/review/pReviewReportError.ssg?itemId=1000026532717&amp;siteNo=7012&amp;postngId=${review.id}', 800, 480);">
-                                    <span>신고/차단</span>
-                                </button>
                                 <button type="button" class="rvw_item_btn_block" id ="deleteButton"
                                     onclick="deleteReview(1,\${review.id})">
                                     <span>삭제하기</span>
@@ -568,6 +515,7 @@
 	             		},
 					success:function(data,callback,xhr){			
 						console.log(data);
+						$(".rvw_section_content").show();
 						mkReviews(data.reviews,data.totalRecords);
 						mkPagination(data.totalPages,data.currentPage);
 						totalPages = data.totalPages; // 동적으로 totalPages 설정
@@ -583,22 +531,21 @@
 	   
 	    //작성가능한 상품 
 	    function beforeReview(){
-	    	alert("클릭됐음");
 	    	var csrfToken = $('#csrfToken').val();
-	    	
 			$.ajax({
+				
 				url:"/SSGSSAK/reviewR/userBeforeReview.do",
 				method :"POST",
 				contentType: "application/json;charset=UTF-8",
 				dataType:"json",
+				data: JSON.stringify({}),
 				beforeSend: function(xhr) {
 	                   xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
 	             		},
 				success:function(data,callback,xhr){
-					alert("ajax 성공");
-					console.log(data);
-					 mkPayRecords(data.payRecords); 
-					
+				console.log(data);
+				mkPayRecords(data.payRecords);
+				$(".rvw_section_content").hide();
 				},error:function(xhr,errorType){
 					alert("작석가능한리뷰 조회 실패"+errorType);
 				}
@@ -606,92 +553,107 @@
 			});//ajax
 	    	
 	    };//fun 
-	    
-	    function mkPayRecords(payRecords){
-	    	$("#item_rvw_list").empty();
-	    	$(".pagination").empty();
-	    	$("#codr_unitT").empty();
-	    	if (payRecords.length === 0) {
-		        const noDataHtml = `<li class="none_data"><p class="none_data_tx">해당 기간에 구매 내역이 없습니다</p></li>`;
-		        $("#item_rvw_list").append(noDataHtml);
-		    } else {
-		    	payRecords.forEach(payRecord=>{
-			 const formattedDate = formatDate(payRecord.orderDate);
-			 const payRecordsHtml = `<div class="codr_unit">
-            	<table>
-				<caption><span class="blind">상품유닛 목록형</span></caption>
-				<colgroup>
-					<col style="width:80px">
-					<col>
-					<col style="width:180px">
-				</colgroup>
-				<tbody>
-            	<tr class="codr_unit_area" name="divItemUnit">
-		<td class="codr_thmb">
-		<div class="codr_unit_thmb">
-		<input type="hidden" id="ordItemGrp__ForceShppcstBdnMainCd" value="XX">
-		<a href="/SSGSSAK/product/product.do?productcode=\${payRecord.productId}" target="_blank">
-		<span class="codr_unit_img">
-			<img src="\${payRecord.imgUrl}" srcset="https://sitem.ssgcdn.com/77/16/96/item/0000009961677_i1_160.jpg 2x" alt="상품이미지" onerror="javascript:this.src='https://sui.ssgcdn.com/ui/sd/img/common/noImg_80.gif';this.alt='상품 이미지 준비중입니다.';"></span>
-		</a>
-		</div>
-		</td>
-		<td class="codr_unit_cont">
-		<div class="codr_unit_type ty_top">
-		</div>
-		<p class="codr_unit_tit notranslate">
-		<a href="http://www.ssg.com/item/itemView.ssg?itemId=0000009961677&amp;siteNo=6004&amp;salestrNo=6005" target="_blank">
-		<strong class="codr_unit_brd"><span>알파</span></strong>
-		<span class="codr_unit_name"><span>[알파] 수정테이프 ACT-5055 (5mmx5M) 색상랜덤 1입</span></span>
-		</a>
-		</p>
-		<span class="codr_unit_line"></span>
-		<div class="codr_unit_info">
-		[1045741]옵션없음</div>
-		<div id="div_pre_uitemNm_20240609BF087C1" class="codr_unit_info" style="display: none;" data-pre-uitem-id="00001">
-		<del>[1045741]옵션없음</del>
-		</div>
-		<div class="codr_unit_type">
-		</div> </td>
-		<td class="codr_unit_pricewrap">
-		<div class="codr_unit_newprice notranslate">
-		<span class="blind">판매가격</span> <em class="ssg_price notranslate">900</em> <span class="ssg_tx">원</span>
-		</div>
-		<div class="codr_unit_oldprice">
-		<del>
-		<span class="blind">정상가격</span>
-		<em class="ssg_price notranslate">1,000</em>
-		</del>
-		<span class="ssg_tx">원</span>
-		</div>
-		<span class="codr_unit_line"></span>
-		<span class="codr_unit_count">
-		<strong class="blind">상품수량</strong>
-		<em class="num notranslate">
-		1</em><span class="notranslate">개</span>
-		</span>
-		</td>
-		</tr>
-		</tbody>
-        	</table>
-        </div>
-			
-			
-			
-			`;
+	    function mkPayRecords(payRecords) {
+	        $("#item_rvw_list").hide();
+	        $(".pagination").hide();
+	        $("#codr_unitT").show();
+	        $("#codr_unitT").empty();
+	        
+	        if (payRecords.length === 0) {
+	            const noDataHtml = `<li class="none_data"><p class="none_data_tx">해당 기간에 구매 내역이 없습니다</p></li>`;
+	            $("#codr_unitT").append(noDataHtml);
+	        } else {
+	            payRecords.forEach(payRecord => {
+	                const formattedDate = formatDate(payRecord.orderDate);
+	                const payRecordsHtml = `
+	                    <div class="codr_unit">
+	                        <table>
+	                            <caption><span class="blind">상품유닛 목록형</span></caption>
+	                            <colgroup>
+	                                <col style="width:80px">
+	                                <col>
+	                                <col style="width:180px">
+	                            </colgroup>
+	                            <tbody>
+	                                <tr class="codr_unit_area" name="divItemUnit">
+	                                    <td class="codr_thmb">
+	                                        <div class="codr_unit_thmb">
+	                                            <input type="hidden" id="ordItemGrp__ForceShppcstBdnMainCd" value="XX">
+	                                            <a href="/SSGSSAK/product/product.do?productcode=\${payRecord.productId}" target="_blank">
+	                                                <span class="codr_unit_img">
+	                                                    <img src="\${payRecord.imgUrl}" srcset="\${payRecord.imgUrl}" alt="상품이미지" onerror="javascript:this.src='https://sui.ssgcdn.com/ui/sd/img/common/noImg_80.gif';this.alt='상품 이미지 준비중입니다.';">
+	                                                </span>
+	                                            </a>
+	                                        </div>
+	                                    </td>
+	                                    <td class="codr_unit_cont">
+	                                        <div class="codr_unit_type ty_top"></div>
+	                                        <p class="codr_unit_tit notranslate">
+	                                            <a href="/SSGSSAK/product/product.do?productcode=\${payRecord.productId}" target="_blank">
+	                                                <strong class="codr_unit_brd"><span>\${payRecord.brandName}</span></strong>
+	                                                <span class="codr_unit_name"><span>[\${payRecord.brandName}] \${payRecord.pdName}</span></span>
+	                                            </a>
+	                                        </p>
+	                                        <span class="codr_unit_line"></span>
+	                                        <div class="codr_unit_info">
+	                                            [\${payRecord.productId}] 옵션: \${payRecord.optionName}
+	                                        </div>
+	                                    </td>
+	                                    <td class="codr_unit_pricewrap">
+	                                        <div class="codr_unit_newprice notranslate">
+	                                            <span class="blind">판매가격</span>
+	                                            <em class="ssg_price notranslate">\${payRecord.orderAmount}</em>
+	                                            <span class="ssg_tx">원</span>
+	                                        </div>
+	                                        <span class="codr_unit_line"></span>
+	                                        <span class="codr_unit_count">
+	                                            <strong class="blind">상품수량</strong>
+	                                            <em class="num notranslate">\${payRecord.quantity}</em>
+	                                            <span class="notranslate">개</span>
+	                                        </span>
+	                                        <button type="button" class="rvw_item_btn_block" id =""
+	                                            onclick="openReviewWindow(\${payRecord.productId})">
+	                                            <span>리뷰 등록하기</span>
+	                                        </button>
+	                                    </td>
+	                                </tr>
+	                            </tbody>
+	                        </table>
+	                    </div>
+	                `;
 
-			$("#codr_unitT").append(payRecordsHtml);
+	                $("#codr_unitT").append(payRecordsHtml);
+	            });
+	        }
+	    }//fuc
+	    
+	    function openReviewWindow(productcode) {
+			let kk = $('#kk').val();
+			var url = `/SSGSSAK/review/review.do?productcode=\${productcode}&auth=\${kk}`;
+			var windowName = "newReviewWindow";
+			var windowSize = "width=635,height=665";
+			var reviewWindow = window.open(url, windowName, windowSize + ",resizable=yes");
+			reviewWindow.onunload =function(){
+				if (reviewWindow.opener) {
+				reviewWindow.opener.location.reload();	
+				}//if
+			}//fu */
 			
 			
 			
-		}//foreach
-	    	
-		    }//else	
-	    }//fucntion
-	     
+		}
+
 	     
 	    $(document).ready(function() {
 	        fn_go_page(1);
+	        
+	        
+	        $(".review_lst_tab_button").click(function() {
+	           
+	            $(".review_lst_tab_button").removeClass("active");
+	            $(this).addClass("active");
+	        });
+
 	    });
     </script>
 		
