@@ -33,6 +33,7 @@ public class MainController {
 
 
 
+<<<<<<< HEAD
 	@GetMapping(value = {"/", "/mainPage/main"})
 	public String main(Locale locale, Model model) {
 		log.info("Welcome home! The client locale is {}.");
@@ -53,6 +54,30 @@ public class MainController {
 	
 	
 		
+=======
+	@GetMapping(value = {"/", "/SSGSSAK/mainPage/main/"})
+	public String main(Locale locale, Model model) {
+		log.info("Welcome home! The client locale is {}.");
+
+
+		//		model.addAttribute("productList",this.mainService);
+		return "/SSGSSAK/mainPage/main/";
+	}
+
+
+	@GetMapping("/MainMapper") 
+		
+		public String getAllProducts(Model model) {
+
+		List<MainProductListDTO> list = mainService.getAllProducts();
+
+
+		model.addAttribute("list", list);
+
+		return "Mainpage/WHmake"; }
+
+
+>>>>>>> d7f92b04ccb061e8589ca987559b69b0d671fe38
 
 
 }

@@ -7,6 +7,7 @@
 	<!-- <delete id="delete"> DELETE FROM tbl_board WHERE bno=#{bno} </delete> -->
 
 <select id="getProList" resultType="MainProductListDTO">
+<<<<<<< HEAD
       SELECT *
       FROM (
       SELECT ROWNUM no, t.*
@@ -51,6 +52,29 @@
 
       ) b
       WHERE no BETWEEN 1 AND 4
+=======
+SELECT *
+FROM
+(
+with temp as (
+    SELECT  pt.id pd, sp.spcldscnrt cnrt,sp.spclnm spcl, pt.categoryid, pt.brandid, sp.spcldscnrt dscnrt
+    FROM product pt LEFT JOIN specialprice sp ON pt.specialpriceid = sp.id
+ )
+ SELECT DISTINCT tp.pd id, pd.pdname name, pd.pcontent content, pi.imgurl url, rv.grade grade , ROW_NUMBER() OVER (PARTITION BY po.productid ORDER BY po.optionprice) as row_num , po.optionprice price ,tp.spcl spcl, (po.optionprice * (100 - tp.cnrt) / 100) disprice,  po.optionprice * (tp.cnrt / 100) cnrt, cg.id cateid, bd.brandname brandname, tp.dscnrt dscnrt
+FROM temp tp    LEFT JOIN product pd ON tp.pd = pd.id 
+              LEFT JOIN productoption po ON tp.pd = po.productid 
+                LEFT JOIN productimg pi ON tp.pd = pi.productid 
+		               LEFT JOIN review rv ON tp.pd = rv.productid 
+                       LEFT JOIN category cg ON tp.categoryid = cg.id
+                       LEFT JOIN brand bd ON tp.brandid = bd.id
+WHERE cg.id IN ( SELECT id
+                FROM category 
+                WHERE majorcatename = #{catename})
+                       
+ order by tp.pd  
+				 ) b 
+				 WHERE row_num = 1 
+>>>>>>> d7f92b04ccb061e8589ca987559b69b0d671fe38
 </select>
 
 </mapper>

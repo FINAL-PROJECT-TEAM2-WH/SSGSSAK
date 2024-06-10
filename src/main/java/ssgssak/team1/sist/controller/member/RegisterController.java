@@ -14,7 +14,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+<<<<<<< HEAD
 import ssgssak.team1.sist.domain.member.UserFormDTO;
+=======
+import ssgssak.team1.sist.domain.TermsDTO;
+import ssgssak.team1.sist.domain.member.MemberVO;
+import ssgssak.team1.sist.domain.member.UserFormDTO;
+import ssgssak.team1.sist.domain.ship.ShippingPlaceInfoVO;
+import ssgssak.team1.sist.service.member.LoginService;
+>>>>>>> d7f92b04ccb061e8589ca987559b69b0d671fe38
 import ssgssak.team1.sist.service.member.RegistService;
 
 

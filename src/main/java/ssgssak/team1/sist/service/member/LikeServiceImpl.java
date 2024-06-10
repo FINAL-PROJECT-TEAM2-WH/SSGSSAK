@@ -9,6 +9,10 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import ssgssak.team1.sist.domain.member.InterestGoodsVO;
 import ssgssak.team1.sist.mapper.member.LikeMapper;
+<<<<<<< HEAD
+=======
+import ssgssak.team1.sist.mapper.member.LoginMapper;
+>>>>>>> d7f92b04ccb061e8589ca987559b69b0d671fe38
 
 @AllArgsConstructor // 스프링 4.3부터 생성자 DI에 의해서 자동으로 객체가 생성된다. 
 @Log4j

@@ -2,6 +2,10 @@ package ssgssak.team1.sist.controller.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+<<<<<<< HEAD
+=======
+import org.springframework.http.ResponseEntity;
+>>>>>>> d7f92b04ccb061e8589ca987559b69b0d671fe38
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

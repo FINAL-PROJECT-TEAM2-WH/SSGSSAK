@@ -1,4 +1,8 @@
 package ssgssak.team1.sist.controller.member;
+<<<<<<< HEAD
+=======
+
+>>>>>>> d7f92b04ccb061e8589ca987559b69b0d671fe38
 
 
 

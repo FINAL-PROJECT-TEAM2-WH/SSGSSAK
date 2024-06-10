@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="ssgssak.team1.sist.mapper.main.MainMapper">
+	<!-- <delete id="delete"> DELETE FROM tbl_board WHERE bno=#{bno} </delete> -->
+
+<select id="getProList" resultType="MainProductListDTO">
+SELECT *
+FROM
+(
+with temp as (
+    SELECT  pt.id pd, sp.spcldscnrt cnrt,sp.spclnm spcl, pt.categoryid, pt.brandid, sp.spcldscnrt dscnrt
+    FROM product pt LEFT JOIN specialprice sp ON pt.specialpriceid = sp.id
+ )
+ SELECT DISTINCT tp.pd id, pd.pdname name, pd.pcontent content, pi.imgurl url, rv.grade grade , ROW_NUMBER() OVER (PARTITION BY po.productid ORDER BY po.optionprice) as row_num , po.optionprice price ,tp.spcl spcl, (po.optionprice * (100 - tp.cnrt) / 100) disprice,  po.optionprice * (tp.cnrt / 100) cnrt, cg.id cateid, bd.brandname brandname, tp.dscnrt dscnrt
+FROM temp tp    LEFT JOIN product pd ON tp.pd = pd.id 
+              LEFT JOIN productoption po ON tp.pd = po.productid 
+                LEFT JOIN productimg pi ON tp.pd = pi.productid 
+		               LEFT JOIN review rv ON tp.pd = rv.productid 
+                       LEFT JOIN category cg ON tp.categoryid = cg.id
+                       LEFT JOIN brand bd ON tp.brandid = bd.id
+WHERE cg.id IN ( SELECT id
+                FROM category 
+                WHERE majorcatename = #{catename})
+                       
+ order by tp.pd  
+				 ) b 
+				 WHERE row_num = 1 
+</select>
+
+</mapper>
