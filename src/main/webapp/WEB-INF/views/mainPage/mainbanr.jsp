@@ -25,7 +25,7 @@
              data-react-unit-text=""
              
         >
-            <a href="https://event.ssg.com/eventDetail.ssg?nevntId=1000000013232" class="ssghero_imglink clickable" data-react-tarea-cd-old="메인매장|메인배너|배너_클릭|5/6~12 아울렛 슈퍼위크" data-react-tarea-dtl-cd="t00001" tabindex="-1">
+            <a href="/baner" class="ssghero_imglink clickable" data-react-tarea-cd-old="쓱배송 신규 고객 웰컴페이지" data-react-tarea-dtl-cd="t00001" tabindex="-1">
              <img alt="" src="https://sui.ssgcdn.com/ui/common/img/promotion/2023/230109_hubdelivery_howto/img01.jpg">
              </a>
                
@@ -38,13 +38,13 @@
                  data-react-unit-id="2003589588"
                  data-react-unit-text=""
             >
-                 <a href="http://localhost:8080/SSGSSAK/pay/coupon.jsp"
+                 <a href="/baner"
                    class="ssghero_titlnk clickable"
                    data-react-tarea-cd-old="이벤트 클릭"
                    data-react-tarea-dtl-cd="t00001"
                 >
-                    <h3 class="ssghero_titmain">5월 아울렛 슈퍼위크</h3>
-                    <div class="ssghero_titsub">5월 아울렛 슈퍼위크</div>
+                    <h3 class="ssghero_titmain">쓱배송 신규 고객 웰컴페이지</h3>
+                    <div class="ssghero_titsub">쓱배송 신규 고객 쿠폰</div>
                 </a>
             </div>
         </div>
@@ -82,6 +82,10 @@
    </div>
 </div>
 </div></li>
+
+
+
+
        <li class="swiper-slide">
                <div class="ssghero_slide_col" data-areaid="main_banr" data-impyn="N">
 <div class="ssghero_panel">
@@ -91,7 +95,7 @@
     data-react-unit-text=""
     
 >
-   <a href="http://localhost:8080/SSGSSAK/event/event1.jsp"
+   <a href="<%= contextPath2 %>/event1"
       class="ssghero_imglink clickable"
       data-react-tarea-cd-old="http://localhost:8080/SSGSSAK/event/event1.jsp"
       data-react-tarea-dtl-cd="t00001"
@@ -116,6 +120,10 @@
 </div>
 
 </div>
+
+
+
+
 <div class="ssghero_slide_col" data-areaid="main_banr" data-impyn="N">
 <div class="ssghero_panel">
 <div class="ssghero_imgbx "
@@ -124,18 +132,19 @@
     data-react-unit-text=""
     
 >
- <a href="<%= contextPath2 %>/eventList.do?eid=1"
+ <a href="<%= contextPath2 %>/event2"
       class="ssghero_imglink clickable"
    >
        <img src="https://sstatic.ssgcdn.com/promo/event/ssg/202404/44245131910526589.jpg" alt="선스크린_1">         
         </a>
 </div>
+
 <div class="ssghero_tit"
         data-react-unit-type="banr"
         data-react-unit-id="2003594373"
         data-react-unit-text=""
    >
-       <a href="http://localhost:8080/SSGSSAK/event/event2.jsp"
+       <a href="/event2"
           class="ssghero_titlnk clickable"
           data-react-tarea-cd-old=""
           data-react-tarea-dtl-cd="t00001"

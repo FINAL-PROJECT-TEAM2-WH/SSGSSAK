@@ -16,6 +16,7 @@ public class CartDTO {
 	String seller ;
 	String brand ;
 	String optionname;
+	String pdname;
 	int price;
 	int shipfee ;
 

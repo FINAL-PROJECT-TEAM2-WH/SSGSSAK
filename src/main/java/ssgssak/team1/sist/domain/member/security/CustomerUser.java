@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 import ssgssak.team1.sist.domain.member.MemberVO;
 import ssgssak.team1.sist.domain.ship.ShippingPlaceInfoVO;
 

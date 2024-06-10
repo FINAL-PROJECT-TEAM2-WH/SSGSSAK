@@ -47,7 +47,16 @@ public class LikeServiceImpl implements LikeService{
 		return this.likeMapper.likeCancel(id, productId) == 1 ;
 	}
 	
-	
+	@Override
+	public boolean addFolder(String id, String folderName) {
+		return this.likeMapper.addFolder(id,folderName) == 1;
+	}
+
+
+	@Override
+	public List<String> getInterFolderList(String id) {
+		return this.likeMapper.getFolder(id);
+	}
 
 
 

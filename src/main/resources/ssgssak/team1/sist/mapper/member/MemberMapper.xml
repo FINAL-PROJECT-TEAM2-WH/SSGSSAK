@@ -26,4 +26,16 @@ SELECT m.id, m.passwd, m.name name, m.email,m.phonenum phoneNum, m.enabled, a.au
 SELECT  t.id, t.passwd pwd, t.email, t.name name, t.id username,t.phonenum, a.authname authority
 FROm temp t left join authority a on t.authid = a.id
 	 </select>
+	 
+	 <update id="deletequitMbr">
+	 UPDATE member
+	 SET email='quit',phonenum='quit',name='quit',passwd=#{passwd},birthd=SYSDATE
+	 WHERE id = #{id}
+	 
+	 </update>
+	 
+	 <insert id="insquitMbr">
+	 INSERT INTO quitmember VALUES (#{id},SYSDATE,#{content})
+	 </insert>
+	 
 </mapper>

@@ -17,5 +17,6 @@ public class UserFormDTO {
 	    private String mbrCntsano;
 		private String mbrCntsELno;
 	    private ShippingPlaceInfoVO shipinfo;
+	    private AgreementVO agreeinfo;
 	  // Getters and setters
 }

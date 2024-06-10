@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
@@ -335,7 +336,7 @@
     var emergencyItemIds = "";
 //]]>
 </script>
-<%@ include file="../../Top.jsp"%>
+<%@ include file="../../../Top.jsp"%>
 <div id="category" class="category"></div>
 			<div id="container"  class="cmmyssg_wrap" >
 				<!-- SSG -->
@@ -344,11 +345,13 @@
 <input type="hidden" id="openChooseBenefit" value="N"/>
 <input type="hidden" id="mbrspMbrDivCd" value="2001"/>
 <input type="hidden" id="mbrGrdCd" value="10"/>
+<meta name="_csrf" content="${_csrf.token}">
+<meta name="_csrf_header" content="${_csrf.headerName}">
 <div class="cmmyssg_header ty_light react-area">
             <div class="cmmyssg_user" data-react-tarea-cd="00034_000000001">
                 <div class="cmmyssg_user_info">
                     <h2 class="cmmyssg_user_tit" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"tarea_addt_val","value":"이름"}]'>
-                        <a href="http://www.ssg.com/myssg/main.ssg" class="cmmyssg_user_tittx clickable" data-react-tarea-dtl-cd="t00060"><span class="cmmyssg_user_titname">${info.name} 님</span>의 My SSG</a>
+                        <a href="http://www.ssg.com/myssg/main.ssg" class="cmmyssg_user_tittx clickable" data-react-tarea-dtl-cd="t00060"><span class="cmmyssg_user_titname"><sec:authentication property="principal.member.name"/> 님</span>의 My SSG</a>
                     </h2>
                 </div>
             </div>
@@ -605,9 +608,9 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td><span class="in"><strong>${info.points}</strong>원</span></td>
+                                <td><span class="in"><strong>${info.memberPoint}</strong>원</span></td>
                                 
-                                <td><span class="in"><strong>${info.points * 0.1}</strong>원</span></td>
+                                <td><span class="in"><strong>${info.memberPoint * 0.1}</strong>원</span></td>
                             </tr>
                             </tbody>
                         </table>
@@ -1310,17 +1313,22 @@ $(function(){
     
 
     function memberSecessionProcess() {
+    	let csrfToken = $('meta[name="_csrf"]').attr('content');
+    	let csrfHeader = $('meta[name="_csrf_header"]').attr('content');
     	let quitReason = $('#recommend_improvement').val();
         $.ajax({
             type: "POST",
-            url: "<%=contextPath%>/memberInfo/quit.do",
+            url: "/memberR/quit",
+            dataType: 'json',
             data : {"quitReason" :quitReason},
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(csrfHeader, csrfToken);
+            },
             success: function (result) {
-            	if (result.result.result == 'Success') {
-                	
+            	if (result.result == 'success') {              	
                     alert('회원탈퇴가 완료되었습니다.\n그동안 서비스를 이용해주셔서 감사합니다.');
-                    location.replace("<%=contextPath%>/main/mainPage/mainPage.jsp")
-                } else if (result.result.result == 'Fail') {
+                    $('#logoutform').submit();
+                } else if (result.result == 'fail') {
                     document.location.reload();
                 }
 
@@ -1336,4 +1344,4 @@ $(function(){
 
 </div>
 		<!-- footer -->
-	<%@include file="../../footer.jsp" %>
+	<%@include file="../../../footer.jsp" %>

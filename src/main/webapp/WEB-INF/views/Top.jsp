@@ -319,7 +319,7 @@
                          <li id="userinfoBtn" style="display:block;"><a id="login_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그인" href="#" onclick="" title="새창 열림"><sec:authentication property="principal.username"/>님 환영합니다</a></li>
                         <form id="logoutform" action="/login/logout" method="post">
                          <li id="logoutBtn" style="display:block;"><a id="logout_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그아웃" href="#">로그아웃</a></li>
-                        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>                      
+                        <input type="hidden" id="csrfToken" name="${_csrf.parameterName }" value="${_csrf.token }"/>                      
                         </form>                      
                         </sec:authorize>
                          <sec:authorize access="hasRole('admin')">

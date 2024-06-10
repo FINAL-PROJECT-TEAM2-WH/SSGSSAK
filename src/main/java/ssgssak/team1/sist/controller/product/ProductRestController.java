@@ -42,57 +42,22 @@ public class ProductRestController {
 		   return "/product/productTest";
 	}//views
     
-	/*
-	 * @PostMapping(value = {"/review.do" },produces =
-	 * {MediaType.APPLICATION_JSON_UTF8_VALUE}) public String get(Model model)
-	 * throws Exception { System.out.println("ajax성공");
-	 * 
-	 * // log.info(">상품상세보기 view"); // String currentPageParam =
-	 * request.getParameter("currentPage"); // int currentPage = currentPageParam !=
-	 * null ? Integer.parseInt(currentPageParam) : 1; // int numberPerPage = 5; //
-	 * // // model.addAttribute("numberPerPage",numberPerPage); //
-	 * model.addAttribute("totalRecords",this.reviewService.getTotalRecords()); //
-	 * model.addAttribute("totalPages",
-	 * this.reviewService.getTotalPages(numberPerPage, id)); //
-	 * model.addAttribute("reviewImg", this.reviewImgService.getReviewImg(id)); //
-	 * model.addAttribute("reviews",this.reviewService.select(id)); //
-	 * model.addAttribute("pagedReviews", this.reviewService.selectP(currentPage,
-	 * numberPerPage, id)); //
-	 * model.addAttribute("shippingOption",this.shippingOptionService.view(id)); //
-	 * model.addAttribute("product", this.productService.get(id)); //
-	 * model.addAttribute("specialPrice",
-	 * this.specialPriceService.getSpecialPrice(id) ); //
-	 * model.addAttribute("productOption", this.productOptionService.get(id) );
-	 * 
-	 * return "성공"; }//views
-	 */
-	/*
-	 * @PostMapping(value = {"/review.do" },produces =
-	 * {MediaType.APPLICATION_JSON_UTF8_VALUE}) public
-	 * ResponseEntity<Map<String,String>> get(Model model) throws Exception{
-	 * System.out.println("ajax성공");
-	 * 
-	 * Map<String, String> response = new HashMap<>(); response.put("message",
-	 * "성공");
-	 * 
-	 * return ResponseEntity.ok(response);
-	 * 
-	 * }
-	 */
     @PostMapping(value = {"/review.do" },produces =
     		 {MediaType.APPLICATION_JSON_UTF8_VALUE})
     public Map<String,Object> getReview(@RequestBody Map<String, Object> requestParams) throws Exception{
     	long productcode = (long)requestParams.get("productcode");
     	int pageIndex = (int) requestParams.get("pageIndex");
     	int numberPerPage = 5; 
+    	String sort = (String) requestParams.get("sort");
+    	String reviewType =(String) requestParams.get("reviewType");
     	
-    	List<ReviewDTO> reviews = reviewService.selectP(pageIndex, numberPerPage, productcode);
-    	int totalPages = reviewService.getTotalPages(numberPerPage, productcode);
+    	List<ReviewDTO> reviews = reviewService.selectP(pageIndex, numberPerPage, productcode,sort,reviewType);
+    	int totalPages = reviewService.getTotalPages(numberPerPage, productcode,reviewType);
     	int totalRecords = reviewService.getTotalRecords();
     	
     	Map<String,Object> response = new HashedMap();
     	response.put("reviews", reviews);
-    	response.put("totalPages",	totalPages);
+    	response.put("totalPages",totalPages);
     	response.put("currentPage",pageIndex);
     	response.put("totalRecords",totalRecords );
     	

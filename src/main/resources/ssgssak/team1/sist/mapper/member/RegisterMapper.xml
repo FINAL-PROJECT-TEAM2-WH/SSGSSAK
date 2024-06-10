@@ -20,4 +20,20 @@
   <insert id="setAuth">
   	INSERT INTO AUTH VALUES (#{id}, 1)
   </insert>
+
+   <select id="searchAgreement" resultType="String">
+  SELECT *
+  FROM terms
+  WHERE name = #{agreetitle}
+  </select>
+   
+  <select id="searchRAgreement" resultType="String">
+  SELECT id
+  FROM terms
+  WHERE necessary = 'Y'
+  </select>
+  
+  <insert id="registerAgreement">
+  INSERT INTO agreement VALUES (agreement_seq.NEXTVAL, #{agrNum}, #{id}, 'Y', SYSDATE)
+  </insert>
 </mapper>

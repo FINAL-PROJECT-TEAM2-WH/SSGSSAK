@@ -2,18 +2,23 @@ package ssgssak.team1.sist.controller.pay;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import ssgssak.team1.sist.domain.pay.Cart2DTO;
 import ssgssak.team1.sist.domain.pay.CouponDTO;
 import ssgssak.team1.sist.domain.pay.PayDTO;
 import ssgssak.team1.sist.mapper.pay.PayMapper;
@@ -26,8 +31,10 @@ public class PayRestController {
 	private PayMapper payMapper;
 	
 	@PostMapping("/coupon.do")
-	public String coupon(@RequestBody CouponDTO dto , HttpSession session) throws SQLException, Exception {
-		String id =(String) session.getAttribute("auth");
+	public String coupon(@RequestBody CouponDTO dto ) throws SQLException, Exception {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String id = userDetails.getUsername();
 		dto.setMemid(id);
 		int result = this.payMapper.checkcoupon(dto);
 		if (result == 1) {
@@ -46,14 +53,18 @@ public class PayRestController {
 		
 	}
 	@PostMapping("/pay.do")
-	public String paygo(@RequestBody PayDTO paydto , HttpSession session) throws SQLException, Exception {
-		String id = (String)session.getAttribute("auth");
+	public String paygo(@RequestBody PayDTO paydto ) throws SQLException, Exception {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String id = userDetails.getUsername();
 		List<Integer> optionids = paydto.getOptionids();
 		List<Integer> usecouponids = paydto.getUsecouponids();
 		 int usepoint = paydto.getUsepoint();
 		List<Integer> quantity = paydto.getQuantity();
 		int shipnum = paydto.getShipnum();
 		String shipmsg = paydto.getShipmsg();
+		
+		System.out.println("SHIPPINGNUM" + shipnum);
 		
 		log.info(paydto.toString());
 		int lastprice = 0 ;
@@ -81,6 +92,20 @@ public class PayRestController {
 		
 	
 	      return "/paysuccess.do";
+	}
+	@PostMapping("/cart.do")
+	public String cart(@RequestBody Cart2DTO cartdto) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String memid = userDetails.getUsername();
+		int result = 0;
+		int forlast = cartdto.getOptionId().size();
+		for (int i = 0; i < forlast ; i++) {
+			result = this.payMapper.insertcart(memid, cartdto.getOptionId().get(i),cartdto.getQuantity().get(i) );
+		}
+		return result+"";
+		
+		
 	}
 	
 	

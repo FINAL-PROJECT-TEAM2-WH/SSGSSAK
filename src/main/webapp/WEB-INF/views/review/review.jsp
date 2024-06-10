@@ -130,7 +130,7 @@ input[type="submit"]:hover {
 </head>
 <body>
     <h1>리뷰 등록</h1>
-    <form action="WriteReview.do" method="post" enctype="multipart/form-data" >
+    <form action="WriteReview.do?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data" >
         <div>
             <label for="productId">제품 ID:</label>
             <input type="text" id="productId" name="productId" value="${product.id}" readonly="readonly">
