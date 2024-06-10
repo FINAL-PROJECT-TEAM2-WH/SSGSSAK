@@ -8,6 +8,9 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,8 +49,10 @@ public class PayRestController {
 		
 	}
 	@PostMapping("/pay.do")
-	public String paygo(@RequestBody PayDTO paydto , HttpSession session) throws SQLException, Exception {
-		String id = (String)session.getAttribute("auth");
+	public String paygo(@RequestBody PayDTO paydto ) throws SQLException, Exception {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String id = userDetails.getUsername();
 		List<Integer> optionids = paydto.getOptionids();
 		List<Integer> usecouponids = paydto.getUsecouponids();
 		 int usepoint = paydto.getUsepoint();

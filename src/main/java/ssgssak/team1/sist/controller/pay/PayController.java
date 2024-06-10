@@ -1,26 +1,24 @@
 package ssgssak.team1.sist.controller.pay;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
 import java.io.File;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -46,8 +44,10 @@ public class PayController {
 		return "/pay/coupon";
 	}
 	@GetMapping("/pay.do")
-	public String pay(HttpServletRequest request , Model model , HttpSession session) throws SQLException, Exception {
-		String memid = (String)session.getAttribute("auth");
+	public String pay(HttpServletRequest request , Model model ) throws SQLException, Exception {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String memid = userDetails.getUsername();
 		
 		ArrayList<ProductDTO> al = new ArrayList<ProductDTO>();
 		ProductDTO dto = new ProductDTO();
@@ -85,8 +85,10 @@ public class PayController {
 		return "/pay/p2";
 	}
 	@GetMapping("/changeaddr.do")
-	public String changeaddr(HttpSession session , Model model) throws SQLException, Exception {
-		String id = (String)session.getAttribute("auth");
+	public String changeaddr( Model model) throws SQLException, Exception {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String id = userDetails.getUsername();
 		ArrayList<ShippingDTO> al = null;
 		ArrayList<ShippingDTO> al2 = null;
 
@@ -98,9 +100,10 @@ public class PayController {
 		
 	}
 	@GetMapping("/paysuccess.do")
-	public String paysuccess(HttpSession session, Model model) throws SQLException, Exception {
-		
-		String id = (String) session.getAttribute("auth");
+	public String paysuccess( Model model) throws SQLException, Exception {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String id = userDetails.getUsername();
 		String pattern = "yyyy년 MM월 dd일 (E)";
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 		String today = sdf.format(System.currentTimeMillis());
@@ -199,8 +202,10 @@ public class PayController {
 	return "redirect:/enroll.do";
 	}
 	@GetMapping("/cart.do")
-	public String cart(HttpSession session,Model model) throws SQLException, Exception {
-		String id = (String) session.getAttribute("auth");
+	public String cart(Model model) throws SQLException, Exception {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String id = userDetails.getUsername();
 		List<CartDTO> al = this.payMapper.cart(id);
 		List<ShippingDTO> al2 = this.payMapper.getdefaultshipinfo(id);
 		
