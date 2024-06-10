@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssgssak.team1.sist.mapper.event.EventMapper">
+	<!-- <delete id="delete"> DELETE FROM tbl_board WHERE bno=#{bno} </delete> -->
+
+	<select id="listApplicant" resultType="EventDTO">
+		  SELECT * FROM (
+            SELECT ROWNUM no, t.* FROM (
+                SELECT a.id, a.eid, a.memid, a.cmmn, m.WritingDate, m.win, m.winday, m.name
+                FROM applicant a 
+                JOIN member m ON a.memid = m.id 
+                WHERE a.eid = #{eid}
+                ORDER BY a.id DESC
+            ) t
+        ) WHERE no BETWEEN #{startRow} AND #{endRow}
+
+	</select>
+
+	<select id="selectEventById" parameterType="int" resultType="EventDTO">
+        SELECT id, evnNm, evnImg, evnStrDt, evnEnDt
+        FROM event
+        WHERE id = #{id}
+    </select>
+    
+	
+    <insert id="insertApplicant" parameterType="ApplicantDTO">
+        INSERT INTO applicant 
+        VALUES (applicant_seq.NEXTVAL, #{eid}, #{memid}, #{cmmn}, #{writingDate}, null, null)
+    </insert>
+
+    <select id="selectApplicant" parameterType="int" resultType="ApplicantDTO">
+        SELECT id, eid, memid, cmmn, WritingDate, win, winday
+        FROM applicant
+        WHERE eid = #{id}
+    </select>
+
+    <select id="getTotalPages" parameterType="int" resultType="int">
+        SELECT CEIL(COUNT(*) / #{pageSize}) 
+        FROM applicant 
+        WHERE eid = #{id}
+    </select>
+</mapper>

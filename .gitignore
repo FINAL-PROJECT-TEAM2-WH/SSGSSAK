@@ -5,6 +5,7 @@ Servers/
 .settings/
 .springBeans
 /target
+target/
 bin/
 images/
 *.log
