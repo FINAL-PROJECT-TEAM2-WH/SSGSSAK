@@ -6,11 +6,13 @@
   <settings>
     <!-- 컬러명이 c_name 일 경우  cName 변환 -->
     <setting name="mapUnderscoreToCamelCase" value="true"/>
+    <setting name="jdbcTypeForNull" value="NULL"/>
   </settings>
   <typeAliases>
 <!--     <typeAlias type="org.doit.ik.domain.DeptDTO" alias="DeptDTO" />-->
 
 <!-- 		명건 DTO -->
+
     <typeAlias type="ssgssak.team1.sist.domain.productList.AllCateDTO" alias="AllCateDTO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.productList.MajorCateDTO" alias="MajorCateDTO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.productList.MiddleCateDTO" alias="MiddleCateDTO" /> 
@@ -19,8 +21,12 @@
     <typeAlias type="ssgssak.team1.sist.domain.productList.CurrentCateDTO" alias="CurrentCateDTO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.productList.ProductListDTO" alias="ProductListDTO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.productList.PageDTO" alias="PageDTO" /> 
-<!--       명건 DTO 끝 -->
 
+<!--       명건 DTO 끝 -->
+	
+	<typeAlias type="ssgssak.team1.sist.domain.event.EventDTO" alias="EventDTO"/>
+	<typeAlias type="ssgssak.team1.sist.domain.event.ApplicantDTO" alias="ApplicantDTO"/>
+	<typeAlias type="ssgssak.team1.sist.domain.main.MainProductListDTO" alias="MainProductListDTO" />
     <typeAlias type="ssgssak.team1.sist.domain.member.MemberVO" alias="MemberVO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.ship.ShippingPlaceInfoVO" alias="ShippingPlaceInfoVO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.member.InterestGoodsVO" alias="InterestGoodsVO" />

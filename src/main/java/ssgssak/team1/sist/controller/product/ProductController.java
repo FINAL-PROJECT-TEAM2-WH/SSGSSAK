@@ -49,20 +49,24 @@ public class ProductController {
         int currentPage = currentPageParam != null ? Integer.parseInt(currentPageParam) : 1;
         int numberPerPage = 5;
         AllCateDTO selectCate = this.productListService.selectProdCate(id);
+ 
+        
         
         model.addAttribute("numberPerPage",numberPerPage);
         model.addAttribute("totalRecords",this.reviewService.getTotalRecords());
-        model.addAttribute("totalPages", this.reviewService.getTotalPages(numberPerPage, id));
+        model.addAttribute("totalPages", this.reviewService.getTotalPages(numberPerPage, id,""));
         model.addAttribute("selectCate", selectCate);
         model.addAttribute("crtCateDto", selectCate.getCrtCateDto());
         model.addAttribute("reviewImg", this.reviewImgService.getReviewImg(id));
         model.addAttribute("reviews",this.reviewService.select(id));
-        model.addAttribute("pagedReviews", this.reviewService.selectP(currentPage, numberPerPage, id));
+        model.addAttribute("pagedReviews", this.reviewService.selectP(currentPage, numberPerPage, id,"평점높은순","일반"));
         model.addAttribute("shippingOption",this.shippingOptionService.view(id));
         model.addAttribute("product", this.productService.get(id));
         model.addAttribute("specialPrice", this.specialPriceService.getSpecialPrice(id) );
         model.addAttribute("productOption", this.productOptionService.get(id) );
-		
+
+        
+        
 		   return "product/product";
 	}//views
 	

@@ -310,13 +310,13 @@
                         <div class="cmem_inpgrp ty_id">
                             <div class="cmem_txt">
                                 <label for="mem_id" class="blind">아이디</label>
-                                <input type="text" name="username" id="id" maxlength="50" placeholder="아이디">
+                                <input type="text" name="username" id="id" maxlength="50" placeholder="아이디" value="daetu01">
                             </div>
                         </div>
                         <div class="cmem_inpgrp ty_pw">
                             <div class="cmem_txt">
                                 <label for="mem_pw" class="blind">비밀번호</label>
-                                <input type="password" name="password" id="pwd" placeholder="비밀번호">
+                                <input type="password" name="password" id="pwd" placeholder="비밀번호" value="asdfasdf123@">
                             </div>
                         </div>
                         <div class="cmem_login_support">

@@ -48,6 +48,12 @@ public class ProductListServiceImpl implements ProductListService {
 		return (int) Math.ceil((double) prodCount / numberPerPage);
 	}
 
+	public ArrayList<MajorCateDTO> majorSelectCate() throws SQLException {
+		ArrayList<MajorCateDTO> mjcDtoList = productListMapper.selectMajorCate();
+		
+		
+		return 	 mjcDtoList;
+	}
 	public AllCateDTO selectCate(String categoryId) throws SQLException {
 	    ArrayList<MajorCateDTO> mjcDtoList = productListMapper.selectMajorCate();
 	    ArrayList<MiddleCateDTO> mdcDtoList = productListMapper.selectMiddleCate(categoryId);

@@ -28,9 +28,9 @@ WHERE leftDays >= 0
 <select id="getSevenDaysLeftC" resultType="int">
 <![CDATA[
 SELECT count(*)
-	FROM (SELECT trunc(c.endd) - trunc(SYSDATE) leftDays
-	 	FROM couponrecord cr LEFT JOIN coupon c ON cr.cnumber = c.id 
-		WHERE cr.memid = #{id}) tp 
+   FROM (SELECT trunc(c.endd) - trunc(SYSDATE) leftDays
+       FROM couponrecord cr LEFT JOIN coupon c ON cr.cnumber = c.id 
+      WHERE cr.memid = #{id}) tp 
 WHERE leftDays >= 0 AND leftDays <= 7
  ]]>
 </select>
