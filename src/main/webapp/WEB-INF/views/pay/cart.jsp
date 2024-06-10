@@ -1187,7 +1187,15 @@ function setCommonGnbCookie(name, value, expiredays) {
 															<span class="tx_ko">${items.brand }</span>
 															<span class="tx_en">${items.brand }</span>
 														</strong>
-													
+													<span class="codr_unit_name">
+														<a class="payTracking" name="itemNmBtn" data-pt-click="PC장바구니_국내배송|택배배송|상품명" href="http://www.ssg.com/item/itemView.ssg?itemId=1000044668894&amp;siteNo=6002&amp;salestrNo=2478">
+															<span class="tx_ko">
+																${items.pdname }
+															</span>
+															<span class="tx_en">${items.pdname }</span>
+															<span class="tx_zh">${items.pdname }</span>
+														</a>
+													</span>
 													<span class="codr_unit_name">
 														<a class="payTracking" name="itemNmBtn" data-pt-click="PC장바구니_국내배송|택배배송|상품명" href="http://www.ssg.com/item/itemView.ssg?itemId=1000044668894&amp;siteNo=6002&amp;salestrNo=2478">
 															<span class="tx_ko">
