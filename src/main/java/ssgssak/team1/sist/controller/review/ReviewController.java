@@ -11,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-import oracle.jdbc.proxy.annotation.Post;
 import ssgssak.team1.sist.domain.review.ReviewDTO;
 import ssgssak.team1.sist.service.review.ReviewImgService;
 import ssgssak.team1.sist.service.review.ReviewService;

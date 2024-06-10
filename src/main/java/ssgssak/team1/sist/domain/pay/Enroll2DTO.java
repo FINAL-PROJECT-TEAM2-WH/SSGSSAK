@@ -1,7 +1,6 @@
 package ssgssak.team1.sist.domain.pay;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 

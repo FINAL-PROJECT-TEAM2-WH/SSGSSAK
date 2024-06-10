@@ -21,6 +21,10 @@
     <typeAlias type="ssgssak.team1.sist.domain.productList.PageDTO" alias="PageDTO" /> 
 <!--       명건 DTO 끝 -->
 
+
+	<typeAlias type="ssgssak.team1.sist.domain.event.EventDTO" alias="EventDTO"/>
+	<typeAlias type="ssgssak.team1.sist.domain.event.ApplicantDTO" alias="ApplicantDTO"/>
+	<typeAlias type="ssgssak.team1.sist.domain.main.MainProductListDTO" alias="MainProductListDTO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.member.MemberVO" alias="MemberVO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.ship.ShippingPlaceInfoVO" alias="ShippingPlaceInfoVO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.member.InterestGoodsVO" alias="InterestGoodsVO" />

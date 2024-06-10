@@ -254,7 +254,7 @@
     <input type="hidden" name="showTripTapActvYn" value="Y">
     <input type="hidden" name="siteNo" value="6005">
     <input type="hidden" name="fromgnb" value="">
-    <%@include file="/Top.jsp" %>
+
 <!-- 최근 본 상품 -->
 <aside id="history" class="drawer_menu drawer_right" role="complementary" aria-label="최근 본 상품 리스트">
   <div class="ssg_history_wrap drawer_wrap" id="_ssg_history_wrap" tabindex="0" data-react-tarea-cd="00042_000000455">

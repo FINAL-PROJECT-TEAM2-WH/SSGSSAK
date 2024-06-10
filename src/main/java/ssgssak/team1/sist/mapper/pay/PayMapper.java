@@ -2,7 +2,6 @@ package ssgssak.team1.sist.mapper.pay;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 

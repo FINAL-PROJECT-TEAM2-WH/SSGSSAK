@@ -3,7 +3,6 @@ package ssgssak.team1.sist.domain.search;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Data

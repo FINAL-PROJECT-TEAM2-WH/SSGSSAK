@@ -67,4 +67,11 @@ public class ProductListServiceImpl implements ProductListService {
 	}
 
 
+	@Override
+	public List<ProductListDTO> selectProdList(String categoryId, int currentPage) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }

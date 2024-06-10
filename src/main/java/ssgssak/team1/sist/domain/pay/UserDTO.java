@@ -1,10 +1,8 @@
 package ssgssak.team1.sist.domain.pay;
 
-import lombok.NoArgsConstructor;
-
 import lombok.AllArgsConstructor;
-
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor

@@ -1,7 +1,6 @@
 package ssgssak.team1.sist.domain.product;
 
 import java.util.Date;
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -68,6 +68,8 @@ public class ProductListController {
         System.out.println("selectCate.getCrtCateDto() = " + selectCate.getCrtCateDto());
         
         model.addAttribute("productList", productList);
+        
+        
         model.addAttribute("getProdCount", getProdCount);
         model.addAttribute("selectCate", selectCate);
         model.addAttribute("crtCateDto", selectCate.getCrtCateDto());

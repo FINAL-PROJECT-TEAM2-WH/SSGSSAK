@@ -19,4 +19,6 @@ public interface ProductListService {
 
     public AllCateDTO selectCate(String categoryId) throws SQLException;
 
+	public List<ProductListDTO> selectProdList(String categoryId, int currentPage);
+
 }
