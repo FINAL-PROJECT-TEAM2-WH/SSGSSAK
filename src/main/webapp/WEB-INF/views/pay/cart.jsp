@@ -248,6 +248,8 @@
     };
     //]]>
 </script>
+<input type="hidden" id="csrfToken" name="${_csrf.parameterName }" value="${_csrf.token }" />
+	
 <script type="text/javascript" src="https://sui.ssgcdn.com/ui/ssg/js/affiliate/affiliateGnb.js?v=20240507"></script>
 <div id="wrap" class="main sfc_site">
 <link rel="stylesheet" type="text/css" href="https://sui.ssgcdn.com/ui/m_ssg/css/ssg_iconset.css?v=20240508">
@@ -666,8 +668,8 @@ function setCommonGnbCookie(name, value, expiredays) {
 			
 		</div>
 	</div>
+	
 	<span id="msgTranslateArea" style="color:#00ff0000; font-size:.0;"></span>
-
 	
 	
 	<div class="codr_opt_btm">

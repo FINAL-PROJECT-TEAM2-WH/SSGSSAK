@@ -29,8 +29,10 @@ public class PayRestController {
 	private PayMapper payMapper;
 	
 	@PostMapping("/coupon.do")
-	public String coupon(@RequestBody CouponDTO dto , HttpSession session) throws SQLException, Exception {
-		String id =(String) session.getAttribute("auth");
+	public String coupon(@RequestBody CouponDTO dto ) throws SQLException, Exception {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String id = userDetails.getUsername();
 		dto.setMemid(id);
 		int result = this.payMapper.checkcoupon(dto);
 		if (result == 1) {

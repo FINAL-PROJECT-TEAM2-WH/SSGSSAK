@@ -27,7 +27,10 @@
 </style>
 </head>
 <body style="color: pink">
+
  <form action="" method="post" enctype="multipart/form-data">
+ <input type="hidden" id="csrfToken" name="${_csrf.parameterName }" value="${_csrf.token }" />
+	
 <br /><br >
 
  <div style="font-size: 25px; display: flex; justify-content: center; top: 20px;"><h1 style="color: pink;">SSG 상품등록</h1></div>
