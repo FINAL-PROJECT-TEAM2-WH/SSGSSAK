@@ -898,13 +898,15 @@ function setCommonGnbCookie(name, value, expiredays) {
     
     
 <!-- 안에 비우고 여기다가 한번에 뿌리기? -->
+<c:choose>
+    <c:when test="${not empty productList[0].brandImgurl}">
     <div class="cctg_tmplbn cctg_tmplbn_osmu" style="background:#aa8b67">
     
     
             <span class="cctg_tmplbn_imgbx">
             
 <!--             여기에 브랜드이미지 뿌려지게고고고고고 -->
-                <img src="${productList[0].brandImgurl }" class="cctg_tmplbn_img" alt="${productList[0].brandName }">
+                <img src="${productList[0].brandImgurl}" class="cctg_tmplbn_img" alt="${productList[0].brandName }">
             </span>
             <div class="cctg_tmplbn_detailbx">
                 <div class="cctg_tmplbn_inner">
@@ -913,7 +915,11 @@ function setCommonGnbCookie(name, value, expiredays) {
                 </div>
             </div>
         </div>
-        
+     </c:when>
+    <c:otherwise>
+      
+    </c:otherwise>
+</c:choose> 
 
 
 
