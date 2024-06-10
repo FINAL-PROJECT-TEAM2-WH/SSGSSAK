@@ -14,33 +14,33 @@
 <input type="hidden" name="itemsExist" value="true">
 <div class="cmmain_sec_oneday" data-react-tarea-cd="00052_000000748">
         <div class="cmmain_heading">
-            <h2 class="cmmain_heading_tit">신선식품</h2>
+            <h2 class="cmmain_heading_tit">패션</h2>
             </div>
-        
+       
         <div class="cmmain_cunit_items">
             <!-- 공통상품유닛 -->
             <ul class="cunit_thmb_lst">
-               <c:choose>
-<c:when test="${not empty flist}">
-                     <c:forEach items="${flist}" var="vo" varStatus="loop">
-                        <c:if test="${loop.index < flist.size()}">
+<c:choose>
+<c:when test="${not empty plist}">
+                     <c:forEach items="${plist}" var="vo" varStatus="loop">
+                        <c:if test="${loop.index < plist.size()}">
 
                            <li class="cunit_t232">
                               <div class="cunit_prod ">
                                  <div class="prod_top"></div>
                                  <div class="thmb">
                                     <a
-                                       href="/SSGSSAK/product/product.do?productcode=${flist[loop.index].id}"
+                                       href="/SSGSSAK/product/product.do?productcode=${plist[loop.index].id}"
                                        target="_self" class="clickable" data-info="1000337473259"
                                        data-index="1" data-position="view" data-unit="img"
                                        data-react-tarea-dtl-cd="t00001"> <img
-                                       srcset="${flist[loop.index].imgurl}"
-                                       src="${flist[loop.index].imgurl}"
+                                       srcset="${plist[loop.index].imgurl}"
+                                       src="${plist[loop.index].imgurl}"
                                        onerror="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&w=232&h=232&t=9ba4c0524addb9b9ec561d5523b3baf3f90ae796'"
                                        class="i1" width="232" height="232" alt="마우스 올리기 전의 이미지"
                                        loading="lazy"> <img
-                                       srcset="${flist[loop.index].imgurl}"
-                                       src="${flist[loop.index].imgurl}"
+                                       srcset="${plist[loop.index].imgurl}"
+                                       src="${plist[loop.index].imgurl}"
                                        onerror="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&w=232&h=232&t=9ba4c0524addb9b9ec561d5523b3baf3f90ae796'"
                                        class="i2" width="232" height="232" alt="마우스 올린 후의 이미지"
                                        aria-hidden="true" loading="lazy">
@@ -48,8 +48,8 @@
 
 
                                        <div class="cm_bdg_v2 notranslate" aria-label="혜택">
-                                       <c:if test="${flist[loop.index].discount != 0}">
-                                          <span class="di_coupon"><span class="blind">쿠폰포함</span>${flist[loop.index].discount}<em
+                                       <c:if test="${plist[loop.index].discount != 0}">
+                                          <span class="di_coupon"><span class="blind">쿠폰포함</span>${plist[loop.index].discount}<em
                                              class="per">%</em></span>
                                        </c:if>
                                              
@@ -58,7 +58,7 @@
 
                                     <div class="exp_area notranslate">
                                        <div class="util_bx">
-                                          <a href="/SSGSSAK/product/product.do?productcode=${flist[loop.index].id}" class="blank clickable" target="_blank"
+                                          <a href="/SSGSSAK/product/product.do?productcode=${plist[loop.index].id}" class="blank clickable" target="_blank"
                                              data-info="1000337473259" data-index="1"
                                              data-position="pop" data-unit="img"><span
                                              class="blind">새창보기</span></a> <a href="javascript:void(0)"
@@ -86,7 +86,7 @@
 
 <input type="hidden" id="csrfToken" name="_csrf" value="${_csrf.token}">
                                              <button class="cmlike_btn _js_cmlike_btn clickable"
-                                                onclick="addLike(${flist[loop.index].id})">
+                                                onclick="addLike(${plist[loop.index].id})">
                                                 <span class="cmlike_ico"> <i
                                                    class="cmlike_primary_s"></i> <span class="sr_off"><span
                                                       class="blind">관심상품 취소</span></span> <span class="sr_on"><span
@@ -112,26 +112,26 @@
                                  </div>
                                  <div class="cunit_md notranslate">
                                     <div class="title">
-                                       <strong class="brd"> <em class="tx_ko">${flist[loop.index].brandName}</em>
+                                       <strong class="brd"> <em class="tx_ko">${plist[loop.index].brandName}</em>
                                        </strong> <a
-                                          href="/SSGSSAK/product/product.do?productcode=${flist[loop.index].id}"
+                                          href="/SSGSSAK/product/product.do?productcode=${plist[loop.index].id}"
                                           target="_self" class="clickable" data-info="1000337473259"
                                           data-index="1" data-position="view" data-unit="img"> <em
-                                          class="tx_ko">${flist[loop.index].PDname}</em>
+                                          class="tx_ko">${plist[loop.index].PDname}</em>
                                        </a>
                                     </div>
                                  </div>
                                  <div class="cunit_price">
                                     <div class="opt_price">
-                                       <span class="blind">할인적용가</span> <em class="ssg_price">${flist[loop.index].sprice}</em>
+                                       <span class="blind">할인적용가</span> <em class="ssg_price">${plist[loop.index].sprice}</em>
                                        <span class="ssg_tx">원</span>
                                        <div class="ssg_price_ko show_gl hide_ko">(￦1)</div>
                                     </div>
-                                    <c:if test="${flist[loop.index].discount != 0}">
+                                    <c:if test="${plist[loop.index].discount != 0}">
                                     
                                     <div class="org_price_wrap">
                                        <div class="org_price">
-                                          <span class="blind">판매가</span> <em class="ssg_price">${flist[loop.index].optionPrice }</em>
+                                          <span class="blind">판매가</span> <em class="ssg_price">${plist[loop.index].optionPrice }</em>
                                           <span class="ssg_tx">원</span>
                                        </div>
                                        <div class="dtl_price_wrap price-tooltip-wrap hide_gl">
@@ -141,13 +141,13 @@
                                           <div class="ly_dtl_price price-tooltip-layer">
                                              <dl class="org">
                                                 <dt>판매가</dt>
-                                                <dd>${flist[loop.index].optionPrice}</dd>
+                                                <dd>${plist[loop.index].optionPrice}</dd>
                                              </dl>
                                              <dl class="dis">
                                              </dl>
                                              <dl class="sum">
                                                 <dt>최적가</dt>
-                                                <dd>${flist[loop.index].sprice}</dd>
+                                                <dd>${plist[loop.index].sprice}</dd>
                                              </dl>
                                           </div>
                                        </div>
@@ -159,10 +159,10 @@
                                  <div class="cunit_app">
                                     <div class="rating">
                                        <div class="rate_bg">
-                                          <span style="width: ${flist[loop.index].avgGrade*20}%"><span class="blind">별점
-                                                ${flist[loop.index].avgGrade}점</span></span>
+                                          <span style="width: ${plist[loop.index].avgGrade*20}%"><span class="blind">별점
+                                                ${plist[loop.index].avgGrade}점</span></span>
                                        </div>
-                                       <span class="rate_tx">(<em>${flist[loop.index].reviewCount}</em>개)
+                                       <span class="rate_tx">(<em>${plist[loop.index].reviewCount}</em>개)
                                        </span>
                                     </div>
                                  </div>
@@ -189,7 +189,7 @@
             <!-- //공통상품유닛 -->
         </div>
         <div class="cmmain_more" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text=''>
-                <a href="/productList?categoryId=11000000&currentPage=1" class="cmmain_more_btn btn_moreview clickable" data-react-tarea-dtl-cd="t00026">매장 바로가기</a>
+                <a href="/productList?categoryId=03000000&currentPage=1" class="cmmain_more_btn btn_moreview clickable" data-react-tarea-dtl-cd="t00026">매장 바로가기</a>
             </div>
         </div>
         

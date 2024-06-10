@@ -11,6 +11,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -37,7 +38,8 @@ import ssgssak.team1.sist.mapper.pay.PayMapper;
 @RequiredArgsConstructor
 public class PayController {
 	
-	private final PayMapper payMapper;
+	@Autowired
+	private PayMapper payMapper;
 	
 	@GetMapping("/coupon.do")
 	public String coupon() {
@@ -104,7 +106,7 @@ public class PayController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		String id = userDetails.getUsername();
-		String pattern = "yyyy년 MM월 dd일 (E)";
+		String pattern = "yyyy�뀈 MM�썡 dd�씪 (E)";
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 		String today = sdf.format(System.currentTimeMillis());
 		model.addAttribute("today", today);
