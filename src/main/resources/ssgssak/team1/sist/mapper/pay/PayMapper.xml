@@ -117,4 +117,7 @@
 	<insert id="insertcardnum">
 	 insert into points values ( #{cardnum} , 0 , '1234' , #{ membervo.id} )
 	</insert>
+	<insert id="insertcart">
+	 insert into shoppingcart values ( shoppingcart_seq.nextval ,#{memid} , sysdate ,#{optionid},#{quantity})
+	</insert>
 </mapper>
