@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%
 	HttpSession hsession = request.getSession(false);
 	String mid = (String)hsession.getAttribute("auth");
@@ -329,7 +330,7 @@
     var emergencyItemIds = "";
 //]]>
 </script>
-<%@ include file="../../Top.jsp" %>
+<%@ include file="../../../Top.jsp" %>
 <div id="category" class="category"></div>
 			<div id="container"  class="cmmyssg_wrap" >
 				<!-- SSG -->
@@ -594,7 +595,7 @@
 						</span>
 						<strong class="notranslate">${ spdto.addressnick }</strong>
 					</td>
-					<td class="notranslate">${ spdto.receiveMem }</td>
+					<td class="notranslate">${ spdto.receivemem }</td>
 					<td class="subject address">
 						<input class="spdtoHidden" type="hidden" value="${spdto.id }">
 						<p class="notranslate">${ spdto.postnum }<br>
@@ -626,7 +627,7 @@
 						</span>
 						<strong class="notranslate">${ spdto.addressnick }</strong>
 					</td>
-					<td class="notranslate">${ spdto.receiveMem }</td>
+					<td class="notranslate">${ spdto.receivemem }</td>
 					<td class="subject address">
 						<p class="notranslate">${ spdto.postnum }<br>
 							<input class="spdtoHidden"  type="hidden" value="${spdto.id }">
@@ -655,12 +656,12 @@
 			<button onclick="openSPIPopup()" class="btn_cs ty3"><span style="">새 배송지 추가</span></button>
 		</div>
 		<div class="paginate notranslate">
-             <c:forEach var="pageNum" begin="1"	end="${ pdto.totalPages }">
-            	<c:if test="${pageNum eq pdto.currentPage }">
-            		<strong title="현재위치">${ pdto.currentPage}</strong>
+             <c:forEach var="pageNum" begin="${ pdto.startPage }" end="${ pdto.endPage }">
+            	<c:if test="${pageNum eq pdto.criteria.pageNum }">
+            		<strong title="현재위치">${ pdto.criteria.pageNum }</strong>
             	</c:if>
-            	<c:if test="${not (pageNum eq pdto.currentPage) }">
-            		<a href="<%= contextPath %>/shippingPlace/list.do?currentPage=${ pageNum }">${ pageNum }</a>
+            	<c:if test="${not (pageNum eq pdto.criteria.pageNum) }">
+            		<a href="/member/userinfo/shipping/shippingPlaceList?pageNum=${ pageNum }">${ pageNum }</a>
             	</c:if>
             </c:forEach>
 		</div>
@@ -687,7 +688,7 @@
 		var $row = $(element).closest('tr');
 	    var spdtoId = $row.find('.spdtoHidden').val();
 	    //alert( spdtoId );
-	    location.href = `<%= contextPath %>/ShippingPlaceDelete.do?id=\${spdtoId}`;
+	    location.href = `/member/userinfo/shipping/ShippingPlaceDelete?id=\${spdtoId}`;
 	}
 	
 	
@@ -697,7 +698,7 @@
 			alert("배송지를 체크해주세요");
 		}else{
 			//alert(defaultVal); 
-			location.href = `<%= contextPath %>/ShippingStatusEdit.do?id=\${defaultVal}&memid=<%= memid %>&status=기본배송지`
+			location.href = `/member/userinfo/shipping/ShippingStatusEdit?id=\${defaultVal}&&status=기본배송지`
 		}
 	})
 	
@@ -707,7 +708,7 @@
 			alert("배송지를 체크해주세요");
 		}else{
 			//alert(ebunmanVal);
-			location.href = `<%= contextPath %>/ShippingStatusEdit.do?id=\${ebunmanVal}&memid=<%= memid %>&status=이번만배송지`
+			location.href = `/member/userinfo/shipping/ShippingStatusEdit?id=\${ebunmanVal}&&status=이번만배송지`
 		}
 	})
 	
@@ -723,50 +724,44 @@
 	    // 서버 경로 및 AJAX 요청 설정
 	    var contextPath = "<%= request.getContextPath() %>";
 	    $.ajax({
-	        type: "GET",
-	        url: contextPath + "/shippingPlaceUpView.do",
-	        dataType: 'json',  // jQuery에서는 dataType 소문자로 씁니다.
+	        type: "POST",
+	        url: "/member/userinfo/shipping/shippingPlaceUpView",
+	        dataType: 'json',
 	        data: idJson,
 	        cache: false,
-	        contentType: "application/json",  // 일반적으로 GET 요청에서는 contentType을 설정하지 않습니다.
-	        success: function(response) {
-	            if (response.status === "success") {
-	                console.log("Shipping Info: ", response);
-	                var inputJson = {
-	                    'memid': response.memid,
-	                    'id' : spdtoId,
-	                    'addressnick': response.addressnick,
-	                    'receiveMem': response.receiveMem,
-	                    'roadAddress': response.roadAddress,
-	                    'jibunAddress': response.jibunAddress,
-	                    'detailAddress': response.detailAddress,
-	                    'tel': response.tel,
-	                    'postnum': response.postnum
-	                };
-	                localStorage.setItem("inputJson", JSON.stringify(inputJson));
-	            } else {
-	                // 에러 처리
-	                alert("Error occurred: " + response.message);
-	            }
+	        success: function(response) {    
+	            var inputJson = {
+	                'memid': response.memid,
+	                'id' : spdtoId,
+	                'addressnick': response.addressnick,
+	                'receivemem': response.receivemem,
+	                'roadAddress': response.roadAddress,
+	                'jibunAddress': response.jibunAddress,
+	                'detailAddress': response.detailAddress,
+	                'tel': response.tel,
+	                'postnum': response.postnum
+	            };
+	            alert(response.detailAddress);
+	            localStorage.setItem("inputJson", JSON.stringify(inputJson));
+
+	            // 팝업 윈도우 설정 및 열기
+	            var popupURL = "/member/userinfo/shipping/SSG_shippingPlace_update";
+	            const width = 600;
+	            const height = 600;
+	            let left = (window.innerWidth / 2) - (width / 2.5);
+	            let tops = (window.innerHeight / 2) - (height / 2.5);
+
+	            window.open(popupURL, 'SIPEditPopup', `width=${width}, height=${height}, left=${left}, top=${tops}`);
 	        },
 	        error: function(xhr, status, error) {
 	            alert("Error while requesting shipping info: " + error);
 	        }
 	    });
-
-	    // 팝업 윈도우 설정 및 열기
-	    var popupURL = contextPath + "/userinfo/shipping/SSG_shippingPlace_update.jsp";
-	    const width = 600;
-	    const height = 600;
-	    let left = (window.innerWidth / 2) - (width / 2);
-	    let tops = (window.innerHeight / 2) - (height / 2);
-
-	    window.open(popupURL, 'SIPEditPopup', `width=\${width}, height=\${height}, left=\${left}, top=\${tops}`);
 	}
 </script>
 <script>
 	function openSPIPopup(){
-		  var popupURL = "${pageContext.request.contextPath}/userinfo/shipping/SSG_shippingPlace_insert.jsp";
+		  var popupURL = "/member/userinfo/shipping/SSG_shippingPlace_insert";
 		  
 		  const width = 600;
 		  const height = 600;

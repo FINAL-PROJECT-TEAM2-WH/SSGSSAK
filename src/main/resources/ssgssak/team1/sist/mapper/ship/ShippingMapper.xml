@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssgssak.team1.sist.mapper.ship.ShippingMapper">
+	
+	<select id="orderRecordList" resultType="OrderRecordVO">
+			SELECT * FROM productimg pimg JOIN (
+			SELECT pd.pdname, ROWNUM num,
+			c2.poptionid poptionid, c2.productid productid, c2.optionprice optionprice,  
+			c2.orderdate orderdate, c2.memid memid, c2.payrecordid payid,  
+			c2.paydetailid payrecordid, c2.quantity quantity 
+			FROM product pd JOIN( 
+			SELECT po.id poptionid, po.productid productid, po.optionprice optionprice, c1.orderdate orderdate, c1.memid memid, c1.payrecordid payrecordid, c1.paydetailid paydetailid, c1.quantity quantity 
+			FROM productoption po JOIN( 
+			SELECT pr.orderdate orderdate, pr.memid memid, pr.id payrecordid, pt.id paydetailid, pt.quantity quantity, pt.id3 poptionid 
+			FROM payrecord pr JOIN paydetail pt ON pr.id = pt.id2) c1 
+			ON c1.poptionid = po.id) c2 
+			ON pd.id = c2.productid 
+			WHERE memid = 'daetu01'
+			ORDER BY orderDate DESC ) c3
+            ON c3.productid = pimg.productid
+            WHERE imgcontent = 'sum' 
+            AND 
+            <![CDATA[ 
+            c3.num < 10
+            ]]>
+	</select>
+	
+	<select id="orderDateList" resultType="String">
+	 	SELECT DISTINCT orderdate 
+		FROM payrecord 
+		WHERE memid = #{memid}
+		ORDER BY orderdate DESC
+	</select>
+	
+	<select id="orderIdStr" resultType="String">
+	SELECT pd.id id, py.orderdate 
+	FROM paydetail pd JOIN payrecord py ON pd.id2 = py.id
+	WHERE TO_CHAR( orderdate, 'yyyy-mm-dd hh24:mi:ss') = #{odate} AND py.memid = #{memid}
+	</select>
+	
+	<select id="orderDetail" resultType="OrderRecordVO" parameterType="List" >
+		 SELECT * FROM productimg pimg JOIN (
+        SELECT sop.id shippingoptionid, sop.shippingoptionname, sop.defaultshippingfee, c3.productid,   
+		 c3.pdname, c3.poptionid,  c3.optionprice, c3.orecordid paydetailid, c3.paydetailid payrecordid,
+		 c3.quantity, c3.memid, c3.pmethod, c3.orderamount, c3.orderdate 
+		 FROM shippingoption sop JOIN ( 
+		 SELECT pd.id productid, pd.shippingoptionid, pd.pdname, c2.poptionid, c2.memid, c2.paydetailid, 
+		 c2.optionprice, c2.orecordid, c2.quantity, c2.pmethod, c2.orderamount, c2.orderdate  
+		 FROM product pd JOIN ( 
+		 SELECT po.productid, po.id poptionid, po.optionprice, c1.orecordid, c1.memid, c1.quantity, c1.paydetailid,
+		 c1.pmethod, c1.orderamount, c1.orderdate  
+		 FROM productoption po JOIN ( 
+		 SELECT pt.id2 orecordId , pt.quantity quantity, pt.id3 poptionid, pr.memid, pr.pmethod pmethod, pt.id paydetailid,
+		 pr.orderamount, pr.orderdate    
+		 FROM paydetail pt JOIN payrecord pr ON pt.id2 = pr.id ) c1 
+		 ON po.id = c1.poptionid ) c2 
+		 ON pd.id = c2.productid ) c3 
+		 ON sop.id = c3.shippingoptionid  
+         WHERE c3.paydetailid IN 
+         <foreach item="orderId" index="index" collection="list" open="(" separator="," close=")">
+         	#{orderId}
+        </foreach>
+        ) c4
+         ON pimg.productid = c4.productid
+         WHERE pimg.imgcontent = 'sum'
+	</select>
+	
+	
+	<select id="orderDetailView" resultType="OrderDetailVO">
+			SELECT m.phonenum phonenum, m.name name, c1.* 
+				FROM member m JOIN( 
+				SELECT 
+				   sf.id sinfoid, sf.shippingmsg, sf.shippingstate, pt.id paydetailid,
+				   sf.shippingrequest, sf.receiveposition, sf.entrance, sf.orderid, spf.postnum, 
+				   spf.memid, spf.receivemem, spf.roadaddress, spf.detailaddress 
+				FROM shippinginformation sf JOIN shippingplaceinformation spf ON sf.shippingplaceid = spf.id
+                                            JOIN payrecord pc ON pc.id = sf.orderid 
+                                            JOIN paydetail pt ON pc.id = pt.id2) c1 
+				ON m.id = c1.memid 
+				WHERE c1.paydetailid = #{id}
+				AND m.id = #{memid}
+	</select>
+	
+	<select id="getShipPlaceTotal" resultType="int">
+		SELECT COUNT(id) 
+		FROM SHIPPINGPLACEINFORMATION
+		WHERE memid = #{memid}
+	</select>
+	
+	<select id="getShippingPlaceList" resultType="ShippingPlaceInfoVO">
+			SELECT * FROM 
+			( 
+			SELECT ROWNUM no, t.* 
+			FROM 
+			( 
+			SELECT id, memid, addressnick, receivemem, roadaddress, jibunaddress, 
+			detailaddress, tel, postnum, defaultshipping 
+			FROM SHIPPINGPLACEINFORMATION 
+			WHERE memid = #{memid}
+			ORDER BY defaultshipping DESC, id DESC 
+			) t 
+			) b 
+			WHERE no BETWEEN ${pageDTO.start} and ${pageDTO.end}
+	</select>
+	
+	<insert id="shippingPlaceInsert">
+		INSERT INTO shippingPlaceInformation ( id, memid, addressNick, receiveMem, 
+		tel, postNum, defaultShipping, roadAddress, jibunAddress, detailAddress ) 
+		VALUES ( seqshipplaceinfo.NEXTVAL, #{memid}, #{shippingPlaceInfoVO.addressnick}, #{shippingPlaceInfoVO.receivemem},
+		 #{shippingPlaceInfoVO.tel}, #{shippingPlaceInfoVO.postnum}, '기본배송지',
+		 #{shippingPlaceInfoVO.roadAddress}, #{shippingPlaceInfoVO.jibunAddress}, #{shippingPlaceInfoVO.detailAddress}) 
+	</insert>
+	
+	<update id="defaultShippingUpdate">
+		UPDATE shippingPlaceInformation
+		SET defaultshipping = 'X'
+		WHERE memid = #{memid} AND (defaultshipping = '기본배송지' OR defaultshipping = '이번만배송지')
+	</update>
+	
+	<select id="ShippingPlaceUpView" resultType="ShippingPlaceInfoVO">
+		SELECT id, memid, addressnick, receivemem, roadaddress, jibunaddress, detailaddress, tel, postnum 
+		FROM shippingPlaceInformation  
+		WHERE id = ${id}
+	</select>
+	
+	<delete id="ShippingPlaceDelete">
+		 DELETE FROM shippingPlaceInformation 
+		WHERE id = ${id}	
+	</delete>
+	
+	<update id="shippingStatusEdit">
+		UPDATE shippingPlaceInformation 
+		SET DEFAULTSHIPPING = #{status}
+		WHERE id = ${id}
+	</update>
+	
+</mapper>

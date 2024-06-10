@@ -22,6 +22,6 @@ public class ShippingPlaceInfoVO {
 	String jibunAddress;
 	String detailAddress;
 	String tel;
-	String postNum;
+	String postnum;
 	String defaultShipping;
 }

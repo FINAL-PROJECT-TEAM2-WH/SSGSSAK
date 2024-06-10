@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<% String contextPath2 = request.getContextPath(); %>
+<%
+String contextPath2 = request.getContextPath();
+%>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -341,7 +343,6 @@
 	charset="UTF-8"></script>
 <script type="text/javascript"
 	src="//sui.ssgcdn.com/ui/ssg/js/netfunnel_skin.js?v=20240508"></script>
-
 <script type="text/javascript"
 	src="//sui.ssgcdn.com/ui/ssg/js/affiliate/affiliateGnb.js"></script>
 <script type="text/javascript">
@@ -432,32 +433,7 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 </script>
 
 <script type="text/javascript">
-        try {
-           (function(h,o,u,n,d) {
-               h=h[d]=h[d]||{q:[],onReady:function(c){h.q.push(c)}}
-               d=o.createElement(u);d.async=1;d.src=n
-               n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n)
-           })(window,document,'script','https://www.datadoghq-browser-agent.com/datadog-rum-v4.js','DD_RUM')
-           DD_RUM.onReady(function() {
-               DD_RUM.init({
-                   clientToken: 'pubac24b901ad56e749ee6c07bb375b8882',
-                   applicationId: '7fbd6977-4594-4ef2-a112-4059b74bb4e6',
-                   site: 'datadoghq.com',
-                   service: 'ssg-ssgmall-webapp',
-                   env: 'prod',
-                   sessionSampleRate: 0.01,
-                   sessionReplaySampleRate: 0,
-                   trackUserInteractions: true,
-                   trackResources: true,
-                   trackLongTasks: true,
-                   defaultPrivacyLevel: 'mask-user-input',
-                   trackInteractions: true,
-                   trackSessionAcrossSubdomains: true,
-                   enableExperimentalFeatures: ['clickmap']
-               });
-               DD_RUM.startSessionReplayRecording();
-           })
-        } catch(e) {}
+
     </script>
 <script type="text/javascript"
 	src="//sui.ssgcdn.com/ui/ssg/js/common/sentry.bundle.min.js"
@@ -477,12 +453,6 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 </head>
 <body class="body_ssg body_renew body_wide body_wide_ctn">
 	<%@ include file="../Top.jsp"%>
-
-
-
-
-
-
 
 	<!-- //최근 본 상품 -->
 
@@ -840,10 +810,9 @@ isMsa=Y
 					</c:if>
 				</h2>
 				<div class="aside_txt notranslate" id="area_itemCount">
-					<c:if test="${ not empty count }">
-						<span class="tx_ko"><em>${ count }</em> 개 상품</span>
+					<c:if test="${ not empty total }">
+						<span class="tx_ko"><em>${ total }</em> 개 상품</span>
 					</c:if>
-
 				</div>
 				<!-- 공통 파라미터(js사용) -->
 				<input type="hidden" name="parmQuery" id="parmQuery" value="노트북">
@@ -952,8 +921,7 @@ isMsa=Y
 											<c:forEach items="${ cclist }" var="ccvo">
 												<li>
 													<button type="text" class="categoryId"
-														onclick="categoryDo(this)"
-														value="${ ccvo.categoryid }">
+														onclick="categoryDo(this)" value="${ ccvo.categoryid }">
 														<span class="cmflt_badge_recomm"></span> ${ ccvo.middlecatename }
 														<span>${ ccvo.count }</span>
 													</button>
@@ -971,7 +939,7 @@ isMsa=Y
     function categoryDo(button){
     	var cateVar = button.value;
     	//alert(cateVar);
-    	location.href = `<%= request.getContextPath() %>/productlist/productList.do?categoryId=\${ cateVar }&currentPage=1`;
+    	location.href = `productList?categoryId=\${ cateVar }&currentPage=1`;
     }
 </script>
 					<!-- //카테고리필터 -->
@@ -1004,6 +972,7 @@ isMsa=Y
 								<script type="text/javascript">
                 var searchBrandList = [];
             </script>
+            			
 								<c:choose>
 									<c:when test="${ empty brlist }">
 										<span>해당하는 브랜드가 없습니다.</span>
@@ -1012,16 +981,16 @@ isMsa=Y
 										<c:forEach items="${ brlist }" var="brvo" begin="0" end="5"
 											step="1">
 											<li><span class="cmflt_checkbox cmflt_checkbox_v2 ">
-													<input type="checkbox" id="btBrand1" name="btBrand1">
-													<label for="btBrand1"><span class="brd_wrap"><span
+													<input type="radio" ${ brvo.brandname eq radionVal ? 'checked' : ''} value="${brvo.brandname}" name="checkedValue" id="${brvo.brandname}" onclick="brandRadio(this)" />	
+													<label for="${brvo.brandname}"><span class="brd_wrap"><span
 															class="brd_txt">${ brvo.brandname }</span><span
 															class="brd_num">(${ brvo.productcount })</span></span> <span
-														class="cmflt_badge_best"><i class="blind">인기</i></span></label>
+														class="cmflt_badge_best"><i class="blind"></i></span></label>
 											</span></li>
 										</c:forEach>
-
 									</c:otherwise>
 								</c:choose>
+								
 
 							</ul>
 
@@ -1180,52 +1149,28 @@ isMsa=Y
 					<div class="com_tmpl">
 						<ul class="tmpl_viewtype">
 							<li>
-								<div class="tmpl_drop_wrap tmpl_sort_drop">
+								<div class="tmpl_drop_wrap">
 									<select data-template="#_dropdown" class="_dropdown"
-										title="추천순,판매량순,낮은가격순,높은가격순,할인율순,신상품순,리뷰많은순 선택"
-										style="display: none" id="searchFilterSort"
-										onchange="fn_searchSortChange(this, true);">
-										<option value="best" data-filter-type="sort"
-											data-filter-value="sort=best">추천순</option>
-										<option value="sale" data-filter-type="sort"
-											data-filter-value="sort=sale">판매량순</option>
-										<option value="prcasc" data-filter-type="sort"
-											data-filter-value="sort=prcasc">낮은가격순</option>
-										<option value="prcdsc" data-filter-type="sort"
-											data-filter-value="sort=prcdsc">높은가격순</option>
-										<option value="dcrt" data-filter-type="sort"
-											data-filter-value="sort=dcrt">할인율순</option>
-										<option value="regdt" data-filter-type="sort"
-											data-filter-value="sort=regdt">신상품순</option>
-										<option value="cnt" data-filter-type="sort"
-											data-filter-value="sort=cnt">리뷰많은순</option>
+										title="상품보기 개수 선택" onchange="searchSort(this)">
+										<option value="vest" ${pagedto.selectVal == null ? 'selected' : ''}>추천순</option>
+										<option value="fastDate" ${pagedto.selectVal == 'fastDate' ? 'selected' : ''} >최신순</option>
 									</select>
-									<div class="ssg-tooltip-layer ssg-tooltip-layer_v2"
-										id="sortTooltipLayer">
-										<p>상품의 판매량과 정확도 등을 점수화하여 정렬하며, 광고상품의 경우 별도 기준으로 상단에 정렬됩니다.</p>
-									</div>
 								</div>
 							</li>
 							<li>
 								<div class="tmpl_drop_wrap">
 									<select data-template="#_dropdown" class="_dropdown"
-										title="상품보기 개수 선택" id="searchFilterCount"
-										onchange="fn_searchCountChange(this);">
+										title="상품보기 개수 선택" onchange="changeAmount(this)">
 										<option value="20" data-filter-type="count"
-											data-filter-value="count=20"
-											${selVal == '20' ? 'selected' : ''}>20개씩</option>
+											data-filter-value="count=20" ${pagedto.criteria.amount == '20' ? 'selected' : ''}>20개씩</option>
 										<option value="40" data-filter-type="count"
-											data-filter-value="count=40"
-											${selVal == '40' ? 'selected' : ''}>40개씩</option>
+											data-filter-value="count=40" ${pagedto.criteria.amount  == '40' ? 'selected' : ''}>40개씩</option>
 										<option value="60" data-filter-type="count"
-											data-filter-value="count=60"
-											${selVal == '60' ? 'selected' : ''}>60개씩</option>
+											data-filter-value="count=60" ${pagedto.criteria.amount  == '60' ? 'selected' : ''}>60개씩</option>
 										<option value="80" data-filter-type="count"
-											data-filter-value="count=80"
-											${selVal == '80' ? 'selected' : ''}>80개씩</option>
+											data-filter-value="count=80" ${pagedto.criteria.amount  == '80' ? 'selected' : ''}>80개씩</option>
 										<option value="100" data-filter-type="count"
-											data-filter-value="count=100"
-											${selVal == '100' ? 'selected' : ''}>100개씩</option>
+											data-filter-value="count=100" ${pagedto.criteria.amount  == '100' ? 'selected' : ''}>100개씩</option>
 									</select>
 								</div>
 							</li>
@@ -1246,9 +1191,19 @@ isMsa=Y
 					</div>
 				</div>
 				<script>
-	function fn_searchCountChange(selectElement) {
+	function changeAmount(selectElement) {
 	    var selectedValue = selectElement.value;
-	    location.href = `<%=contextPath2%>/searchQuery.do?selVal=\${selectedValue}&searchWord=${searchWord}`;
+	    location.href = `/searchQuery?pageNum=${pagedto.criteria.pageNum}&amount=\${selectedValue}&searchWord=${searchWord}&selectVal=${pagedto.selectVal}`;
+	}
+	function searchSort(selected){
+		var selectVal = selected.value;
+		location.href = `/searchQuery?pageNum=${pagedto.criteria.pageNum}&amount=${pagedto.criteria.amount}&searchWord=${searchWord}&selectVal=\${selectVal}`
+	}
+	function brandRadio(radioEle){
+		alert("클릭");
+		var radionVal = radioEle.value;
+		location.href = `/searchQuery?pageNum=${pagedto.criteria.pageNum}&amount=${pagedto.criteria.amount}&searchWord=${searchWord}&selectVal=${selectVal}&radionVal=\${radionVal}`
+		
 	}
 </script>
 				<!-- //상품리스팅 정렬 BAR -->
@@ -1283,12 +1238,15 @@ isMsa=Y
 													<div class="exp_area notranslate">
 														<div class="util_bx">
 															<a
-																href="/SSGSSAK/product/product.do?productcode=${ svo.productid }"
-																class="blank clickable" target="_blank"><span
+																href="/item/itemView.ssg?itemId=1000068529577&siteNo=6004&salestrNo=6005"
+																class="blank clickable" target="_blank"
+																data-info="1000068529577" data-index="0"
+																data-position="pop" data-unit="img"
+																data-react-tarea="좋아요|상품|상품_새창보기|어센틱 올드스쿨 체커보드슬립온 데일리 운동화 스니커즈 22종"><span
 																class="blind">새창보기</span></a> <a href="javascript:void(0)"
 																class="cart clickable" role="button"
 																onclick="frontCommCart.put(this, '');"
-																data-info="1000587710191" data-idx="0"
+																data-info="1000068529577" data-idx="0"
 																data-position="cart" data-unit="img"
 																data-react-tarea-dtl-cd="t00002"><span class="blind">장바구니</span></a>
 															<span style="display: none" class="disp_cart_data"
@@ -1313,6 +1271,7 @@ isMsa=Y
 													</div>
 												</div>
 											</div>
+											<input type="hidden" id="csrfToken" name="_csrf" value="${_csrf.token}" />
 											<div class="cunit_info">
 												<div class="cunit_tp">
 													<span class="cm_mall_ic ty_rect_s notranslate"> <!-- ssg 푸드마켓  -->
@@ -1377,40 +1336,41 @@ isMsa=Y
 														</div>
 													</c:if>
 												</c:forEach>
-												
-												<c:forEach items="${ rlist }" var="rvdto" >
-													<c:choose >
-														<c:when test="${ rvdto.productid eq svo.productid }">
-															<div class="cunit_app">
-																<div class="rating" data-rating="${ rvdto.reviewPoint }">
-																	<div class="rate_bg">
-																		<!-- 리뷰점수 가져오기 -->
-																		<span class="rateFill" style="width: 0%"><span
-																			class="blind">별점 ${ rvdto.reviewPoint }점</span></span>
-																	</div>
-																	<span class="rate_tx">(<em>${ rvdto.reviewCount }</em>개)
-																	</span>
+
+												<c:forEach items="${ rlist }" var="rvdto">
+
+													<c:if test="${ rvdto.productid eq svo.productid }">
+														<c:set var="found" value="true" />
+														<div class="cunit_app">
+															<div class="rating" data-rating="${ rvdto.reviewPoint }">
+																<div class="rate_bg">
+																	<!-- 리뷰점수 가져오기 -->
+																	<span class="rateFill" style="width: 0%"><span
+																		class="blind">별점 ${ rvdto.reviewPoint }점</span></span>
 																</div>
+																<span class="rate_tx">(<em>${ rvdto.reviewCount }</em>개)
+																</span>
 															</div>
-														</c:when>
-														<c:otherwise>
-															<div class="cunit_app">
-																<div class="rating" data-rating="0%">
-																	<div class="rate_bg">
-																		<!-- 리뷰점수 가져오기 -->
-																		<span class="rateFill" style="width: 0%"><span
-																			class="blind">별점 0 점</span></span>
-																	</div>
-																	<span class="rate_tx">(<em>0</em>개)
-																	</span>
-																</div>
-															</div>
-														</c:otherwise>
-													</c:choose>		
+														</div>
+													</c:if>
 												</c:forEach>
-												
-												
-												
+												<c:if test="${ !found }">
+													<div class="cunit_app">
+														<div class="rating" data-rating="0%">
+															<div class="rate_bg">
+																<!-- 리뷰점수 가져오기 -->
+																<span class="rateFill" style="width: 0%"><span
+																	class="blind">별점 0 점</span></span>
+															</div>
+															<span class="rate_tx">(<em>0</em>개)
+															</span>
+														</div>
+													</div>
+												</c:if>
+
+
+
+
 												<div class="cunit_bene">
 													<div class="spt_deiv">
 														<div class="cunit_tipbox cunit_depart_today">
@@ -1501,6 +1461,59 @@ $(document).ready(function() {
     });
 });
 
+
+</script>
+						<script>
+function addLike(productid) {
+	//alert($('#csrfToken').val());
+    $.ajax({
+        url: '/memberR/like',
+        dataType: 'json',
+        type: 'GET',
+        data: { "productid" : productid}, 
+        cache: false,
+        success: function (data) {
+           if (data.result == 'Invalid') {
+              if (confirm ('이미 좋아요 누른 항목입니다. 취소하시겠습니까? ')) {
+                 alert("ㅇㅋ 취소해줌");
+                 var csrfToken = $('#csrfToken').val();
+                 alert(csrfToken);
+                 // 취소하는 ajax 
+                  $.ajax({
+                    url: '/memberR/like',
+                    contentType: 'application/json',
+                    type: 'POST',
+                    data : JSON.stringify({"productid" : productid
+                       }),
+                    cache: false,
+                    beforeSend: function(xhr) {
+                            xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+                     },
+                    success : function (data) {
+                       if(data.result == 'success') {
+                          alert('삭제 성공');
+                          location.reload();
+                       } else {
+                          alert('삭제 실패');
+                       }
+                    }, error : function (xhr, status, error){
+                       
+                    }
+                 }); 
+              } else {
+                 alert('그대로 냅둘게');
+              }
+           } else if ( data.result == 'Success') {
+              alert('좋아요 성공임');
+           } else if ( data.result == 'Fail') {
+              alert('좋아요 실패임 ');
+           }
+        },
+        error: function (xhr, status, error) {
+
+        }
+    });
+} 
 </script>
 					</div>
 
@@ -2003,13 +2016,13 @@ wptg_tagscript_vars.push(
 </script>
 	<div id="item_navi" class="com_paginate notranslate">
 		<!-- 아이템 페이지 현재 페이지 몇 페이지인지?? -->
-		<c:forEach var="pageNum" begin="1" end="${ pdto.totalPages }">
-			<c:if test="${pageNum eq pdto.currentPage }">
-				<strong title="현재위치">${ pdto.currentPage}</strong>
+		<c:forEach var="pageNum" begin="1" end="${ pagedto.endPage }">
+			<c:if test="${pageNum eq pagedto.criteria.pageNum }">
+				<strong title="현재위치">${ pagedto.criteria.pageNum}</strong>
 			</c:if>
-			<c:if test="${not (pageNum eq pdto.currentPage) }">
+			<c:if test="${not (pageNum eq pagedto.criteria.pageNum) }">
 				<a
-					href="<%= contextPath %>/searchQuery.do?currentPage=${ pageNum }&searchWord=${ searchWord }&selVal=${ selVal }">${ pageNum }</a>
+					href="/searchQuery?pageNum=${ pageNum }&searchWord=${ searchWord }&amount=${pagedto.criteria.amount}&selectVal=${pagedto.selectVal}">${ pageNum }</a>
 			</c:if>
 		</c:forEach>
 
@@ -2017,29 +2030,28 @@ wptg_tagscript_vars.push(
 	<div id="item_navi" class="com_paginate notranslate">
 
 		<!-- 첫페이지  -->
-		<c:if test="${ pdto.currentPage > 1 }">
-			<a
-				href="<%= contextPath %>/searchQuery.do?currentPage=1&searchWord=${ searchWord }&selVal=${ selVal }">처음
+		<c:if test="${ pagedto.criteria.pageNum > 1 }">
+			<a href="/searchQuery?pageNum=1&searchWord=${ searchWord }&amount=${pagedto.criteria.amount}&selectVal=${pagedto.selectVal}">처음
 				페이지</a>
 		</c:if>
 
 		<!-- 이전 페이지 -->
-		<c:if test="${ pdto.currentPage > 1 }">
+		<c:if test="${ pagedto.criteria.pageNum > 1 }">
 			<a
-				href="<%= contextPath %>/searchQuery.do?currentPage=${ pdto.currentPage - 1 }&searchWord=${ searchWord }&selVal=${ selVal }">이전
+				href="<%= contextPath %>/searchQuery?pageNum=${ pagedto.criteria.pageNum - 1 }&searchWord=${ searchWord }&amount=${pagedto.criteria.amount}&selectVal=${pagedto.selectVal}">이전
 				페이지</a>
 		</c:if>
 
 		<!-- 다음 페이지 -->
-		<c:if test="${ pdto.currentPage < pdto.totalPages }">
+		<c:if test="${ pagedto.criteria.pageNum < pagedto.endPage }">
 			<a
-				href="<%= contextPath %>/searchQuery.do?currentPage=${ pdto.currentPage + 1 }&searchWord=${ searchWord }&selVal=${ selVal }">다음
+				href="<%= contextPath %>/searchQuery?pageNum=${ pagedto.criteria.pageNum + 1 }&searchWord=${ searchWord }&amount=${pagedto.criteria.amount}&selectVal=${pagedto.selectVal}">다음
 				페이지</a>
 		</c:if>
 		<!-- 끝 페이지 -->
-		<c:if test="${ pdto.currentPage < pdto.totalPages }">
+		<c:if test="${ pagedto.criteria.pageNum < pagedto.endPage }">
 			<a
-				href="<%= contextPath %>/searchQuery.do?currentPage=${ pdto.totalPages }&searchWord=${ searchWord }&selVal=${ selVal }">끝
+				href="<%= contextPath %>/searchQuery?pageNum=${ pagedto.endPage }&searchWord=${ searchWord }&amount=${pagedto.criteria.amount}&selectVal=${pagedto.selectVal}">끝
 				페이지</a>
 		</c:if>
 	</div>
