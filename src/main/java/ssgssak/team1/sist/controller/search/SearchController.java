@@ -88,7 +88,7 @@ public class SearchController {
 		ArrayList<BrandCateCountVO> cclist = this.searchService.getSearchCateCount(searchWord);
 		ArrayList<BrandCateCountVO> brlist = this.searchService.getSearchBrandMap(searchWord);
 		
-		System.out.println(pagedto);
+		System.out.println(rlist);
  		model.addAttribute("slist", slist);
 		model.addAttribute("cclist",cclist);
 		model.addAttribute("brlist", brlist);
