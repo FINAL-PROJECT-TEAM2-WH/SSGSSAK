@@ -12896,7 +12896,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 		        $(".pagination").append(nextPageHtml);
 			}
 	        
-	    }//mkp -->
+	    }//mkp 
 													
 												</div>
 											</section>

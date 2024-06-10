@@ -580,29 +580,32 @@
 	    	
 	    	
 	    }//delete 
-	   /*  
+	   
 	    //작성가능한 상품 
 	    function beforeReview(){
+	    	alert("클릭됐음");
 	    	var csrfToken = $('#csrfToken').val();
+	    	
 			$.ajax({
 				url:"/SSGSSAK/reviewR/userBeforeReview.do",
-				method ="POST",
+				method :"POST",
 				contentType: "application/json;charset=UTF-8",
 				dataType:"json",
 				beforeSend: function(xhr) {
 	                   xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
 	             		},
 				success:function(data,callback,xhr){
+					alert("ajax 성공");
+					console.log(data);
 					 mkPayRecords(data.payRecords); 
-					alert("ajax 성공")
 					
 				},error:function(xhr,errorType){
 					alert("작석가능한리뷰 조회 실패"+errorType);
 				}
 				
-			})//ajax
+			});//ajax
 	    	
-	    }//fun
+	    };//fun 
 	    
 	    function mkPayRecords(payRecords){
 	    	$("#item_rvw_list").empty();
@@ -685,8 +688,8 @@
 	    	
 		    }//else	
 	    }//fucntion
-	    
-	     */
+	     
+	     
 	    $(document).ready(function() {
 	        fn_go_page(1);
 	    });
