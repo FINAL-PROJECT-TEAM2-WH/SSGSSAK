@@ -2734,8 +2734,8 @@ function setCommonGnbCookie(name, value, expiredays) {
 											<!-- 브랜드번호 불러와서 링크걸고 , 브랜드 이름불러오기  -->
 
 
-												<a
-													href="/brand/brandShop.ssg?brandId=${product.brandId}"
+<%-- 												<a href="/brandStore?brandId=${product.brandId}" --%>
+												<a href="/brandStore?brandId=${product.brandId}"
 													class="cdtl_info_tit_link">${product.brandName}<i
 													class="ic_arrow_link"></i></a>
 											</div>

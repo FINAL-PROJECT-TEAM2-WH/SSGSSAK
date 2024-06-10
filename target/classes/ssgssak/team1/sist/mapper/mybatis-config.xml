@@ -20,6 +20,7 @@
     <typeAlias type="ssgssak.team1.sist.domain.productList.CurrentCateDTO" alias="CurrentCateDTO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.productList.ProductListDTO" alias="ProductListDTO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.productList.PageDTO" alias="PageDTO" /> 
+    <typeAlias type="ssgssak.team1.sist.domain.productList.BrdPrdListDTO" alias="BrdPrdListDTO" /> 
 
 <!--       명건 DTO 끝 -->
 

@@ -1,9 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%
-request.setAttribute("pageTitle", "내 페이지 타이틀");
-%>
+
 
 <!doctype html>
 <html lang="ko">
@@ -13,8 +11,11 @@ request.setAttribute("pageTitle", "내 페이지 타이틀");
 <link rel="shortcut icon" type="image/x-icon"
 	href="//sui.ssgcdn.com/ui/common/img/ssg.ico">
 <link rel="image_src" href="//sui.ssgcdn.com/ui/common/img/sns/ssg.png" />
-<title class="notranslate">카테고리 &gt;<%=request.getAttribute("pageTitle")%>,
-	믿고 사는 즐거움 SSG.COM
+<title class="notranslate">카테고리 &gt; ${crtCateDto.majorCateName} 
+<c:if test="${crtCateDto.middleCateName != null && !crtCateDto.middleCateName.isEmpty()}">&gt; ${crtCateDto.middleCateName}</c:if>  
+<c:if test="${crtCateDto.subCateName != null && !crtCateDto.subCateName.isEmpty()}">&gt; ${crtCateDto.subCateName} </c:if>
+<c:if test="${crtCateDto.miniCateName != null && !crtCateDto.miniCateName.isEmpty()}">&gt; ${crtCateDto.miniCateName} </c:if>
+ SSGSSAK
 </title>
 <meta name="title" content="카테고리 &gt; 스피커, 믿고 사는 즐거움 SSG.COM" />
 <meta name="description" content="카테고리 &gt; 스피커, 믿고 사는 즐거움 SSG.COM" />
@@ -788,7 +789,7 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 		<div class="cctg_subtit" id="area_disp_ctg_title">
 			<h2>
 				<a class="notranslate clickable"
-					href="/SSGSSAK/productlist/productList?categoryId=${crtCateDto.id}&currentPage=1">
+					href="/SSGSSAK/productlist/productList?categoryId=${crtCateDto.id}">
 					<c:choose>
 						<c:when test="${not empty crtCateDto.miniCateName}">
 							<c:out value="${crtCateDto.miniCateName}" />
@@ -862,35 +863,40 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 									<ul class="cmflt_ctlist notranslate">
 <!-- 										사이드카테고리뿌리기 -->
 <%-- 																		<c:forEach items="${selectCate.mncDtoList}" var="mnDto"> --%>
-<%-- 																			<li class=""><a href="productList?categoryId=${mnDto.id}&currentPage=1">${mnDto.miniCateName}</a></li> --%>
+<%-- 																			<li class=""><a href="productList?categoryId=${mnDto.id}">${mnDto.miniCateName}</a></li> --%>
 <%-- 																		</c:forEach> --%>
 
 
 
 										<c:choose>
 
+											<c:when test="${empty param.categoryId}">
+												<c:forEach items="${selectCate.mjcDtoList}" var="mjcDto">
+													<li class=""><a href="productList?categoryId=${mjcDto.id}">${mjcDto.majorCateName}</a></li>
+												</c:forEach>
+											</c:when>
 											<c:when test="${fn:endsWith(crtCateDto.id, '000000') or fn:endsWith(crtCateDto.id, '0000000')}">
 												<c:forEach items="${selectCate.mdcDtoList}" var="mdcDto">
-													<li class=""><a href="productList?categoryId=${mdcDto.id}&currentPage=1">${mdcDto.middleCateName}</a></li>
+													<li class=""><a href="productList?categoryId=${mdcDto.id}">${mdcDto.middleCateName}</a></li>
 												</c:forEach>
 											</c:when>
 											
 											
 											<c:when test="${fn:endsWith(crtCateDto.id, '0000')}">
 												<c:forEach items="${selectCate.scDtoList}" var="scDto">
-													<li class=""><a href="productList?categoryId=${scDto.id}&currentPage=1">${scDto.subCateName}</a></li>
+													<li class=""><a href="productList?categoryId=${scDto.id}">${scDto.subCateName}</a></li>
 												</c:forEach>
 											</c:when>
 											
 											<c:when test="${fn:endsWith(crtCateDto.id, '0000') and not empty selectCate.mncDtoList}">
 												<c:forEach items="${selectCate.mncDtoList}" var="mncDto">
-													<li class=""><a href="productList?categoryId=${mncDto.id}&currentPage=1">${mncDto.miniCateName}</a></li>
+													<li class=""><a href="productList?categoryId=${mncDto.id}">${mncDto.miniCateName}</a></li>
 												</c:forEach>
 											</c:when>
 											
 											<c:otherwise>
 												<c:forEach items="${selectCate.scDtoList}" var="scDto">
-													<li class=""><a href="productList?categoryId=${scDto.id}&currentPage=1">${scDto.subCateName}</a></li>
+													<li class=""><a href="productList?categoryId=${scDto.id}">${scDto.subCateName}</a></li>
 												</c:forEach>
 											</c:otherwise>
 										</c:choose>
@@ -901,7 +907,7 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 							</div>
 
 <!-- 						brandsipping.jsp 있던자리 -->
-	
+<%-- 	<%@ include file="brandsipping.jsp"%> --%>
 
 				</div>
 			</div>
@@ -1109,13 +1115,13 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 							
 </c:choose>
 
-							<!-- 페이징처리하는곳 고고 -->
 						</ul>
 					</div>
+							<!-- 페이징처리하는곳 고고 -->
 					<div class="com_paginate notranslate" style="width: 100%">
 						<c:if test="${ pDto.prev }">
 							<a class="btn_prev"
-								href="?categoryId=${crtCateDto.id}&currentPage=${pDto.start-1}&sort=${param.sort}"
+								href="?categoryId=${crtCateDto.id}&currentPage=${pDto.start-1}<c:if test='${not empty param.sort}'>&sort=${param.sort}</c:if><c:if test='${not empty param.size}'>&size=${param.size}</c:if>"
 								title="이전">
 						</c:if>
 
@@ -1129,7 +1135,7 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 								</c:when>
 
 								<c:otherwise>
-									<a href="?categoryId=${crtCateDto.id}&currentPage=${i}&sort=${param.sort}">${i}</a>
+									<a href="?categoryId=${crtCateDto.id}&currentPage=${i}<c:if test='${not empty param.sort}'>&sort=${param.sort}</c:if><c:if test='${not empty param.size}'>&size=${param.size}</c:if>">${i}</a>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
@@ -1139,7 +1145,7 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 
 						<c:if test="${ pDto.next }">
 							<a class="btn_next on"
-								href="?categoryId=${crtCateDto.id}&currentPage=${pDto.end+1}&sort=${param.sort}"
+								href="?categoryId=${crtCateDto.id}&currentPage=${pDto.end+1}<c:if test='${not empty param.sort}'>&sort=${param.sort}</c:if><c:if test='${not empty param.size}'>&size=${param.size}</c:if>"
 								title="다음">
 						</c:if>
 

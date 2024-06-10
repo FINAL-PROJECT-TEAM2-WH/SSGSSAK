@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductListDTO {
+public class BrdPrdListDTO {
 	private long id;
 	private long shippingOptionId;
 	private String sellerstoreid;
@@ -27,7 +27,8 @@ public class ProductListDTO {
 	private long discount;
 	private long reviewCount;
 	private double avgGrade;
-	private String imgurl;
+	private String prodImgurl;
+	private String brandImgurl;
 
     private static final DecimalFormat decimalFormat = new DecimalFormat("#,###");
 
@@ -43,7 +44,7 @@ public class ProductListDTO {
         return decimalFormat.format(price);
     }
 
-    public void setImgurl(String imgurl) {
+    public void setprodImgurl(String imgurl) {
         if (imgurl == null) return;
 
         int lastSlashIndex = imgurl.lastIndexOf('/');
@@ -52,7 +53,19 @@ public class ProductListDTO {
 
         String encodedFilename = encodeFilename(filename);
 
-        this.imgurl = path + encodedFilename;
+        this.prodImgurl = path + encodedFilename;
+    }
+    
+    public void setbrandImgurl(String imgurl) {
+    	if (imgurl == null) return;
+    	
+    	int lastSlashIndex = imgurl.lastIndexOf('/');
+    	String path = imgurl.substring(0, lastSlashIndex + 1);
+    	String filename = imgurl.substring(lastSlashIndex + 1);
+    	
+    	String encodedFilename = encodeFilename(filename);
+    	
+    	this.brandImgurl = path + encodedFilename;
     }
 
     private String encodeFilename(String filename) {
