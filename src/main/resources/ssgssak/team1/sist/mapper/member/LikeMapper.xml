@@ -44,4 +44,15 @@ WHERE memid = #{id} AND productid = #{productid}
  DELETE FROM interestgoods 
  WHERE memid = #{id} AND productid = #{productid}
   </delete>
+  
+  <insert id="addFolder">
+  INSERT INTO divisionfolder VALUES(division_seq.NEXTVAL, #{id}, #{folderName} ,SYSDATE)
+  </insert>
+  
+  <select id="getFolder" resultType="String">
+  SELECT name
+  FROM divisionfolder
+  WHERE memid = #{id}
+  </select>
+  
 </mapper>

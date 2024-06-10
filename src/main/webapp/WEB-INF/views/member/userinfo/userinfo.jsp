@@ -620,7 +620,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
              <h2 class="cmmyssg_user_tit">
              
              <!--  추후에 수정해줄 필요가 있음. get/ post  -->
-            <a href="<%=contextPath %>/userinfo.userinfo.jsp" data-react-tarea-dtl-cd="t00060" class="cmmyssg_user_tittx clickable"><span class="cmmyssg_user_titname">${userinfo.name}님</span></a>
+            <a href="<%=contextPath %>/userinfo.userinfo.jsp" data-react-tarea-dtl-cd="t00060" class="cmmyssg_user_tittx clickable"><span class="cmmyssg_user_titname">${userinfo.memberVO.name}님</span></a>
             </h2>
             </div>
 

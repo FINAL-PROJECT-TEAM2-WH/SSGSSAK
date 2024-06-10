@@ -4,6 +4,7 @@ package ssgssak.team1.sist.controller.member;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,10 +12,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,6 +49,9 @@ public class MemberController {
 	@Autowired
 	UserInfoService infoService;
 	
+	PasswordEncoder passwordEncoder;
+	
+	
 	
 	@GetMapping("/like")
 	public String likeInfo(Model model) {
@@ -55,6 +61,8 @@ public class MemberController {
 		String id = userDetails.getUsername();
 		System.out.println(id);
 		List<InterestGoodsVO> list = likeService.getInterGoodsList(id);
+		List<String>folderList = likeService.getInterFolderList(id);
+		model.addAttribute("folderList", folderList);
 		model.addAttribute("productList",list);
 		model.addAttribute("listSize", list.isEmpty() ? 0 : list.size());
 		return "/member/userinfo/like/like";
@@ -82,9 +90,9 @@ public class MemberController {
 		// id, 이름 , phone, Email
 		log.info("> MemberController.changeInfo GET IN()");
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		CustomerUser customerUser = (CustomerUser) authentication.getPrincipal();		
-	
-		model.addAttribute("memberVO", customerUser.getMember());
+		CustomerUser customerUser = (CustomerUser) authentication.getPrincipal();	
+		String id = customerUser.getUsername();
+		model.addAttribute("userInfoVO", this.infoService.getUserInfo(id));
 		
 		return "/member/userinfo/myInfoMng/changeInfo";
 	}
@@ -92,13 +100,24 @@ public class MemberController {
 	@PostMapping("/changeInfo")
 	public ResponseEntity<Map<String, Object>> changeInfo(MemberVO vo) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		CustomerUser customerUser = (CustomerUser) authentication.getPrincipal();
+		CustomerUser  customerUser = (CustomerUser) authentication.getPrincipal();
+		String id = customerUser.getUsername();
 		log.info("> MemberController.changeInfo POST IN()");
 		Map <String, Object> map = new HashMap();
 	
 		if(this.infoService.updateInfo(vo)) {
 			map.put("resultCode", "SUCCESS");
 			map.put("resultMsg", "변경에 성공하였습니다.");
+			customerUser.getMember().setPhoneNum(vo.getPhoneNum());
+			customerUser.getMember().setEmail(vo.getEmail());
+			
+			Authentication newAuth = new UsernamePasswordAuthenticationToken(
+					customerUser,
+					authentication.getCredentials(),
+					customerUser.getAuthorities()
+					);
+			SecurityContextHolder.getContext().setAuthentication(newAuth);
+			
 			
 		}
 		else {
@@ -107,6 +126,64 @@ public class MemberController {
 		}
 	
 		return ResponseEntity.ok(map);
+	}
+	
+	@GetMapping("/changePwd")
+	public String changePwd() {
+		log.info("> MemberController.changePwd GET IN()");
+		
+		return "/member/userinfo/myInfoMng/changePwd";
+	}
+	
+	
+	
+	@PostMapping("/changePwd")
+	public ResponseEntity<Map<String, Object>> changePwd(String pwd){
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		CustomerUser customerUser = (CustomerUser) authentication.getPrincipal();	
+		String id = customerUser.getUsername();
+		Map <String, Object> map = new HashMap();
+		if (this.infoService.updatePwd(id, passwordEncoder.encode(pwd))) {
+			map.put("resultCode", "SUCCESS");
+			map.put("resultMsg", "변경에 성공하였습니다.");
+			
+		} else {
+			map.put("resultCode", "fail");
+			map.put("resultMsg", "변경에 실패하였습니다.");
+		}
+		
+		return ResponseEntity.ok(map);
+
+	}
+	
+	@GetMapping("/agreeInfo")
+	public String agreeInfo(Model model) {
+		// 약관 정보 긁어오기 
+		// 약관 정보부터 들어가야 함. ㅋㅅㅋ 
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		CustomerUser customerUser = (CustomerUser) authentication.getPrincipal();	
+		String id = customerUser.getUsername();
+		Map<String,String> agreeMap = new HashMap();
+		for( String str : this.infoService.getUseragreement(id)) {
+			System.out.println(str);
+			agreeMap.put(str, str);
+		};	
+		model.addAttribute("agreeMap", agreeMap);
+		
+		return "/member/userinfo/myInfoMng/infoRcvAgree";
+	}
+	
+	
+	@GetMapping("/quit")
+	public String quit(Model model) {		
+		// 필요한 데이터 . 
+		// 회원 포인트. 
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		CustomerUser customerUser = (CustomerUser) authentication.getPrincipal();	
+		String id = customerUser.getUsername();
+		
+		model.addAttribute("info",this.infoService.getUserInfo(id)); 
+		return "/member/userinfo/myInfoMng/quitMbr";
 	}
 	
 }

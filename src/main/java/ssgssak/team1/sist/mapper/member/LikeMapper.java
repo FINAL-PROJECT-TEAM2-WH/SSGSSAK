@@ -12,4 +12,6 @@ public interface LikeMapper {
 	int searchLike(@Param("id")String id, @Param("productid")String productId);
 	int insertLike(@Param("id")String id, @Param("productid")String productId);
 	int likeCancel(@Param("id")String id, @Param("productid")String productId);
+	int addFolder(@Param("id")String id, @Param("folderName")String folderName);
+	List<String> getFolder(String id);
 }
