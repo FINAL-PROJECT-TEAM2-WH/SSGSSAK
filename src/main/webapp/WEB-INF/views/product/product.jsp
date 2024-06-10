@@ -3406,7 +3406,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 								</c:choose>
 
 
-
+		<input type="hidden" id="csrftoken" name="${_csrf.parameterName }" value="${_csrf.token }" />
 		<script type="text/javascript">
         let first_select = [
             {v:"",t:""},
@@ -3600,24 +3600,27 @@ function setCommonGnbCookie(name, value, expiredays) {
                         quantity:quantityArr
                   }
                 
-
-
+					
+					let csrf = $("#csrftoken").val();
                  $.ajax({
                      
-                     url: "${pageContext.request.contextPath}"+'/pay/cart.do',
+                     url: "/cart.do",
                      type: "POST",
                      data: JSON.stringify(data),
                      contentType: "application/json; charset=utf-8",
-                     dataType: "json",
+                     dataType: "text",
+                     beforeSend :  function(xhr){
+                    	 xhr.setRequestHeader('X-CSRF-Token' , csrf);
+                     },
                      success : function(data,res){
-                        if (data.data != 0) {
+                        if (data != 0) {
                            alert("상품을 장바구니에 담았습니다.");
                       } else {
                          alert("로그인을 해 주십시오..");
                       }
                      },
                      error : function(res){
-                        alert("장바구니 담기에 실패하였습니다.");
+                        alert("장바구니 담기에 실패하였습니다.?");
                      }
 
                  });

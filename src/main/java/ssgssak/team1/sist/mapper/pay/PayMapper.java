@@ -50,4 +50,5 @@ public interface PayMapper {
 	List<CartDTO> cart(String id) throws Exception , SQLException;
 	int isduplcard(String cardnum) throws Exception , SQLException;
 	int insertcardnum(@Param("membervo")MemberVO membervo ,@Param("cardnum") String cardnum) throws Exception , SQLException;
+	int insertcart(@Param("memid") String memid , @Param("optionid") int optionid, @Param("quantity") int quantity);
 }

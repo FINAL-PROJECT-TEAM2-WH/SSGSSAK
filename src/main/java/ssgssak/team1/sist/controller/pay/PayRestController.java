@@ -2,6 +2,7 @@ package ssgssak.team1.sist.controller.pay;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import ssgssak.team1.sist.domain.pay.Cart2DTO;
 import ssgssak.team1.sist.domain.pay.CouponDTO;
 import ssgssak.team1.sist.domain.pay.PayDTO;
 import ssgssak.team1.sist.mapper.pay.PayMapper;
@@ -88,6 +90,20 @@ public class PayRestController {
 		
 	
 	      return "/paysuccess.do";
+	}
+	@PostMapping("/cart.do")
+	public String cart(@RequestBody Cart2DTO cartdto) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String memid = userDetails.getUsername();
+		int result = 0;
+		int forlast = cartdto.getOptionId().size();
+		for (int i = 0; i < forlast ; i++) {
+			result = this.payMapper.insertcart(memid, cartdto.getOptionId().get(i),cartdto.getQuantity().get(i) );
+		}
+		return result+"";
+		
+		
 	}
 	
 	
