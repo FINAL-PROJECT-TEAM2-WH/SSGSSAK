@@ -530,11 +530,11 @@
 		
 		
 		
-		
+	<!-- 	
 			<li class="none_data">
 				<p class="none_data_tx">해당 기간에 구매 내역이 없습니다</p>
 			</li>
-		
+		 -->
 	
 </ul>
 <div class="information v2">
