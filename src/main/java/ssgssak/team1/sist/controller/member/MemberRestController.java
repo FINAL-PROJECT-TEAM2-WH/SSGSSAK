@@ -1,8 +1,13 @@
 package ssgssak.team1.sist.controller.member;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -100,6 +105,48 @@ public class MemberRestController {
 			// 아까 체크해서 변경됐을 값을 다시 검색해서 체크하는 값 key 이름 : Value는 : selected?이렇게 가도 될 듯 . 	
 			return userInfoService.getAgreement(id, "ssgInfoRcvAgree");
 		}
+	  
+	  @PostMapping("/quit")
+	  	public Map<String, Object> quitMbr(@RequestParam String quitReason) {
+		  log.info("MemberRestController.quitMbr()");
+		  Map<String, Object> response = new HashMap();
+		  Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+			String id = userDetails.getUsername();
+			
+			if (userInfoService.quitMember(id, quitReason) >= 2) {;
+				response.put("result", "success");
+				
+			} else {
+				response.put("result", "fail");
+			}
+		  return response;
+	  }
+	  
+	  @GetMapping("likeFolder")
+	  public Map<String, Object> addLikeFolder(@RequestParam String folderName) {
+		  Map<String, Object> response = new HashMap();
+		  Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+			String id = userDetails.getUsername();
+		 if (this.likeService.addFolder(id, folderName)) {
+			 response.put("result", "success");
+		 } else {
+			 response.put("result", "fail");
+		 }
+		  
+		 return response; 
+	  }
+	  
+	  @PostMapping("likeFolder")
+	  public List<String> addLikeFolder(@RequestBody String pages, @RequestBody String size) {
+		
+		  Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+			String id = userDetails.getUsername();
+		 return this.likeService.getInterFolderList(id); 
+	  }
+
 	 
 }
 

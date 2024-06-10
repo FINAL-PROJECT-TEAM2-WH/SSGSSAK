@@ -58,7 +58,7 @@
                 <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"로그인정보관리"}]'><a href="<%=sContextPath %>/memberInfo/loginLog.do" class="clickable" data-react-tarea-dtl-cd="t00058">로그인 정보 관리</a></li>
                 <li class="cmmyssg_snb_s
                 ubitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"SNS연결설정"}'><a href="https://member.ssg.com/myssg/myinfoMng/snsConnSetting.ssg?menu=sns" class="clickable" data-react-tarea-dtl-cd="t00058">SNS 연결 설정</a></li>
-                <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"회원탈퇴"}]'><a href="<%=sContextPath%>/memberInfo/quit.do" class="clickable" data-react-tarea-dtl-cd="t00058">회원 탈퇴</a></li>
+                <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"회원탈퇴"}]'><a href="/member/quit" class="clickable" data-react-tarea-dtl-cd="t00058">회원 탈퇴</a></li>
             </ul>
         </li>
     </ul>

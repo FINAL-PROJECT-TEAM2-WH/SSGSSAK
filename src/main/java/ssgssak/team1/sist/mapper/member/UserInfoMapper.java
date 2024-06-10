@@ -26,5 +26,5 @@ public interface UserInfoMapper {
 	public List<String> searchByREG(@Param("id") String id, @Param("terms")String terms);
 	public int deleteAgree(@Param("id")String id, @Param("termsid")String termsid);	
 	public AgreementVO searchAgreement(@Param("id")String id, @Param("searchKeyword")String searchKeyword);
-	
+
 }

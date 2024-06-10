@@ -1178,7 +1178,8 @@ $('#submitBtn_agreeInfo').on('click', function () {
             xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
         },
         success: function (data) {
-        	alert(data.result);
+        	alert(data);
+        	location.reload();
 			if(data.result == 'success') {
 				$.ajax({
 	        		url:'/memberR/ssgInfoRcvAgree',
@@ -1186,7 +1187,7 @@ $('#submitBtn_agreeInfo').on('click', function () {
 	        		cache:false,
 	        		success: function (data) {
 					alert(data.status);
-	        			
+				
 	        		}, error :  function (xhr, status, error) {
 	                    console.error("오류 - 상태: ", status, " 메시지: ", error);
 	                    //alert('오류: ' + error);
@@ -1213,11 +1214,13 @@ $('#submitBtn_agreeInfo').on('click', function () {
 </script> 
 <!-- 
 <script type="text/javascript" defer="defer">
-    var csbot = ""
+    var csbot = ""\
+    
 
     $(document).ready(function () {
         var isaddtInfoChk = true;
         var isEmailChk = false;
+        
 
         // 통합회원 부가정보동의
         if ("true") {

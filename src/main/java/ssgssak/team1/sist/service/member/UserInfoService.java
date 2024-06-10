@@ -13,4 +13,6 @@ public interface UserInfoService {
 	public List<String> getUseragreement(String id);
 	public boolean changeAgr(String id, AgreementVO agreementVO, String divide);
 	public AgreementVO getAgreement(String id, String searchKeyword);
+	public int quitMember(String id, String content);
+	
 }

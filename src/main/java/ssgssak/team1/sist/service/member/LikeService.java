@@ -8,4 +8,6 @@ public interface LikeService {
 	List<InterestGoodsVO> getInterGoodsList(String id) ;
 	boolean like(String id, String productId) ; 
 	boolean likeCancel(String id, String productId);
+	public boolean addFolder(String id, String folderName);
+	List<String> getInterFolderList(String id);
 }

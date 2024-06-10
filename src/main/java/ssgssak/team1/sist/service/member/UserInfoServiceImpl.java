@@ -1,6 +1,7 @@
 package ssgssak.team1.sist.service.member;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import ssgssak.team1.sist.domain.member.UserInfoDTO;
 import ssgssak.team1.sist.domain.ship.ShippingPlaceInfoVO;
 import ssgssak.team1.sist.mapper.member.LikeMapper;
 import ssgssak.team1.sist.mapper.member.LoginMapper;
+import ssgssak.team1.sist.mapper.member.MemberMapper;
 import ssgssak.team1.sist.mapper.member.RegisterMapper;
 import ssgssak.team1.sist.mapper.member.UserInfoMapper;
 
@@ -26,6 +28,7 @@ public class UserInfoServiceImpl implements UserInfoService{
 	private UserInfoMapper userinfoMapper;
 	private LikeMapper likeMapper;
 	private RegisterMapper registerMapper;
+	private MemberMapper memberMapper;
 	
 	@Override
 	public UserInfoDTO getUserInfo(String id) {
@@ -132,6 +135,18 @@ public class UserInfoServiceImpl implements UserInfoService{
 		log.info(" > userinfoService.getAgreement() ");
 		return this.userinfoMapper.searchAgreement(id, searchKeyword);
 	}
+
+	@Override
+	public int quitMember(String id, String content) {
+		UUID passwd = UUID.randomUUID();
+		int rowCount = 0;
+		rowCount =  this.memberMapper.deletequitMbr(id, passwd.toString());
+		rowCount += this.memberMapper.insquitMbr(id, content);
+		
+		return rowCount;
+	}
+
+	
 	
 	
 	

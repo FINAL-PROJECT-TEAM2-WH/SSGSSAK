@@ -61,6 +61,8 @@ public class MemberController {
 		String id = userDetails.getUsername();
 		System.out.println(id);
 		List<InterestGoodsVO> list = likeService.getInterGoodsList(id);
+		List<String>folderList = likeService.getInterFolderList(id);
+		model.addAttribute("folderList", folderList);
 		model.addAttribute("productList",list);
 		model.addAttribute("listSize", list.isEmpty() ? 0 : list.size());
 		return "/member/userinfo/like/like";
@@ -169,6 +171,19 @@ public class MemberController {
 		model.addAttribute("agreeMap", agreeMap);
 		
 		return "/member/userinfo/myInfoMng/infoRcvAgree";
+	}
+	
+	
+	@GetMapping("/quit")
+	public String quit(Model model) {		
+		// 필요한 데이터 . 
+		// 회원 포인트. 
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		CustomerUser customerUser = (CustomerUser) authentication.getPrincipal();	
+		String id = customerUser.getUsername();
+		
+		model.addAttribute("info",this.infoService.getUserInfo(id)); 
+		return "/member/userinfo/myInfoMng/quitMbr";
 	}
 	
 }

@@ -100,4 +100,7 @@ FROM agreement ag left join terms ts ON ag.terms_id = ts.id
 WHERE ag.memid = #{id} AND REGEXP_LIKE(ts.name, #{searchKeyword})
 </select>
 
+
+
+
 </mapper>
