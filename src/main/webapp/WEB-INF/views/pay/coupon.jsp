@@ -385,7 +385,8 @@
 <script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/common/sentry.bundle.min.js" crossorigin="anonymous"></script>
 </head>
 <body class="body_ssg body_renew body_wide body_wide_ctn">
-
+<input type="hidden" id="csrfToken" name="${_csrf.parameterName }" value="${_csrf.token }" />
+	
 <input type="hidden" name="showTripTapActvYn" value="Y">
 	<input type="hidden" name="siteNo" value="6005">
 	<input type="hidden" name="fromgnb" value="ssg">
@@ -597,6 +598,7 @@ function setCommonGnbCookie(name, value, expiredays) {
                                 </form>
                             </div>
                             <script>
+                         
                             	$("#couponbtn").on("click",function(){
                             		$.ajax({
                             			url : "/coupon.do",
@@ -604,6 +606,10 @@ function setCommonGnbCookie(name, value, expiredays) {
                             			type : "POST",
                             			data : JSON.stringify({ cnumber : 11}),
                             			cache : false,
+                            			beforeSend : function(xhr){
+                            				let csrfToken = $("#csrfToken").val();
+                            				xhr.setRequestHeader('X-CSRF-Token',csrfToken);
+                            			},
                             			success : function(data){
                             				if (data== 1) {
 												alert("쿠폰 발급 완료");
@@ -658,6 +664,10 @@ function setCommonGnbCookie(name, value, expiredays) {
                         			type : "POST",
                         			data : JSON.stringify({  cnumber : 12}),
                         			cache : false,
+                        			beforeSend : function(xhr){
+                        				let csrfToken = $("#csrfToken").val();
+                        				xhr.setRequestHeader('X-CSRF-Token',csrfToken);
+                        			},
                         			success : function(data){
                         				if (data == 1) {
 											alert("쿠폰 발급 완료");
