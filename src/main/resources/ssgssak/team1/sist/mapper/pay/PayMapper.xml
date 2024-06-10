@@ -111,4 +111,10 @@
 	  from shoppingcart sc , productimg pi , product p, brand b , sellerstore ss , productoption po , shippingoption so
 	  where sc.memid = #{id} and sc.id2 = po.id and pi.productid = p.id and pi.imgcontent = 'sum' and p.id = po.productid and b.id = p.brandid and ss.id = p.sellerstoreid and so.id = p.shippingoptionid
 	</select>
+	<select id="isduplcard" resultType="Integer">
+	 select count(*) from points where id = #{cardnum} 
+	</select>
+	<insert id="insertcardnum">
+	 insert into points values ( #{cardnum} , 0 , '1234' , #{ membervo.id} )
+	</insert>
 </mapper>

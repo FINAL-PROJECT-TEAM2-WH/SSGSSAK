@@ -1,5 +1,6 @@
 package ssgssak.team1.sist.controller.member;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -125,7 +126,7 @@ public class RegisterController {
 	
 	
 	@PostMapping("/register")
-	public ResponseEntity<Map<String, Object>> register(UserFormDTO userform){
+	public ResponseEntity<Map<String, Object>> register(UserFormDTO userform) throws SQLException, Exception{
 		log.info("> registerPOST get in...");
 		Map<String, Object> result = new HashMap();
 			
@@ -159,7 +160,7 @@ public class RegisterController {
 		 * System.out.println(phoneNum.toString());
 		 * System.out.println(infoVO.toString());
 		 */
-	
+		
 		if (registService.register(userform.getMbr(), userform.getShipinfo())) {
 			// 회원가입에 성공한 경우. 
 			
