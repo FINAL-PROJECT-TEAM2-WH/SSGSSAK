@@ -139,7 +139,7 @@ public class MemberRestController {
 	  }
 	  
 	  @PostMapping("likeFolder")
-	  public List<String> addLikeFolder(@RequestBody String pages, @RequestBody String size) {
+		public List<String> addLikeFolder(/* @RequestBody String pages, @RequestBody String size */) {
 		
 		  Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			UserDetails userDetails = (UserDetails) authentication.getPrincipal();

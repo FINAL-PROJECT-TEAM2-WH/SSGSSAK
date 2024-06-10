@@ -37,7 +37,10 @@ public class RegistServiceImpl implements RegistService{
 		log.info(" > RegistServiceImpl.register()");
 		int rowCount = 0 ; 
 		rowCount += this.registerMapper.registerMember(memberVO);
+		System.out.println(shiInfoVO);
 		rowCount += this.registerMapper.registerShipinfo(shiInfoVO);
+		
+		
 		Long cardnum ; 
 		int result ;
 		do {

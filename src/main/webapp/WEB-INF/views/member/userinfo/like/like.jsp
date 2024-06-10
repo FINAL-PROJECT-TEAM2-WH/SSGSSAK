@@ -4182,7 +4182,7 @@ function addLike(productid) {
 	        		  $.ajax({
 	        			url:'/memberR/likeFolder',
 	        			dataType:'json',
-	        			data : {page : currentPage, size : pageSize}
+	        			/* data : {page : currentPage, size : pageSize} */
 	        			 type: 'POST',
 	        			 cache:false,
 	        			 beforeSend: function(xhr) {
