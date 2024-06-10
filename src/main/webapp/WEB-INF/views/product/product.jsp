@@ -3082,6 +3082,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 											</dd>
 										</dl>
 									</div>
+									    <input type="hidden" id="csrfToken" value="${_csrf.token}"/>    
 									<!-- 소득공제안내 -->
 									<!-- 상담신청안내 -->
 									<!-- 청소 연구소 이용 안내-->
@@ -3486,7 +3487,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 								  
 								
     		function handleCart() {
-
+				var csrfToken = $('#csrfToken').val();
     			
     	    	let optionIdArr=[];
     	    	let quantityArr=[];
@@ -3513,18 +3514,16 @@ function setCommonGnbCookie(name, value, expiredays) {
                         optionId:optionIdArr,
                         quantity:quantityArr
                   }
-                
-
-
-                 $.ajax({
-                     
-                     url: "${pageContext.request.contextPath}"+'/pay/cart.do',
+	             $.ajax({
+                     url: "${pageContext.request.contextPath}"+'/cart.do',
                      type: "POST",
                      data: JSON.stringify(data),
                      contentType: "application/json; charset=utf-8",
                      dataType: "json",
-                     success : function(data,res){
-                        if (data.data != 0) {
+                     beforeSend: function(xhr) {
+                       xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+                 		},success : function(data,res){
+                        if (data != 0) {
                            alert("상품을 장바구니에 담았습니다.");
                       } else {
                          alert("로그인을 해 주십시오..");
@@ -3593,15 +3592,14 @@ function setCommonGnbCookie(name, value, expiredays) {
 												type="hidden" name="checked" value="N"> <input
 												type="hidden" name="uitemIdAndSalestrNo" value="00000">
 
-												<button class="cmlike_btn _js_cmlike_btn clickable"
-													data-react-tarea-dtl-cd="t00003"
-													data-react-tarea="상품상세|옵션/구매버튼|상품_좋아요">
-													<span class="cmlike_ico"> <i
-														class="cmlike_primary_l"></i> <span class="sr_off"><span
-															class="blind">관심상품 취소</span></span> <span class="sr_on"><span
-															class="blind">관심상품 등록</span></span>
-													</span>
-												</button>
+												
+												<button class="cmlike_btn _js_cmlike_btn clickable"  onclick="addLike(${product.id});"> 
+                    <span class="cmlike_ico">
+                        <i class="cmlike_primary_s"></i>
+                        <span class="sr_off"><span class="blind">관심상품 취소</span></span>
+                        <span class="sr_on"><span class="blind">관심상품 등록</span></span>
+                    </span>
+                </button> 
 											</span>
 										</div>
 									</li>

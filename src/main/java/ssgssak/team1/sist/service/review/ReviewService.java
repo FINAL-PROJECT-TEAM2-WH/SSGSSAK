@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.multipart.MultipartFile;
 
+import ssgssak.team1.sist.domain.review.BeforeReviewVO;
 import ssgssak.team1.sist.domain.review.ReviewDTO;
 
 public interface ReviewService {
@@ -16,6 +17,8 @@ public interface ReviewService {
 	List<ReviewDTO> select(long id) throws SQLException;
 	//유저 리뷰리스트 
 	List<ReviewDTO> selectU(String auth) throws SQLException;
+	
+	List<BeforeReviewVO> getBeforeReview(@Param("auth")String auth) throws SQLException;
 	
 	//페이징리스트
 	public List<ReviewDTO> selectP(int currentPage, int numberPerPage, long id,String sort,String reviewType) throws SQLException; 

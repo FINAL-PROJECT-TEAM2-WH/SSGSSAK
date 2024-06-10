@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.MediaType;
+import org.springframework.jdbc.support.lob.LobCreator;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import ssgssak.team1.sist.domain.member.security.CustomerUser;
+import ssgssak.team1.sist.domain.review.BeforeReviewVO;
 import ssgssak.team1.sist.domain.review.ReviewDTO;
 import ssgssak.team1.sist.service.member.LikeService;
 import ssgssak.team1.sist.service.member.UserInfoService;
@@ -97,6 +99,7 @@ public class ReviewRestController {
 			response.put("totalPages",totalPages);
 			response.put("currentPage",pageIndex);
 			response.put("totalRecords",totalRecords );
+			
 		} catch (SQLException e) {
 			System.out.println("유저 리뷰 ajax 컨트롤러 실패");
 			e.printStackTrace();
@@ -108,5 +111,31 @@ public class ReviewRestController {
 		
 		return response;
 	}
+	
+	
+	@PostMapping(value = {"/userBeforeReview.do"},produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public Map<String, Object> getUserBeforeReview(@RequestBody Map<String,Object> requestParams,Model model) {
+		System.out.println("들어왔음");
+		log.info("before,,()");
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		CustomerUser  customerDetail =(CustomerUser) authentication.getPrincipal();
+		String auth = customerDetail.getUsername();
+		
+		Map<String, Object> response = new HashMap<String, Object>();
+		try {
+			List<BeforeReviewVO> payRecords = this.reviewService.getBeforeReview(auth);
+			response.put("payRecords", payRecords);
+			
+		} catch (SQLException e) {
+			System.out.println("ajax post요청실패");
+			e.printStackTrace();
+		}
+		
+		
+		return response;
+		
+		
+	}
+	
 }//class
 

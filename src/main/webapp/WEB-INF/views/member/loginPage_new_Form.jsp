@@ -310,7 +310,7 @@
                         <div class="cmem_inpgrp ty_id">
                             <div class="cmem_txt">
                                 <label for="mem_id" class="blind">아이디</label>
-                                <input type="text" name="username" id="id" maxlength="50" placeholder="아이디" value="asdf">
+                                <input type="text" name="username" id="id" maxlength="50" placeholder="아이디" value="daetu01">
                             </div>
                         </div>
                         <div class="cmem_inpgrp ty_pw">

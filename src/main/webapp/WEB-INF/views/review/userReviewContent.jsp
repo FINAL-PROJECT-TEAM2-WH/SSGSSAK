@@ -62,9 +62,10 @@
 
 	<div class="review_lst_wrap">
 		<div class="review_lst_tab">
-			<button type="button" class="review_lst_tab_button" data-id="beforeWrite"><span>작성 가능한 리뷰</span></button>
-			<button type="button" class="review_lst_tab_button active" data-id="afterWrite"><span>작성한 리뷰</span></button>
+			<button type="button" class="review_lst_tab_button" data-id="" onclick="beforeReview()"><span>작성 가능한 리뷰</span></button>
+			<button type="button" class="review_lst_tab_button active" data-id=""><span>작성한 리뷰</span></button>
 		</div>
+		
 		<!-- [D] 작성 가능한 리뷰 -->
 		<div class="review_lst_cont" id="beforeWrite">
 			<form name="notPdtListForm" id="notPdtListForm">
@@ -194,7 +195,65 @@
 				</div>
 			</form>
 			<div id="pdtList">
-				
+			<!-- 시작 고치기 -->
+				<div class="codr_unit" id="codr_unitT">
+<%-- 		                                	<table>
+												<caption><span class="blind">상품유닛 목록형</span></caption>
+												<colgroup>
+													<col style="width:80px">
+													<col>
+													<col style="width:180px">
+												</colgroup>
+												<tbody>
+		                                    	<tr class="codr_unit_area" name="divItemUnit">
+	<td class="codr_thmb">
+		<div class="codr_unit_thmb">
+            <input type="hidden" id="ordItemGrp__ForceShppcstBdnMainCd" value="XX">
+			<a href="http://www.ssg.com/item/itemView.ssg?itemId=0000009961677&amp;siteNo=6004&amp;salestrNo=6005" target="_blank">
+								<span class="codr_unit_img">
+									<img src="https://sitem.ssgcdn.com/77/16/96/item/0000009961677_i1_80.jpg" srcset="https://sitem.ssgcdn.com/77/16/96/item/0000009961677_i1_160.jpg 2x" alt="상품이미지" onerror="javascript:this.src='https://sui.ssgcdn.com/ui/sd/img/common/noImg_80.gif';this.alt='상품 이미지 준비중입니다.';"></span>
+							</a>
+						</div>
+	</td>
+	<td class="codr_unit_cont">
+		<div class="codr_unit_type ty_top">
+				</div>
+			<p class="codr_unit_tit notranslate">
+			<a href="http://www.ssg.com/item/itemView.ssg?itemId=0000009961677&amp;siteNo=6004&amp;salestrNo=6005" target="_blank">
+								<strong class="codr_unit_brd"><span>알파</span></strong>
+								<span class="codr_unit_name"><span>[알파] 수정테이프 ACT-5055 (5mmx5M) 색상랜덤 1입</span></span>
+							</a>
+						</p>
+			<span class="codr_unit_line"></span>
+				<div class="codr_unit_info">
+					[1045741]옵션없음</div>
+						<div id="div_pre_uitemNm_20240609BF087C1" class="codr_unit_info" style="display: none;" data-pre-uitem-id="00001">
+                <del>[1045741]옵션없음</del>
+            </div>
+		<div class="codr_unit_type">
+			</div> </td>
+	<td class="codr_unit_pricewrap">
+                <div class="codr_unit_newprice notranslate">
+    					<span class="blind">판매가격</span> <em class="ssg_price notranslate">900</em> <span class="ssg_tx">원</span>
+    					</div>
+                    <div class="codr_unit_oldprice">
+    						<del>
+    							<span class="blind">정상가격</span>
+    							<em class="ssg_price notranslate">1,000</em>
+    						</del>
+    						<span class="ssg_tx">원</span>
+    					</div>
+    					<span class="codr_unit_line"></span>
+    				<span class="codr_unit_count">
+						<strong class="blind">상품수량</strong>
+						<em class="num notranslate">
+						1</em><span class="notranslate">개</span>
+						</span>
+                </td>
+			</tr>
+</tbody>
+		                                	</table> --%>
+		                                </div>
 
 <ul class="review_lst_table">
 	<!--리뷰 입력하는곳 고치기 -->
@@ -521,8 +580,113 @@
 	    	
 	    	
 	    }//delete 
+	   /*  
+	    //작성가능한 상품 
+	    function beforeReview(){
+	    	var csrfToken = $('#csrfToken').val();
+			$.ajax({
+				url:"/SSGSSAK/reviewR/userBeforeReview.do",
+				method ="POST",
+				contentType: "application/json;charset=UTF-8",
+				dataType:"json",
+				beforeSend: function(xhr) {
+	                   xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+	             		},
+				success:function(data,callback,xhr){
+					 mkPayRecords(data.payRecords); 
+					alert("ajax 성공")
+					
+				},error:function(xhr,errorType){
+					alert("작석가능한리뷰 조회 실패"+errorType);
+				}
+				
+			})//ajax
+	    	
+	    }//fun
 	    
+	    function mkPayRecords(payRecords){
+	    	$("#item_rvw_list").empty();
+	    	$(".pagination").empty();
+	    	$("#codr_unitT").empty();
+	    	if (payRecords.length === 0) {
+		        const noDataHtml = `<li class="none_data"><p class="none_data_tx">해당 기간에 구매 내역이 없습니다</p></li>`;
+		        $("#item_rvw_list").append(noDataHtml);
+		    } else {
+		    	payRecords.forEach(payRecord=>{
+			 const formattedDate = formatDate(payRecord.orderDate);
+			 const payRecordsHtml = `<div class="codr_unit">
+            	<table>
+				<caption><span class="blind">상품유닛 목록형</span></caption>
+				<colgroup>
+					<col style="width:80px">
+					<col>
+					<col style="width:180px">
+				</colgroup>
+				<tbody>
+            	<tr class="codr_unit_area" name="divItemUnit">
+		<td class="codr_thmb">
+		<div class="codr_unit_thmb">
+		<input type="hidden" id="ordItemGrp__ForceShppcstBdnMainCd" value="XX">
+		<a href="/SSGSSAK/product/product.do?productcode=\${payRecord.productId}" target="_blank">
+		<span class="codr_unit_img">
+			<img src="\${payRecord.imgUrl}" srcset="https://sitem.ssgcdn.com/77/16/96/item/0000009961677_i1_160.jpg 2x" alt="상품이미지" onerror="javascript:this.src='https://sui.ssgcdn.com/ui/sd/img/common/noImg_80.gif';this.alt='상품 이미지 준비중입니다.';"></span>
+		</a>
+		</div>
+		</td>
+		<td class="codr_unit_cont">
+		<div class="codr_unit_type ty_top">
+		</div>
+		<p class="codr_unit_tit notranslate">
+		<a href="http://www.ssg.com/item/itemView.ssg?itemId=0000009961677&amp;siteNo=6004&amp;salestrNo=6005" target="_blank">
+		<strong class="codr_unit_brd"><span>알파</span></strong>
+		<span class="codr_unit_name"><span>[알파] 수정테이프 ACT-5055 (5mmx5M) 색상랜덤 1입</span></span>
+		</a>
+		</p>
+		<span class="codr_unit_line"></span>
+		<div class="codr_unit_info">
+		[1045741]옵션없음</div>
+		<div id="div_pre_uitemNm_20240609BF087C1" class="codr_unit_info" style="display: none;" data-pre-uitem-id="00001">
+		<del>[1045741]옵션없음</del>
+		</div>
+		<div class="codr_unit_type">
+		</div> </td>
+		<td class="codr_unit_pricewrap">
+		<div class="codr_unit_newprice notranslate">
+		<span class="blind">판매가격</span> <em class="ssg_price notranslate">900</em> <span class="ssg_tx">원</span>
+		</div>
+		<div class="codr_unit_oldprice">
+		<del>
+		<span class="blind">정상가격</span>
+		<em class="ssg_price notranslate">1,000</em>
+		</del>
+		<span class="ssg_tx">원</span>
+		</div>
+		<span class="codr_unit_line"></span>
+		<span class="codr_unit_count">
+		<strong class="blind">상품수량</strong>
+		<em class="num notranslate">
+		1</em><span class="notranslate">개</span>
+		</span>
+		</td>
+		</tr>
+		</tbody>
+        	</table>
+        </div>
+			
+			
+			
+			`;
+
+			$("#codr_unitT").append(payRecordsHtml);
+			
+			
+			
+		}//foreach
+	    	
+		    }//else	
+	    }//fucntion
 	    
+	     */
 	    $(document).ready(function() {
 	        fn_go_page(1);
 	    });

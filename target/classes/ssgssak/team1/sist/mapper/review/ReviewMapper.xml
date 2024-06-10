@@ -171,6 +171,27 @@
 
 </delete>
 
+<select id="beforeReview" resultType="ssgssak.team1.sist.domain.review.BeforeReviewVO">
+	SELECT p.ID, p.ORDERDATE, p.ORDERAMOUNT,p.PMETHOD, p.PRESENT
+		,pd.quantity,pr.ID, pr.CATEGORYID, pr.SPECIALPRICEID
+		, pr.SHIPPINGOPTIONID, pr.SELLERSTOREID, pr.BRANDID, pr.PDNAME
+		, pr.PCONTENT, pr.UPDATEDAY, br.BRANDNAME,po.optionname,pi.imgurl
+	FROM payrecord p JOIN paydetail pd
+	                ON p.id=pd.id2 
+	                JOIN productoption po 
+	                ON po.id = pd.id3
+	                JOIN product pr
+	                ON pr.id= po.productid
+	                JOIN brand br
+	                ON br.id=pr.brandid
+	                JOIN productimg pi
+	                ON pi.productid=pr.id
+	                LEFT JOIN review r
+	                ON pd.id3 = r.productoptionid
+	WHERE p.memid=#{auth} AND pi.imgcontent ='sum'  AND r.id IS NULL;
+</select>
+
+
 </mapper>
 
 

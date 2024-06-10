@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import ssgssak.team1.sist.domain.review.BeforeReviewVO;
 import ssgssak.team1.sist.domain.review.ReviewDTO;
 import ssgssak.team1.sist.domain.review.ReviewImgDTO;
 import ssgssak.team1.sist.mapper.review.ReviewImgMapper;
@@ -186,11 +187,13 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 
+	@Override
+	public List<BeforeReviewVO> getBeforeReview(String auth) throws SQLException {
+		log.info("getBeforeReview()....");
+		return this.reviewMapper.getBeforeReview(auth);
+	}
 
-	
 
-
-	
 
 }//class
 

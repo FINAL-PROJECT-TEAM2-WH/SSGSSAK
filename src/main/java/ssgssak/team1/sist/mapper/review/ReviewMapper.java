@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import ssgssak.team1.sist.domain.review.BeforeReviewVO;
 import ssgssak.team1.sist.domain.review.ReviewDTO;
 
 public interface ReviewMapper {
@@ -48,7 +49,8 @@ public interface ReviewMapper {
 	        @Param("q2") int q2,
 	        @Param("q3") int q3
 	        )throws SQLException;
+	List<BeforeReviewVO> getBeforeReview(@Param("auth")String auth) throws SQLException;
 	
 	
-
+	
 }//class
