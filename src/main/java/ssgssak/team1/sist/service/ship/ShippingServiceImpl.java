@@ -100,6 +100,14 @@ public class ShippingServiceImpl implements ShippingService {
 		this.shippingMapper.defaultShippingUpdate(memid);
 		return this.shippingMapper.shippingStatusEdit(id, status);
 	}
+
+
+
+	@Override
+	public int shippingUpdate(String memid, ShippingPlaceInfoVO shippingPlaceInfoVO) throws Exception {
+		
+		return this.shippingMapper.shippingUpdate(memid, shippingPlaceInfoVO);
+	}
 	
 	
 	

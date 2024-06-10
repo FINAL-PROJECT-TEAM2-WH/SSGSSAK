@@ -981,10 +981,9 @@ isMsa=Y
 										<c:forEach items="${ brlist }" var="brvo" begin="0" end="5"
 											step="1">
 											<li><span class="cmflt_checkbox cmflt_checkbox_v2 ">
-													<input type="radio" ${ brvo.brandname eq radionVal ? 'checked' : ''} value="${brvo.brandname}" name="checkedValue" id="${brvo.brandname}" onclick="brandRadio(this)" />	
+													<input type="radio" ${ brvo.brandname eq pagedto.radionVal ? 'checked' : ''} value="${brvo.brandname}" name="checkedValue" id="${brvo.brandname}" onclick="brandRadio(this)" />	
 													<label for="${brvo.brandname}"><span class="brd_wrap"><span
-															class="brd_txt">${ brvo.brandname }</span><span
-															class="brd_num">(${ brvo.productcount })</span></span> <span
+															class="brd_txt">${ brvo.brandname }</span></span> <span
 														class="cmflt_badge_best"><i class="blind"></i></span></label>
 											</span></li>
 										</c:forEach>
@@ -1200,7 +1199,7 @@ isMsa=Y
 		location.href = `/searchQuery?pageNum=${pagedto.criteria.pageNum}&amount=${pagedto.criteria.amount}&searchWord=${searchWord}&selectVal=\${selectVal}`
 	}
 	function brandRadio(radioEle){
-		alert("클릭");
+		//alert("클릭");
 		var radionVal = radioEle.value;
 		location.href = `/searchQuery?pageNum=${pagedto.criteria.pageNum}&amount=${pagedto.criteria.amount}&searchWord=${searchWord}&selectVal=${selectVal}&radionVal=\${radionVal}`
 		
@@ -1249,15 +1248,8 @@ isMsa=Y
 																data-info="1000068529577" data-idx="0"
 																data-position="cart" data-unit="img"
 																data-react-tarea-dtl-cd="t00002"><span class="blind">장바구니</span></a>
-															<span style="display: none" class="disp_cart_data"
-																data-cart-type="10" data-cart-inflo-site-no="6005"
-																data-cart-ordqty="1">{"advertBidId":"","giftBtnShowType":"","bsplItemDivCd":null,"giftBtnActType":"Y","itemChrctDivCd":"10","itemLnkd":"/item/itemView.ssg?itemId=1000587710191&siteNo=6004&salestrNo=6005&tlidSrchWd=노트북&srchPgNo=1&src_area=ssglist","giftBtnMsg":"","bothSsgMorningShppYn":"N","shppTypeDtlCd":"22","goItemDetailYn":"Y","drctPurchYn":"N","itemId":"1000587710191","dealItemYn":"N","advertExtensTeryDivCd":"","cleaningLabYn":"N","siteNo":"6004","useForcedSsg":"N","cartPsblType":"","uitemId":"00000","infloSiteNo":"6005","salestrNo":"6005","msgItemDetail":"이
-																상품은 옵션이 있는 상품 입니다.\n상품상세에서 옵션을 선택해주세요."}</span> <span
+																 <span style="  display: inline-block; vertical-align: middle; margin: 0; padding: 0; position: relative; top: -29px;"
 																class="cmlike _js_cmlike interestIt"> value="${ svo.pdname }">
-																<input type="hidden" name="notiImgPath"
-																value="//sitem.ssgcdn.com/91/01/71/item/1000587710191_i1_290.jpg">
-																<input type="hidden" name="checked" value="N"> <input
-																type="hidden" name="useForcedSsgYn" value="N">
 																<button class="cmlike_btn _js_cmlike_btn clickable"  onclick="addLike(${svo.productid});">
 												                    <span class="cmlike_ico">
 												                        <i class="cmlike_primary_s"></i>

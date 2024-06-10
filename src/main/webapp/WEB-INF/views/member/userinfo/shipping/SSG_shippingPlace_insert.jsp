@@ -375,6 +375,7 @@
 										<span id="roadNmAddr" name="roadNmAddr" class="info_cont notranslate">
 												도로명주소가 없거나 확인되지 않습니다.
 										</span>
+										<input type="hidden" id="_csrf" name="_csrf" value="${_csrf.token}">
 										<strong class="info_tit">지번</strong>
 										<span id="lotnoAddr" name="lotnoAddr" class="info_cont notranslate">
 												지번주소가 없거나 확인되지 않습니다							
@@ -396,7 +397,8 @@
 			<!-- form태그 제출하는 곳 -->
 			<div class="pop_btn_area notranslate">
 				<!-- 여기에 우리가 폼태그 제출해서 데이터 저장할 handler에 주기?? -->
-				<a href="#" onclick="" id="shippingPlaceInsert" class="color4">확인</a>
+				<!-- <a href="#" onclick="" id="shippingPlaceInsert" class="color4">확인</a> -->
+				<button onclick="shippingPlaceInsert()" class="color4" >확인</button>
 				<a href="javascript:void(0);" onclick="shpploc.cancel()" class="color3">취소</a>
 			</div>
 		</div>
@@ -474,38 +476,49 @@ function execDaumPostcode() {
 </script>
 <script type="text/javascript" src="/comm/js/memberJs.ssg"></script>
 <script>
-	$("#shippingPlaceInsert").on("click", function(){
-		
-		var datas = {
-				// 여기서 회원 id 값도 같이 넘기기
-				memid : "<%= memid %>"
-			,	addressnick : $("#shpplocAntnmNm").val()
-			,	receivemem : $("#rcptpeNm").val()
-			,	tel : $("#hpno1 option:selected").val() +"-"+ $("#hpno2").val() +"-"+ $("#hpno3").val()
-			,	postnum : $("#postNum").val()
-			, 	roadAddress : $("#roadAddress").val()
-			,   jibunAddress : $("#jibunAddress").val()
-			,   detailAddress : $("#detailAddress").val()
-		}
-		$.ajax({
-			type: "POST",
-			dataType : 'json',
-			/* ajax url 줄때 서버단이라면 contextPath 추가 꼭 해주기 */
-			url: "/member/userinfo/shipping/shippingPlaceInsert",
-			contentType : 'application/json', 
-		    data : JSON.stringify(datas),
-			cache : false,
-			success : function(){
-				alert("주소 추가 성공");
-				window.opener.parent.location.reload();
-				window.close();
-			},
-			error : function(){
-				alert("실패")
-				window.close();
-			}
-		})
-	})
+$(document).ready(function(){
+    // 함수 정의는 $(document).ready 내에서 이루어집니다.
+    function shippingPlaceInsert() {
+    	var csrfToken = $('#_csrf').val();
+        // 데이터를 객체로 정의
+        var datas = {
+            // 여기에 필요한 회원 ID를 추가할 수 있습니다.
+            addressnick: $("#shpplocAntnmNm").val(),
+            receivemem: $("#rcptpeNm").val(),
+            tel: $("#hpno1 option:selected").val() + "-" + $("#hpno2").val() + "-" + $("#hpno3").val(),
+            postnum: $("#postNum").val(),
+            roadAddress: $("#roadAddress").val(),
+            jibunAddress: $("#jibunAddress").val(),
+            detailAddress: $("#detailAddress").val(),
+        };
+        // AJAX 요청 보내기
+        $.ajax({
+            type: "POST", 
+            url: "/shippingR/shippingPlaceInsert",
+            contentType: 'application/json',
+            data: JSON.stringify(datas), // JSON 형식으로 데이터 전송
+            cache: false,
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+         	},
+            success: function(response) {
+                //alert("주소 추가 성공");
+                window.opener.parent.location.reload(); // 부모 창 새로고침
+                window.close(); // 현재 창 닫기
+            },
+            error: function(xhr, status, error) {
+                //alert("주소 추가 실패: " + error);
+                window.opener.parent.location.reload(); // 부모 창 새로고침
+                window.close(); // 현재 창 닫기
+            }
+        });
+    }
+
+    // 함수가 전역에서 접근 가능하도록 정의
+    window.shippingPlaceInsert = shippingPlaceInsert;
+});
+
+	
 </script>
 <script>
 function googleTranslateElementInit() {

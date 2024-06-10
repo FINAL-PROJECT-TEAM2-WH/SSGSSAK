@@ -415,7 +415,8 @@
 						<a href="http://www.ssg.com/myssg/main.ssg"
 							class="cmmyssg_user_tittx clickable"
 							data-react-tarea-dtl-cd="t00060"><span
-							class="cmmyssg_user_titname"><%= mid %></span>의 My SSG</a>
+							class="cmmyssg_user_titname"><c:if test="${ not empty mid }">
+                        ${ mid }</c:if></span>의 My SSG</a>
 					</h2>
 				</div>
 			</div>

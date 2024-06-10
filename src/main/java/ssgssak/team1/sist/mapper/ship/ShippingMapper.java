@@ -41,4 +41,6 @@ public interface ShippingMapper {
 	
 	public int shippingStatusEdit(@Param("id") long id, @Param("status") String status) throws Exception;
 	
+	public int shippingUpdate(@Param("memid") String memid, @Param("shippingPlaceInfoVO") ShippingPlaceInfoVO shippingPlaceInfoVO) throws Exception;
+
 }

@@ -42,8 +42,9 @@ public class OrderController {
 		olist = this.shippingService.orderRecordService(memid);
 		dhm = this.shippingService.orderDateService(memid);
 		
-		
+		model.addAttribute("mid", memid);
 		model.addAttribute("olist", olist);
+		//System.out.println("olist : "+olist);
 		model.addAttribute("dhm", dhm);
 		
 		return "/member/userinfo/shipping/orderRecord";
@@ -63,11 +64,11 @@ public class OrderController {
 		
 		ArrayList<OrderRecordVO> olist = this.shippingService.orderDetail(ids);
 		OrderDetailVO odvo = this.shippingService.orderDetailView(memid, ids.get(0));
+		model.addAttribute("mid", memid);
 		model.addAttribute("olist", olist);
 		model.addAttribute("odvo", odvo);
 		model.addAttribute("orderId", orderId);
 		model.addAttribute("orderDate", orderDate);
-		System.out.println(olist);
 		return "/member/userinfo/shipping/orderDetail";
 	}
 

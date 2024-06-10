@@ -1,10 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%
-	HttpSession hsession = request.getSession(false);
-	String mid = (String)hsession.getAttribute("auth");
-%> 
+
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
 <head>
@@ -344,7 +341,8 @@
                 <div class="cmmyssg_user_info">
                 	<!-- 회원 마이페이지로 이동 -->
                     <h2 class="cmmyssg_user_tit" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"tarea_addt_val","value":"이름"}]'>
-                        <a href="회원 마이페이지로 이동" class="cmmyssg_user_tittx clickable" data-react-tarea-dtl-cd="t00060"><span class="cmmyssg_user_titname"><%= mid %></span>의 My SSG</a>
+                        <a href="회원 마이페이지로 이동" class="cmmyssg_user_tittx clickable" data-react-tarea-dtl-cd="t00060"><span class="cmmyssg_user_titname"><c:if test="${ not empty mid }">
+                        ${ mid }</c:if></span>의 My SSG</a>
                     </h2>
                 </div>
             </div>
@@ -724,7 +722,7 @@
 	    // 서버 경로 및 AJAX 요청 설정
 	    var contextPath = "<%= request.getContextPath() %>";
 	    $.ajax({
-	        type: "POST",
+	        type: "GET",
 	        url: "/member/userinfo/shipping/shippingPlaceUpView",
 	        dataType: 'json',
 	        data: idJson,
@@ -741,7 +739,7 @@
 	                'tel': response.tel,
 	                'postnum': response.postnum
 	            };
-	            alert(response.detailAddress);
+	            //alert(response.detailAddress);
 	            localStorage.setItem("inputJson", JSON.stringify(inputJson));
 
 	            // 팝업 윈도우 설정 및 열기

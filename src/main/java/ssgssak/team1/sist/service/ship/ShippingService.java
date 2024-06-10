@@ -31,4 +31,7 @@ public interface ShippingService {
 	public int ShippingPlaceDelete(long id) throws Exception;
 	
 	public int shippingStatusEdit(String memid, long id, String status) throws Exception; 
+	
+	public int shippingUpdate(String memid, ShippingPlaceInfoVO shippingPlaceInfoVO) throws Exception;
+
 }

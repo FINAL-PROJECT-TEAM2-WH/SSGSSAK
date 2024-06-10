@@ -1,7 +1,5 @@
 package ssgssak.team1.sist.domain.ship;
 
-import java.sql.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

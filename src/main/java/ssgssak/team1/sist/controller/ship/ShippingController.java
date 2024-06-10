@@ -32,11 +32,11 @@ import ssgssak.team1.sist.service.ship.ShippingService;
 @Controller
 @RequestMapping("/member/userinfo/shipping/*")
 public class ShippingController {
-	
+
 	@Autowired
 	private ShippingService shippingService;
-	
-	
+
+
 	@GetMapping("/shippingPlaceList")
 	public String shipPlaceList(HttpServletRequest request, Criteria criteria, Model model) throws Exception {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -46,46 +46,29 @@ public class ShippingController {
 		int total = this.shippingService.getShipPlaceTotal(memid);
 		PageDTO pdto = new PageDTO(criteria, total);
 		ArrayList<ShippingPlaceInfoVO> spiList = this.shippingService.getShippingPlaceList(memid, pdto);
-		
+
 		model.addAttribute("spiList", spiList);
 		model.addAttribute("pdto", pdto);
+		model.addAttribute("mid", memid);
 		return "/member/userinfo/shipping/SSG_shipping_place_info";
 	}
-	
+
 	@GetMapping("/SSG_shippingPlace_insert")
 	public String showShippingPlaceInsert() {
-        return "/member/userinfo/shipping/SSG_shippingPlace_insert"; 
-    }
-
-	@ResponseBody
-	@PostMapping("/shippingPlaceInsert")
-	public ResponseEntity<String> shippingPlaceInsert(@RequestBody ShippingPlaceInfoVO shippingPlaceInfoVO, HttpServletRequest request) throws Exception {
-		log.info("shippingPlaceInsert...");
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		String memid = userDetails.getUsername();
-		System.out.println("여기로 들어왔나??");
-		this.shippingService.shippingPlaceInsert(memid, shippingPlaceInfoVO);
-		ResponseEntity<String> rentity = new ResponseEntity<String>("주소추가성공", HttpStatus.OK);
-		return rentity;
+		return "/member/userinfo/shipping/SSG_shippingPlace_insert"; 
 	}
-	
-	@GetMapping("/SSG_shippingPlace_update")
-	public String ShippingPlaceUpdate() {
-        return "/member/userinfo/shipping/SSG_shippingPlace_update"; 
-    }
-	
+
 	//http://localhost:8080/member/userinfo/shipping/SSG_shippingPlace_update
 	// ajax통신할때 이 responsebody를 안넣으면 오류가 발생한다 왜??
 	@ResponseBody
-	@PostMapping("/shippingPlaceUpView")
+	@GetMapping("/shippingPlaceUpView")
 	public Map<String, Object> shippingPlaceUpdateView(@RequestParam int id, HttpServletRequest request) throws Exception{
 		log.info("shippingPlaceUpdateView Controller>>>...");
 		Map<String, Object> viewMap = new HashMap<String, Object>();
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		String memid = userDetails.getUsername();
-		
+
 		ShippingPlaceInfoVO svo = this.shippingService.ShippingPlaceUpView(id);
 		viewMap.put("memid", svo.getMemid());
 		viewMap.put("id", svo.getId());
@@ -96,18 +79,23 @@ public class ShippingController {
 		viewMap.put("detailAddress", svo.getDetailAddress());
 		viewMap.put("tel", svo.getTel());
 		viewMap.put("postnum", svo.getPostnum());
-		
+
 		return viewMap;
 	}
 	
-	
+	@GetMapping("/SSG_shippingPlace_update")
+	public String ShippingPlaceUpdate() {
+		System.out.println("shippingupdate");
+        return "/member/userinfo/shipping/SSG_shippingPlace_update"; 
+    }
+
 	@GetMapping("/ShippingPlaceDelete")
 	public String shippingPlaceDelete(@RequestParam("id") long id) throws Exception {
 		log.info("shippingPlaceDelete controller...");
 		this.shippingService.ShippingPlaceDelete(id);
 		return "redirect:/member/userinfo/shipping/shippingPlaceList";
 	}
-	
+
 	@GetMapping("/ShippingStatusEdit")
 	public String ShippingStatusEdit(@RequestParam("status") String status, @RequestParam("id") long id) throws Exception {
 		log.info("ShippingStatusEdit controller...");

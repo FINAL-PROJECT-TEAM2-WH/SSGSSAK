@@ -17,7 +17,7 @@
 			FROM payrecord pr JOIN paydetail pt ON pr.id = pt.id2) c1 
 			ON c1.poptionid = po.id) c2 
 			ON pd.id = c2.productid 
-			WHERE memid = 'daetu01'
+			WHERE memid = #{memid}
 			ORDER BY orderDate DESC ) c3
             ON c3.productid = pimg.productid
             WHERE imgcontent = 'sum' 
@@ -135,5 +135,18 @@
 		SET DEFAULTSHIPPING = #{status}
 		WHERE id = ${id}
 	</update>
+	
+	<update id="shippingUpdate">
+		UPDATE shippingPlaceInformation 
+		SET addressnick = #{shippingPlaceInfoVO.addressnick}, 
+		receiveMem = #{shippingPlaceInfoVO.receivemem}, 
+		roadAddress = #{shippingPlaceInfoVO.roadAddress}, 
+		jibunAddress = #{shippingPlaceInfoVO.jibunAddress}, 
+		detailAddress = #{shippingPlaceInfoVO.detailAddress}, 
+		tel = #{shippingPlaceInfoVO.tel}, 
+		postNum = #{shippingPlaceInfoVO.postnum} 
+		WHERE id = #{shippingPlaceInfoVO.id}
+	</update>
+	
 	
 </mapper>
