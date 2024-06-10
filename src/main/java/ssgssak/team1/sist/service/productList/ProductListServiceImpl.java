@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import ssgssak.team1.sist.domain.productList.AllCateDTO;
+import ssgssak.team1.sist.domain.productList.BrdPrdListDTO;
 import ssgssak.team1.sist.domain.productList.CurrentCateDTO;
 import ssgssak.team1.sist.domain.productList.MajorCateDTO;
 import ssgssak.team1.sist.domain.productList.MiddleCateDTO;
@@ -29,31 +30,59 @@ public class ProductListServiceImpl implements ProductListService {
 
 
 
-
-
-	public List<ProductListDTO> selectProdList(String categoryId, int currentPage, int numberPerPage, int start, int end) throws SQLException {
+	//카테고리쪽
+	@Override
+	public List<ProductListDTO> selectProdList(String categoryId, int currentPage, int numberPerPage, int start, int end, String sort) throws SQLException {
 		System.out.println("currentPage = " + currentPage);
 		
 
-		return productListMapper.selectProdList(categoryId, currentPage, numberPerPage,start,end);
+		return productListMapper.selectProdList(categoryId, currentPage, numberPerPage,start,end,sort);
 	}
 	
-
+	@Override
 	public int getProdCount(String categoryId) throws SQLException {
 		return productListMapper.getProdCount(categoryId);
 	}
-
+	@Override
 	public int getTotalPages(String categoryId, int numberPerPage) throws SQLException {
 		int prodCount = getProdCount(categoryId);
 		return (int) Math.ceil((double) prodCount / numberPerPage);
 	}
-
+	
+	//브랜드쪽
+	@Override
+	public List<BrdPrdListDTO> selectBrdPrdList(String brandId, int currentPage, int numberPerPage, int start, int end,
+			String sort) throws SQLException {
+		System.out.println("브랜드서비스뿌리기진입됨?");
+		return productListMapper.selectBrdPrdList(brandId, currentPage, numberPerPage,start,end,sort);
+	}
+	
+	@Override
+	public int getBpProdCount(String brandId) throws SQLException {
+		return productListMapper.getBpProdCount(brandId);
+	}
+	@Override
+	public int getBpTotalPages(String brandId, int numberPerPage) throws SQLException {
+		int prodCount = getBpProdCount(brandId);
+		return (int) Math.ceil((double) prodCount / numberPerPage);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	//카테고리셀렉트쪽
+	@Override
 	public ArrayList<MajorCateDTO> majorSelectCate() throws SQLException {
 		ArrayList<MajorCateDTO> mjcDtoList = productListMapper.selectMajorCate();
 		
 		
 		return 	 mjcDtoList;
 	}
+	@Override
 	public AllCateDTO selectCate(String categoryId) throws SQLException {
 	    ArrayList<MajorCateDTO> mjcDtoList = productListMapper.selectMajorCate();
 	    ArrayList<MiddleCateDTO> mdcDtoList = productListMapper.selectMiddleCate(categoryId);
@@ -89,6 +118,8 @@ public class ProductListServiceImpl implements ProductListService {
     			.crtCateDto(crtCateDto)
     			.build();
 	}
+
+
 
 
 }

@@ -7,17 +7,24 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import ssgssak.team1.sist.domain.productList.AllCateDTO;
+import ssgssak.team1.sist.domain.productList.BrdPrdListDTO;
 import ssgssak.team1.sist.domain.productList.MajorCateDTO;
 import ssgssak.team1.sist.domain.productList.ProductListDTO;
 
 @Service
 public interface ProductListService {
 
-    public List<ProductListDTO> selectProdList(String categoryId, int currentPage, int numberPerPage, int start, int end) throws SQLException;
+    public List<ProductListDTO> selectProdList(String categoryId, int currentPage, int numberPerPage, int start, int end, String sort) throws SQLException;
+    
+    public List<BrdPrdListDTO> selectBrdPrdList(String brandId, int currentPage, int numberPerPage, int start, int end, String sort) throws SQLException;
 
     public int getProdCount(String categoryId) throws SQLException;
 
     public int getTotalPages(String categoryId, int numberPerPage) throws SQLException;
+    
+    public int getBpProdCount(String brandId) throws SQLException;
+    
+    public int getBpTotalPages(String brandId, int numberPerPage) throws SQLException;
 
     
     
