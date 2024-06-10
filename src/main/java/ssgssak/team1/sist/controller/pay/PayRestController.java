@@ -64,6 +64,8 @@ public class PayRestController {
 		int shipnum = paydto.getShipnum();
 		String shipmsg = paydto.getShipmsg();
 		
+		System.out.println("SHIPPINGNUM" + shipnum);
+		
 		log.info(paydto.toString());
 		int lastprice = 0 ;
 		for (int j = 0; j < optionids.size(); j++) {
