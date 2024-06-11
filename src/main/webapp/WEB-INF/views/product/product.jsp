@@ -2645,8 +2645,8 @@ function setCommonGnbCookie(name, value, expiredays) {
 											<!-- 브랜드번호 불러와서 링크걸고 , 브랜드 이름불러오기  -->
 
 
-												<a
-													href="/brand/brandShop.ssg?brandId=${product.brandId}"
+<%-- 												<a href="/brandStore?brandId=${product.brandId}" --%>
+												<a href="/brandStore?brandId=${product.brandId}"
 													class="cdtl_info_tit_link">${product.brandName}<i
 													class="ic_arrow_link"></i></a>
 											</div>
@@ -12398,9 +12398,8 @@ function setCommonGnbCookie(name, value, expiredays) {
 												<div class="rvw_section_heading">
 													<span class="rvw_heading_title">포토&amp;동영상 리뷰(${photoReviewCount+videoReviewCount})</span>
 													
-													<sec:authorize access="isAuthenticated()">
-													<input type="hidden" id="kk" value="<sec:authentication property='principal.username'/>" /> 
-													<a href="#" onclick="openReviewWindow();return false;">리뷰등록하기</a>
+													
+													
 													<script type="text/javascript">
 													function openReviewWindow() {
 														let kk = $('#kk').val();
@@ -12413,42 +12412,17 @@ function setCommonGnbCookie(name, value, expiredays) {
 															reviewWindow.opener.location.reload();	
 															}//if
 														}//fu */
-														
-														
-														
 													}
-/* 														고치기
-														$.ajax({
-															url: '/SSGSSAK/product/CheckLogin.do',
-															type: 'GET',
-															dataType: 'json',
-															success: function(data) {
-																if (data.alreadyLogin) {
-																	var url = `/SSGSSAK/review/review.do?productcode=${product.id}&auth=${auth}`;
-																	var windowName = "newReviewWindow";
-																	var windowSize = "width=635,height=665";
-																	window.open(url, windowName, windowSize + ",resizable=yes");
-																} else {
-																	alert("로그인 후 이용해주세요.");
-																	window.location.href = '/SSGSSAK/member/login.do';
-																}
-															},
-															error: function(xhr, status, error) {
-																console.error(error);
-															}
-														});
-													}
-														 */
-														
-													
+										
 												</script>
-</sec:authorize>
-												
+												<sec:authorize access="isAuthenticated()">
+													<input type="hidden" id="kk" value="<sec:authentication property='principal.username'/>" /> 
 													<div class="rvw_heading_end">
-														<button type="button" class="rvw_pht_all_popup_trigger">
-															<span>더보기</span>
+														<button type="button" class="cdtl_btn_go clickable" onclick="openReviewWindow();return false;">
+															<span>리뷰등록하기</span>
 														</button>
 													</div>
+													</sec:authorize>
 												</div>
 												<div class="rvw_section_content">
 													<div class="rvw_item_thumb_group rvw_pht_list">
@@ -12862,7 +12836,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 		 */
 
 	        for (let i = 1; i <= total; i++) {
-	            const pageHtml = `<a href="javascript:void(0);" onclick="fn_go_page(\${i})" class="\${i === current ? 'active' : ''}">\${i}</a>`;
+	            const pageHtml = `<a href="javascript:void(0);" onclick="fn_go_page(\${i})" class="cdtl_btn_go clickable">\${i}</a>`;
 	            $(".pagination").append(pageHtml);
 	        }
 		/* 
@@ -12896,7 +12870,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 		        $(".pagination").append(nextPageHtml);
 			}
 	        
-	    }//mkp 
+	    }//mkp -->
 													
 												</div>
 											</section>
