@@ -52,6 +52,7 @@ public class OrderController {
 			olist.add(oTlist.get(i));
 		}
 		System.out.println(olist);
+		System.out.println(dhm);
 		model.addAttribute("mid", memid);
 		model.addAttribute("olist", olist);
 		//System.out.println("olist : "+olist);

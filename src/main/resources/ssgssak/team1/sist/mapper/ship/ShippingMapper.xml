@@ -159,4 +159,5 @@
 		SET ps = 2
 		WHERE id = #{oid}
 	</update>
+	
 </mapper>
