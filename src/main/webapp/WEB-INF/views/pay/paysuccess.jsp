@@ -807,7 +807,7 @@ function setCommonGnbCookie(name, value, expiredays) {
 					<li><a href="${pageContext.request.contextPath }/productlist/productList.do">
 						<button type="button" class="codr_btn_account"><span>쇼핑 계속하기</span></button>
 					</a></li>
-					<li><a href="${pageContext.request.contextPath }/orderRecord.do"><button type="button" class="codr_btn_inquire"><span>주문상세조회</span></button></a></li>
+					<li><a href="/member/userinfo/shipping/orderRecord"><button type="button" class="codr_btn_inquire"><span>주문상세조회</span></button></a></li>
 				</ul>
 			</div>
 

@@ -1292,14 +1292,14 @@ isMsa=Y
 													<c:if test="${ prdto.productid eq svo.productid }">
 														<div class="cunit_price">
 															<div class="opt_price">
-																<span class="blind">할인적용가</span> <em class="ssg_price">${ prdto.discountprice }</em>
+																<span class="blind">할인적용가</span> <em class="ssg_price">${ prdto.tdiscountprice }</em>
 																<span class="ssg_tx">원</span>
-																<div class="ssg_price_ko show_gl hide_ko">${ prdto.discountprice }</div>
+																<div class="ssg_price_ko show_gl hide_ko">${ prdto.tdiscountprice }</div>
 															</div>
 															<c:if test="${ prdto.spcldscnrt != 0 }">
 																<div class="org_price_wrap">
 																	<div class="org_price">
-																		<span class="blind">판매가</span> <em class="ssg_price">${ prdto.optionprice }</em>
+																		<span class="blind">판매가</span> <em class="ssg_price">${ prdto.toptionprice }</em>
 																		<span class="ssg_tx">원</span>
 																	</div>
 
@@ -1310,16 +1310,16 @@ isMsa=Y
 																		<div class="ly_dtl_price price-tooltip-layer">
 																			<dl class="org">
 																				<dt>판매가</dt>
-																				<dd>${ prdto.optionprice }</dd>
+																				<dd>${ prdto.toptionprice }원</dd>
 																			</dl>
 																			<!-- 이거 얼마 할인 들어갔는지 체크  -->
 																			<dl class="dis">
 																				<dt>SSG 할인</dt>
-																				<dd>${ prdto.optionprice - prdto.discountprice }원</dd>
+																				<dd>${ prdto.tspcprice }원</dd>
 																			</dl>
 																			<dl class="sum">
 																				<dt>최적가</dt>
-																				<dd>${ prdto.discountprice }</dd>
+																				<dd>${ prdto.tdiscountprice }원</dd>
 																			</dl>
 																		</div>
 																	</div>

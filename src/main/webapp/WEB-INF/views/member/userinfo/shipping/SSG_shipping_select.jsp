@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 
@@ -317,7 +317,7 @@
 												<div class="codr_opt_pickitem">
 													<div class="codr_opt_pickimgarea">
 														<span class="codr_opt_pickimg"> <img
-															<%-- 회원이 구매하려는 제품의 이미지와 어떤 제품인지 데이터 넣기--%>
+															회원이 구매하려는 제품의 이미지와 어떤 제품인지 데이터 넣기
 															src="#"
 															srcset="https://sitem.ssgcdn.com/40/28/59/item/0000009592840_i1_120.jpg 2x"
 															alt="백오이 (5입/봉)" width="60" height="60"
@@ -630,7 +630,7 @@ $(document).ready(function() {
 	})
 </script>
 <script>
-  <%--  $("#shippingPlaceBtn").on("click", function(){
+   $("#shippingPlaceBtn").on("click", function(){
 	   
 	    var popupURL = `<%= request.getContextPath() %>/userinfo/shipping/SSG_shipping_place_change.jsp`;
 	    
@@ -674,7 +674,7 @@ $(document).ready(function() {
 	    let tops = (window.innerHeight / 2) - (height / 2);
 		
 	    window.open(popupURL, 'SIPChangePopup', `width=\${width}, height=\${height}, left=\${left}, top=\${tops}`);
-   }) --%>
+   })
 </script>
 <script type="text/javascript">
 		
@@ -854,3 +854,4 @@ var reactingObj = {};
 	<p style="color: white; background: white;">api-pay-prod-was13_pay02</p>
 </body>
 </html>
+ --%>

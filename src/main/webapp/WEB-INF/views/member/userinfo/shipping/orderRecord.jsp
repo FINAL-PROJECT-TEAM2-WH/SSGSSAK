@@ -1053,11 +1053,12 @@
 <script>
 	function orderDelete(button){
 		//alert("삭제버튼");
+		// 1이 주문 / 2가 주문취소
 		var value = button.value;	
 		var isConfirmed = confirm("정말로 이 주문을 삭제하시겠습니까?");
 		var orderDate = $("#orderDate").val();
 		  if (isConfirmed) {
-			  location.href = `<%= request.getContextPath() %>/OrderRecordDelete.do?orderId=value&orderDate=orderDate`;
+			  location.href = `/member/userinfo/shipping/orderRecordDelete?orderId=\${value}&orderDate=\${orderDate}`;
 			  alert("주문 삭제 완료");
 		  }else{
 			  console.log("주문 삭제 취소");
