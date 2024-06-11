@@ -3,10 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ssgssak.team1.sist.mapper.search.SearchMapper">
-
+		
 	<select id="searchResultList" resultType="SearchVO" parameterType="PageDTO2">
 	 <bind name="pattern" value="'%' + pageDTO.searchWord + '%'" />
-		SELECT DISTINCT po.productid productid , c3.* 
+		 SELECT DISTINCT po.productid productid , c3.* 
         FROM productoption po JOIN (
 		SELECT img.imgurl, c2.* , ROWNUM num
 		FROM productimg img JOIN (
@@ -27,49 +27,77 @@
 		JOIN category ct ON pd.categoryid =
 		ct.id ) c1
 		ON sp.id = c1.shippingoptionid 
-		WHERE ( c1.brandname LIKE
-		#{pattern} 
-		OR c1.sellername LIKE #{pattern}  OR c1.pdname LIKE
-		#{pattern} 
-		OR c1.pcontent LIKE #{pattern}   OR c1.majorcatename
+		WHERE ( 
+		<choose>
+			<when test="pageDTO.radionVal != null">
+			( c1.brandname LIKE #{pageDTO.radionVal}  ) AND
+			</when>
+			<otherwise>		
+			( c1.brandname LIKE
+			#{pattern} ) OR
+			</otherwise>
+		</choose> 
+		( c1.sellername LIKE #{pattern}  OR c1.pdname LIKE
+		#{pattern}
+		OR c1.pcontent LIKE #{pattern}  OR c1.majorcatename
 		LIKE #{pattern} 
-		OR c1.middlecatename LIKE #{pattern}   OR
+		OR c1.middlecatename LIKE #{pattern}  OR
 		c1.subcatename LIKE
-		#{pattern}  
-		OR c1.minicatename LIKE #{pattern} 
+		#{pattern}
+		OR c1.minicatename LIKE #{pattern} )
 		) ) c2
 		 ON c2.productid = img.productid
 		WHERE img.imgcontent = 'sum' 
 		 ) c3 ON
 		c3.productid = po.productid
         WHERE num BETWEEN ${pageDTO.start} AND ${pageDTO.end}
+        <choose>
+        	<when test="pageDTO.selectVal != null ">
+        		ORDER BY updateDay DESC
+        	</when>
+        </choose>
 		<!-- 여기서 order by 조건 주거나 where조건 추가  ?? -->
 	</select>
 
 
-	<select id="searchTotal" parameterType="Map" resultType="int">
-		SELECT CEIL(COUNT(*)/
-		#{pageNum}) count
-		FROM(
-		SELECT sp.shippingoptionname, sp.shippingoptionexplain,
-		sp.defaultshippingfee ,c1.*, ROWNUM num
-		FROM shippingoption sp JOIN (
-		SELECT ss.sellername, bi.brandname, pd.id productid, pd.categoryid,
+	<select id="searchTotal" parameterType="PageDTO2" resultType="int">
+	<bind name="pattern" value="'%' + pageDTO.searchWord + '%'" />
+		SELECT COUNT(DISTINCT c3.productid/${pageDTO.Criteria.amount}) count 
+        FROM productoption po JOIN (
+		SELECT img.imgurl, c2.* , ROWNUM num
+		FROM productimg img JOIN (
+		SELECT sp.shippingoptionname soptionname,
+		sp.shippingoptionexplain,
+		sp.defaultshippingfee ,c1.*
+		FROM
+		shippingoption sp JOIN (
+		SELECT ss.sellername, bi.brandname, pd.id
+		productid, pd.categoryid,
 		pd.shippingoptionid,
-		pd.pdname, pd.pcontent, ct.subcatename, ct.minicatename,
-		ct.middlecatename,
+		pd.pdname, pd.pcontent, pd.updateDay,
+		ct.subcatename, ct.minicatename, ct.middlecatename,
 		ct.majorcatename
 		FROM product pd JOIN sellerstore ss ON pd.sellerstoreid = ss.id
-		JOIN brand bi ON pd.brandid = bi.id
-		JOIN category ct ON pd.categoryid = ct.id ) c1
+		JOIN
+		brand bi ON pd.brandid = bi.id
+		JOIN category ct ON pd.categoryid = 
+		ct.id ) c1
 		ON sp.id = c1.shippingoptionid 
-		WHERE ( c1.brandname LIKE #{searchWord} OR
-		c1.sellername LIKE #{searchWord} OR c1.pdname
-		LIKE #{searchWord} OR
-		c1.pcontent LIKE #{searchWord} OR c1.majorcatename LIKE #{searchWord}
-		OR c1.middlecatename LIKE #{searchWord} OR c1.subcatename LIKE
-		#{searchWord} OR
-		c1.minicatename LIKE #{searchWord} ) ) c2
+		WHERE ( c1.brandname LIKE
+		#{pattern}
+		OR c1.sellername LIKE #{pattern}  OR c1.pdname LIKE
+		#{pattern}
+		OR c1.pcontent LIKE #{pattern}  OR c1.majorcatename
+		LIKE #{pattern}
+		OR c1.middlecatename LIKE #{pattern} OR
+		c1.subcatename LIKE
+		#{pattern}
+		OR c1.minicatename LIKE #{pattern}
+		) ) c2
+		 ON c2.productid = img.productid
+		WHERE img.imgcontent = 'sum' 
+		 ) c3 ON
+		c3.productid = po.productid
 	</select>
 	
 	
@@ -113,7 +141,7 @@
 	</select>
 	 
 	<select id="getSearchCateCount" parameterType="String" resultType="BrandCateCountVO" >
-		SELECT middlecatename, COUNT(middlecatename) count, categoryid 
+		SELECT middlecatename, COUNT(MIDDLECATENAME) count , substr(categoryid, 0, 4) || '0000' AS categoryid
 		FROM(   SELECT sp.shippingoptionname, sp.shippingoptionexplain, sp.defaultshippingfee ,c1.*,  ROWNUM num     
 				FROM shippingoption sp JOIN (     
 				    SELECT ss.sellername, bi.brandname, pd.id productid, pd.categoryid, pd.shippingoptionid,    
@@ -122,10 +150,10 @@
 					JOIN brand       bi ON pd.brandid = bi.id               
 					JOIN category    ct ON pd.categoryid = ct.id )  
 					c1   ON sp.id = c1.shippingoptionid  
-					WHERE ( c1.brandname LIKE '%${searchWord}%' OR c1.sellername LIKE '%${searchWord}%' OR c1.pdname LIKE '%${searchWord}%' OR c1.pcontent LIKE '%${searchWord}%' OR c1.majorcatename LIKE '%${searchWord}%'  
+					WHERE ( c1.brandname LIKE '%${searchWord}%' OR c1.sellername LIKE '%${searchWord}%' OR c1.pdname LIKE '%${searchWord}%' OR c1.pcontent LIKE '%${searchWord}%' OR c1.majorcatename LIKE '%${searchWord}%'
 					OR c1.middlecatename LIKE '%${searchWord}%' OR c1.subcatename LIKE '%${searchWord}%' OR c1.minicatename LIKE '%${searchWord}%'  ) )  c2  
-					GROUP BY middlecatename, categoryid 
-					ORDER BY middlecatename
+					GROUP BY MIDDLECATENAME , substr(categoryid, 0, 4) || '0000'
+					ORDER BY MIDDLECATENAME 
 	</select>
 	
 	<select id="getSearchBrandMap" parameterType="String" resultType="BrandCateCountVO">
@@ -140,4 +168,7 @@
 				ORDER BY productcount DESC 
 	</select>
 	
+	<insert id="insertSearch">
+		INSERT INTO search (id, memid, searchWord, searchhour) VALUES ( SEQ_SEARCH.NEXTVAL, #{memid}, #{searchWord}, #{datetime} ) 
+	</insert>
 </mapper>

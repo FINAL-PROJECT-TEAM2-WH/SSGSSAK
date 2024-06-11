@@ -18,7 +18,7 @@ public interface ReviewService {
 	//유저 리뷰리스트 
 	List<ReviewDTO> selectU(String auth) throws SQLException;
 	
-	List<BeforeReviewVO> getBeforeReview(@Param("auth")String auth) throws SQLException;
+	List<BeforeReviewVO> getBeforeReview(String auth) throws SQLException;
 	
 	//페이징리스트
 	public List<ReviewDTO> selectP(int currentPage, int numberPerPage, long id,String sort,String reviewType) throws SQLException; 

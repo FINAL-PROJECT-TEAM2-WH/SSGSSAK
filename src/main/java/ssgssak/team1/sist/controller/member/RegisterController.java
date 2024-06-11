@@ -178,7 +178,6 @@ public class RegisterController {
 			// 회원가입에 실패한 경우. 
 			result.put("success", false);
 		}
-	
 		return ResponseEntity.ok(result);		
 	}
 }
