@@ -1328,68 +1328,36 @@ isMsa=Y
 														</div>
 													</c:if>
 												</c:forEach>
-
-												<%-- <c:forEach items="${ rlist }" var="rvdto">
-													<c:set var="found" value="false" scope="page" />
-													<c:if test="${ rvdto.productid eq svo.productid }">
-														<c:set var="found" value="false" scope="page" />
-														<div class="cunit_app">
-															<div class="rating" data-rating="${ rvdto.reviewPoint }">
-																<div class="rate_bg">
-																	<!-- 리뷰점수 가져오기 -->
-																	<span class="rateFill" style="width: 0%"><span
-																		class="blind">별점 ${ rvdto.reviewPoint }점</span></span>
-																</div>
-																<span class="rate_tx">(<em>${ rvdto.reviewCount }</em>개)
-																</span>
-															</div>
-														</div>
-													</c:if>
+												<c:set var="found" value="false" scope="page" />
+												<c:forEach items="${rlist}" var="rvdto">
+												    <c:if test="${rvdto.productid eq svo.productid}">
+												        <c:set var="found" value="true" scope="page" />
+												        <div class="cunit_app">
+												            <div class="rating" data-rating="${rvdto.reviewPoint}">
+												                <div class="rate_bg">								                  
+												                    <span class="rateFill" style="width: ${rvdto.reviewPoint * 20}%">
+												                        <span class="blind">별점 ${rvdto.reviewPoint}점</span>
+												                    </span>
+												                </div>
+												                <span class="rate_tx">(<em>${rvdto.reviewCount}</em>개)</span>
+												            </div>
+												        </div>
+												    </c:if>
 												</c:forEach>
-												<c:if test="${ !found }">
-													<div class="cunit_app">
-														<div class="rating" data-rating="0%">
-															<div class="rate_bg">
-																<!-- 리뷰점수 가져오기 -->
-																<span class="rateFill" style="width: 0%"><span
-																	class="blind">별점 0 점</span></span>
-															</div>
-															<span class="rate_tx">(<em>0</em>개)
-															</span>
-														</div>
-													</div>
-												</c:if> --%>
-									<c:set var="found" value="false" scope="page" />
-									<c:forEach items="${rlist}" var="rvdto">
-									    <c:if test="${rvdto.productid eq svo.productid}">
-									        <c:set var="found" value="true" scope="page" />
-									        <div class="cunit_app">
-									            <div class="rating" data-rating="${rvdto.reviewPoint}">
-									                <div class="rate_bg">								                  
-									                    <span class="rateFill" style="width: ${rvdto.reviewPoint * 20}%">
-									                        <span class="blind">별점 ${rvdto.reviewPoint}점</span>
-									                    </span>
-									                </div>
-									                <span class="rate_tx">(<em>${rvdto.reviewCount}</em>개)</span>
-									            </div>
-									        </div>
-									    </c:if>
-									</c:forEach>
-									
-									<%-- found 변수가 false인 경우, 기본값을 표시합니다 --%>
-									<c:if test="${not found}">
-									    <div class="cunit_app">
-									        <div class="rating" data-rating="0%">
-									            <div class="rate_bg">
-									                <%-- 리뷰가 없는 경우 width를 0%로 설정합니다 --%>
-									                <span class="rateFill" style="width: 0%">
-									                    <span class="blind">별점 0점</span>
-									                </span>
-									            </div>
-									            <span class="rate_tx">(<em>0</em>개)</span>
-									        </div>
-									    </div>
-									</c:if>
+										
+												<c:if test="${not found}">
+												    <div class="cunit_app">
+												        <div class="rating" data-rating="0%">
+												            <div class="rate_bg">
+												                
+												                <span class="rateFill" style="width: 0%">
+												                    <span class="blind">별점 0점</span>
+												                </span>
+												            </div>
+												            <span class="rate_tx">(<em>0</em>개)</span>
+												        </div>
+												    </div>
+												</c:if>
 
 
 

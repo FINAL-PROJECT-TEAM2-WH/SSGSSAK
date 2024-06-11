@@ -72,7 +72,7 @@ public class ShippingController {
 		ShippingPlaceInfoVO svo = this.shippingService.ShippingPlaceUpView(id);
 		viewMap.put("memid", svo.getMemid());
 		viewMap.put("id", svo.getId());
-		viewMap.put("addressnick", svo.getMemid());
+		viewMap.put("addressnick", svo.getAddressnick());
 		viewMap.put("receivemem", svo.getReceivemem());
 		viewMap.put("roadAddress", svo.getRoadAddress());
 		viewMap.put("jibunAddress", svo.getJibunAddress());
