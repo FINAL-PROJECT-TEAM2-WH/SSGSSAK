@@ -940,7 +940,8 @@
 			function reviewDo(button){
 				var btnVal = button.value
 				//alert(btnVal);
-				location.href = `<%= contextPath %>/review/review.do?productcode=\${btnVal}`;
+				// http://localhost:8080/SSGSSAK/review/review.do?productcode=70203&auth=qwer
+				location.href = `<%= contextPath %>/SSGSSAK/review/review.do?productcode=\${btnVal}&auth=${mid}`;
 			}
 		</script>
 		<script>

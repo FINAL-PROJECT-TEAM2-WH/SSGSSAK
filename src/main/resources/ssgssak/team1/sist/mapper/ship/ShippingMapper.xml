@@ -5,25 +5,25 @@
 <mapper namespace="ssgssak.team1.sist.mapper.ship.ShippingMapper">
 	
 	<select id="orderRecordList" resultType="OrderRecordVO">
-			SELECT * FROM productimg pimg JOIN (
+		SELECT * FROM productimg pimg JOIN (
 			SELECT pd.pdname, ROWNUM num,
 			c2.poptionid poptionid, c2.productid productid, c2.optionprice optionprice,  
 			c2.orderdate orderdate, c2.memid memid, c2.payrecordid payid,  
-			c2.paydetailid payrecordid, c2.quantity quantity 
+			c2.paydetailid payrecordid, c2.quantity quantity, c2.ps
 			FROM product pd JOIN( 
-			SELECT po.id poptionid, po.productid productid, po.optionprice optionprice, c1.orderdate orderdate, c1.memid memid, c1.payrecordid payrecordid, c1.paydetailid paydetailid, c1.quantity quantity 
+			SELECT po.id poptionid, c1.ps, po.productid productid, po.optionprice optionprice, c1.orderdate orderdate, c1.memid memid, c1.payrecordid payrecordid, c1.paydetailid paydetailid, c1.quantity quantity 
 			FROM productoption po JOIN( 
-			SELECT pr.orderdate orderdate, pr.memid memid, pr.id payrecordid, pt.id paydetailid, pt.quantity quantity, pt.id3 poptionid 
+			SELECT pr.orderdate orderdate, pr.ps, pr.memid memid, pr.id payrecordid, pt.id paydetailid, pt.quantity quantity, pt.id3 poptionid
 			FROM payrecord pr JOIN paydetail pt ON pr.id = pt.id2) c1 
 			ON c1.poptionid = po.id) c2 
 			ON pd.id = c2.productid 
-			WHERE memid = #{memid}
+			WHERE memid = 'daetu01'
 			ORDER BY orderDate DESC ) c3
             ON c3.productid = pimg.productid
             WHERE imgcontent = 'sum' 
             AND 
             <![CDATA[ 
-            c3.num < 10
+            c3.num < 10 AND ps = 1
             ]]>
 	</select>
 	
@@ -148,5 +148,15 @@
 		WHERE id = #{shippingPlaceInfoVO.id}
 	</update>
 	
+	<select id="getOrderRecordId" resultType="Long">	
+		SELECT id2
+		FROM paydetail
+		WHERE id = ${id}
+	</select>
 	
+	<update id="updateOrderRecord">
+		UPDATE payrecord
+		SET ps = 2
+		WHERE id = #{oid}
+	</update>
 </mapper>
