@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+
 <body>
 
 
@@ -193,7 +195,7 @@
             <!-- //공통상품유닛 -->
         </div>
         <div class="cmmain_more" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text=''>
-                <a href="https://www.ssg.com/service/oneday/dvstore.ssg" class="cmmain_more_btn btn_moreview clickable" data-react-tarea-dtl-cd="t00026">매장 바로가기</a>
+                <a href="http://localhost/productList?categoryId=09000000" class="cmmain_more_btn btn_moreview clickable" data-react-tarea-dtl-cd="t00026">매장 바로가기</a>
             </div>
         </div>
         
