@@ -88,7 +88,7 @@
                                         </a>
                                     </li>
                                     <li class="ssg_mall_menu_item ssg_mall_menu_item_emart" data-react-unit-type="text" data-react-unit-text='[{"type":"text","value":"이마트몰"}]'>
-                                        <a href="productList?categoryId=&currentPage=1" class="clickable" data-react-tarea="공통|몰이동_레이어|이마트몰_클릭" data-react-tarea-dtl-cd="t00060">
+                                        <a href="productList?categoryId=" class="clickable" data-react-tarea="공통|몰이동_레이어|이마트몰_클릭" data-react-tarea-dtl-cd="t00060">
                                             <span class="blind">이마트몰</span>
                                         </a>
                                     </li>
@@ -319,7 +319,7 @@
                          <li id="userinfoBtn" style="display:block;"><a id="login_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그인" href="#" onclick="" title="새창 열림"><sec:authentication property="principal.username"/>님 환영합니다</a></li>
                         <form id="logoutform" action="/login/logout" method="post">
                          <li id="logoutBtn" style="display:block;"><a id="logout_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그아웃" href="#">로그아웃</a></li>
-                        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>                      
+                        <input type="hidden" id="csrfToken" name="${_csrf.parameterName }" value="${_csrf.token }"/>                      
                         </form>                      
                         </sec:authorize>
                          <sec:authorize access="hasRole('admin')">

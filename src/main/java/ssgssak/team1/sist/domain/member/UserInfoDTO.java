@@ -15,8 +15,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 public class UserInfoDTO {
-	private String id;
-	private String name;
+	private MemberVO memberVO;
 	private int memberPoint;
 	private int couponNum;
 	private int leftDays;

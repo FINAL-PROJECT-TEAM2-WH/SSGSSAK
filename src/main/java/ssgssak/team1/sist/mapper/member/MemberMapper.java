@@ -7,7 +7,8 @@ import org.apache.ibatis.annotations.Param;
 import ssgssak.team1.sist.domain.member.MemberVO;
 
 public interface MemberMapper {
-	// È¸¿øÁ¤º¸ O +  ±ÇÇÑ Á¤º¸ O
+	// È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ O +  ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ O
 		public MemberVO read(@Param("userid") String userid) throws ClassNotFoundException, SQLException ;
-		
+		public int deletequitMbr(@Param("id") String id, @Param("passwd")String passwd);
+		public int insquitMbr(@Param("id")String id, @Param("content")String content);
 }

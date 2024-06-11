@@ -1,9 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%
-request.setAttribute("pageTitle", "내 페이지 타이틀");
-%>
+
 
 <!doctype html>
 <html lang="ko">
@@ -13,8 +11,11 @@ request.setAttribute("pageTitle", "내 페이지 타이틀");
 <link rel="shortcut icon" type="image/x-icon"
 	href="//sui.ssgcdn.com/ui/common/img/ssg.ico">
 <link rel="image_src" href="//sui.ssgcdn.com/ui/common/img/sns/ssg.png" />
-<title class="notranslate">카테고리 &gt;<%=request.getAttribute("pageTitle")%>,
-	믿고 사는 즐거움 SSG.COM
+<title class="notranslate">카테고리 &gt; ${crtCateDto.majorCateName} 
+<c:if test="${crtCateDto.middleCateName != null && !crtCateDto.middleCateName.isEmpty()}">&gt; ${crtCateDto.middleCateName}</c:if>  
+<c:if test="${crtCateDto.subCateName != null && !crtCateDto.subCateName.isEmpty()}">&gt; ${crtCateDto.subCateName} </c:if>
+<c:if test="${crtCateDto.miniCateName != null && !crtCateDto.miniCateName.isEmpty()}">&gt; ${crtCateDto.miniCateName} </c:if>
+ SSGSSAK
 </title>
 <meta name="title" content="카테고리 &gt; 스피커, 믿고 사는 즐거움 SSG.COM" />
 <meta name="description" content="카테고리 &gt; 스피커, 믿고 사는 즐거움 SSG.COM" />
@@ -788,7 +789,7 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 		<div class="cctg_subtit" id="area_disp_ctg_title">
 			<h2>
 				<a class="notranslate clickable"
-					href="/SSGSSAK/productlist/productList?categoryId=${crtCateDto.id}&currentPage=1">
+					href="/SSGSSAK/productlist/productList?categoryId=${crtCateDto.id}">
 					<c:choose>
 						<c:when test="${not empty crtCateDto.miniCateName}">
 							<c:out value="${crtCateDto.miniCateName}" />
@@ -862,35 +863,40 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 									<ul class="cmflt_ctlist notranslate">
 <!-- 										사이드카테고리뿌리기 -->
 <%-- 																		<c:forEach items="${selectCate.mncDtoList}" var="mnDto"> --%>
-<%-- 																			<li class=""><a href="productList?categoryId=${mnDto.id}&currentPage=1">${mnDto.miniCateName}</a></li> --%>
+<%-- 																			<li class=""><a href="productList?categoryId=${mnDto.id}">${mnDto.miniCateName}</a></li> --%>
 <%-- 																		</c:forEach> --%>
 
 
 
 										<c:choose>
 
+											<c:when test="${empty param.categoryId}">
+												<c:forEach items="${selectCate.mjcDtoList}" var="mjcDto">
+													<li class=""><a href="productList?categoryId=${mjcDto.id}">${mjcDto.majorCateName}</a></li>
+												</c:forEach>
+											</c:when>
 											<c:when test="${fn:endsWith(crtCateDto.id, '000000') or fn:endsWith(crtCateDto.id, '0000000')}">
 												<c:forEach items="${selectCate.mdcDtoList}" var="mdcDto">
-													<li class=""><a href="productList?categoryId=${mdcDto.id}&currentPage=1">${mdcDto.middleCateName}</a></li>
+													<li class=""><a href="productList?categoryId=${mdcDto.id}">${mdcDto.middleCateName}</a></li>
 												</c:forEach>
 											</c:when>
 											
 											
 											<c:when test="${fn:endsWith(crtCateDto.id, '0000')}">
 												<c:forEach items="${selectCate.scDtoList}" var="scDto">
-													<li class=""><a href="productList?categoryId=${scDto.id}&currentPage=1">${scDto.subCateName}</a></li>
+													<li class=""><a href="productList?categoryId=${scDto.id}">${scDto.subCateName}</a></li>
 												</c:forEach>
 											</c:when>
 											
 											<c:when test="${fn:endsWith(crtCateDto.id, '0000') and not empty selectCate.mncDtoList}">
 												<c:forEach items="${selectCate.mncDtoList}" var="mncDto">
-													<li class=""><a href="productList?categoryId=${mncDto.id}&currentPage=1">${mncDto.miniCateName}</a></li>
+													<li class=""><a href="productList?categoryId=${mncDto.id}">${mncDto.miniCateName}</a></li>
 												</c:forEach>
 											</c:when>
 											
 											<c:otherwise>
 												<c:forEach items="${selectCate.scDtoList}" var="scDto">
-													<li class=""><a href="productList?categoryId=${scDto.id}&currentPage=1">${scDto.subCateName}</a></li>
+													<li class=""><a href="productList?categoryId=${scDto.id}">${scDto.subCateName}</a></li>
 												</c:forEach>
 											</c:otherwise>
 										</c:choose>
@@ -901,7 +907,7 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 							</div>
 
 <!-- 						brandsipping.jsp 있던자리 -->
-	
+<%-- 	<%@ include file="brandsipping.jsp"%> --%>
 
 				</div>
 			</div>
@@ -928,8 +934,8 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 
 				<div class="toolbar_sort_group v2">
 					<div class="com_tmpl">
-<!-- 						추천순.jsp있던자리 -->
-						
+<!-- 						productSort.jsp있던자리 -->
+				<%@ include file="productSort.jsp"%>
 						
 					</div>
 				</div>
@@ -1109,13 +1115,13 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 							
 </c:choose>
 
-							<!-- 페이징처리하는곳 고고 -->
 						</ul>
 					</div>
+							<!-- 페이징처리하는곳 고고 -->
 					<div class="com_paginate notranslate" style="width: 100%">
 						<c:if test="${ pDto.prev }">
 							<a class="btn_prev"
-								href="?categoryId=${crtCateDto.id}&currentPage=${pDto.start-1}"
+								href="?categoryId=${crtCateDto.id}&currentPage=${pDto.start-1}<c:if test='${not empty param.sort}'>&sort=${param.sort}</c:if><c:if test='${not empty param.size}'>&size=${param.size}</c:if>"
 								title="이전">
 						</c:if>
 
@@ -1129,7 +1135,7 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 								</c:when>
 
 								<c:otherwise>
-									<a href="?categoryId=${crtCateDto.id}&currentPage=${i}">${i}</a>
+									<a href="?categoryId=${crtCateDto.id}&currentPage=${i}<c:if test='${not empty param.sort}'>&sort=${param.sort}</c:if><c:if test='${not empty param.size}'>&size=${param.size}</c:if>">${i}</a>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
@@ -1139,7 +1145,7 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 
 						<c:if test="${ pDto.next }">
 							<a class="btn_next on"
-								href="?categoryId=${crtCateDto.id}&currentPage=${pDto.end+1}"
+								href="?categoryId=${crtCateDto.id}&currentPage=${pDto.end+1}<c:if test='${not empty param.sort}'>&sort=${param.sort}</c:if><c:if test='${not empty param.size}'>&size=${param.size}</c:if>"
 								title="다음">
 						</c:if>
 
@@ -1200,8 +1206,8 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 	<script type="text/javascript"
 		src="//sui.ssgcdn.com/ui/m_ssg/js/ui/mcom.webview.js?v=20240424"></script>
 
-	<!-- 	<script type="text/javascript" -->
-	<!-- 		src="//sui.ssgcdn.com/ui/ssg/js/common/clipJs.js?v=20240424"></script> -->
+	<!-- 	<script type="text/javascript" 
+	 		src="//sui.ssgcdn.com/ui/ssg/js/common/clipJs.js?v=20240424"></script> -->
 
 	<script type="text/javascript"
 		src="//sui.ssgcdn.com/ui/ssg/js/ui/ui.datepicker.js?v=20240424"></script>
@@ -1226,20 +1232,28 @@ $(function(){
         }
     });
 });
-</script>
-	<script id="_dropdown-selected" type="text/x-jquery-tmpl">
-    <span class="txt{{if label == "추천순"}} has-tooltip{{/if}}">{{= label}}</span>
-    <span class="sel_arrow">&nbsp;</span>
-    {{if label == "추천순"}}
-            <button type="button" class="ssg-tooltip"><span class="blind">추천순 설명 보기</span></button>
-    {{/if}}
+
+
 </script>
 
-	<script id="_dropdown-list" type="text/x-jquery-tmpl">
+
+
+  
+<script id="_dropdown-selected" type="text/x-jquery-tmpl">
+
+    <span class="txt{{if label == "등록순"}} has-tooltip{{/if}}">{{= label}}</span>
+    <span class="sel_arrow">&nbsp;</span>
+    {{if label == "등록순"}}
+            <button type="button" class="ssg-tooltip"><span class="blind">추천순 설명 보기</span></button>
+    {{/if}}
+
+</script>
+
+<script id="_dropdown-list" type="text/x-jquery-tmpl">
     {{each(index, row) items}}
         {{if value !== "0"}}
             {{if selected}}
-                {{if label == "추천순"}}
+                {{if label == "등록순"}}
                 <li class="selected" data-index="{{= index}}">
                     <a href="#"><span class="txt">{{= label}}</span></a>
                     <button type="button" class="ssg-tooltip"><span class="blind">추천순 설명 보기</span></button>
@@ -1249,7 +1263,7 @@ $(function(){
                     <a href="#"><span class="txt">{{= label}}</span></a>
                 </li>
                 {{/if}}
-            {{else label == "추천순"}}
+            {{else label == "등록순"}}
                 <li data-index="{{= index}}">
                     <a href="#"><span class="txt">{{= label}}</span></a>
                     <button type="button" class="ssg-tooltip"><span class="blind">추천순 설명 보기</span></button>
@@ -1262,6 +1276,8 @@ $(function(){
         {{/if}}
     {{/each}}
 </script>
+
+
 	<script id="_dropdown" type="text/x-jquery-tmpl">
     <div class="tmpl_drop_opt">
         <a href="#" class="tmpl_drop_select _drop_select">
@@ -1276,21 +1292,79 @@ $(function(){
         </div>
     </div>
 </script>
+  <!--  
+<script id="_dropdown-selected" type="text/x-jquery-tmpl">
+
+    <span class="txt{{if label == "등록순"}} has-tooltip{{/if}}">{{= label}}</span>
+    <span class="sel_arrow">&nbsp;</span>
+    {{if label == "등록순"}}
+            <button type="button" class="ssg-tooltip"><span class="blind">추천순 설명 보기</span></button>
+    {{/if}}
+
+</script>
+
+	<script id="_dropdown-list" type="text/x-jquery-tmpl">
+    {{each(index, row) items}}
+        {{if value !== "0"}}
+            {{if selected}}
+                {{if label == "등록순"}}
+                <li class="selected" data-index="{{= index}}">
+                    <a href="#"><span class="txt">{{= label}}</span></a>
+                    <button type="button" class="ssg-tooltip"><span class="blind">추천순 설명 보기</span></button>
+                </li>
+                {{else}}
+                <li class="selected" data-index="{{= index}}">
+                    <a href="#"><span class="txt">{{= label}}</span></a>
+                </li>
+                {{/if}}
+            {{else label == "등록순"}}
+                <li data-index="{{= index}}">
+                    <a href="#"><span class="txt">{{= label}}</span></a>
+                    <button type="button" class="ssg-tooltip"><span class="blind">추천순 설명 보기</span></button>
+                </li>
+            {{else}}
+                <li {{if disabled}}class="disabled"{{/if}} data-index="{{= index}}">
+                    <a href="#"><span class="txt">{{= label}}</span></a>
+                </li>
+            {{/if}}
+        {{/if}}
+    {{/each}}
+</script>
+
+
+	<script id="_dropdown" type="text/x-jquery-tmpl">
+    <div class="tmpl_drop_opt">
+        <a href="#" class="tmpl_drop_select _drop_select">
+            {{tmpl(selected) "#_dropdown-selected"}}
+        </a>
+        <div class="tmpl_drop_scroll">
+            <ul class="tmpl_drop_list _drop_list">
+                {{if items}}
+                    {{tmpl "#_dropdown-list"}}
+                {{/if}}
+            </ul>
+        </div>
+    </div>
+</script>
+-->
+
 	<script type="text/javascript"
 		src="//sui.ssgcdn.com/ui/ssg/js/ui/ssg.view.cmfilter.js?v=20240424"></script>
 	<script type="text/javascript"
 		src="//sui.ssgcdn.com/ui/ssg/js/ui/ssg.view.category_v2.js?v=20240424"></script>
 
-	<!-- 기존상품리스트JS파일		 -->
-	<!-- 	<script type="text/javascript" -->
-	<!-- 		src="//sui.ssgcdn.com/ui/ssg/js/disp/category/category-common.js?v=20240424"></script> -->
-	<!-- 기존상품리스트JS파일		 -->
+<!--  기존상품리스트JS파일		 -->
+<!--  	<script type="text/javascript" 
+	src="//sui.ssgcdn.com/ui/ssg/js/disp/category/category-common.js?v=20240424"></script> 
+ -->
+<!--  기존상품리스트JS파일 -->
 
 
-
+<!-- 
 	<script type="text/javascript"
 		src="//sui.ssgcdn.com/ui/ssg/js/disp/category/category-action.js?v=20240424"
 		data-keepssgem="N"></script>
+		 -->
 	<script type="text/javascript"
 		src="//sui.ssgcdn.com/ui/ssg/js/shareJs.js?v=20240424"></script>
 	<script type="text/javascript">

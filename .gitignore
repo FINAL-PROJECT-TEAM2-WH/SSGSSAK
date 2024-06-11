@@ -4,6 +4,7 @@ Servers/
 .project
 .settings/
 .springBeans
+target/
 /target
 target/
 bin/

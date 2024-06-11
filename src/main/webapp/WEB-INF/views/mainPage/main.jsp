@@ -291,11 +291,17 @@
 //]]>
 </script>
 <script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/ssg.ad.js?v=20240424"></script>
-<script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/common/ssg.react.js?v=20240424"></script>
-<script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/ui/ssg.view.layerpopup.js?v=20240424"></script><script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/netfunnel.js?v=20240424" charset="UTF-8"></script>
-<script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/netfunnel_skin.js?v=20240424"></script>
 
+<!-- 명건 - 카테고리리액트함수작동되는부분 -->
+<!-- 얘때문에매핑안되고짜증나서주석처리함 -->
+<script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/common/ssg.react.js?v=20240424"></script>
+
+
+<script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/ui/ssg.view.layerpopup.js?v=20240424"></script>
+<script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/netfunnel.js?v=20240424" charset="UTF-8"></script>
+<script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/netfunnel_skin.js?v=20240424"></script>
 <script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/affiliate/affiliateGnb.js"></script>
+
 <script type="text/javascript">
 var agent = navigator.userAgent.toLowerCase();
 
@@ -312,9 +318,8 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
     fbq('track', "PageView");
 }
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
-/></noscript>
+
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"/></noscript>
 <script type="text/javascript">
     window.GA4_dataLayer = window.GA4_dataLayer || [];
     function gtmPush() {
@@ -484,9 +489,15 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
     {{/if}}
 </div>
 </script>
+
+<!--  명건 얘가 카테고리에 링크주는듯? -->
 <script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/ui/ssg.view.common.gnb.js?v=20240424"></script>
 
 <script type="text/javascript">
+
+
+//원래 인크루드카테고리바 JS
+/* 
     $(function(){
         var oSsgMallCategory = new ssg.Model.mallCategory({
             sUrl: 'https://sui.ssgcdn.com/common/ui/json/pc_ctg_list_0000_NORMAL.js'
@@ -497,6 +508,24 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
                 htCtgData: oSsgMallCategory.getCtgDataByMallCode(sSsgMallCode, data)
             });
         });
+    
+ */
+//지금 쓰는 인크루드카테고리바 JS
+
+
+    $(function(){
+        var oSsgMallCategory = new ssg.Model.mallCategory({
+            sUrl: '../../../resources/js/mgsCateBlock.js'
+        });
+        oSsgMallCategory.getCategoryInfo().done(function(data) {
+            var sSsgMallCode = "6005";
+            var oSsgViewNavigation = new ssg.View.navigation({
+                htCtgData: oSsgMallCategory.getCtgDataByMallCode(sSsgMallCode, data)
+            });
+        });
+     
+        
+        
 
         // 배송매장 ( 새벽배송 )의 경우 이마트 / 새벽배송이 같은 차수이면 비노출 처리한다.
         deferredObj.done(function() {
@@ -1714,7 +1743,11 @@ function ecommerceLogEvent(a,b){a&&b&&(window.AnalyticsWebInterface?window.Analy
 
 </script>
 
+
+<!-- 명건 - 얘가 링크 연결해주는듯? 일단 주석해봄 -->
 <script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/history.js?v=20240508"></script>
+
+
 <script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/chnlPopup.js"></script>
 
 
