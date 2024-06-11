@@ -762,7 +762,7 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 	<link rel="stylesheet" type="text/css"
 		href="//sui.ssgcdn.com/ui/ssg/css/common_filter.css?v=20240424" />
 	<link rel="stylesheet" type="text/css"
-		href="//sui.ssgcdn.com/ui/ssg/css/mndmoon_ssg.css?v=20240424">
+		href="//sui.ssgcdn.com/ui/ssg/css/mndmoon_ssg.css?v=20240424"/>
 	<link rel="stylesheet" type="text/css"
 		href="//sui.ssgcdn.com/ui/ssg/css/delivery_mall.css?v=20240424" />
 	<script type="text/javascript">
@@ -1054,7 +1054,7 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 												<div class="opt_price">
 													<span class="blind">할인적용가</span> <em class="ssg_price">${productList[loop.index].sprice}</em>
 													<span class="ssg_tx">원</span>
-													<div class="ssg_price_ko show_gl hide_ko">(￦1)</div>
+													<div class="ssg_price_ko show_gl hide_ko">(${productList[loop.index].sprice})</div>
 												</div>
 												<c:if test="${productList[loop.index].discount != 0}">
 												
@@ -1122,7 +1122,7 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 						<c:if test="${ pDto.prev }">
 							<a class="btn_prev"
 								href="?categoryId=${crtCateDto.id}&currentPage=${pDto.start-1}<c:if test='${not empty param.sort}'>&sort=${param.sort}</c:if><c:if test='${not empty param.size}'>&size=${param.size}</c:if>"
-								title="이전">
+								title="이전"></a>
 						</c:if>
 
 
@@ -1146,7 +1146,7 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 						<c:if test="${ pDto.next }">
 							<a class="btn_next on"
 								href="?categoryId=${crtCateDto.id}&currentPage=${pDto.end+1}<c:if test='${not empty param.sort}'>&sort=${param.sort}</c:if><c:if test='${not empty param.size}'>&size=${param.size}</c:if>"
-								title="다음">
+								title="다음"></a>
 						</c:if>
 
 
