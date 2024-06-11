@@ -26,7 +26,7 @@
 		</div>
 	</div>
 	<c:choose>
-		<c:when test="${fn:endsWith(param.categoryId, '000000') or fn:endsWith(param.categoryId, '0000000')}">
+		<c:when test="${fn:endsWith(crtCateDto.id, '000000') or fn:endsWith(crtCateDto.id, '0000000')}">
 		</c:when>
 
 		<c:otherwise>
@@ -52,7 +52,7 @@
 
 	<c:choose>
 		<c:when
-			test="${fn:endsWith(param.categoryId, '0000') or fn:endsWith(param.categoryId, '000000') or fn:endsWith(param.categoryId, '0000000')}">
+			test="${fn:endsWith(crtCateDto.id, '0000') or fn:endsWith(crtCateDto.id, '000000') or fn:endsWith(crtCateDto.id, '0000000')}">
 
 		</c:when>
 		<c:otherwise>
