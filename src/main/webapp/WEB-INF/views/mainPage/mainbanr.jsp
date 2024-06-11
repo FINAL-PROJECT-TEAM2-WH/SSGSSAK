@@ -56,7 +56,7 @@
              data-react-unit-text=""
              
         >
-           <a href="http://localhost:8080/SSGSSAK/pay/coupon.jsp"
+           <a href="/coupon.do"
                class="ssghero_imglink clickable"
                data-react-tarea-cd-old="이벤트 클릭2"
                data-react-tarea-dtl-cd="t00001"
@@ -70,7 +70,7 @@
         data-react-unit-id="2003594170"
         data-react-unit-text=""
    >
-       <a href="http://localhost:8080/SSGSSAK/pay/coupon.jsp"
+       <a href="/coupon.do"
           class="ssghero_titlnk clickable"
           data-react-tarea-cd-old="가정의달 쇼핑 익스프레스"
           data-react-tarea-dtl-cd="t00001"
