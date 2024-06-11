@@ -92,10 +92,6 @@ public class ReviewController {
 		model.addAttribute("userinfo", infoService.getUserInfo(auth));
 		model.addAttribute("currentPage",currentPage);
 		
-		
-		
-		
-		
 		return "review/userReview";
 	}
 

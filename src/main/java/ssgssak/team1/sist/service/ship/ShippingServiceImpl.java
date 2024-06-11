@@ -18,7 +18,7 @@ public class ShippingServiceImpl implements ShippingService {
 
 	
 	private ShippingMapper shippingMapper;
-	
+
 	@Autowired
 	private ShippingServiceImpl(ShippingMapper shippingMapper) {
 		this.shippingMapper = shippingMapper;
@@ -108,9 +108,26 @@ public class ShippingServiceImpl implements ShippingService {
 		
 		return this.shippingMapper.shippingUpdate(memid, shippingPlaceInfoVO);
 	}
-	
-	
-	
+
+
+
+	@Override
+	public int deleteOrderRecord(long id) throws Exception {
+		
+		try {
+			long oid = this.shippingMapper.getOrderRecordId(id);
+			System.out.println("트라이 캐치");
+			System.out.println(oid);
+			this.shippingMapper.updateOrderRecord(oid);
+			System.out.println("트라이 캐치 들어왔다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+
+		int rowCount = 1;
+		return rowCount; 
+	}
+
 	
 
 }
