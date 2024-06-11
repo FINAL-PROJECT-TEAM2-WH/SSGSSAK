@@ -1,5 +1,7 @@
 package ssgssak.team1.sist.service.search;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +15,16 @@ import ssgssak.team1.sist.domain.search.PriceVO;
 import ssgssak.team1.sist.domain.search.SearchVO;
 import ssgssak.team1.sist.mapper.search.SearchMapper;
 
-@AllArgsConstructor
 @Service
 public class SearchServiceImpl implements SearchService {
 
-	@Autowired
+	
 	public SearchMapper searchMapper;
+	
+	@Autowired
+	private SearchServiceImpl(SearchMapper searchMapper) {
+		this.searchMapper = searchMapper;
+	}
 	
 	@Override
 	public ArrayList<SearchVO> searchResultList(Criteria criteria, String searchWord, PageDTO pagedto) throws Exception {
@@ -56,6 +62,16 @@ public class SearchServiceImpl implements SearchService {
 	public ArrayList<BrandCateCountVO> getSearchBrandMap(String searchWord) throws Exception {
 		ArrayList<BrandCateCountVO> list = this.searchMapper.getSearchBrandMap(searchWord);
 		return list;
+	}
+
+	@Override
+	public int insertSearch(String memid, String searchWord) throws Exception {
+		LocalDateTime ldt = LocalDateTime.now();
+		String pattern = "yyyy/MM/dd";
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
+		String datetime = ldt.format(dateFormatter);
+
+		return this.searchMapper.insertSearch(searchWord, memid, datetime);
 	}
 
 

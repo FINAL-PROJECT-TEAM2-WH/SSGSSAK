@@ -335,7 +335,7 @@
     var emergencyItemIds = "";
 //]]>
 </script>
-<%@ include file= "../../Top.jsp" %>
+<%@ include file= "../../../Top.jsp" %>
 <div id="category" class="category"></div>
 			<div id="container"  class="cmmyssg_wrap" >
 				<!-- SSG -->

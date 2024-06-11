@@ -353,7 +353,7 @@
 						<a href="http://www.ssg.com/myssg/main.ssg"
 							class="cmmyssg_user_tittx clickable"
 							data-react-tarea-dtl-cd="t00060"><span
-							class="cmmyssg_user_titname">${memberVO.name} 님</span>의 My SSG</a>
+							class="cmmyssg_user_titname">${userInfoVO.memberVO.name} 님</span>의 My SSG</a>
 					</h2>
 				</div>
 			</div>
@@ -593,7 +593,7 @@
 </script>
 		<div id="content" class="content_myssg">
 			<form id="submitForm_update" name="submitForm" method="post">
-			<input type="hidden" name="id" value="${memberVO.id}">
+			<input type="hidden" name="id" value="${userInfoVO.memberVO.id}">
 				<h2 class="stit">
 					<span>회원정보 변경</span>
 				</h2>
@@ -612,7 +612,7 @@
 								src="//sui.ssgcdn.com/ui/ssg/img/mem/ico_star.gif" alt="필수" /></span>
 							<div class="insert" id="idCheckDiv">
 
-								<span>${memberVO.id}</span>
+								<span>${userInfoVO.memberVO.id}</span>
 
 
 							</div>
@@ -621,7 +621,7 @@
 							<span class="label">이름 <img
 								src="//sui.ssgcdn.com/ui/ssg/img/mem/ico_star.gif" alt="필수" /></span>
 							<div class="insert">
-								<span id="mbrNm">${memberVO.name}</span>
+								<span id="mbrNm">${userInfoVO.memberVO.name}</span>
 							</div>
 						</div>
 
@@ -642,20 +642,20 @@
 									<option value="018" addtOptnVal1="" addtOptnVal2="">018</option>
 									<option value="019" addtOptnVal1="" addtOptnVal2="">019</option> -->
 										<option value=010
-											<c:if test="${memberVO.phoneNum.substring(0,3) == 010}">selected</c:if>>010</option>
+											<c:if test="${userInfoVO.memberVO.phoneNum.substring(0,3) == 010}">selected</c:if>>010</option>
 										<option value=011
-											<c:if test="${memberVO.phoneNum.substring(0,3) == 011}">selected</c:if>>011</option>
+											<c:if test="${userInfoVO.memberVO.phoneNum.substring(0,3) == 011}">selected</c:if>>011</option>
 										<option value=016
-											<c:if test="${memberVO.phoneNum.substring(0,3) == 016}">selected</c:if>>016</option>
+											<c:if test="${userInfoVO.memberVO.phoneNum.substring(0,3) == 016}">selected</c:if>>016</option>
 										<option value=017
-											<c:if test="${memberVO.phoneNum.substring(0,3) == 017}">selected</c:if>>017</option>
+											<c:if test="${userInfoVO.memberVO.phoneNum.substring(0,3) == 017}">selected</c:if>>017</option>
 										<option value=018
-											<c:if test="${memberVO.phoneNum.substring(0,3) == 018}">selected</c:if>>018</option>
+											<c:if test="${userInfoVO.memberVO.phoneNum.substring(0,3) == 018}">selected</c:if>>018</option>
 										<option value=019
-											<c:if test="${memberVO.phoneNum.substring(0,3) == 019}">selected</c:if>>019</option>
+											<c:if test="${userInfoVO.memberVO.phoneNum.substring(0,3) == 019}">selected</c:if>>019</option>
 									</select> <span>-</span> 
 									<input type="tel" id="mbrCntsELno" title="휴대폰 번호 뒷자리" placeholder="- 없이 뒷자리를 입력해주세요."
-									value="${memberVO.phoneNum.substring(3).replaceAll('-','')}" class="input_text small" name="mbrCntsELno"
+									value="${userInfoVO.memberVO.phoneNum.substring(3).replaceAll('-','')}" class="input_text small" name="mbrCntsELno"
 										style="width: 136px; ime-mode: disabled;" />
 								</div>
 								<input type="hidden" id="mbrPhoneNum" name="phoneNum" value=""/>
@@ -669,7 +669,7 @@
 								src="//sui.ssgcdn.com/ui/ssg/img/mem/ico_star.gif" alt="필수" /></label>
 							<div class="insert">
 								<input type="text" id="email" name="email"
-									placeholder="자주 사용하시는 이메일 주소를 입력해주세요." value="${memberVO.email}"
+									placeholder="자주 사용하시는 이메일 주소를 입력해주세요." value="${userInfoVO.memberVO.email}"
 									class="input_text small" style="width: 250px" />
 							</div>
 							 <span class="cmem_noti" aria-live="polite">

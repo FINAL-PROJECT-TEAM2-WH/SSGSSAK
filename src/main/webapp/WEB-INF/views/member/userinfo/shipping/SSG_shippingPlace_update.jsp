@@ -1,14 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ page import="org.springframework.security.core.Authentication" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="ssgssak.team1.sist.domain.member.security.CustomerUser" %>
 <%
-	HttpSession memSession = request.getSession(false); // 세션이 없으면 새로 생성하지 않음
-	String memid = null;
-	if (memSession != null && memSession.getAttribute("auth") != null) {
-		memid = (String) memSession.getAttribute("auth");
-	} else {
-	    // 여기는 로그인 페이지로 다시 이동
-	    response.sendRedirect("../../member/login.jsp");
-	}
-%> 
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		CustomerUser  customerDetail =(CustomerUser) authentication.getPrincipal();
+		String memid = customerDetail.getUsername();
+%>  
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
 <head>
@@ -377,6 +376,7 @@
 										<span id="roadNmAddr" name="roadNmAddr" class="info_cont notranslate">
 												도로명주소가 없거나 확인되지 않습니다.
 										</span>
+										<input type="hidden" id="_csrf" name="_csrf" value="${_csrf.token}">
 										<strong class="info_tit">지번</strong>
 										<span id="lotnoAddr" name="lotnoAddr" class="info_cont notranslate">
 												지번주소가 없거나 확인되지 않습니다							
@@ -398,7 +398,7 @@
 			<!-- form태그 제출하는 곳 -->
 			<div class="pop_btn_area notranslate">
 				<!-- 여기에 우리가 폼태그 제출해서 데이터 저장할 handler에 주기?? -->
-				<a href="#" id="shippingPlaceUpdate" class="color4">확인</a>
+				<button onclick="shippingPlaceUpdate()" class="color4" >확인</button>
 				<a href="javascript:void(0);" onclick="shpploc.cancel()" class="color3">취소</a>
 			</div>
 		</div>
@@ -486,7 +486,7 @@ function execDaumPostcode() {
 			var tels = datas.tel.split('-');
 			$("#hiddenId").val(datas.id);
 			$("#addressnick").val(datas.addressnick);
-			$("#rcptpeNm").val(datas.receiveMem);
+			$("#rcptpeNm").val(datas.receivemem);
 			$('#hpno1').val(tels[0]).attr('selected', true);
 			$("#hpno2").val(tels[1]);
 			$("#hpno3").val(tels[2]);
@@ -498,41 +498,49 @@ function execDaumPostcode() {
 	})
 </script>
 <script>
-	$("#shippingPlaceUpdate").on("click", function(){
-		//alert("click했다~~");
-		var contextPath = "<%= request.getContextPath() %>";
-		var datas = {
-				// 여기서 회원 id 값도 같이 넘기기
-				memid : "<%= memid %>"
-			,   id : $("#hiddenId").val()
-			,	addrnick : $("#addressnick").val()
-			,	receiveMem : $("#rcptpeNm").val()
-			,	tel : $("#hpno1 option:selected").val() +"-"+ $("#hpno2").val() +"-"+ $("#hpno3").val()
-			,	postNum : $("#postNum").val()
-			, 	roadAddress : $("#roadAddress").val()
-			,   jibunAddress : $("#jibunAddress").val()
-			,   detailAddress : $("#detailAddress").val()
-		}
-		$.ajax({
-			type: "POST",
-			datatype : 'json',
-			/* ajax url 줄때 서버단이라면 contextPath 추가 꼭 해주기 */
-			url: contextPath + "/shippingPlaceUpdate.do",
-			contentType : 'application/json', 
-		    data : JSON.stringify(datas),
-			cache : false,
-			success : function(res){
-				alert("주소 수정 성공");
-				console.log(res.code);
-				window.opener.parent.location.reload();
-				window.close();
-			},
-			error : function(){
-				//alert("실패")
-				window.close();
-			}
-		})
-	})
+$(document).ready(function(){
+
+    function shippingPlaceUpdate() {
+        var csrfToken = $('#_csrf').val();
+        var datas = {
+            id: $("#hiddenId").val(),
+            addressnick: $("#addressnick").val(),
+            receivemem: $("#rcptpeNm").val(),
+            tel: $("#hpno1 option:selected").val() + "-" + $("#hpno2").val() + "-" + $("#hpno3").val(),
+            postnum: $("#postNum").val(),
+            roadAddress: $("#roadAddress").val(),
+            jibunAddress: $("#jibunAddress").val(),
+            detailAddress: $("#detailAddress").val(),
+        };
+        // AJAX 요청 보내기
+        $.ajax({
+            type: "POST",
+            url: "/shippingR/shippingPlaceUpdate", 
+            contentType: 'application/json',
+            dataType: 'json', // 응답을 JSON 형식으로 처리
+            data: JSON.stringify(datas), // JSON 형식으로 데이터 전송
+            cache: false,
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+            },
+            success: function(res) {
+                //alert("주소 수정 성공");
+                //console.log("응답 코드: ", res.code);
+                window.opener.parent.location.reload(); // 부모 창 새로고침
+                window.close(); // 현재 창 닫기
+            },
+            error: function(xhr, status, error) {
+                //console.error("AJAX 요청 실패:", status, error);
+                //alert("주소 수정 실패: " + error);
+                window.opener.parent.location.reload();
+                window.close();
+            }
+        });
+    }
+
+    // 함수가 전역에서 접근 가능하도록 정의
+    window.shippingPlaceUpdate = shippingPlaceUpdate;
+});
 </script>
 <script>
 function googleTranslateElementInit() {

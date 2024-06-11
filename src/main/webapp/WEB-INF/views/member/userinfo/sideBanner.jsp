@@ -13,7 +13,7 @@
             <strong class="cmmyssg_snb_tit">나의 주문관리</strong>
             <ul class="cmmyssg_snb_sublst">
                 <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-
-                unit-id="" data-react-unit-text='[{"type":"text","value":"주문/배송조회"}]'><a href="<%= request.getContextPath() %>/orderRecord.do" class="clickable" data-react-tarea-dtl-cd="t00058">주문/배송조회</a></li>
+                unit-id="" data-react-unit-text='[{"type":"text","value":"주문/배송조회"}]'><a href="/member/userinfo/shipping/orderRecord" class="clickable" data-react-tarea-dtl-cd="t00058">주문/배송조회</a></li>
                 <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"여행예약조회"}]'><a href="https://triip.ssg.com/hotel/myssg/rsvtList.ssg" class="clickable" data-react-tarea-dtl-cd="t00058">여행예약 조회</a></li>
                 <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"구매내역"}]'><a href="https://www.ssg.com/myssg/productMng/purchaseList.ssg?menu=purchaseList" class="clickable" data-react-tarea-dtl-cd="t00058">구매 내역</a></li>
                 <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"자주구매상품"}]'><a href="https://www.ssg.com/myssg/productMng/frequentlyOrderItem.ssg?menu=frequentlyOrderItem" class="clickable" data-react-tarea-dtl-cd="t00058">자주구매 상품</a></li>
@@ -35,7 +35,7 @@
             <strong class="cmmyssg_snb_tit">나의 활동관리</strong>
             <ul class="cmmyssg_snb_sublst">
                 <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"좋아요"}]'><a href="<%= sContextPath %>/memberInfo/likeInfo.do" class="clickable" data-react-tarea-dtl-cd="t00058">좋아요</a></li>
-                <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"상품리뷰"}]'><a href="https://www.ssg.com/myssg/activityMng/pdtEvalList.ssg?quick=pdtEvalList" class="clickable" data-react-tarea-dtl-cd="t00058">상품 리뷰</a></li>
+                <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"상품리뷰"}]'><a href="/SSGSSAK/review/userReview.do" class="clickable" data-react-tarea-dtl-cd="t00058">상품 리뷰</a></li>
                 <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"새벽배송알비백관리"}]'><a href="https://pay.ssg.com/myssg/orderInfoCoolerBagInfo.ssg" class="clickable" data-react-tarea-dtl-cd="t00058">새벽배송 알비백 관리</a></li>
                 <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"이벤트참여현황"}]'><a href="https://www.ssg.com/myssg/activityMng/eventEntryStatusList.ssg?menu=eventEntryStatusList" class="clickable" data-react-tarea-dtl-cd="t00058">이벤트 참여현황</a></li>
                 <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"상품Q&amp;A"}]'><a href="https://www.ssg.com/myssg/activityMng/postngQna.ssg?menu=postngQna" class="clickable" data-react-tarea-dtl-cd="t00058">상품 Q&amp;A</a></li>
@@ -48,17 +48,16 @@
             <strong class="cmmyssg_snb_tit">나의 정보관리</strong>
             <ul class="cmmyssg_snb_sublst">
                 <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"회원정보변경"}]'><a href="/member/changeInfo" class="clickable" data-react-tarea-dtl-cd="t00058">회원정보 변경</a></li>
-
-                <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"비밀번호변경"}]'><a href="<%=sContextPath %>/memberInfo/changepwd.do" class="clickable" data-react-tarea-dtl-cd="t00058">비밀번호 변경</a></li>
-                <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"배송지관리"}]'><a href="<%= request.getContextPath() %>/shippingPlace/list.do" class="clickable" data-react-tarea-dtl-cd="t00058">배송지 관리</a></li>
+                <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"비밀번호변경"}]'><a href="/member/changePwd" class="clickable" data-react-tarea-dtl-cd="t00058">비밀번호 변경</a></li>
+                <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"배송지관리"}]'><a href="/member/userinfo/shipping/shippingPlaceList" class="clickable" data-react-tarea-dtl-cd="t00058">배송지 관리</a></li>
                 <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"맞춤정보관리"}]'><a href="https://www.ssg.com/myssg/activityMng/custFitInfoReg.ssg?menu=custFitInfoReg" class="clickable" data-react-tarea-dtl-cd="t00058">맞춤정보 관리</a></li>
-                <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"마케팅정보수신동의"}]'><a href="<%=sContextPath %>/memberInfo/agreeInfo.do?ssgInfoRcvAgree=10" class="clickable" data-react-tarea-dtl-cd="t00058">마케팅 정보 수신 동의</a></li>
+                <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"마케팅정보수신동의"}]'><a href="/member/agreeInfo?ssgInfoRcvAgree=10" class="clickable" data-react-tarea-dtl-cd="t00058">마케팅 정보 수신 동의</a></li>
                 <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"개인정보제3자제공동의"}]'><a href="https://member.ssg.com/myssg/myinfoMng/infoUtlAgree.ssg?menu=infoUtlAgree" class="clickable" data-react-tarea-dtl-cd="t00058">개인정보 제3자 제공 동의</a></li>
                 <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"제휴멤버십관리"}]'><a href="https://member.ssg.com/myssg/alln/membership.ssg" class="clickable" data-react-tarea-dtl-cd="t00058">제휴 멤버십 관리</a></li>
                 <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"로그인정보관리"}]'><a href="<%=sContextPath %>/memberInfo/loginLog.do" class="clickable" data-react-tarea-dtl-cd="t00058">로그인 정보 관리</a></li>
                 <li class="cmmyssg_snb_s
                 ubitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"SNS연결설정"}'><a href="https://member.ssg.com/myssg/myinfoMng/snsConnSetting.ssg?menu=sns" class="clickable" data-react-tarea-dtl-cd="t00058">SNS 연결 설정</a></li>
-                <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"회원탈퇴"}]'><a href="<%=sContextPath%>/memberInfo/quit.do" class="clickable" data-react-tarea-dtl-cd="t00058">회원 탈퇴</a></li>
+                <li class="cmmyssg_snb_subitem" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"회원탈퇴"}]'><a href="/member/quit" class="clickable" data-react-tarea-dtl-cd="t00058">회원 탈퇴</a></li>
             </ul>
         </li>
     </ul>

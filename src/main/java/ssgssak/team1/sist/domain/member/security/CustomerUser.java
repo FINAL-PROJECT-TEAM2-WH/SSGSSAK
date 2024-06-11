@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 import ssgssak.team1.sist.domain.member.MemberVO;
 import ssgssak.team1.sist.domain.ship.ShippingPlaceInfoVO;
 
@@ -23,8 +24,6 @@ public class CustomerUser extends User{
 			Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 	}
-	
-	
 	
 	public CustomerUser(MemberVO member) {
 		

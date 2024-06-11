@@ -1,9 +1,12 @@
 package ssgssak.team1.sist.controller.review;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-import oracle.jdbc.proxy.annotation.Post;
+import ssgssak.team1.sist.domain.member.InterestGoodsVO;
+import ssgssak.team1.sist.domain.member.security.CustomerUser;
 import ssgssak.team1.sist.domain.review.ReviewDTO;
+import ssgssak.team1.sist.service.member.LikeService;
+import ssgssak.team1.sist.service.member.UserInfoService;
 import ssgssak.team1.sist.service.product.ProductOptionService;
 import ssgssak.team1.sist.service.product.ProductService;
 import ssgssak.team1.sist.service.review.ReviewImgService;
@@ -27,7 +33,10 @@ import ssgssak.team1.sist.service.review.ReviewService;
 @RequestMapping("/SSGSSAK/review")
 @Log4j
 public class ReviewController {
-
+	
+	private LikeService likeService;
+	private UserInfoService infoService;
+	
 	private ReviewService reviewService;
 	private ReviewImgService reviewImgService;
 	private ProductService productService;
@@ -65,7 +74,29 @@ public class ReviewController {
 	        }
 
 		
-		return "/review/result";
+		return "/review/review";
+	}
+	
+	@GetMapping("/userReview.do")
+	public String userReviewGet(Model model,HttpServletRequest request)throws Exception {
+		 String currentPageParam = request.getParameter("currentPage");
+	     int currentPage = currentPageParam != null ? Integer.parseInt(currentPageParam) : 1;
+	     int numberPerPage = 5;
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		CustomerUser  customerDetail =(CustomerUser) authentication.getPrincipal();
+		String auth = customerDetail.getUsername();
+		
+		model.addAttribute("reviews",this.reviewService.selectU(auth));
+		model.addAttribute("pagedReviews", this.reviewService.selectUP(currentPage, numberPerPage, auth,"평점높은순","일반"));
+		model.addAttribute("userinfo", infoService.getUserInfo(auth));
+		model.addAttribute("currentPage",currentPage);
+		
+		
+		
+		
+		
+		return "review/userReview";
 	}
 
 }//class

@@ -7,8 +7,11 @@
         </script>
 						<div class="cmflt_filbox_title">
 							<h4 class="notranslate">브랜드</h4>
-
 						</div>
+						
+						
+<!-- 						브랜드검색.. 일단 주석 -->
+						<!-- 
 						<div class="cmflt_filbox_cts">
 							<div class="cmflt_search">
 								<div class="cmflt_search_input">
@@ -19,6 +22,8 @@
 									<span class="blind">검색</span>
 								</button>
 							</div>
+							
+						 -->	
 							<ul class="cmflt_list_check cmflt_list_check_v2 notranslate"
 								id="brand_list">
 								<li><span class="cmflt_checkbox cmflt_checkbox_v2 ">
@@ -60,488 +65,50 @@
                             , "brandId": "3000034530", "itemCount": "16"
                             , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
                     </script>
-								<li><span class="cmflt_checkbox cmflt_checkbox_v2 ">
+								<li>
+								
+								<span class="cmflt_checkbox cmflt_checkbox_v2 ">
 										<input class="clickable"
 										data-react-tarea="카테고리_중소세|브랜드|항목 선택|마샬" type="checkbox"
 										name="btBrand3" data-ilparam-type="brandId"
 										data-ilparam-value="2011000926" data-ilparam-text="마샬"
 										value="" id="btBrand3"> <label for="btBrand3"><span
 											class="brd_txt">마샬</span><span class="brd_num">(16)</span></label>
-								</span></li>
+								</span>
+								
+								</li>
 								<script type="text/javascript">
                         searchBrandList.push({"brandNm": "마샬"
                             , "brandId": "2011000926", "itemCount": "16"
                             , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<li><span class="cmflt_checkbox cmflt_checkbox_v2 ">
+                    		</script>
+								<li>
+								<span class="cmflt_checkbox cmflt_checkbox_v2 ">
 										<input class="clickable"
 										data-react-tarea="카테고리_중소세|브랜드|항목 선택|LG" type="checkbox"
 										name="btBrand4" data-ilparam-type="brandId"
 										data-ilparam-value="2000003884" data-ilparam-text="LG"
 										value="" id="btBrand4"> <label for="btBrand4"><span
 											class="brd_txt">LG</span><span class="brd_num">(47)</span></label>
-								</span></li>
-								<script type="text/javascript">
+								</span>
+								
+								</li>
+								
+<!-- 								내부브랜드 -->
+					<script type="text/javascript">
                         searchBrandList.push({"brandNm": "LG"
                             , "brandId": "2000003884", "itemCount": "47"
                             , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
                     </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "소니"
-                            , "brandId": "2000006154", "itemCount": "34"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "IFI"
-                            , "brandId": "3000024665", "itemCount": "20"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "뱅앤올룹슨"
-                            , "brandId": "2000014232", "itemCount": "79"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "야마하"
-                            , "brandId": "2000007562", "itemCount": "42"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "제네바"
-                            , "brandId": "3000000596", "itemCount": "92"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "티볼리"
-                            , "brandId": "3000017478", "itemCount": "52"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "앤커"
-                            , "brandId": "1010770350", "itemCount": "20"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "YAMAHA"
-                            , "brandId": "1010770708", "itemCount": "124"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "애플"
-                            , "brandId": "2000000375", "itemCount": "6"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "BOSE"
-                            , "brandId": "2000000897", "itemCount": "133"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "삼성"
-                            , "brandId": "2000015365", "itemCount": "40"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "엠지텍"
-                            , "brandId": "2011014830", "itemCount": "17"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "오아"
-                            , "brandId": "3000010308", "itemCount": "14"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "청우전자"
-                            , "brandId": "3000078219", "itemCount": "2249"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "TIVOLI"
-                            , "brandId": "1010020010", "itemCount": "5"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "BOSE"
-                            , "brandId": "1010770723", "itemCount": "18"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "드비알레"
-                            , "brandId": "1010770953", "itemCount": "63"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "트랜스페어런트"
-                            , "brandId": "1010771205", "itemCount": "12"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "아카이"
-                            , "brandId": "2000000277", "itemCount": "17"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "B&W"
-                            , "brandId": "2000000673", "itemCount": "31"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "크리에이티브"
-                            , "brandId": "2000001440", "itemCount": "5"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "데논"
-                            , "brandId": "2000001736", "itemCount": "36"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "엘락"
-                            , "brandId": "2000002062", "itemCount": "7"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "이케아"
-                            , "brandId": "2000003162", "itemCount": "6"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "클립쉬"
-                            , "brandId": "2000003653", "itemCount": "56"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "리코"
-                            , "brandId": "2000003855", "itemCount": "8"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "필립스"
-                            , "brandId": "2000005264", "itemCount": "13"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "POLKAUDIO"
-                            , "brandId": "2000005324", "itemCount": "87"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "로이체"
-                            , "brandId": "2000005714", "itemCount": "6"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "와피데일"
-                            , "brandId": "2000007444", "itemCount": "7"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "ODE"
-                            , "brandId": "2000008681", "itemCount": "17"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "BRAUN"
-                            , "brandId": "2000014749", "itemCount": "12"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "성민건축음향"
-                            , "brandId": "2000015694", "itemCount": "6"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "아이리버"
-                            , "brandId": "2000017432", "itemCount": "26"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "아트박스"
-                            , "brandId": "2000017754", "itemCount": "52"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "에펠"
-                            , "brandId": "2000018470", "itemCount": "56"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "오디오테크니카"
-                            , "brandId": "2000018915", "itemCount": "17"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "유니콘"
-                            , "brandId": "2000019717", "itemCount": "6"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "인켈"
-                            , "brandId": "2000020312", "itemCount": "33"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "티악"
-                            , "brandId": "2000023058", "itemCount": "20"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "플레오맥스"
-                            , "brandId": "2000023897", "itemCount": "26"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "엠오디오"
-                            , "brandId": "2000030235", "itemCount": "7"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "텐바이텐"
-                            , "brandId": "2000047517", "itemCount": "611"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "크로바"
-                            , "brandId": "2000048988", "itemCount": "9"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "미션"
-                            , "brandId": "2011000958", "itemCount": "33"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "탄노이"
-                            , "brandId": "2011000966", "itemCount": "7"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "삼성전자"
-                            , "brandId": "2011006668", "itemCount": "22"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "포커스라이트"
-                            , "brandId": "2011011725", "itemCount": "9"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "KRK"
-                            , "brandId": "2011011731", "itemCount": "22"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "캔스톤"
-                            , "brandId": "2011013662", "itemCount": "20"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "티볼리오디오"
-                            , "brandId": "2011014442", "itemCount": "30"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "바보사랑"
-                            , "brandId": "2011015363", "itemCount": "73"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "솔로몬샵"
-                            , "brandId": "3000000954", "itemCount": "6"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "Vifa"
-                            , "brandId": "3000004206", "itemCount": "12"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "BITRO"
-                            , "brandId": "3000005335", "itemCount": "46"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "엑토"
-                            , "brandId": "3000005964", "itemCount": "16"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "게이즈샵"
-                            , "brandId": "3000006756", "itemCount": "25"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "루악오디오"
-                            , "brandId": "3000006887", "itemCount": "14"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "Coms"
-                            , "brandId": "3000007989", "itemCount": "27"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "라부아뜨"
-                            , "brandId": "3000009254", "itemCount": "22"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "노베이션"
-                            , "brandId": "3000019775", "itemCount": "19"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "맥사이트"
-                            , "brandId": "3000020610", "itemCount": "6"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "오디오엔진"
-                            , "brandId": "3000020747", "itemCount": "10"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "갓샵"
-                            , "brandId": "3000021834", "itemCount": "18"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "휴라이즈"
-                            , "brandId": "3000023451", "itemCount": "32"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "아이코다"
-                            , "brandId": "3000028064", "itemCount": "155"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "네이티브인스트루먼트"
-                            , "brandId": "3000029395", "itemCount": "10"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "오너클랜"
-                            , "brandId": "3000034082", "itemCount": "378"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "스냅케이스"
-                            , "brandId": "3000039315", "itemCount": "16"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "보스오디오"
-                            , "brandId": "3000041206", "itemCount": "9"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "무케렌시아"
-                            , "brandId": "3000041623", "itemCount": "199"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "Bowers & Wilkins"
-                            , "brandId": "3000043163", "itemCount": "6"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "세비즈"
-                            , "brandId": "3000043980", "itemCount": "14"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "셀러허브"
-                            , "brandId": "3000044151", "itemCount": "9"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "제이큐"
-                            , "brandId": "3000044676", "itemCount": "472"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "셀러허브"
-                            , "brandId": "3000045547", "itemCount": "51"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "에이튜브"
-                            , "brandId": "3000046046", "itemCount": "7"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "디작소"
-                            , "brandId": "3000047116", "itemCount": "222"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "에스투씨엔아이"
-                            , "brandId": "3000053531", "itemCount": "66"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "리스닝룸 by ODE"
-                            , "brandId": "3000053638", "itemCount": "29"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "컴튜브"
-                            , "brandId": "3000057252", "itemCount": "72"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "브라보세컨즈"
-                            , "brandId": "3000057281", "itemCount": "6"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "ODE"
-                            , "brandId": "3000059039", "itemCount": "14"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "브라운오디오"
-                            , "brandId": "3000060078", "itemCount": "6"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "멸치쇼핑"
-                            , "brandId": "3000062343", "itemCount": "893"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "신세계라이브쇼핑"
-                            , "brandId": "3000063794", "itemCount": "10"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "ODE"
-                            , "brandId": "3000064785", "itemCount": "64"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "엠지솔루션"
-                            , "brandId": "3000065336", "itemCount": "64"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "엄지척"
-                            , "brandId": "3000065404", "itemCount": "9"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "피에가"
-                            , "brandId": "3000066246", "itemCount": "21"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-								<script type="text/javascript">
-                        searchBrandList.push({"brandNm": "발롱드파리"
-                            , "brandId": "3000073452", "itemCount": "25"
-                            , "recomYn": "N", "clipYn" : "N", "attnDtlcSeq" : ""});
-                    </script>
-							</ul>
+			
+				</ul>
+							
+							
+							
+							
+							
+							
+							
 							<a href="#brandMore"
 								class="cmflt_morego brand_layer_open clickable"
 								id="pop_brand_layer" data-react-tarea="카테고리_중소세|브랜드|브랜드 더보기 버튼">브랜드
@@ -1433,315 +1000,11 @@
 							</button>
 						</div>
 					</div>
-					<div class="cmflt_filbox cmflt_filbox_v2 notranslate"
-						id="shpp_filter">
-						<div class="cmflt_filbox_title">
-							<h4>상품&배송유형</h4>
-
-						</div>
-
-						<div class="cmflt_filbox_cts">
-							<ul class="cmflt_list_check cmflt_list_check_v2">
-								<!-- 쓱세일/카테고리 데이 -->
-								<li><span class="custom_rdo "> <input type="radio"
-										name="tyBene" id="beneFilterSsgsale" data-ilparam-type="cls"
-										data-ilparam-value="ssgsale" data-ilparam-text="뷰티쓱세일 쿠폰"
-										class="clickable" data-react-tarea="카테고리_중소세|혜택|쓱세일_선택">
-										<label for="beneFilterSsgsale"><span class="brd_txt">뷰티쓱세일
-												쿠폰</span></label>
-								</span></li>
-								<!-- 페스타 -->
-								<li><span class="custom_rdo "> <input type="radio"
-										name="tyBene" id="beneFilterSsgEm" data-ilparam-type="shpp"
-										data-ilparam-value="ssgem" data-ilparam-text="쓱배송"
-										class="clickable"
-										data-react-tarea="카테고리_중소세|상품&배송유형|이마트 쓱배송_선택"> <label
-										for="beneFilterSsgEm"><span class="brd_txt">쓱배송</span></label>
-								</span></li>
-								<li><span class="custom_rdo "> <input type="radio"
-										name="tyBene" id="beneFilterSMon" data-ilparam-type="shpp"
-										data-ilparam-value="smon" data-ilparam-text="새벽배송"
-										class="clickable" data-react-tarea="카테고리_중소세|상품&배송유형|새벽배송_선택">
-										<label for="beneFilterSMon"><span class="brd_txt">새벽배송</span></label>
-								</span></li>
-								<li><span class="custom_rdo "> <input type="radio"
-										name="tyBene" id="beneFilterOne" data-ilparam-type="shpp"
-										data-ilparam-value="oneday" data-ilparam-text="쓱1DAY배송"
-										class="clickable"
-										data-react-tarea="카테고리_중소세|상품&배송유형|쓱1DAY배송_선택"> <label
-										for="beneFilterOne"><span class="brd_txt">쓱1DAY배송</span></label>
-								</span></li>
-								<li><span class="custom_rdo "> <input type="radio"
-										name="tyBene" id="beneFilterDelitr" data-ilparam-type="shpp"
-										data-ilparam-value="delitr" data-ilparam-text="트레이더스 택배배송"
-										class="clickable"
-										data-react-tarea="카테고리_중소세|상품&배송유형|트레이더스 택배배송_선택"> <label
-										for="beneFilterDelitr"><span class="brd_txt">트레이더스
-												택배배송</span></label>
-								</span></li>
-								<li class="chk_brdtype"><span class="custom_rdo "> <input
-										type="radio" name="tyBene" id="beneFilterPkmarket"
-										data-ilparam-type="cls" data-ilparam-value="pkmarket"
-										data-ilparam-text="미식관" class="clickable"
-										data-react-tarea="카테고리_중소세|상품&배송유형|미식관_상품_선택"> <label
-										for="beneFilterPkmarket"><span class="brd_txt">미식관</span></label>
-								</span></li>
-								<li><span class="custom_rdo "> <input type="radio"
-										name="tyBene" id="beneFilterTodayShpp"
-										data-ilparam-type="shpp" data-ilparam-value="todayshpp"
-										data-ilparam-text="오늘출발" class="clickable"
-										data-react-tarea="카테고리_중소세|상품&배송유형|오늘출발_선택"> <label
-										for="beneFilterTodayShpp"><span class="brd_txt">오늘출발</span></label>
-								</span></li>
-								<!-- 선물포장 -->
-								<li><span class="custom_rdo "> <input type="radio"
-										name="tyBene" id="beneFilterGiftpack" data-ilparam-type="cls"
-										data-ilparam-value="giftpack" data-ilparam-text="선물포장"
-										class="clickable" data-react-tarea="카테고리_중소세|상품&배송유형|선물포장_선택">
-										<label for="beneFilterGiftpack"><span class="brd_txt">선물포장</span></label>
-								</span></li>
-								<!-- 정기배송 -->
-								<li><span class="custom_rdo "> <input type="radio"
-										name="tyBene" id="beneFilterSubsdeli" data-ilparam-type="shpp"
-										data-ilparam-value="subsdeli" data-ilparam-text="정기배송"
-										class="clickable" data-react-tarea="카테고리_중소세|상품&배송유형|정기배송_선택">
-										<label for="beneFilterSubsdeli"><span class="brd_txt">정기배송</span></label>
-								</span></li>
-								<li class="chk_store_pic"><span
-									class="custom_rdo toggle_opt "> <input type="radio"
-										name="tyBene" id="beneFilterPickup" data-ilparam-type="shpp"
-										data-ilparam-value="picku" data-ilparam-text="매장픽업상품"
-										class="clickable"
-										data-react-tarea="카테고리_중소세|상품&배송유형|매장픽업상품_선택"> <label
-										for="beneFilterPickup"><span class="brd_txt">매장픽업상품</span></label>
-								</span>
-									<div class="cmflt_parent ">
-										<ul class="cmflt_list_round dt_sub_store" id="filter_picku">
-											<li class="view_store"><span
-												class="round_cell  picku_lower"> <input
-													data-ilparam-type="shpp" data-ilparam-value="depick"
-													data-ilparam-text="매장픽업(백화점)" type="radio" name="substore"
-													id="stcheck1" value="depick"> <label for="stcheck1"
-													class="round_btn round_btn_pk">백화점</label>
-											</span></li>
-										</ul>
-										<ul class="cmflt_list_round dt_store_list "
-											id="filter_picku_str_no">
-											<li><span class="round_cell on"> <input
-													data-ilparam-type="pickuSalestr" data-ilparam-value=""
-													data-ilparam-text="전체" type="radio" name="cmfltcheck"
-													value="" id="pks1" checked> <label for="pks1"
-													class="round_btn">전체</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="pickuSalestr" data-ilparam-value="1002"
-													data-ilparam-text="본점" type="radio" name="cmfltcheck"
-													value="1002" id="pks2"> <label for="pks2"
-													class="round_btn">본점</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="pickuSalestr" data-ilparam-value="1004"
-													data-ilparam-text="강남점" type="radio" name="cmfltcheck"
-													value="1004" id="pks13"> <label for="pks13"
-													class="round_btn">강남점</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="pickuSalestr" data-ilparam-value="1006"
-													data-ilparam-text="경기점" type="radio" name="cmfltcheck"
-													value="1006" id="pks3"> <label for="pks3"
-													class="round_btn">경기점</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="pickuSalestr" data-ilparam-value="1009"
-													data-ilparam-text="센텀시티점" type="radio" name="cmfltcheck"
-													value="1009" id="pks4"> <label for="pks4"
-													class="round_btn">센텀시티점</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="pickuSalestr" data-ilparam-value="1013"
-													data-ilparam-text="타임스퀘어점패션관" type="radio"
-													name="cmfltcheck" value="1013" id="pks5"> <label
-													for="pks5" class="round_btn">타임스퀘어점패션관</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="pickuSalestr" data-ilparam-value="1003"
-													data-ilparam-text="타임스퀘어점리빙관" type="radio"
-													name="cmfltcheck" value="1003" id="pks6"> <label
-													for="pks6" class="round_btn">타임스퀘어점리빙관</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="pickuSalestr" data-ilparam-value="1007"
-													data-ilparam-text="의정부점" type="radio" name="cmfltcheck"
-													value="1007" id="pks7"> <label for="pks7"
-													class="round_btn">의정부점</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="pickuSalestr" data-ilparam-value="1008"
-													data-ilparam-text="광주신세계" type="radio" name="cmfltcheck"
-													value="1008" id="pks9"> <label for="pks9"
-													class="round_btn">광주신세계</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="pickuSalestr" data-ilparam-value="1010"
-													data-ilparam-text="마산점" type="radio" name="cmfltcheck"
-													value="1010" id="pks8"> <label for="pks8"
-													class="round_btn">마산점</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="pickuSalestr" data-ilparam-value="1011"
-													data-ilparam-text="천안아산점" type="radio" name="cmfltcheck"
-													value="1011" id="pks14"> <label for="pks14"
-													class="round_btn">천안아산점</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="pickuSalestr" data-ilparam-value="1017"
-													data-ilparam-text="김해점" type="radio" name="cmfltcheck"
-													value="1017" id="pks10"> <label for="pks10"
-													class="round_btn">김해점</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="pickuSalestr" data-ilparam-value="1018"
-													data-ilparam-text="하남점" type="radio" name="cmfltcheck"
-													value="1018" id="pks11"> <label for="pks11"
-													class="round_btn">하남점</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="pickuSalestr" data-ilparam-value="1019"
-													data-ilparam-text="대구신세계" type="radio" name="cmfltcheck"
-													value="1019" id="pks12"> <label for="pks12"
-													class="round_btn">대구신세계</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="pickuSalestr" data-ilparam-value="1024"
-													data-ilparam-text="대전신세계" type="radio" name="cmfltcheck"
-													value="1024" id="pks15"> <label for="pks15"
-													class="round_btn">대전신세계</label>
-											</span></li>
-										</ul>
-									</div></li>
-								<li><span class="custom_rdo "> <input type="radio"
-										name="tyBene" id="beneFilterQshpp" data-ilparam-type="shpp"
-										data-ilparam-value="qshpp" data-ilparam-text="퀵배송"
-										class="clickable" data-react-tarea="카테고리_중소세|상품&배송유형|퀵배송_선택">
-										<label for="beneFilterQshpp"><span class="brd_txt">퀵배송</span></label>
-								</span></li>
-								<li class="chk_dt_pic"><span class="custom_rdo toggle_opt ">
-										<input type="radio" name="tyBene" id="beneFilterDept"
-										data-ilparam-type="cls" data-ilparam-value="department"
-										data-ilparam-text="백화점상품" class="clickable"
-										data-react-tarea="카테고리_중소세|상품&배송유형|백화점 상품_선택"> <label
-										for="beneFilterDept"><span class="brd_txt">백화점상품</span></label>
-								</span>
-									<div class="cmflt_parent ">
-										<ul class="cmflt_list_round" id="filter_sale_str_no">
-											<li><span class="round_cell on"> <input
-													data-ilparam-type="salestrNo" data-ilparam-value=""
-													data-ilparam-text="전체" type="radio" name="cmfltcheck"
-													value="" id="pk1" checked> <label for="pk1"
-													class="round_btn">전체</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="salestrNo" data-ilparam-value="1002"
-													data-ilparam-text="본점" type="radio" name="cmfltcheck"
-													value="1002" id="pk2"> <label for="pk2"
-													class="round_btn">본점</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="salestrNo" data-ilparam-value="1004"
-													data-ilparam-text="강남점" type="radio" name="cmfltcheck"
-													value="1004" id="pk13"> <label for="pk13"
-													class="round_btn">강남점</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="salestrNo" data-ilparam-value="1006"
-													data-ilparam-text="경기점" type="radio" name="cmfltcheck"
-													value="1006" id="pk3"> <label for="pk3"
-													class="round_btn">경기점</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="salestrNo" data-ilparam-value="1009"
-													data-ilparam-text="센텀시티점" type="radio" name="cmfltcheck"
-													value="1009" id="pk4"> <label for="pk4"
-													class="round_btn">센텀시티점</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="salestrNo" data-ilparam-value="1013"
-													data-ilparam-text="타임스퀘어점패션관" type="radio"
-													name="cmfltcheck" value="1013" id="pk5"> <label
-													for="pk5" class="round_btn">타임스퀘어점패션관</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="salestrNo" data-ilparam-value="1003"
-													data-ilparam-text="타임스퀘어점리빙관" type="radio"
-													name="cmfltcheck" value="1003" id="pk6"> <label
-													for="pk6" class="round_btn">타임스퀘어점리빙관</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="salestrNo" data-ilparam-value="1007"
-													data-ilparam-text="의정부점" type="radio" name="cmfltcheck"
-													value="1007" id="pk7"> <label for="pk7"
-													class="round_btn">의정부점</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="salestrNo" data-ilparam-value="1008"
-													data-ilparam-text="광주신세계" type="radio" name="cmfltcheck"
-													value="1008" id="pk9"> <label for="pk9"
-													class="round_btn">광주신세계</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="salestrNo" data-ilparam-value="1010"
-													data-ilparam-text="마산점" type="radio" name="cmfltcheck"
-													value="1010" id="pk8"> <label for="pk8"
-													class="round_btn">마산점</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="salestrNo" data-ilparam-value="1011"
-													data-ilparam-text="천안아산점" type="radio" name="cmfltcheck"
-													value="1011" id="pk14"> <label for="pk14"
-													class="round_btn">천안아산점</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="salestrNo" data-ilparam-value="1017"
-													data-ilparam-text="김해점" type="radio" name="cmfltcheck"
-													value="1017" id="pk10"> <label for="pk10"
-													class="round_btn">김해점</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="salestrNo" data-ilparam-value="1018"
-													data-ilparam-text="하남점" type="radio" name="cmfltcheck"
-													value="1018" id="pk11"> <label for="pk11"
-													class="round_btn">하남점</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="salestrNo" data-ilparam-value="1019"
-													data-ilparam-text="대구신세계" type="radio" name="cmfltcheck"
-													value="1019" id="pk12"> <label for="pk12"
-													class="round_btn">대구신세계</label>
-											</span></li>
-											<li><span class="round_cell "> <input
-													data-ilparam-type="salestrNo" data-ilparam-value="1024"
-													data-ilparam-text="대전신세계" type="radio" name="cmfltcheck"
-													value="1024" id="pk15"> <label for="pk15"
-													class="round_btn">대전신세계</label>
-											</span></li>
-										</ul>
-									</div></li>
-								<li><span class="custom_rdo "> <input type="radio"
-										name="tyBene" id="beneFilterSsgcon" data-ilparam-type="shpp"
-										data-ilparam-value="con" data-ilparam-text="모바일쿠폰"
-										class="clickable" data-react-tarea="카테고리_중소세|상품&배송유형|쓱콘_선택">
-										<label for="beneFilterSsgcon"><span class="brd_txt">모바일쿠폰</span></label>
-								</span></li>
-								<li><span class="custom_rdo "> <input type="radio"
-										name="tyBene" id="beneFilterUsedgood" data-ilparam-type="cls"
-										data-ilparam-value="usedgood" data-ilparam-text="중고상품"
-										class="clickable" data-react-tarea="카테고리_중소세|상품&배송유형|중고상품_선택">
-										<label for="beneFilterUsedgood"><span class="brd_txt">중고상품</span></label>
-								</span></li>
-							</ul>
-						</div>
-					</div>
+					
 					<!-- forYouFilter 연동 체크 -->
+					
+<!-- 					혜택/특가/쿠폰 여부로 셀렉 일단 주석 -->
+					<!--  
 					<div
 						class="cmflt_filbox cmflt_filbox_v2 multi_toggle_filter notranslate"
 						id="bene_filter">
@@ -1789,6 +1052,10 @@
 							</ul>
 						</div>
 					</div>
+					
+					-->
+					
+<!-- 					가격대로 필터 -->
 					<div class="cmflt_filbox cmflt_filbox_v2" id="price_filter">
 						<div class="cmflt_filbox_title">
 							<h4 class="notranslate">가격</h4>

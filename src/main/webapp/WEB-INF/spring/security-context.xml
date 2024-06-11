@@ -35,12 +35,12 @@
        <security:access-denied-handler ref="customAccessDeniedHandler" />
        
       <!-- 커스텀 로인 페이지 -->
-      <security:form-login
+       <security:form-login
         login-page="/login/full" 
         authentication-success-handler-ref="customLoginSuccessHandler"
         authentication-failure-url="/login/full?error=true"
         default-target-url="/"
-      />
+      /> 
       
      <security:form-login
         login-page="/login/popup" 

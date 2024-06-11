@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
 <head>
 	<meta charset="utf-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="csrf-token" content="${_csrf.token}"/> 
 	<link rel="shortcut icon" type="image/x-icon" href="//sui.ssgcdn.com/ui/common/img/ssg.ico">
 	
 	<title class="notranslate">
@@ -337,7 +338,7 @@
     var emergencyItemIds = "";
 //]]>
 </script>
-<%@ include file="../../Top.jsp" %>
+<%@ include file="../../../Top.jsp" %>
 <div id="category" class="category"></div>
 			<div id="container"  class="cmmyssg_wrap" >
 				<!-- SSG -->
@@ -350,7 +351,7 @@
             <div class="cmmyssg_user" data-react-tarea-cd="00034_000000001">
                 <div class="cmmyssg_user_info">
                     <h2 class="cmmyssg_user_tit" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"tarea_addt_val","value":"이름"}]'>
-                        <a href="http://www.ssg.com/myssg/main.ssg" class="cmmyssg_user_tittx clickable" data-react-tarea-dtl-cd="t00060"><span class="cmmyssg_user_titname">${info.name} 님</span>의 My SSG</a>
+                        <a href="http://www.ssg.com/myssg/main.ssg" class="cmmyssg_user_tittx clickable" data-react-tarea-dtl-cd="t00060"><span class="cmmyssg_user_titname"><sec:authentication property="principal.username"/></span>의 My SSG</a>
                     </h2>
                 </div>
             </div>
@@ -556,17 +557,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 <div id="content" class="content_myssg em_control">
     <h2 class="stit"><span class="notranslate">마케팅 정보 수신 동의</span></h2>
     <div class="section">
@@ -576,13 +566,13 @@
         <dl>
             <dt>이메일 주소</dt>
             <dd>
-                ${info.email}
+              <sec:authentication property="principal.member.email"/>
             </dd>
         </dl>
         <dl>
             <dt>휴대폰번호</dt>
             <dd>
-                <span class=notranslate>${info.prePhoneNum}-****-${info.postPhoneNum}</span>
+                <span class=notranslate><sec:authentication property="principal.member.phoneNum"/>-****-<sec:authentication property="principal.member.phoneNum"/></span>
             </dd>
         </dl>
     </div>
@@ -595,10 +585,10 @@
         <h3 class="sstit">마케팅 정보 수신 동의</h3>
     </div>
     <form id="returnForm" method="post">
-        
+       
             <div class="free_selected_wrp">
                 <div class="free_selected_agree">
-                    <input type="checkbox" id="isAddtInfoAgree" name="addtInfoAgree" class="checkbox" value="10" >
+                    <input type="checkbox" id="isAddtInfoAgree" name="ssgInfoRcvAgree" class="checkbox" value="ssgInfoRcvAgree=10" <c:if test="${not empty agreeMap['ssgInfoRcvAgree=10']}">checked="checked"</c:if>/>
                     <label for="isAddtInfoAgree" class="label_noraml"><em>(선택)</em> 마케팅 정보 제공을 위한 개인정보 수집 및 이용 동의</label>
                     <a href="javascript:void(0);" onclick="viewPolicy('signup_terms_scom02')" class="btn small normal" title="새창열림"><span>내용보기</span></a>
                 </div>
@@ -609,8 +599,8 @@
                 <dd>
                     <div class="em_point">
 					<span class="option_select small">
-						<label for="email01"><input type="checkbox" id="email" name="emailRcvYn" value="Y" title="이메일 선택" class="checkbox" />이메일</label>
-						<label for="emailsms"><input type="checkbox" id="sms" name="smsRcvYn" value="Y" title="문자 선택" class="checkbox" > 문자</label>
+						<label for="email01"><input type="checkbox" id="email" name="ssgInfoRcvAgree_type" value="ssgInfoRcvAgree=10_email" title="이메일 선택" class="checkbox"  <c:if test="${not empty agreeMap['ssgInfoRcvAgree=10_sms']}">checked="checked"</c:if>/>이메일</label>
+						<label for="emailsms"><input type="checkbox" id="sms" name="ssgInfoRcvAgree_type" value="ssgInfoRcvAgree=10_sms" title="문자 선택" class="checkbox"  <c:if test="${not empty agreeMap['ssgInfoRcvAgree=10_email']}">checked="checked"</c:if>/> 문자</label>
 					</span>
                     </div>
                     <p>마케팅 정보 수신 동의를 하시면 SSG.COM 상품 · 서비스 및 이벤트 정보를 받으실 수 있습니다.</p>
@@ -1167,55 +1157,48 @@ $(function(){
     }
 </script>
 
-<%
-	Map<String,String> infoMap = (Map <String, String>)request.getAttribute("info");
-	System.out.print(infoMap.containsKey("ssgInfoRcvAgree=10"));
-	if (infoMap.containsKey("ssgInfoRcvAgree=10")){
-%>
 
-<%
-if ( infoMap.get("ssgInfoRcvAgree=10").equalsIgnoreCase("true")){
-%>
-<script>
-	$('#isAddtInfoAgree').prop('checked',true);
-</script>
-<%
-}
-%>
 
-	<% 
-	System.out.print(infoMap.containsKey("ssgInfoRcvAgree=10_email"));
-		if (infoMap.containsKey("ssgInfoRcvAgree=10_email")){
-	%>
+
 <script>
-$('#email').prop('checked',true );
-</script>
-<% 		
-		}
-%>	
-<% 	
-		if (infoMap.containsKey("ssgInfoRcvAgree=10_sms")){
-%>		
-<script>
-$('#sms').prop('checked',true );
-</script>
-<% 
-		}
-		
-	};
-%>
-<script>
+
+
+
+
 $('#submitBtn_agreeInfo').on('click', function () {
 	let params = $('#returnForm').serialize();
-	alert(params);
+	var csrfToken = $('meta[name="csrf-token"]').attr('content');
 	$.ajax({
-		url: '<%=contextPath%>/member/memberInfo/agreeInfo.do',
+		url: '/memberR/ssgInfoRcvAgree',
         dataType: 'json',
         type: 'POST',
         data: params,
         cache: false,
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+        },
         success: function (data) {
         	alert(data);
+        	location.reload();
+			if(data.result == 'success') {
+				$.ajax({
+	        		url:'/memberR/ssgInfoRcvAgree',
+	        		dataType:'json',
+	        		cache:false,
+	        		success: function (data) {
+					alert(data.status);
+				
+	        		}, error :  function (xhr, status, error) {
+	                    console.error("오류 - 상태: ", status, " 메시지: ", error);
+	                    //alert('오류: ' + error);
+	                    
+	                    alert('정보 변경에 실패하였습니다. ')
+	                    
+	                    window.location.reload();
+	                }    		
+	        	})
+			}
+        	
         },
         error: function (xhr, status, error) {
             console.error("오류 - 상태: ", status, " 메시지: ", error);
@@ -1227,15 +1210,17 @@ $('#submitBtn_agreeInfo').on('click', function () {
         }
 	})
 	
-});
-</script>
+}); 
+</script> 
 <!-- 
 <script type="text/javascript" defer="defer">
-    var csbot = ""
+    var csbot = ""\
+    
 
     $(document).ready(function () {
         var isaddtInfoChk = true;
         var isEmailChk = false;
+        
 
         // 통합회원 부가정보동의
         if ("true") {
@@ -1306,4 +1291,4 @@ $('#submitBtn_agreeInfo').on('click', function () {
 
 </div>
 		<!-- footer -->
-	<%@include file="../../footer.jsp" %>
+	<%@include file="../../../footer.jsp" %>

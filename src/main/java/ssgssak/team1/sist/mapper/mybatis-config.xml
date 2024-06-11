@@ -6,6 +6,7 @@
   <settings>
     <!-- 컬러명이 c_name 일 경우  cName 변환 -->
     <setting name="mapUnderscoreToCamelCase" value="true"/>
+    <setting name="jdbcTypeForNull" value="NULL"/>
   </settings>
   <typeAliases>
 <!--     <typeAlias type="org.doit.ik.domain.DeptDTO" alias="DeptDTO" />-->
@@ -20,6 +21,7 @@
     <typeAlias type="ssgssak.team1.sist.domain.productList.CurrentCateDTO" alias="CurrentCateDTO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.productList.ProductListDTO" alias="ProductListDTO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.productList.PageDTO" alias="PageDTO" /> 
+    <typeAlias type="ssgssak.team1.sist.domain.productList.BrdPrdListDTO" alias="BrdPrdListDTO" /> 
 
 <!--       명건 DTO 끝 -->
 	
@@ -30,10 +32,13 @@
     <typeAlias type="ssgssak.team1.sist.domain.ship.ShippingPlaceInfoVO" alias="ShippingPlaceInfoVO" /> 
     <typeAlias type="ssgssak.team1.sist.domain.member.InterestGoodsVO" alias="InterestGoodsVO" />
     <typeAlias type="ssgssak.team1.sist.domain.member.AuthVO" alias="AuthVO"/>
+    <typeAlias type="ssgssak.team1.sist.domain.member.AgreementVO" alias="AgreementVO"/>
     <typeAlias type="ssgssak.team1.sist.domain.search.SearchVO" alias="SearchVO"/> 
     <typeAlias type="ssgssak.team1.sist.domain.search.Criteria" alias="Criteria"/> 
     <typeAlias type="ssgssak.team1.sist.domain.search.PageDTO" alias="PageDTO2"/> 
     <typeAlias type="ssgssak.team1.sist.domain.search.PriceVO" alias="PriceVO"/> 
+    <typeAlias type="ssgssak.team1.sist.domain.ship.OrderRecordVO" alias="OrderRecordVO"/> 
+    <typeAlias type="ssgssak.team1.sist.domain.ship.OrderDetailVO" alias="OrderDetailVO"/> 
     <typeAlias type="ssgssak.team1.sist.domain.search.BrandCateCountVO" alias="BrandCateCountVO"/>
     <typeAlias type="java.util.Map" alias="Map" />
     <typeAlias type="java.util.HashMap" alias="HashMap" />
