@@ -33,5 +33,6 @@ public interface ShippingService {
 	public int shippingStatusEdit(String memid, long id, String status) throws Exception; 
 	
 	public int shippingUpdate(String memid, ShippingPlaceInfoVO shippingPlaceInfoVO) throws Exception;
-
+	
+	public int deleteOrderRecord(long id) throws Exception;
 }

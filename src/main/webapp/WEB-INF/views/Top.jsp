@@ -311,18 +311,18 @@
                    
                     <ul class="gnb_util" id="util_right">
                         <li id="gnbUserInfoArea" class="gnb_tx_user notranslate gnbUserInfoArea" style="display:none;"><a href="javascript:void(0);"></a></li>
-                         <sec:authorize access="isAnonymous()">
+                        <sec:authorize access="isAnonymous()">
                         <li id="loginBtn" style="display:block;"><a id="login_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그인" href="#" onclick="" title="새창 열림">로그인</a></li>
                         <li id="joinBtn" style="display:block;"><a id="regi_a_tag" class="clickable" data-react-tarea="몰공통|GNB|회원가입" href="#">회원가입</a></li>
                         </sec:authorize>
                         <sec:authorize access="isAuthenticated()">
                          <li id="userinfoBtn" style="display:block;"><a id="login_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그인" href="#" onclick="" title="새창 열림"><sec:authentication property="principal.username"/>님 환영합니다</a></li>
                         <form id="logoutform" action="/login/logout" method="post">
-                         <li id="logoutBtn" style="display:block;"><a id="logout_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그아웃" href="#">로그아웃</a></li>
+                        <li id="logoutBtn" style="display:block;"><a id="logout_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그아웃" href="#">로그아웃</a></li>
                         <input type="hidden" id="csrfToken" name="${_csrf.parameterName }" value="${_csrf.token }"/>                      
                         </form>                      
                         </sec:authorize>
-                         <sec:authorize access="hasRole('admin')">
+                         <sec:authorize access="hasRole('ROLE_ADMIN')">
                          <li id="enrollBtn" style="display:block;"><a id="enroll_tag" class="clickable" href="/enroll.do">상품등록</a></li>
                          </sec:authorize>
                         <li><a class="clickable" data-react-tarea="몰공통|GNB|고객센터" href="#">고객센터</a></li>
