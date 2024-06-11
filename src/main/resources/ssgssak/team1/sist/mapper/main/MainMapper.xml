@@ -50,7 +50,7 @@
       ) t
 
       ) b
-      WHERE no BETWEEN 1 AND 6
+      WHERE no BETWEEN 1 AND 12
       
 </select>
 
