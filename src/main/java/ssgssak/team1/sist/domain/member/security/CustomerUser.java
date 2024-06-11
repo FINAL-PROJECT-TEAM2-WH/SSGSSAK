@@ -25,8 +25,6 @@ public class CustomerUser extends User{
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 	}
 	
-	
-	
 	public CustomerUser(MemberVO member) {
 		
 		super( member.getId(),member.getPwd()
