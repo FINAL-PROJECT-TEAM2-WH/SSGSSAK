@@ -35,7 +35,7 @@ public class PageDTO {
 	      
 	      // 시작 번호, 끝 번호
 	      start = (currentPage -1) /numberOfPageBlock * numberOfPageBlock +1 ;         
-	      end= start + numberOfPageBlock -1;               
+	      end = start + numberOfPageBlock -1;               
 	      end =   end > totalPages ? totalPages : end;   
 	      // 이전버튼, 다음버튼
 	      if( start != 1 )      prev = true;   

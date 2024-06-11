@@ -15,6 +15,8 @@
     <meta name="description" content="MY클립" />
     <meta name="google-site-verification" content="riDJ-IX46HanskLx25pj6-y8ANf2qTgZNfv_UJvkHq8" />
     <meta name="facebook-domain-verification" content="ctgl43lmqq8gm4thxgg7j3b38sfqau" />
+     <meta name="_csrf" content="${_csrf.token}">
+    <meta name="_csrf_header" content="${_csrf.headerName}">
     <link rel="preload" href="//sui.ssgcdn.com/ui/ssg/css/ssg_global.css?v=20240424" as="style" />
 <link rel="preload" href="//sui.ssgcdn.com/ui/ssg/css/ssg_layout.css?v=20240424" as="style" />
 <link rel="preload" href="//sui.ssgcdn.com/ui/ssg/css/ssg_component.css?v=20240424" as="style" />
@@ -335,12 +337,7 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 /></noscript>
-<script type="text/javascript">
-    window.GA4_dataLayer = window.GA4_dataLayer || [];
-    function gtmPush() {
-        GA4_dataLayer.push(arguments);
-    }
-</script>
+
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-1005118937"></script>
 <script type="text/javascript">
@@ -696,8 +693,11 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 					
 				</ul>
 			</div>
-			<button type="button" class="mylike_folder_next"><span class="blind">다음 폴더목록 보기</span></button>
+				
+<button type="button" class="mylike_folder_next"><span class="blind">다음 폴더목록 보기</span></button>
 		</div>
+</div>
+
 		<div class="mylike_filter" role="radiogroup" data-react-tarea-cd="00133_000000557">
 			<a href="/myssg/myClip/main.ssg?attnDivCd=10&mbrAttnGrpSeq=0" class="mylike_filter_btn on clickable" role="radio" aria-checked="true"
          data-react-unit-type="text" data-react-unit-text='[{"type":"text","value":"상품"}]' data-react-tarea-dtl-cd="t00060" data-react-tarea="좋아요|유형탭|메뉴_클릭">상품 (${listSize})</a>
@@ -753,6 +753,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 														<label for="checkItem_${product.id}" class="mylike_chk_lbl"><span class="blind">${product.content}</span></label>
 													</span>
 													</div>
+													
 												<!-- https://markup.ssgadm.com/ssgui/01.ssg/pcweb/trunk/dist/html/pages/guide_unit.html -->
 <div class="cunit_prod "
      data-react-unit-type="item"
@@ -2936,8 +2937,8 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 			</div>
 		</div>
 		폴더관리할때
-		<div class="mylike_manage_management" id="add_exists_folder_id">
-			<div class="mylike_manage_scroll">
+		<div class="mylike_manage_management" id="
+">  
 				<ul class="mylike_manage_list">
 					<li>
 						<button type="button" class="new">새 폴더</button>
@@ -3861,19 +3862,26 @@ function addLike(productid) {
 		$.each(attnDtlcSeqStr, function (index,element) {			
                  var key = "productid"+index  // 'data-' 부분 제거
                  var value = element.getAttribute("data-tgt-idnf1");
-                 params[key] = value;             
+                 params[key] = value;   
+                 console.log(value);
 		}); 
 			 
 			/* element.getAttribute("data-tgt-idnf1")); */
-			
+		
+		var csrfToken = $('meta[name="_csrf"]').attr('content');
+        var csrfHeader = $('meta[name="_csrf_header"]').attr('content');
 		$.ajax({
 			type: "POST",
 			dataType:"json",
-			url: "<%=contextPath%>/like/likeCancel.do",  // 경로
+			contentType: "application/json",
+			url: "/memberR/likeCancel",  // 경로
 			data : JSON.stringify(params),
 			cache: false,
-			success: function(result){
-				if (result){
+			beforeSend: function(xhr) {
+	                xhr.setRequestHeader(csrfHeader, csrfToken);
+	            },
+			success: function(data){
+				if (data.result == 'success'){
 					alert('삭제가 완료되었습니다.');
 					window.location.reload(true);
 				}	
@@ -3912,11 +3920,100 @@ function addLike(productid) {
 			}
 		}); */
 	} 
-	
+	function btnNext(params) {
+ 		// 8개씩 불러와야함 .
+ 		$.ajax({
+ 			type: "GET",
+			dataType: "json",
+			url: '/memberR/loadLikeFolder',
+      		cache: false,
+			data: params,
+			success: function(result){			
+				let htmlTag = "";	
+				htmlTag += '<button type="button" class="mylike_folder_prev"><span class="blind">이전 폴더목록 보기</span></button>'
+				
+				
+				htmlTag += '<div class="mylike_folder_slider">'
+				htmlTag += 	'<ul class="mylike_folder_list" role="tablist" data-react-tarea-cd="00133_000000556">'
+				htmlTag += 		'<li class="mylike_folder_item" role="presentation" id="list_floder_add" data-react-unit-type="text" data-react-unit-text="[{"type":"tarea_addt_val","value":"새폴더"}]">'
+				htmlTag += 			'<a href="" data-mbrAttnGrpSeq="none" class="mylike_folder_btn ty_create _mylike_lay_open clickable" data-react-tarea-dtl-cd="t00060" data-react-tarea="좋아요|상단|새폴더_클릭" data-layer-target="#mylikeNewFolder" role="button" onclick="addFolder2();" >'
+				htmlTag += 				'<span class="mylike_folder_thmb"></span><em class="mylike_folder_name">새폴더</em>'
+				htmlTag += 			'</a>'
+				htmlTag += 	'</li>'
+				result.folderList.forEach(function (element, index){		
+						if( index == 0 ){
+							htmlTag += `<li class="mylike_folder_item" role="presentation" id="list_foler_all" data-react-unit-type="text" data-react-unit-text='[{"type":"tarea_addt_val","value":"전체보기"}]'>`;
+							htmlTag += '<a href="" data-mbrAttnGrpSeq="0" class="mylike_folder_btn ty_all on clickable" data-react-tarea-dtl-cd="t00060" data-react-tarea="좋아요|상단|모아보기_클릭" role="tab" aria-selected="true" id="f_0">';
+							htmlTag += '<span class="mylike_folder_thmb"></span><em class="mylike_folder_name">'+`\${element}`+'</em>';
+							htmlTag += '</a>';
+							htmlTag += '</li>';
+							
+						} else {
+							htmlTag += '<li class="mylike_folder_item" role="presentation" id="list_folder_'+ `\${index}`+'">'
+							htmlTag += '<a href="" data-mbrAttnGrpSeq="' + `\${index}` + '" class="mylike_folder_btn ty_default" role="tab" aria-selected="true" id="f_${status.index}">'
+							htmlTag += '<span class="mylike_folder_thmb"></span><em class="mylike_folder_name">'+`\${element}`+'</em>'
+							htmlTag += 	'</a>'
+							htmlTag += '</li>'
+						}
+						// 0일 
+				// 0 아닐 때 
+					});
+				
+				htmlTag += '</ul>'
+				htmlTag += '</div>'
+				htmlTag += '<button type="button" class="mylike_folder_next"><span class="blind">다음 폴더목록 보기</span></button>'
+				
+				$('#mylike_folder_id').empty();
+				$('#mylike_folder_id').append(htmlTag);
+				
+				if (result.prev){
+					$('button.mylike_folder_prev').css('display','block');
+					
+					$('button.mylike_folder_prev').on('click', function () {
+										
+			            let currentPage = result.currentPage;
+		            
+			            params.currentPage = --currentPage;  // currentPage 값을 업데이트
+			            btnNext(params);  // 업데이트된 params로 btnNext 함수 호출
+			        });
+				} else {
+					$('button.mylike_folder_prev').css('display','none');
+				}
+
+				if (result.next){
+					$('button.mylike_folder_next').css('display','block');
+				}
+				
+				
+			},
+			error : function(){
+				alert("체크삭제 실패. 잠시 후 다시 시도해주십시오.");
+			}
+		})// ajax; 
+ 		} // onclick;
+ 		
+ 		
 	
 	$(function() {
-		let currentPage = 0;
-	    const pageSize = 10;
+		let currentPage = 1;
+	    const pageSize = 8;
+	    let size = ${folderList.size()};
+	    const params = {
+	    		currentPage : currentPage,
+	    		pageSize : pageSize
+	    }
+	    
+	     if ( size > 9 ) {
+	    	$('button.mylike_folder_next').css('display','block');
+	    	$('button.mylike_folder_next').on('click', function () {
+	            currentPage++;
+	            params.currentPage = currentPage;  // currentPage 값을 업데이트
+	            btnNext(params);  // 업데이트된 params로 btnNext 함수 호출
+	        });
+	     }
+	     // function 
+  
+	    
 		/* if('11' > 0) {
 			$('#mng_none_folder_id').hide();
 			$('#mng_exists_folder_id').show();
@@ -3925,8 +4022,11 @@ function addLike(productid) {
 			$('#move_none_folder_id').hide();
 			$('#move_exists_folder_id').show();
 		} */
-
+		
 		/*  Folder slider
+	
+		
+		
 		oMyLikeFolderSlider = new function() {
 			var sFolderItemSelector = '.mylike_folder_item';
 			var sFolderBtnSelector = '.mylike_folder_btn';

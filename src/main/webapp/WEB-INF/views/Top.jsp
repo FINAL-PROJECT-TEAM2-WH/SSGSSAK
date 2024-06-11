@@ -720,10 +720,10 @@ function addLike(productid) {
         				}
         			}); 
         		} else {
-        			alert('그대로 냅둘게');
+        			console.log("그대로 냅둘게");
         		}
         	} else if ( data.result == 'Success') {
-        		alert('좋아요 성공임');
+        		console.log('좋아요 성공임');
         	} else if ( data.result == 'Fail') {
         		alert('좋아요 실패임 ');
         	}

@@ -1,6 +1,7 @@
 package ssgssak.team1.sist.controller.member;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -145,6 +146,40 @@ public class MemberRestController {
 			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 			String id = userDetails.getUsername();
 		 return this.likeService.getInterFolderList(id); 
+	  }
+	  
+	  @PostMapping("/likeCancel")
+		public String likeCancel(@RequestBody Map<String, String> request) {
+		  log.info("MemberRestController.likeCancel() POST IN...");
+		  	boolean tf = false;
+		  Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+			
+			String id = userDetails.getUsername();
+			List<String> productCodeList = new ArrayList();
+		  	for(String key : request.keySet()) {
+				String productCode = request.get(key);
+				tf = this.likeService.likeCancel(id, productCode);
+			};
+			if (tf) {
+				return "{\"result\":\"success\"}";
+			} else {
+				return "{\"result\":\"fail\"}";
+			}
+
+		}
+	  
+	  @GetMapping("/loadLikeFolder")
+	  public Map<String,Object> loadLikeFolder(@RequestParam int currentPage, @RequestParam int pageSize ){
+		  log.info("MemberRestController.loadLikeFolder() GET");
+		  Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			UserDetails userDetails = (UserDetails) authentication.getPrincipal();	
+			String id = userDetails.getUsername();	  
+		  Map <String, Object> map = this.likeService.getInterFolderList(id, currentPage, pageSize);
+		  System.out.println(currentPage);
+		  System.out.println(pageSize);
+		  
+		  return map;
 	  }
 
 	 
