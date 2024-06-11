@@ -68,7 +68,7 @@ public class ShippingController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		String memid = userDetails.getUsername();
-
+	
 		ShippingPlaceInfoVO svo = this.shippingService.ShippingPlaceUpView(id);
 		viewMap.put("memid", svo.getMemid());
 		viewMap.put("id", svo.getId());

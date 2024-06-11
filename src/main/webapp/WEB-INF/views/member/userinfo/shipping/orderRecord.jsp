@@ -929,8 +929,8 @@
 								</div>
 								<div class="codr_unit_pricewrap">
 									<div class="codr_unit_newprice notranslate">
-										<span class="blind">${ orderDto.optionprice }</span><em
-											class="ssg_price notranslate">${ orderDto.optionprice }</em><span class="ssg_tx">원</span>
+										<span class="blind">${ orderDto.toptionprice }</span><em
+											class="ssg_price notranslate">${ orderDto.toptionprice }</em><span class="ssg_tx">원</span>
 									</div>
 									<span class="codr_unit_dot"></span> <span
 										class="codr_unit_count"> <strong class="blind">상품수량</strong>

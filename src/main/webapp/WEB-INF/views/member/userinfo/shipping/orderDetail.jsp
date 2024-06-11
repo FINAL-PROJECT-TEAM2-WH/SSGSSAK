@@ -897,8 +897,8 @@
 									</td>
 									<td class="codr_unit_pricewrap">
 										<div class="codr_unit_newprice notranslate">
-											<span class="blind">판매가격</span> <em
-												class="ssg_price notranslate">${ ovo.optionprice }</em> <span
+											<span class="blind">판매가격</span> <em 
+												class="ssg_price notranslate">${ ovo.toptionprice }</em> <span
 												class="ssg_tx">원</span>
 										</div> <span class="codr_unit_line"></span> <span
 										class="codr_unit_count"> <strong class="blind">상품수량</strong>

@@ -1,11 +1,10 @@
 package ssgssak.team1.sist.controller.ship;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -36,12 +35,21 @@ public class OrderController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		String memid = userDetails.getUsername();
-		ArrayList<OrderRecordVO> olist = null;
+		ArrayList<OrderRecordVO> oTlist = null;
 		LinkedHashMap<String, String> dhm = null;
 		
-		olist = this.shippingService.orderRecordService(memid);
+		oTlist = this.shippingService.orderRecordService(memid);
 		dhm = this.shippingService.orderDateService(memid);
 		
+		
+		ArrayList<OrderRecordVO> olist = new ArrayList<>();
+		for (int i = 0; i < oTlist.size(); i++) {
+			DecimalFormat df = new DecimalFormat("###,###");
+			String formatMoney = df.format(oTlist.get(i).getOptionprice());
+			oTlist.get(i).setToptionprice(formatMoney);
+			olist.add(oTlist.get(i));
+		}
+		System.out.println(olist);
 		model.addAttribute("mid", memid);
 		model.addAttribute("olist", olist);
 		//System.out.println("olist : "+olist);
@@ -62,8 +70,18 @@ public class OrderController {
 			ids.add(Long.parseLong(temp[i]));
 		}
 		
-		ArrayList<OrderRecordVO> olist = this.shippingService.orderDetail(ids);
+		ArrayList<OrderRecordVO> oTlist = this.shippingService.orderDetail(ids);
 		OrderDetailVO odvo = this.shippingService.orderDetailView(memid, ids.get(0));
+		
+		ArrayList<OrderRecordVO> olist = new ArrayList<>();
+		for (int i = 0; i < oTlist.size(); i++) {
+			DecimalFormat df = new DecimalFormat("###,###");
+			String formatMoney = df.format(oTlist.get(i).getOptionprice());
+			oTlist.get(i).setToptionprice(formatMoney);
+			olist.add(oTlist.get(i));
+		}
+		
+		//System.out.println(olist);
 		model.addAttribute("mid", memid);
 		model.addAttribute("olist", olist);
 		model.addAttribute("odvo", odvo);

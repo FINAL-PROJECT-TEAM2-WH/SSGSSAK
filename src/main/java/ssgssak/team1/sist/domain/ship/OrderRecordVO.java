@@ -18,6 +18,7 @@ public class OrderRecordVO {
 	private String pdname;
 	private long poptionid;
 	private long productid;
+	private String toptionprice;
 	private long optionprice;
 	private String orderdate;
 	private String memid;

@@ -44,15 +44,16 @@ public class SearchController {
 			criteria.setSearchWord(" ");
 			searchWord = " ";
 		}
-		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		UserDetails userDetails = null;
-		String memid = null;
-		if( authentication != null ) {
-			userDetails = (UserDetails) authentication.getPrincipal();
-			memid = userDetails.getUsername();
-			this.searchService.insertSearch(memid, searchWord);
-		}
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    String memid = "daetu01"; // 기본 회원 ID 설정
+	    if (authentication != null && authentication.isAuthenticated()) {
+	        Object principal = authentication.getPrincipal();
+	        if (principal instanceof UserDetails) {
+	            UserDetails userDetails = (UserDetails) principal;
+	            memid = userDetails.getUsername();
+	        }
+	    }
+	    this.searchService.insertSearch(memid, searchWord);
 		
 		if( selectVal.equals("vest") ) {
 			selectVal = null;
@@ -88,7 +89,6 @@ public class SearchController {
 		ArrayList<BrandCateCountVO> cclist = this.searchService.getSearchCateCount(searchWord);
 		ArrayList<BrandCateCountVO> brlist = this.searchService.getSearchBrandMap(searchWord);
 		
-		System.out.println(rlist);
  		model.addAttribute("slist", slist);
 		model.addAttribute("cclist",cclist);
 		model.addAttribute("brlist", brlist);
