@@ -171,9 +171,9 @@
 
 </delete>
 
-<select id="beforeReview" resultType="ssgssak.team1.sist.domain.review.BeforeReviewVO">
+<select id="getBeforeReview" resultType="ssgssak.team1.sist.domain.review.BeforeReviewVO">
 	SELECT p.ID, p.ORDERDATE, p.ORDERAMOUNT,p.PMETHOD, p.PRESENT
-		,pd.quantity,pr.ID, pr.CATEGORYID, pr.SPECIALPRICEID
+		,pd.quantity,pr.ID productid, pr.CATEGORYID, pr.SPECIALPRICEID
 		, pr.SHIPPINGOPTIONID, pr.SELLERSTOREID, pr.BRANDID, pr.PDNAME
 		, pr.PCONTENT, pr.UPDATEDAY, br.BRANDNAME,po.optionname,pi.imgurl
 	FROM payrecord p JOIN paydetail pd
@@ -188,7 +188,7 @@
 	                ON pi.productid=pr.id
 	                LEFT JOIN review r
 	                ON pd.id3 = r.productoptionid
-	WHERE p.memid=#{auth} AND pi.imgcontent ='sum'  AND r.id IS NULL;
+	WHERE p.memid=#{auth} AND pi.imgcontent ='sum'  AND r.id IS NULL
 </select>
 
 

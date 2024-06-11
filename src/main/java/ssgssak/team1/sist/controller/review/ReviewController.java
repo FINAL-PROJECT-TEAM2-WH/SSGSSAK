@@ -74,7 +74,7 @@ public class ReviewController {
 	        }
 
 		
-		return "/review/result";
+		return "/review/review";
 	}
 	
 	@GetMapping("/userReview.do")
