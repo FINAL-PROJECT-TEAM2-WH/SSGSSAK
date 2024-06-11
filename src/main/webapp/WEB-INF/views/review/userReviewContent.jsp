@@ -370,7 +370,7 @@
 				$("#item_rvw_list").empty();
 				if (reviews.length === 0) {
 			        const noDataHtml = `<li class="none_data"><p class="none_data_tx">해당 기간에 구매 내역이 없습니다</p></li>`;
-			        $("#item_rvw_list").append(noDataHtml);
+			        $("#codr_unitT").append(noDataHtml);
 			    } else {
 				
 				let startNo = totalRecords -(currentPage -1) * numberPerPage;
@@ -484,7 +484,7 @@
 
 
 	        for (let i = 1; i <= total; i++) {
-	            const pageHtml = `<a href="javascript:void(0);" onclick="fn_go_page(\${i})" class="\${i === current ? 'active' : ''}">\${i}</a>`;
+	            const pageHtml = `<a href="javascript:void(0);" onclick="fn_go_page(\${i})" class="cdtl_btn_go clickable">\${i}</a>`;
 	            $(".pagination").append(pageHtml);
 	        }
 
