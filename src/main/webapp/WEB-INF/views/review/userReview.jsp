@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -445,8 +446,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
            })
         } catch(e) {}
     </script>
-<%@include file="../Top.jsp" %>
-
+<tiles:insertAttribute name="Top"/>
 <div id="category" class="category"></div>
 
     <!-- 메인 레이어팝업 (s) -->
@@ -634,7 +634,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
              <h2 class="cmmyssg_user_tit">
              
              <!--  추후에 수정해줄 필요가 있음. get/ post  -->
-            <a href="<%=contextPath %>/userinfo.userinfo.jsp" data-react-tarea-dtl-cd="t00060" class="cmmyssg_user_tittx clickable"><span class="cmmyssg_user_titname">${userinfo.memberVO.name}님</span></a>
+            <a href="/userinfo.userinfo.jsp" data-react-tarea-dtl-cd="t00060" class="cmmyssg_user_tittx clickable"><span class="cmmyssg_user_titname">${userinfo.memberVO.name}님</span></a>
             </h2>
             </div>
 
@@ -857,8 +857,8 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
         }
     }
 </script>
+<tiles:insertAttribute name="sideBanner"/>
 
-<%@include file="../member/userinfo/sideBanner.jsp" %>
 <script type="text/javascript" defer="defer">
     function moveCsbot(moveUrl) {
         window.open(moveUrl, 'SSGTALK_WEB', 'width=830, height=650, resizable=yes');
@@ -890,8 +890,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
         }
     });
 </script>
-<%@ include file="userReviewContent.jsp" %>
-
+<tiles:insertAttribute name="userReviewContent"/>
 <script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/jquery.form.js"></script>
 <script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/commonUtil.js?v=20240424"></script>
 <script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/event.js?v=20240424"></script>
@@ -1258,7 +1257,7 @@ $(function(){
     
     function addLike(productid) {
      	$.ajax({
-            url: '<%=contextPath%>/like/like.do',
+            url: '/like/like.do',
             dataType: 'json',
             type: 'GET',
             data: { "productid" : productid}, 
@@ -1269,7 +1268,7 @@ $(function(){
             			alert("ㅇㅋ 취소해줌");
             			// 취소하는 ajax 
             			$.ajax({
-            				url: '<%=contextPath%>/like/like.do',
+            				url: '/like/like.do',
             				dataType: 'json',
             				type: 'POST',
             				data : {"productid" : productid,
@@ -1277,7 +1276,7 @@ $(function(){
             				cache: false,
             				success : function (data) {
             					if (data.result =='DeleteSuccess') {
-            						location.href = "<%=contextPath%>/memberInfo/memberInfo.do";
+            						location.href = "/memberInfo/memberInfo.do";
             					}
             				}, error : function (xhr, status, error){
             					
@@ -1300,5 +1299,4 @@ $(function(){
 </script>
 
 <!-- footer asdgasgd-->
-
-    <%@ include file="../footer.jsp" %>
+<tiles:insertAttribute name="footer"/>

@@ -96,7 +96,7 @@ public class ReviewController {
 		
 		
 		
-		return "review/userReview";
+		return "review/userReview.tiles";
 	}
 
 }//class
