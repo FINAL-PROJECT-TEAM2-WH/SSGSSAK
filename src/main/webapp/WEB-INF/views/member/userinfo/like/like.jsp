@@ -623,6 +623,8 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 				</div>
 			</div>
 		</div>
+		<input type="hidden" id="currentPage" value="1" />
+		<input type="hidden" id="pageSize" value="9" />
 		<div class="mylike_folder" id="mylike_folder_id">
 			<button type="button" class="mylike_folder_prev"><span class="blind">이전 폴더목록 보기</span></button>
 			<div class="mylike_folder_slider">
@@ -694,7 +696,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 				</ul>
 			</div>
 				
-<button type="button" class="mylike_folder_next"><span class="blind">다음 폴더목록 보기</span></button>
+<button type="button" class="mylike_folder_next" onclick="btnNext(1)"><span class="blind">다음 폴더목록 보기</span></button>
 		</div>
 </div>
 
@@ -725,7 +727,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 				</li>
 				<li class="mylike_modify_item" data-react-unit-type="text" data-react-unit-text='[{"type":"tarea_addt_val","value":"폴더에 추가"}]'>
 					<button type="button" class="mylike_modify_btn _mylike_lay_open clickable"
-                      data-react-tarea-dtl-cd="t00060" data-react-tarea="좋아요|편집|폴더에 추가_클릭" data-layer-target="#mylikeModifyFolder">폴더에추가</button>
+                      data-react-tarea-dtl-cd="t00060" data-react-tarea="좋아요|편집|폴더에 추가_클릭" data-layer-target="#mylikeModifyFolder" onclick="callFolder();">폴더에추가</button>
 						</li>
 			</ul>
 			<button class="mylike_modify_folder _mylike_lay_open clickable" data-react-tarea-cd="00133_000000558" data-react-unit-type="text" data-react-unit-text='[{"type":"tarea_addt_val","value":"폴더관리"}]'
@@ -2756,7 +2758,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 </div>
 					</div>
 </div>
-
+-->
 <div class="mylike_laysec" id="mylikeNewFolder" role="dialog" aria-modal="false">
 	<div class="mylike_lay_header">
 		<h2 class="mylike_lay_tit">새 폴더</h2>
@@ -2766,7 +2768,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 			<p class="mylike_lay_ctext">폴더를 추가하여 좋아요를 내맘대로 관리해보세요!</p>
 			<div class="mylike_lay_input"><input type="text" id="mylikeNew" name="mbrAttnGrpNm" value="" placeholder="폴더명을 입력해주세요." maxlength="6" title="폴더명"><span class="mylike_lay_max">0 / 6</span></div>
 			<div class="mylike_lay_btnbox">
-				<button type="button" id="mylikeNew_btn" class="mylike_lay_make" disabled="disabled" onclick="javascript:addNewFolder('mylikeNew')">만들기</button>
+				<button type="button" id="mylikeNew_btn" class="mylike_lay_make" disabled="disabled" onclick="javascript:addFolder()">만들기</button>
 			</div>
 		</div>
 	</div>
@@ -2777,7 +2779,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 		<h2 class="mylike_lay_tit">폴더 관리</h2>
 	</div>
 	<div class="mylike_lay_contents">
-		폴더없을때
+		<!-- 폴더없을때 -->
 		<div class="mylike_manage_makefolder" id="mng_none_folder_id" style="display:none">
 			<p class="mylike_lay_ctext">관리할 폴더가 없어요. 새 폴더를 만들어보세요.</p>
 			<div class="mylike_lay_input"><input type="text" id="mylikeMngA" name="mbrAttnGrpNm" value="" placeholder="폴더명을 입력해주세요." maxlength="6" title="폴더명"><span class="mylike_lay_max">0 / 6</span></div>
@@ -2785,7 +2787,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 				<button type="button" class="mylike_lay_make" disabled="disabled" onclick="javascript:addNewFolder('mylikeMngA');">만들기</button>
 			</div>
 		</div>
-		폴더관리할때
+		<!-- 폴더관리할때 -->
 		<div class="mylike_manage_management" id="mng_exists_folder_id">
 			<div class="mylike_manage_scroll">
 				<ul class="mylike_manage_list">
@@ -2807,128 +2809,18 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 								<button type="button" class="mylike_modify_btn" disabled="disabled" onclick="javascript:modifyFolder(1);">확인</button>
 							</div>
 						</li>
-					<li>
-							<span class="mylike_manage_thmb"></span>
-							<span class="mylike_manage_text" id="mng_disp_text_2">세제</span>
-							<span class="mylike_manage_btns" id="mng_disp_btns_2">
-								<button type="button" class="modify" onclick="javascript:beforeModifyFolder(2);"><span class="blind">편집</span></button><button type="button" class="delete" onclick="javascript:deleteFolder(2);"><span class="blind">삭제</span></button>
-							</span>
-							<div class="mylike_manage_modify" id="mng_mod_area_2" style="display: none">
-								<div class="mylike_lay_input"><input type="text" id="mng_mod_text_2" name="mbrAttnGrpNm" value="세제" placeholder="폴더명을 입력해주세요." maxlength="6" title="폴더명" class="translated"><span class="trans_placeholder blind" data-default-txt="폴더명을 입력해주세요.">폴더명을 입력해주세요.</span><span class="mylike_lay_max">2 / 6</span></div>
-								<button type="button" class="mylike_modify_btn" disabled="disabled" onclick="javascript:modifyFolder(2);">확인</button>
-							</div>
-						</li>
-					<li>
-							<span class="mylike_manage_thmb"></span>
-							<span class="mylike_manage_text" id="mng_disp_text_3">세제</span>
-							<span class="mylike_manage_btns" id="mng_disp_btns_3">
-								<button type="button" class="modify" onclick="javascript:beforeModifyFolder(3);"><span class="blind">편집</span></button><button type="button" class="delete" onclick="javascript:deleteFolder(3);"><span class="blind">삭제</span></button>
-							</span>
-							<div class="mylike_manage_modify" id="mng_mod_area_3" style="display: none">
-								<div class="mylike_lay_input"><input type="text" id="mng_mod_text_3" name="mbrAttnGrpNm" value="세제" placeholder="폴더명을 입력해주세요." maxlength="6" title="폴더명" class="translated"><span class="trans_placeholder blind" data-default-txt="폴더명을 입력해주세요.">폴더명을 입력해주세요.</span><span class="mylike_lay_max">2 / 6</span></div>
-								<button type="button" class="mylike_modify_btn" disabled="disabled" onclick="javascript:modifyFolder(3);">확인</button>
-							</div>
-						</li>
-					<li>
-							<span class="mylike_manage_thmb"></span>
-							<span class="mylike_manage_text" id="mng_disp_text_4">세제</span>
-							<span class="mylike_manage_btns" id="mng_disp_btns_4">
-								<button type="button" class="modify" onclick="javascript:beforeModifyFolder(4);"><span class="blind">편집</span></button><button type="button" class="delete" onclick="javascript:deleteFolder(4);"><span class="blind">삭제</span></button>
-							</span>
-							<div class="mylike_manage_modify" id="mng_mod_area_4" style="display: none">
-								<div class="mylike_lay_input"><input type="text" id="mng_mod_text_4" name="mbrAttnGrpNm" value="세제" placeholder="폴더명을 입력해주세요." maxlength="6" title="폴더명" class="translated"><span class="trans_placeholder blind" data-default-txt="폴더명을 입력해주세요.">폴더명을 입력해주세요.</span><span class="mylike_lay_max">2 / 6</span></div>
-								<button type="button" class="mylike_modify_btn" disabled="disabled" onclick="javascript:modifyFolder(4);">확인</button>
-							</div>
-						</li>
-					<li>
-							<span class="mylike_manage_thmb"></span>
-							<span class="mylike_manage_text" id="mng_disp_text_5">세제</span>
-							<span class="mylike_manage_btns" id="mng_disp_btns_5">
-								<button type="button" class="modify" onclick="javascript:beforeModifyFolder(5);"><span class="blind">편집</span></button><button type="button" class="delete" onclick="javascript:deleteFolder(5);"><span class="blind">삭제</span></button>
-							</span>
-							<div class="mylike_manage_modify" id="mng_mod_area_5" style="display: none">
-								<div class="mylike_lay_input"><input type="text" id="mng_mod_text_5" name="mbrAttnGrpNm" value="세제" placeholder="폴더명을 입력해주세요." maxlength="6" title="폴더명" class="translated"><span class="trans_placeholder blind" data-default-txt="폴더명을 입력해주세요.">폴더명을 입력해주세요.</span><span class="mylike_lay_max">2 / 6</span></div>
-								<button type="button" class="mylike_modify_btn" disabled="disabled" onclick="javascript:modifyFolder(5);">확인</button>
-							</div>
-						</li>
-					<li>
-							<span class="mylike_manage_thmb"></span>
-							<span class="mylike_manage_text" id="mng_disp_text_6">세제</span>
-							<span class="mylike_manage_btns" id="mng_disp_btns_6">
-								<button type="button" class="modify" onclick="javascript:beforeModifyFolder(6);"><span class="blind">편집</span></button><button type="button" class="delete" onclick="javascript:deleteFolder(6);"><span class="blind">삭제</span></button>
-							</span>
-							<div class="mylike_manage_modify" id="mng_mod_area_6" style="display: none">
-								<div class="mylike_lay_input"><input type="text" id="mng_mod_text_6" name="mbrAttnGrpNm" value="세제" placeholder="폴더명을 입력해주세요." maxlength="6" title="폴더명" class="translated"><span class="trans_placeholder blind" data-default-txt="폴더명을 입력해주세요.">폴더명을 입력해주세요.</span><span class="mylike_lay_max">2 / 6</span></div>
-								<button type="button" class="mylike_modify_btn" disabled="disabled" onclick="javascript:modifyFolder(6);">확인</button>
-							</div>
-						</li>
-					<li>
-							<span class="mylike_manage_thmb"></span>
-							<span class="mylike_manage_text" id="mng_disp_text_7">세제</span>
-							<span class="mylike_manage_btns" id="mng_disp_btns_7">
-								<button type="button" class="modify" onclick="javascript:beforeModifyFolder(7);"><span class="blind">편집</span></button><button type="button" class="delete" onclick="javascript:deleteFolder(7);"><span class="blind">삭제</span></button>
-							</span>
-							<div class="mylike_manage_modify" id="mng_mod_area_7" style="display: none">
-								<div class="mylike_lay_input"><input type="text" id="mng_mod_text_7" name="mbrAttnGrpNm" value="세제" placeholder="폴더명을 입력해주세요." maxlength="6" title="폴더명" class="translated"><span class="trans_placeholder blind" data-default-txt="폴더명을 입력해주세요.">폴더명을 입력해주세요.</span><span class="mylike_lay_max">2 / 6</span></div>
-								<button type="button" class="mylike_modify_btn" disabled="disabled" onclick="javascript:modifyFolder(7);">확인</button>
-							</div>
-						</li>
-					<li>
-							<span class="mylike_manage_thmb"></span>
-							<span class="mylike_manage_text" id="mng_disp_text_8">세제</span>
-							<span class="mylike_manage_btns" id="mng_disp_btns_8">
-								<button type="button" class="modify" onclick="javascript:beforeModifyFolder(8);"><span class="blind">편집</span></button><button type="button" class="delete" onclick="javascript:deleteFolder(8);"><span class="blind">삭제</span></button>
-							</span>
-							<div class="mylike_manage_modify" id="mng_mod_area_8" style="display: none">
-								<div class="mylike_lay_input"><input type="text" id="mng_mod_text_8" name="mbrAttnGrpNm" value="세제" placeholder="폴더명을 입력해주세요." maxlength="6" title="폴더명" class="translated"><span class="trans_placeholder blind" data-default-txt="폴더명을 입력해주세요.">폴더명을 입력해주세요.</span><span class="mylike_lay_max">2 / 6</span></div>
-								<button type="button" class="mylike_modify_btn" disabled="disabled" onclick="javascript:modifyFolder(8);">확인</button>
-							</div>
-						</li>
-					<li>
-							<span class="mylike_manage_thmb"></span>
-							<span class="mylike_manage_text" id="mng_disp_text_9">세제</span>
-							<span class="mylike_manage_btns" id="mng_disp_btns_9">
-								<button type="button" class="modify" onclick="javascript:beforeModifyFolder(9);"><span class="blind">편집</span></button><button type="button" class="delete" onclick="javascript:deleteFolder(9);"><span class="blind">삭제</span></button>
-							</span>
-							<div class="mylike_manage_modify" id="mng_mod_area_9" style="display: none">
-								<div class="mylike_lay_input"><input type="text" id="mng_mod_text_9" name="mbrAttnGrpNm" value="세제" placeholder="폴더명을 입력해주세요." maxlength="6" title="폴더명" class="translated"><span class="trans_placeholder blind" data-default-txt="폴더명을 입력해주세요.">폴더명을 입력해주세요.</span><span class="mylike_lay_max">2 / 6</span></div>
-								<button type="button" class="mylike_modify_btn" disabled="disabled" onclick="javascript:modifyFolder(9);">확인</button>
-							</div>
-						</li>
-					<li>
-							<span class="mylike_manage_thmb"></span>
-							<span class="mylike_manage_text" id="mng_disp_text_10">세제</span>
-							<span class="mylike_manage_btns" id="mng_disp_btns_10">
-								<button type="button" class="modify" onclick="javascript:beforeModifyFolder(10);"><span class="blind">편집</span></button><button type="button" class="delete" onclick="javascript:deleteFolder(10);"><span class="blind">삭제</span></button>
-							</span>
-							<div class="mylike_manage_modify" id="mng_mod_area_10" style="display: none">
-								<div class="mylike_lay_input"><input type="text" id="mng_mod_text_10" name="mbrAttnGrpNm" value="세제" placeholder="폴더명을 입력해주세요." maxlength="6" title="폴더명" class="translated"><span class="trans_placeholder blind" data-default-txt="폴더명을 입력해주세요.">폴더명을 입력해주세요.</span><span class="mylike_lay_max">2 / 6</span></div>
-								<button type="button" class="mylike_modify_btn" disabled="disabled" onclick="javascript:modifyFolder(10);">확인</button>
-							</div>
-						</li>
-					<li>
-							<span class="mylike_manage_thmb"></span>
-							<span class="mylike_manage_text" id="mng_disp_text_11">세제</span>
-							<span class="mylike_manage_btns" id="mng_disp_btns_11">
-								<button type="button" class="modify" onclick="javascript:beforeModifyFolder(11);"><span class="blind">편집</span></button><button type="button" class="delete" onclick="javascript:deleteFolder(11);"><span class="blind">삭제</span></button>
-							</span>
-							<div class="mylike_manage_modify" id="mng_mod_area_11" style="display: none">
-								<div class="mylike_lay_input"><input type="text" id="mng_mod_text_11" name="mbrAttnGrpNm" value="세제" placeholder="폴더명을 입력해주세요." maxlength="6" title="폴더명" class="translated"><span class="trans_placeholder blind" data-default-txt="폴더명을 입력해주세요.">폴더명을 입력해주세요.</span><span class="mylike_lay_max">2 / 6</span></div>
-								<button type="button" class="mylike_modify_btn" disabled="disabled" onclick="javascript:modifyFolder(11);">확인</button>
-							</div>
-						</li>
 					</ul>
 			</div>
 		</div>
-	</div> -->
-<!-- 	<button type="button" class="mylike_lay_close"><span class="blind">닫기</span></button>
+	</div>
+ 	<button type="button" class="mylike_lay_close"><span class="blind">닫기</span></button>
 </div>
-<div class="mylike_laysec" id="mylikeModifyFolder" role="dialog" aria-modal="false">
+<div class="mylike_laysec" id="mylikeModifyFolder" role="dialog" aria-modal="false" onclick="">
 	<div class="mylike_lay_header">
 		<h2 class="mylike_lay_tit">폴더에 추가</h2>
 	</div>
 	<div class="mylike_lay_contents">
-		폴더없을때
+
 		<div class="mylike_manage_makefolder" id="add_none_folder_id" style="display:none">
 			<p class="mylike_lay_ctext">추가할 폴더가 없어요. 새폴더를 만들어보세요.</p>
 			<div class="mylike_lay_input"><input type="text" id="mylikeModA" name="mbrAttnGrpNm" value="" placeholder="폴더명을 입력해주세요." maxlength="6" title="폴더명"><span class="mylike_lay_max">0 / 6</span></div>
@@ -2936,9 +2828,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 				<button type="button" class="mylike_lay_make" disabled="disabled" onclick="javascript:addNewFolder('mylikeModA');">만들기 및 추가</button>
 			</div>
 		</div>
-		폴더관리할때
-		<div class="mylike_manage_management" id="
-">  
+		<div class="mylike_manage_management" id="">  
 				<ul class="mylike_manage_list">
 					<li>
 						<button type="button" class="new">새 폴더</button>
@@ -2953,66 +2843,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 								<input type="checkbox" name="folderadd" id="add_1" value="1"><label for="add_1" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
 							</div>
 						</li>
-					<li>
-							<span class="mylike_manage_thmb"></span>
-							<div class="mylike_checkbox">
-								<input type="checkbox" name="folderadd" id="add_2" value="2"><label for="add_2" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
-							</div>
-						</li>
-					<li>
-							<span class="mylike_manage_thmb"></span>
-							<div class="mylike_checkbox">
-								<input type="checkbox" name="folderadd" id="add_3" value="3"><label for="add_3" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
-							</div>
-						</li>
-					<li>
-							<span class="mylike_manage_thmb"></span>
-							<div class="mylike_checkbox">
-								<input type="checkbox" name="folderadd" id="add_4" value="4"><label for="add_4" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
-							</div>
-						</li>
-					<li>
-							<span class="mylike_manage_thmb"></span>
-							<div class="mylike_checkbox">
-								<input type="checkbox" name="folderadd" id="add_5" value="5"><label for="add_5" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
-							</div>
-						</li>
-					<li>
-							<span class="mylike_manage_thmb"></span>
-							<div class="mylike_checkbox">
-								<input type="checkbox" name="folderadd" id="add_6" value="6"><label for="add_6" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
-							</div>
-						</li>
-					<li>
-							<span class="mylike_manage_thmb"></span>
-							<div class="mylike_checkbox">
-								<input type="checkbox" name="folderadd" id="add_7" value="7"><label for="add_7" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
-							</div>
-						</li>
-					<li>
-							<span class="mylike_manage_thmb"></span>
-							<div class="mylike_checkbox">
-								<input type="checkbox" name="folderadd" id="add_8" value="8"><label for="add_8" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
-							</div>
-						</li>
-					<li>
-							<span class="mylike_manage_thmb"></span>
-							<div class="mylike_checkbox">
-								<input type="checkbox" name="folderadd" id="add_9" value="9"><label for="add_9" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
-							</div>
-						</li>
-					<li>
-							<span class="mylike_manage_thmb"></span>
-							<div class="mylike_checkbox">
-								<input type="checkbox" name="folderadd" id="add_10" value="10"><label for="add_10" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
-							</div>
-						</li>
-					<li>
-							<span class="mylike_manage_thmb"></span>
-							<div class="mylike_checkbox">
-								<input type="checkbox" name="folderadd" id="add_11" value="11"><label for="add_11" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
-							</div>
-						</li>
+						
 					</ul>
 			</div>
 			<div class="mylike_lay_btnbox">
@@ -3027,7 +2858,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 		<h2 class="mylike_lay_tit">폴더 이동</h2>
 	</div>
 	<div class="mylike_lay_contents">
-		폴더없을때
+		<!-- 폴더없을때 -->
 		<div class="mylike_manage_makefolder" id="move_none_folder_id" style="display:none">
 			<p class="mylike_lay_ctext">추가할 폴더가 없어요. 새폴더를 만들어보세요.</p>
 			<div class="mylike_lay_input"><input type="text" id="mylikeMoveA" name="mbrAttnGrpNm" value="" placeholder="폴더명을 입력해주세요." maxlength="6" title="폴더명"><span class="mylike_lay_max">0 / 6</span></div>
@@ -3035,7 +2866,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 				<button type="button" class="mylike_lay_make" disabled="disabled" onclick="javascript:addNewFolder('mylikeMoveA');">만들기 및 추가</button>
 			</div>
 		</div>
-		폴더관리할때
+		<!-- 폴더관리할때 -->
 		<div class="mylike_manage_management" id="move_exists_folder_id">
 			<div class="mylike_manage_scroll">
 				<ul class="mylike_manage_list">
@@ -3046,72 +2877,12 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 							<button type="button" id="mylikeMoveB_btn" class="mylike_modify_btn" disabled="disabled" onclick="javascript:addNewFolder('mylikeMoveB');">확인</button>
 						</div>
 					</li>
-					<li>
+					<!-- <li>
 								<span class="mylike_manage_thmb"></span>
 								<div class="mylike_checkbox">
 									<input type="checkbox" name="folderadd" id="move_1" value="1"><label for="move_1" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
 								</div>
-							</li>
-						<li>
-								<span class="mylike_manage_thmb"></span>
-								<div class="mylike_checkbox">
-									<input type="checkbox" name="folderadd" id="move_2" value="2"><label for="move_2" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
-								</div>
-							</li>
-						<li>
-								<span class="mylike_manage_thmb"></span>
-								<div class="mylike_checkbox">
-									<input type="checkbox" name="folderadd" id="move_3" value="3"><label for="move_3" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
-								</div>
-							</li>
-						<li>
-								<span class="mylike_manage_thmb"></span>
-								<div class="mylike_checkbox">
-									<input type="checkbox" name="folderadd" id="move_4" value="4"><label for="move_4" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
-								</div>
-							</li>
-						<li>
-								<span class="mylike_manage_thmb"></span>
-								<div class="mylike_checkbox">
-									<input type="checkbox" name="folderadd" id="move_5" value="5"><label for="move_5" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
-								</div>
-							</li>
-						<li>
-								<span class="mylike_manage_thmb"></span>
-								<div class="mylike_checkbox">
-									<input type="checkbox" name="folderadd" id="move_6" value="6"><label for="move_6" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
-								</div>
-							</li>
-						<li>
-								<span class="mylike_manage_thmb"></span>
-								<div class="mylike_checkbox">
-									<input type="checkbox" name="folderadd" id="move_7" value="7"><label for="move_7" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
-								</div>
-							</li>
-						<li>
-								<span class="mylike_manage_thmb"></span>
-								<div class="mylike_checkbox">
-									<input type="checkbox" name="folderadd" id="move_8" value="8"><label for="move_8" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
-								</div>
-							</li>
-						<li>
-								<span class="mylike_manage_thmb"></span>
-								<div class="mylike_checkbox">
-									<input type="checkbox" name="folderadd" id="move_9" value="9"><label for="move_9" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
-								</div>
-							</li>
-						<li>
-								<span class="mylike_manage_thmb"></span>
-								<div class="mylike_checkbox">
-									<input type="checkbox" name="folderadd" id="move_10" value="10"><label for="move_10" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
-								</div>
-							</li>
-						<li>
-								<span class="mylike_manage_thmb"></span>
-								<div class="mylike_checkbox">
-									<input type="checkbox" name="folderadd" id="move_11" value="11"><label for="move_11" class="mylike_folder_chk"><span class="mylike_manage_text">세제</span></label>
-								</div>
-							</li>
+							</li> -->
 						</ul>
 			</div>
 			<div class="mylike_lay_btnbox">
@@ -3120,7 +2891,8 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 		</div>
 	</div>
 	<button type="button" class="mylike_lay_close"><span class="blind">닫기</span></button>
-</div> -->
+</div> 
+</div>
 <a href="#store_modal_like_coupon" class="store_layer_btn_view" style="display: none" id="_layerLikeCouponBtn" data-layer-target="#_layerLikeCoupon">판매자스토어 좋아요</a>
 <div class="ssg-layer-popup store_lypop" id="store_modal_like_coupon" title="레이어팝업 열림">
   <div class="store_modal_cont">
@@ -3851,6 +3623,41 @@ function addLike(productid) {
 		}
 	}
 	
+	function callFolder(){
+		$.ajax({
+			type: "GET",
+			dataType: "json",
+			url: '/memberR/loadLikeFolder',
+      		cache: false,
+			data: params,
+			success: function(result){
+				$('#mylike_manage_list').empty();
+			let htmlTag = '<li>';
+				htmlTag +='<button type="button" class="new">새 폴더</button>';
+				htmlTag +='<div class="mylike_manage_create">';
+				htmlTag +='<div class="mylike_lay_input"><input type="text" id="mylikeMngB" name="mbrAttnGrpNm" value="" placeholder="폴더명을 입력해주세요." maxlength="6" title="폴더명"><span class="mylike_lay_max">0 / 6</span></div>';
+				htmlTag +='<button type="button" id="mylikeMngB_btn" class="mylike_modify_btn" disabled="disabled" onclick="javascript:addNewFolder("mylikeMngB");">확인</button>';
+				htmlTag +='</div>';
+				htmlTag +='</li>';
+				htmlTag +='<li>';
+				htmlTag +='<span class="mylike_manage_thmb"></span>';
+				htmlTag +='<span class="mylike_manage_text" id="mng_disp_text_1">세제</span>';
+				htmlTag +='<span class="mylike_manage_btns" id="mng_disp_btns_1">';
+				htmlTag +=	'<button type="button" class="modify" onclick="javascript:beforeModifyFolder(1);"><span class="blind">편집</span></button><button type="button" class="delete" onclick="javascript:deleteFolder(1);"><span class="blind">삭제</span></button>';
+				htmlTag +='</span>';
+				htmlTag +='<div class="mylike_manage_modify" id="mng_mod_area_1" style="display: none">';
+				htmlTag +=	'<div class="mylike_lay_input"><input type="text" id="mng_mod_text_1" name="mbrAttnGrpNm" value="세제" placeholder="폴더명을 입력해주세요." maxlength="6" title="폴더명" class="translated"><span class="trans_placeholder blind" data-default-txt="폴더명을 입력해주세요.">폴더명을 입력해주세요.</span><span class="mylike_lay_max">2 / 6</span></div>';
+				htmlTag +=	'<button type="button" class="mylike_modify_btn" disabled="disabled" onclick="javascript:modifyFolder(1);">확인</button>';
+				htmlTag +='</div>';
+				htmlTag +='</li>';
+				$('#mylike_manage_list').append(htmlTag);
+				
+			}, error : function(){
+				alert("체크삭제 실패. 잠시 후 다시 시도해주십시오.");
+			}
+		})	
+	}
+	
 	
 	function deleteContents(attnDtlcSeqStr) {
 		/* var params = {
@@ -3891,36 +3698,24 @@ function addLike(productid) {
 			}
 			
 		});
-		/* $.ajax({
-			type: "POST",
-			dataType: "json",
-			url: url,
-      cache: false,
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      contentType: "application/josn",
-      crossDomain: true,
-      xhrFields: {
-        withCredentials: true
-      },
-      dataType: "json",
-      method: 'post',
-      cors: true,
-			data: JSON.stringify(params),
-			async: false,
-			success: function(result){
-				//alert('선택한 상품을' + result.resultMsg);
-				alert('삭제가 완료되었습니다.');
-				window.location.reload(true);
-			},
-			error : function(){
-				alert("체크삭제 실패. 잠시 후 다시 시도해주십시오.");
-			}
-		}); */
 	} 
-	function btnNext(params) {
+	function btnNext(type) {
+		let currentPage = $('#currentPage').val();
+		const pageSize = $('#pageSize').val();
+		const params = {
+	    		currentPage : currentPage,
+	    		pageSize : pageSize
+	    }
+		// plus minus 분기 
+		if (type == 1){
+			currentPage++;
+			$('#currentPage').val(currentPage);
+            params.currentPage = currentPage;
+		} else {
+			currentPage--;
+			$('#currentPage').val(currentPage);
+			params.currentPage = currentPage;
+		}
  		// 8개씩 불러와야함 .
  		$.ajax({
  			type: "GET",
@@ -3930,13 +3725,13 @@ function addLike(productid) {
 			data: params,
 			success: function(result){			
 				let htmlTag = "";	
-				htmlTag += '<button type="button" class="mylike_folder_prev"><span class="blind">이전 폴더목록 보기</span></button>'
+				htmlTag += '<button type="button" class="mylike_folder_prev" onclick="btnNext(-1);"><span class="blind">이전 폴더목록 보기</span></button>'
 				
 				
 				htmlTag += '<div class="mylike_folder_slider">'
 				htmlTag += 	'<ul class="mylike_folder_list" role="tablist" data-react-tarea-cd="00133_000000556">'
 				htmlTag += 		'<li class="mylike_folder_item" role="presentation" id="list_floder_add" data-react-unit-type="text" data-react-unit-text="[{"type":"tarea_addt_val","value":"새폴더"}]">'
-				htmlTag += 			'<a href="" data-mbrAttnGrpSeq="none" class="mylike_folder_btn ty_create _mylike_lay_open clickable" data-react-tarea-dtl-cd="t00060" data-react-tarea="좋아요|상단|새폴더_클릭" data-layer-target="#mylikeNewFolder" role="button" onclick="addFolder2();" >'
+				htmlTag += 			'<a href="#" data-mbrAttnGrpSeq="none" class="mylike_folder_btn ty_create _mylike_lay_open clickable" data-react-tarea-dtl-cd="t00060" data-react-tarea="좋아요|상단|새폴더_클릭" data-layer-target="#mylikeNewFolder" role="button" onclick="addFolder2();" >'
 				htmlTag += 				'<span class="mylike_folder_thmb"></span><em class="mylike_folder_name">새폴더</em>'
 				htmlTag += 			'</a>'
 				htmlTag += 	'</li>'
@@ -3961,21 +3756,13 @@ function addLike(productid) {
 				
 				htmlTag += '</ul>'
 				htmlTag += '</div>'
-				htmlTag += '<button type="button" class="mylike_folder_next"><span class="blind">다음 폴더목록 보기</span></button>'
+				htmlTag += '<button type="button" class="mylike_folder_next" onclick="btnNext(1);"><span class="blind">다음 폴더목록 보기</span></button>'
 				
 				$('#mylike_folder_id').empty();
 				$('#mylike_folder_id').append(htmlTag);
 				
 				if (result.prev){
 					$('button.mylike_folder_prev').css('display','block');
-					
-					$('button.mylike_folder_prev').on('click', function () {
-										
-			            let currentPage = result.currentPage;
-		            
-			            params.currentPage = --currentPage;  // currentPage 값을 업데이트
-			            btnNext(params);  // 업데이트된 params로 btnNext 함수 호출
-			        });
 				} else {
 					$('button.mylike_folder_prev').css('display','none');
 				}
@@ -3991,25 +3778,22 @@ function addLike(productid) {
 			}
 		})// ajax; 
  		} // onclick;
- 		
- 		
-	
+ 			
 	$(function() {
-		let currentPage = 1;
+		const currentPage = 1;
 	    const pageSize = 8;
 	    let size = ${folderList.size()};
 	    const params = {
 	    		currentPage : currentPage,
 	    		pageSize : pageSize
-	    }
-	    
-	     if ( size > 9 ) {
+	    }	    
+	     if ( size > 9 ) { 
 	    	$('button.mylike_folder_next').css('display','block');
-	    	$('button.mylike_folder_next').on('click', function () {
+	    	/* $('button.mylike_folder_next').on('click', function () {
 	            currentPage++;
 	            params.currentPage = currentPage;  // currentPage 값을 업데이트
 	            btnNext(params);  // 업데이트된 params로 btnNext 함수 호출
-	        });
+	        }); */
 	     }
 	     // function 
   
@@ -4277,20 +4061,79 @@ function addLike(productid) {
 	        data: { "folderName" : $('#mylikeNew').val()}, 
 	        cache: false,
 	        success: function (data) {
-	        	if (data) {
+	        	if (data) {        		
 	        		$.unblockUI();
+	        		let currentPage = $('#currentPage').val();
+	        		const pageSize = $('#pageSize').val();
+	        		const params = {
+	        	    		currentPage : currentPage,
+	        	    		pageSize : pageSize
+	        	    }
+	        		console.log(currentPage);
+	        		console.log(pageSize);
+	        		
 	        		  $.ajax({
-	        			url:'/memberR/likeFolder',
+	        			url:'/memberR/loadLikeFolder',
 	        			dataType:'json',
 	        			/* data : {page : currentPage, size : pageSize} */
-	        			 type: 'POST',
+	        			 type: 'GET',
+	        			 data: params,
 	        			 cache:false,
-	        			 beforeSend: function(xhr) {
+/* 	        			 beforeSend: function(xhr) {
 	                            xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
-	                     },
-	        			 success : function (data){
-	        				 // 새로고침하는 데이터 갖고와서 뿌려줘야됨 
-	        				 $('.mylike_folder_list').empty(); 
+	                     }, */
+	        			 success : function (result){
+	        				 // 새로고침하는 데이터 갖고와서 뿌려줘야됨
+	        				 // 현재 페이지에 해당하는 데이터를 갖고와서 뿌려줘야됨 . 
+	        				 let htmlTag = "";	
+	        					htmlTag += '<button type="button" class="mylike_folder_prev" onclick="btnNext(-1);"><span class="blind">이전 폴더목록 보기</span></button>'
+	        					
+	        					
+	        					htmlTag += '<div class="mylike_folder_slider">'
+	        					htmlTag += 	'<ul class="mylike_folder_list" role="tablist" data-react-tarea-cd="00133_000000556">'
+	        					htmlTag += 		'<li class="mylike_folder_item" role="presentation" id="list_floder_add" data-react-unit-type="text" data-react-unit-text="[{"type":"tarea_addt_val","value":"새폴더"}]">'
+	        					htmlTag += 			'<a href="#" data-mbrAttnGrpSeq="none" class="mylike_folder_btn ty_create _mylike_lay_open clickable" data-react-tarea-dtl-cd="t00060" data-react-tarea="좋아요|상단|새폴더_클릭" data-layer-target="#mylikeNewFolder" role="button" onclick="addFolder2();" >'
+	        					htmlTag += 				'<span class="mylike_folder_thmb"></span><em class="mylike_folder_name">새폴더</em>'
+	        					htmlTag += 			'</a>'
+	        					htmlTag += 	'</li>'
+	        					result.folderList.forEach(function (element, index){		
+	        							if( index == 0 ){
+	        								htmlTag += `<li class="mylike_folder_item" role="presentation" id="list_foler_all" data-react-unit-type="text" data-react-unit-text='[{"type":"tarea_addt_val","value":"전체보기"}]'>`;
+	        								htmlTag += '<a href="" data-mbrAttnGrpSeq="0" class="mylike_folder_btn ty_all on clickable" data-react-tarea-dtl-cd="t00060" data-react-tarea="좋아요|상단|모아보기_클릭" role="tab" aria-selected="true" id="f_0">';
+	        								htmlTag += '<span class="mylike_folder_thmb"></span><em class="mylike_folder_name">'+`\${element}`+'</em>';
+	        								htmlTag += '</a>';
+	        								htmlTag += '</li>';
+	        								
+	        							} else {
+	        								htmlTag += '<li class="mylike_folder_item" role="presentation" id="list_folder_'+ `\${index}`+'">'
+	        								htmlTag += '<a href="" data-mbrAttnGrpSeq="' + `\${index}` + '" class="mylike_folder_btn ty_default" role="tab" aria-selected="true" id="f_${status.index}">'
+	        								htmlTag += '<span class="mylike_folder_thmb"></span><em class="mylike_folder_name">'+`\${element}`+'</em>'
+	        								htmlTag += 	'</a>'
+	        								htmlTag += '</li>'
+	        							}
+	        							// 0일 
+	        					// 0 아닐 때 
+	        						});
+	        					
+	        					htmlTag += '</ul>'
+	        					htmlTag += '</div>'
+	        					htmlTag += '<button type="button" class="mylike_folder_next" onclick="btnNext(1);"><span class="blind">다음 폴더목록 보기</span></button>'
+	        					
+	        					$('#mylike_folder_id').empty();
+	        					$('#mylike_folder_id').append(htmlTag);
+	        					
+	        					if (result.prev){
+	        						$('button.mylike_folder_prev').css('display','block');
+	        					} else {
+	        						$('button.mylike_folder_prev').css('display','none');
+	        					}
+
+	        					if (result.next){
+	        						$('button.mylike_folder_next').css('display','block');
+	        					}
+	        				 
+	        				 
+	        				/*  $('.mylike_folder_list').empty(); 
 	        				let maxLength = data.length;
 	        				let htmltag = '';
 	        				htmltag += '<li class="mylike_folder_item" role="presentation" id="list_floder_add" data-react-unit-type="text" data-react-unit-text="[{&quot;type&quot;:&quot;tarea_addt_val&quot;,&quot;value&quot;:&quot;새폴더&quot;}]" style="float: left; list-style: none; position: relative; width: 1280px;">';
@@ -4317,7 +4160,7 @@ function addLike(productid) {
 	        				    } 			        
 	        				});
 	        				
-	        				$('.mylike_folder_list').append(htmltag);
+	        				$('.mylike_folder_list').append(htmltag); */
 
 	        			/* 	$('#mylikeNew_btn').on('click', function () {
 	        					$('.mylike_folder_list').empty(); 

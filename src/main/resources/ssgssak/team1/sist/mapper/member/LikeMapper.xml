@@ -63,7 +63,7 @@ WHERE memid = #{id} AND productid = #{productid}
    FROm divisionfolder
    WHERE memid = #{id}
    )tp 
-   WHERE tp.rnum BETWEEN (CASE WHEN #{currentPage} > 1 THEN #{pageSize} / (#{currentPage} - 1) + 1 ELSE 1 END ) AND #{endPage}
+   WHERE tp.rnum BETWEEN (CASE WHEN #{currentPage} > 1 THEN #{pageSize} * (#{currentPage} - 1) + 1 ELSE 1 END ) AND #{endPage}
    ]]>
   </select>
   
