@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import ssgssak.team1.sist.domain.member.InterestGoodsVO;
+import ssgssak.team1.sist.domain.member.LikeFolderDTO;
 import ssgssak.team1.sist.domain.member.MemberVO;
 import ssgssak.team1.sist.domain.member.security.CustomerUser;
 import ssgssak.team1.sist.mapper.member.LikeMapper;
@@ -62,7 +63,7 @@ public class MemberController {
 		String id = userDetails.getUsername();
 		System.out.println(id);
 		List<InterestGoodsVO> list = likeService.getInterGoodsList(id);
-		List<String>folderList = likeService.getInterFolderList(id);
+		List<LikeFolderDTO>folderList = likeService.getInterFolderList(id);
 		model.addAttribute("folderList", folderList);
 		model.addAttribute("productList",list);
 		model.addAttribute("listSize", list.isEmpty() ? 0 : list.size());

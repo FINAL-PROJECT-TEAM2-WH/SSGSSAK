@@ -652,14 +652,14 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 								<c:when test="${status.index == 0}">
 									<li class="mylike_folder_item" role="presentation" id="list_foler_all" data-react-unit-type="text" data-react-unit-text='[{"type":"tarea_addt_val","value":"전체보기"}]'>
 									<a href="" data-mbrAttnGrpSeq="0" class="mylike_folder_btn ty_all on clickable" data-react-tarea-dtl-cd="t00060" data-react-tarea="좋아요|상단|모아보기_클릭" role="tab" aria-selected="true" id="f_0">
-									<span class="mylike_folder_thmb"></span><em class="mylike_folder_name">${folder}</em>
+									<span class="mylike_folder_thmb"></span><em class="mylike_folder_name">${folder.name}</em>
 									</a>
 									</li>
 								</c:when>
 							<c:otherwise>						
 					  			<li class="mylike_folder_item" role="presentation" id="list_folder_${status.index}">
 								<a href="" data-mbrAttnGrpSeq="${status.index}" class="mylike_folder_btn ty_default" role="tab" aria-selected="true" id="f_${status.index}">
-								<span class="mylike_folder_thmb"></span><em class="mylike_folder_name">${folder}</em>
+								<span class="mylike_folder_thmb"></span><em class="mylike_folder_name">${folder.name}</em>
 									</a>
 								</li>
 							</c:otherwise>
@@ -674,14 +674,14 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 								<c:when test="${status.index == 0}">
 									<li class="mylike_folder_item" role="presentation" id="list_foler_all" data-react-unit-type="text" data-react-unit-text='[{"type":"tarea_addt_val","value":"전체보기"}]'>
 									<a href="" data-mbrAttnGrpSeq="0" class="mylike_folder_btn ty_all on clickable" data-react-tarea-dtl-cd="t00060" data-react-tarea="좋아요|상단|모아보기_클릭" role="tab" aria-selected="true" id="f_0">
-									<span class="mylike_folder_thmb"></span><em class="mylike_folder_name">${folder}</em>
+									<span class="mylike_folder_thmb"></span><em class="mylike_folder_name">${folder.name}</em>
 									</a>
 									</li>
 								</c:when>
 							<c:otherwise>						
 					  			<li class="mylike_folder_item" role="presentation" id="list_folder_${status.index}">
 								<a href="" data-mbrAttnGrpSeq="${status.index}" class="mylike_folder_btn ty_default" role="tab" aria-selected="true" id="f_${status.index}">
-								<span class="mylike_folder_thmb"></span><em class="mylike_folder_name">${folder}</em>
+								<span class="mylike_folder_thmb"></span><em class="mylike_folder_name">${folder.name}</em>
 									</a>
 								</li>
 							</c:otherwise>
@@ -2731,35 +2731,13 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 							</div>
 						</div>
 						<div class="com_paginate notranslate">
-							
-
-
-
-
-        
-    
-    
-    
-    
-    
-    
-        
-        
+						
            <strong title="현재위치">1</strong>
-        
-    
-
-    
-    
-    
-    
-    
-    
 </div>
 					</div>
 </div>
 -->
-<div class="mylike_laysec" id="mylikeNewFolder" role="dialog" aria-modal="false">
+ <!-- <div class="mylike_laysec" id="mylikeNewFolder" role="dialog" aria-modal="false">
 	<div class="mylike_lay_header">
 		<h2 class="mylike_lay_tit">새 폴더</h2>
 	</div>
@@ -2773,13 +2751,13 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 		</div>
 	</div>
 	<button type="button" class="mylike_lay_close" id="myLikeNewClose"><span class="blind">닫기</span></button>
-</div>
+</div> 
 <div class="mylike_laysec" id="mylikeManageFolder" role="dialog" aria-modal="true">
 	<div class="mylike_lay_header">
 		<h2 class="mylike_lay_tit">폴더 관리</h2>
 	</div>
 	<div class="mylike_lay_contents">
-		<!-- 폴더없을때 -->
+		폴더없을때
 		<div class="mylike_manage_makefolder" id="mng_none_folder_id" style="display:none">
 			<p class="mylike_lay_ctext">관리할 폴더가 없어요. 새 폴더를 만들어보세요.</p>
 			<div class="mylike_lay_input"><input type="text" id="mylikeMngA" name="mbrAttnGrpNm" value="" placeholder="폴더명을 입력해주세요." maxlength="6" title="폴더명"><span class="mylike_lay_max">0 / 6</span></div>
@@ -2787,7 +2765,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 				<button type="button" class="mylike_lay_make" disabled="disabled" onclick="javascript:addNewFolder('mylikeMngA');">만들기</button>
 			</div>
 		</div>
-		<!-- 폴더관리할때 -->
+		폴더관리할때
 		<div class="mylike_manage_management" id="mng_exists_folder_id">
 			<div class="mylike_manage_scroll">
 				<ul class="mylike_manage_list">
@@ -2814,7 +2792,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 		</div>
 	</div>
  	<button type="button" class="mylike_lay_close"><span class="blind">닫기</span></button>
-</div>
+</div> -->
 <div class="mylike_laysec" id="mylikeModifyFolder" role="dialog" aria-modal="false" onclick="">
 	<div class="mylike_lay_header">
 		<h2 class="mylike_lay_tit">폴더에 추가</h2>
@@ -3414,7 +3392,9 @@ function addLike(productid) {
 
 		}
 	} */
-	
+	$('#mylikeModB').on('keyup',function () {
+		alert('kk');
+	})
 	
 /* 	// 선택삭제 실행
 	function deleteClip(attnDtlcSeqStr) {
@@ -3639,19 +3619,25 @@ function addLike(productid) {
 			success: function(result){
 				$('ul.mylike_manage_list').empty();
 				console.log(result);
-			let htmlTag = '<li>';
+				result.forEach(function (element, index) {
+					console.log(element.id);
+					console.log(element.name);
+				})
+				
+				let htmlTag = '<li>';
 				htmlTag +='<button type="button" class="new">새 폴더</button>';
 				htmlTag +='<div class="mylike_manage_create">';
 				htmlTag +='<div class="mylike_lay_input"><input type="text" id="mylikeMngB" name="mbrAttnGrpNm" value="" placeholder="폴더명을 입력해주세요." maxlength="6" title="폴더명"><span class="mylike_lay_max">0 / 6</span></div>';
-				htmlTag +='<button type="button" id="mylikeMngB_btn" class="mylike_modify_btn" disabled="disabled" onclick="javascript:addNewFolder("mylikeMngB");">확인</button>';
+				htmlTag +='<button type="button" id="mylikeMngB_btn" class="mylike_modify_btn" disabled="disabled" onclick="javascript:addFolder();">확인</button>';
 				htmlTag +='</div>';
 				htmlTag +='</li>';
 				result.forEach(function (element, index) {
 				htmlTag +='<li>';
 				htmlTag +='<span class="mylike_manage_thmb"></span>';
-				htmlTag +='<span class="mylike_manage_text" id="mng_disp_text_'+ index + '"' + `>\${element}</span>`;
-				htmlTag +='<span class="mylike_manage_btns" id="mng_disp_btns_' + index + '">';
-				htmlTag +=	'<button type="button" class="modify" onclick="javascript:beforeModifyFolder(1);"><span class="blind">편집</span></button><button type="button" class="delete" onclick="javascript:deleteFolder(1);"><span class="blind">삭제</span></button>';
+				htmlTag +='<span class="mylike_manage_text" id="mng_disp_text_'+ element.id + '"' + `>\${element.name}</span>`;
+				htmlTag +='<span class="mylike_manage_btns" id="mng_disp_btns_' + element.id + '">';
+				htmlTag +=	'<button type="button" class="modify" onclick="javascript:beforeModifyFolder(1);"><span class="blind">편집</span></button><button type="button" class="delete" onclick="javascript:deleteFolder('+ element.id + ');"><span class="blind">삭제</span></button>';
+ 
 				htmlTag +='</span>';
 				htmlTag +='<div class="mylike_manage_modify" id="mng_mod_area_1" style="display: none">';
 				htmlTag +=	'<div class="mylike_lay_input"><input type="text" id="mng_mod_text_1" name="mbrAttnGrpNm" value="세제" placeholder="폴더명을 입력해주세요." maxlength="6" title="폴더명" class="translated"><span class="trans_placeholder blind" data-default-txt="폴더명을 입력해주세요.">폴더명을 입력해주세요.</span><span class="mylike_lay_max">2 / 6</span></div>';
@@ -3659,14 +3645,50 @@ function addLike(productid) {
 				htmlTag +='</div>';
 				htmlTag +='</li>';
 			})			
-			console.log(htmlTag);
+				console.log(htmlTag);
 				$('ul.mylike_manage_list').append(htmlTag);
+				
+				
+				
+				
 			}, error : function(){
 				alert("체크삭제 실패. 잠시 후 다시 시도해주십시오.");
 			}
 		})	
+		
+		
 	}
 	
+	function deleteFolder(folderId){
+		let id = '#mng_disp_text_'+folderId;
+		$.ajax({
+			type: "GET",
+			dataType: "json",
+			url: '/memberR/deleteFolder',
+			data : {
+				folderid : folderId,
+				name : $(id).text()
+			},
+      		cache: false,
+      		success: function(result){
+      			if (result.result == 'success') {
+      
+      					callFolder();
+      			
+      			}
+      		}, error : function(){
+				alert("체크삭제 실패. 잠시 후 다시 시도해주십시오.");
+			}
+
+		})
+		
+	}
+	
+	
+	$('#mylikeMngB').on('keyup',function () {
+		alert('kk');
+		//$('span.mylike_lay_max').val($('#mylikeMngB').val().length()+'/ 6');
+	});
 	
 	function deleteContents(attnDtlcSeqStr) {
 		/* var params = {
@@ -4139,71 +4161,7 @@ function addLike(productid) {
 
 	        					if (result.next){
 	        						$('button.mylike_folder_next').css('display','block');
-	        					}
-	        				 
-	        				 
-	        				/*  $('.mylike_folder_list').empty(); 
-	        				let maxLength = data.length;
-	        				let htmltag = '';
-	        				htmltag += '<li class="mylike_folder_item" role="presentation" id="list_floder_add" data-react-unit-type="text" data-react-unit-text="[{&quot;type&quot;:&quot;tarea_addt_val&quot;,&quot;value&quot;:&quot;새폴더&quot;}]" style="float: left; list-style: none; position: relative; width: 1280px;">';
-	        				htmltag += '<a href="#" data-mbrattngrpseq="none" class="mylike_folder_btn ty_create _mylike_lay_open clickable" data-react-tarea-dtl-cd="t00060" data-react-tarea="좋아요|상단|새폴더_클릭" data-layer-target="#mylikeNewFolder" role="button" onclick="addFolder2();">';
-	        				htmltag += '<span class="mylike_folder_thmb"></span><em class="mylike_folder_name">새폴더</em>';
-	        				htmltag += '</a>';
-	        				htmltag += '</li>';
-	        				htmltag += '</ul>';
-	        				data.forEach((item,index) => {
-	        				    console.log(item);
-	        				    // 여기서부터 add 해주면 됨 .        				 	
-	        				    if (index ==  0 ){
-	        				    	htmltag += `<li class="mylike_folder_item" role="presentation" id="list_foler_all" data-react-unit-type="text" data-react-unit-text='[{"type":"tarea_addt_val","value":"전체보기"}]'>`;
-	        						htmltag += '<a href="" data-mbrAttnGrpSeq="0" class="mylike_folder_btn ty_all on clickable" data-react-tarea-dtl-cd="t00060" data-react-tarea="좋아요|상단|모아보기_클릭" role="tab" aria-selected="true" id="f_0">';
-        							htmltag += `<span class="mylike_folder_thmb"></span><em class="mylike_folder_name">\${item}</em>`;
-        							htmltag += '</a>';
-        							htmltag += '</li>';
-	        				    } else {
-	        				    	htmltag += `<li class="mylike_folder_item" role="presentation" id='list_folder_\${index}'>`;
-	        						htmltag += `<a href="" data-mbrAttnGrpSeq="\${index}" class="mylike_folder_btn ty_default" role="tab" aria-selected="true" id="f_\${item}">`;
-   								htmltag += `<span class="mylike_folder_thmb"></span><em class="mylike_folder_name">\${item}</em>`;
-   								htmltag += '</a>';
-   						 		htmltag += '</li>';
-	        				    } 			        
-	        				});
-	        				
-	        				$('.mylike_folder_list').append(htmltag); */
-
-	        			/* 	$('#mylikeNew_btn').on('click', function () {
-	        					$('.mylike_folder_list').empty(); 
-		        				maxLength = data.length;
-		        				htmltag = '';
-		        				htmltag += '<li class="mylike_folder_item" role="presentation" id="list_floder_add" data-react-unit-type="text" data-react-unit-text="[{&quot;type&quot;:&quot;tarea_addt_val&quot;,&quot;value&quot;:&quot;새폴더&quot;}]" style="float: left; list-style: none; position: relative; width: 1280px;">';
-		        				htmltag += '<a href="" data-mbrattngrpseq="none" class="mylike_folder_btn ty_create _mylike_lay_open clickable" data-react-tarea-dtl-cd="t00060" data-react-tarea="좋아요|상단|새폴더_클릭" data-layer-target="#mylikeNewFolder" role="button">';
-		        				htmltag += '<span class="mylike_folder_thmb"></span><em class="mylike_folder_name">새폴더</em>';
-		        				htmltag += '</a>';
-		        				htmltag += '</li>';
-		        				htmltag += '</ul>';
-		        				data.result.forEach((item,index) => {
-		        				    console.log(item);
-		        				    // 여기서부터 add 해주면 됨 .        				 	
-		        				    if (index ==  0 ){
-		        				    	htmltag += `<li class="mylike_folder_item" role="presentation" id="list_foler_all" data-react-unit-type="text" data-react-unit-text='[{"type":"tarea_addt_val","value":"전체보기"}]'>`;
-		        						htmltag += '<a href="" data-mbrAttnGrpSeq="0" class="mylike_folder_btn ty_all on clickable" data-react-tarea-dtl-cd="t00060" data-react-tarea="좋아요|상단|모아보기_클릭" role="tab" aria-selected="true" id="f_0">';
-	        							htmltag += `<span class="mylike_folder_thmb"></span><em class="mylike_folder_name">\${item}</em>`;
-	        							htmltag += '</a>';
-	        							htmltag += '</li>';
-		        				    } else {
-		        				    	htmltag += `<li class="mylike_folder_item" role="presentation" id='list_folder_\${index}'>`;
-		        						htmltag += `<a href="" data-mbrAttnGrpSeq="\${index}" class="mylike_folder_btn ty_default" role="tab" aria-selected="true" id="f_\${item}">`;
-       								htmltag += `<span class="mylike_folder_thmb"></span><em class="mylike_folder_name">\${item}</em>`;
-       								htmltag += '</a>';
-       						 		htmltag += '</li>';
-		        				    } 			        
-		        				});
-	        					
-	        					
-	        				}); */
-	        				 /* htmltag += '</div>';
-	        				 htmltag += '<button type="button" class="mylike_folder_next"><span class="blind">다음 폴더목록 보기</span></button>';
-	        				 htmltag += '</div>'; */
+	        					}		
 		        			console.log(htmltag);
 		        			 
 	        			}, error: function (xhr,status,error) {
@@ -4252,14 +4210,18 @@ function addLike(productid) {
 				// 닫는 친구들 
 				$('#myLikeNewClose').on('click',function () {
 					$.unblockUI();
+			
 				});
 				
 				$('#blockasdf').on('click',function () {
 					$.unblockUI();
+				
+					
 				});
 				$('#mylikeNew').on('change',function () {
 					let context = $('.mylike_lay_max').html();
 					console.log(context);
+		
 				});
 				
 			 	$('#mylikeNew').on('keyup',function () {		

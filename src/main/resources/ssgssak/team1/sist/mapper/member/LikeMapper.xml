@@ -49,8 +49,8 @@ WHERE memid = #{id} AND productid = #{productid}
   INSERT INTO divisionfolder VALUES(division_seq.NEXTVAL, #{id}, #{folderName} ,SYSDATE)
   </insert>
   
-  <select id="getFolder" resultType="String">
-  SELECT name
+  <select id="getFolder" resultType="LikeFolderDTO">
+  SELECT id, name
   FROM divisionfolder
   WHERE memid = #{id}
   </select>
@@ -72,5 +72,10 @@ WHERE memid = #{id} AND productid = #{productid}
   FROM divisionfolder
   WHERE memid = #{id}
   </select>
+  
+  <delete id="deleteFolder">
+  DELETE FROM divisionfolder
+  WHERE memid = #{id} AND id = #{folderid} AND name = #{name}
+  </delete>
   
 </mapper>

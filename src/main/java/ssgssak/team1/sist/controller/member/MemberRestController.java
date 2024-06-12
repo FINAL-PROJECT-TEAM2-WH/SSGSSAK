@@ -27,6 +27,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import ssgssak.team1.sist.domain.member.AgreementVO;
 import ssgssak.team1.sist.domain.member.LikeDTO;
+import ssgssak.team1.sist.domain.member.LikeFolderDTO;
 import ssgssak.team1.sist.service.member.LikeService;
 import ssgssak.team1.sist.service.member.UserInfoService;
 
@@ -140,7 +141,7 @@ public class MemberRestController {
 	  }
 	  
 	  @PostMapping("likeFolder")
-		public List<String> addLikeFolder(/* @RequestBody String pages, @RequestBody String size */) {
+		public List<LikeFolderDTO> addLikeFolder(/* @RequestBody String pages, @RequestBody String size */) {
 		
 		  Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -180,6 +181,22 @@ public class MemberRestController {
 		  System.out.println(pageSize);
 		  
 		  return map;
+	  }
+	  
+	  @GetMapping("deleteFolder")
+	  public String deleteFolder(@RequestParam int folderid, String name) {
+		  log.info("MemberRestController.deleteFolder() GET IN...");
+		  Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			UserDetails userDetails = (UserDetails) authentication.getPrincipal();	
+			String id = userDetails.getUsername();	
+		  System.out.println(id + " " + name);
+		  	String result;
+		  if (this.likeService.deleteFolder(id,folderid,name)) {
+			  result = "{\"result\":\"success\"}";
+		  }else {
+			  result = "{\"result\":\"fail\"}";
+		  }
+		  return result;
 	  }
 
 	 

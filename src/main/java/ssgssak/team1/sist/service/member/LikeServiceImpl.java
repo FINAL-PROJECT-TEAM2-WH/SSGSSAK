@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import ssgssak.team1.sist.domain.member.InterestGoodsVO;
+import ssgssak.team1.sist.domain.member.LikeFolderDTO;
 import ssgssak.team1.sist.mapper.member.LikeMapper;
 import ssgssak.team1.sist.mapper.member.LoginMapper;
 
@@ -56,7 +57,7 @@ public class LikeServiceImpl implements LikeService{
 
 
 	@Override
-	public List<String> getInterFolderList(String id) {
+	public List<LikeFolderDTO> getInterFolderList(String id) {
 		return this.likeMapper.getFolder(id);
 	}
 
@@ -87,6 +88,12 @@ public class LikeServiceImpl implements LikeService{
 		map.put("currentPage", currentPage);
 
 		return map;
+	}
+
+
+	@Override
+	public boolean deleteFolder(String id, int folderid, String name) {
+		return this.likeMapper.deleteFolder(id, folderid, name) == 1;	
 	}
 
 
