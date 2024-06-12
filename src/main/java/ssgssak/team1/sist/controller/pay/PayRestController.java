@@ -1,6 +1,7 @@
 package ssgssak.team1.sist.controller.pay;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +23,8 @@ import lombok.extern.log4j.Log4j;
 import ssgssak.team1.sist.domain.pay.Cart2DTO;
 import ssgssak.team1.sist.domain.pay.CouponDTO;
 import ssgssak.team1.sist.domain.pay.PayDTO;
+import ssgssak.team1.sist.domain.pay.ProductDTO;
+import ssgssak.team1.sist.domain.pay.UserDTO;
 import ssgssak.team1.sist.mapper.pay.PayMapper;
 
 @RestController
@@ -106,6 +110,19 @@ public class PayRestController {
 		return result+"";
 		
 		
+	}
+	@PostMapping("/tosspay.do")
+	public String tosspay(Model model, @RequestBody PayDTO dto ,HttpSession session) throws SQLException, Exception {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String id = userDetails.getUsername();
+		session.setAttribute("paydto",dto);
+		ArrayList<UserDTO> al = this.payMapper.defaulutuserinfo(id);
+		ProductDTO al2 = this.payMapper.viewproduct(dto.getOptionids().get(0));
+		session.setAttribute("al",al.get(0));
+		session.setAttribute("al2",al2);
+		session.setAttribute("totalp",dto.getTotalp());
+		return "/tosspay.do";
 	}
 	
 	
