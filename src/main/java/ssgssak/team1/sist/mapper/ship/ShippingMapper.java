@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 
 import lombok.Setter;
 import ssgssak.team1.sist.domain.search.PageDTO;
+import ssgssak.team1.sist.domain.search.SearchDTO;
 import ssgssak.team1.sist.domain.ship.OrderDetailVO;
 import ssgssak.team1.sist.domain.ship.OrderRecordVO;
 import ssgssak.team1.sist.domain.ship.ShippingPlaceInfoVO;
@@ -46,4 +47,5 @@ public interface ShippingMapper {
 	public Long getOrderRecordId(@Param("id") long id) throws Exception;
 	
 	public Long updateOrderRecord(@Param("oid") long oid) throws Exception;
+
 }

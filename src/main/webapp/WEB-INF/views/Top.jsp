@@ -110,12 +110,12 @@
                         <div class="gnb_searching_box" id="search_query">
                             <form onsubmit="return false;">
                                 <div class="gnb_searching_inp" data-globalid="search">
-                                    <input id="ssg_searchQuery" type="text" value="" class="inp_txt" style="width:px"  />
+                                    <input id="ssg_searchQuery" type="text" value="" class="inp_txt" style="width:px" onkeyup="ssgSearchEnter();" />
                                     <input type="hidden" id="ssgQueryBanrUrl"    name="ssgQueryBanrUrl"    value="">
                                     <input type="hidden" id="ssgQueryBanrTarget" name="ssgQueryBanrTarget" value="">
                                     <input type="hidden" id="ssgQuerySub"        name="ssgQuerySub" value="">
 
-                                    <button type="button" id="ssgSearchBtn" class="gnb_search_btn">
+                                    <button type="button"  id="ssgSearchBtn" class="gnb_search_btn">
                                         <i class="icon ty_lg icon_search"></i>
                                         <span class="blind">검색</span>
                                     </button>
@@ -457,7 +457,7 @@
  * 
 <li class="cmjump_rank_item">
      <span class="cmjump_rank_num">1.</span>
-     <span class="cmjump_rank_tx">레고 10325</span>
+     <span class="cmjump_rank_tx">레고 10325</span> 
      <span class="cmjump_rank_state cmjump_rank_up">
      <span class="cmjump_rank_count">6</span>
      <span class="cmjump_rank_ico cmicon"><i class="icon ty_xs icon_caret_up_s_red"></i><span class="blind">상승</span></span>
@@ -473,7 +473,7 @@ cmjump_rank_lst
 		let innerHtml = "";
 		$.ajax({
 	        type: "GET",
-	        url: `<%= request.getContextPath() %>/searchCount.do`,
+	        url: "/search/risingSearch",
 	        dataType: 'json',  // jQuery에서는 dataType 소문자로 씁니다.
 	        cache: false,
 	        success: function(response) {
@@ -494,7 +494,7 @@ cmjump_rank_lst
 	            var item = itemList[itemIndex];
 	            var itemHtml = '<li class="cmjump_rank_item">';
 	            itemHtml += '<span class="cmjump_rank_num">' + (itemIndex + 1) + '. </span>';
-	            itemHtml += '<span class="cmjump_rank_tx">' + item.searchWord + '</span>';
+	            itemHtml += '<span class="cmjump_rank_tx">' + item.searchword + '</span>';
 	            itemHtml += '<span class="cmjump_rank_state cmjump_rank_up"></span></li><br>';
 	            $("#rank_slide").append(itemHtml);
 	        }
@@ -508,11 +508,11 @@ cmjump_rank_lst
 		        for (var i = 0; i < 10; i++) {
 		            var itemIndex = (currentIndex + i) % itemList.length;  // 순환 인덱스 계산
 		            var item = itemList[itemIndex];
-		            //alert(item.rankChange);
+		            //alert(item.searchword);
 		            var itemHtml = '<li class="cmjump_rank_item">';
-		            itemHtml += '<a href="#" class="cmjump_rank_link clickable" >';
+		            itemHtml += '<a href=/searchQuery?searchWord=' + item.searchword + ' class="cmjump_rank_link clickable" >';
 		            itemHtml += '<span class="cmjump_rank_num">' + (itemIndex + 1) + '. </span>';
-		            itemHtml += '<span class="cmjump_rank_tx">' + item.searchWord + '</span>';
+		            itemHtml += '<span class="cmjump_rank_tx">' + item.searchword + '</span>';
 		            // 바뀐 랭크가 0과 null일때
 		            if( item.rankChange === 0 || item.rankChange === null ) {
 		            	itemHtml += ' <span class="cmjump_rank_state cmjump_rank_same">';
@@ -548,9 +548,9 @@ cmjump_rank_lst
 		            var item = itemList[itemIndex];
 		            //alert(item.rankChange);
 		            var itemHtml = '<li class="cmjump_rank_item">';
-		            itemHtml += '<a href="#" class="cmjump_rank_link clickable" >';
+		            itemHtml += '<a href=/searchQuery?searchWord=' + item.searchword + ' class="cmjump_rank_link clickable" >';
 		            itemHtml += '<span class="cmjump_rank_num">' + (itemIndex + 1) + '. </span>';
-		            itemHtml += '<span class="cmjump_rank_tx">' + item.searchWord + '</span>';
+		            itemHtml += '<span class="cmjump_rank_tx">' + item.searchword + '</span>';
 		            // 바뀐 랭크가 0과 null일때
 		            if( item.rankChange === 0 || item.rankChange === null ) {
 		            	itemHtml += ' <span class="cmjump_rank_state cmjump_rank_same">';
@@ -614,13 +614,19 @@ cmjump_rank_lst
 <script>
 	
 	// 키보드 온 프레스 해서 엔터 눌렀을때도 마찬가지로 작동하도록 만들기
+	function ssgSearchEnter(){
+		if(window.event.keyCode == 13){
+			var searchWord = $("#ssg_searchQuery").val();
+			location.href = `/searchQuery?searchWord=\${ searchWord }`;
+		}
+	};	
 	
-		$("#ssgSearchBtn").on("click", function(){
+	
+	$("#ssgSearchBtn").on("click", function(){
 		var searchWord = $("#ssg_searchQuery").val();
-		
 		location.href = `/searchQuery?searchWord=\${ searchWord }`;
 		
-	}) 
+	});
 	
 	
 </script>

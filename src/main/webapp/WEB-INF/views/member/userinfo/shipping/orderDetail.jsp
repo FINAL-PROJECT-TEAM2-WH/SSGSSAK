@@ -841,7 +841,7 @@
 								<dt class="notranslate">받으시는 주소</dt>
 								<dd>
 									<span class="codr_ip_tx"> <span class="blind">주문자
-											주소</span> <span class="notranslate"> [${ odvo.name }] [${ odvo.postnum }] 
+											주소</span> <span class="notranslate"> [${ odvo.name }] 
 											${ odvo.roadaddress }, ${ odvo.detailaddress }</span>
 									</span>	
 								</dd>

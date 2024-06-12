@@ -51,8 +51,8 @@ public class OrderController {
 			oTlist.get(i).setToptionprice(formatMoney);
 			olist.add(oTlist.get(i));
 		}
-		System.out.println(olist);
-		System.out.println(dhm);
+		//System.out.println(olist);
+		//System.out.println(dhm);
 		model.addAttribute("mid", memid);
 		model.addAttribute("olist", olist);
 		//System.out.println("olist : "+olist);
@@ -98,13 +98,13 @@ public class OrderController {
 	public String orderRecordDelete(@RequestParam("orderId") String orderId, @RequestParam("orderDate") String orderDate, HttpServletRequest request) throws Exception {
 		request.setCharacterEncoding("UTF-8");
 		log.info("orderRecordDelete >>>>...");
-		System.out.println("orderDate : "+orderDate);
-		System.out.println("orderId : "+orderId);
+		//System.out.println("orderDate : "+orderDate);
+		//System.out.println("orderId : "+orderId);
 		String[] temp = orderId.split("/");
 		long id = Long.parseLong(temp[0]);
 		
 		this.shippingService.deleteOrderRecord(id);
-		System.out.println("그럼 컨트롤러 호출은 끝??");
+		//System.out.println("그럼 컨트롤러 호출은 끝??");
 		return "redirect:/member/userinfo/shipping/orderRecord";
 	}
 

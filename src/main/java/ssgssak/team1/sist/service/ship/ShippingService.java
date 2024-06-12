@@ -3,9 +3,8 @@ package ssgssak.team1.sist.service.ship;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-import org.apache.ibatis.annotations.Param;
-
 import ssgssak.team1.sist.domain.search.PageDTO;
+import ssgssak.team1.sist.domain.search.SearchDTO;
 import ssgssak.team1.sist.domain.ship.OrderDetailVO;
 import ssgssak.team1.sist.domain.ship.OrderRecordVO;
 import ssgssak.team1.sist.domain.ship.ShippingPlaceInfoVO;
@@ -35,4 +34,5 @@ public interface ShippingService {
 	public int shippingUpdate(String memid, ShippingPlaceInfoVO shippingPlaceInfoVO) throws Exception;
 	
 	public int deleteOrderRecord(long id) throws Exception;
+	
 }

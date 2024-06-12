@@ -58,7 +58,7 @@ public class SearchController {
 		if( selectVal.equals("vest") ) {
 			selectVal = null;
 		}
-		System.out.println(radionVal);
+		//System.out.println(radionVal);
 		if( radionVal.equals("")) {
 			radionVal = null;
 		}

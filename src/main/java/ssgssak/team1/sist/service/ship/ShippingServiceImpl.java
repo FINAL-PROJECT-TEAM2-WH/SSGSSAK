@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ssgssak.team1.sist.domain.search.PageDTO;
+import ssgssak.team1.sist.domain.search.SearchDTO;
 import ssgssak.team1.sist.domain.ship.OrderDetailVO;
 import ssgssak.team1.sist.domain.ship.OrderRecordVO;
 import ssgssak.team1.sist.domain.ship.ShippingPlaceInfoVO;
@@ -116,10 +117,10 @@ public class ShippingServiceImpl implements ShippingService {
 		
 		try {
 			long oid = this.shippingMapper.getOrderRecordId(id);
-			System.out.println("트라이 캐치");
+			//System.out.println("트라이 캐치");
 			System.out.println(oid);
 			this.shippingMapper.updateOrderRecord(oid);
-			System.out.println("트라이 캐치 들어왔다.");
+			//System.out.println("트라이 캐치 들어왔다.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
@@ -128,6 +129,8 @@ public class ShippingServiceImpl implements ShippingService {
 		return rowCount; 
 	}
 
-	
+
+
+
 
 }
