@@ -34,25 +34,35 @@
 							
 							<div class="cmctg_sub_area" aria-hidden="true">
 								<div class="cmctg_sub_menu cmctg_sub_colgroup">
+								
+<!-- 								미들박스스타트 -->
 									<div class="cmctg_sub_col">
 										<ul class="cmctg_sub_lst" role="menu">
 										
+										
+<!-- 										미들카테스타트 -->
+											<!-- 
 											<li class="cmctg_sub_tit"><a role="menuitem"
 												href="/disp/category.ssg?ctgId=6000188534"
 												class="cmctg_sub_lnk clickable"
 												data-react-tarea="SSG공통|GNB 띠메뉴|SSG카테고리|여성브랜드패션">미들카테</a>
 											</li>
-											
-											<li class="cmctg_sub_mn"><a role="menuitem"
+											 -->
+<!-- 										미들카테엔드 -->
+
+
+<!-- 										소카테											 -->
+<!-- 											<li class="cmctg_sub_mn"><a role="menuitem"
 												href="/disp/category.ssg?ctgId=6000188535"
 												class="cmctg_sub_lnk clickable"
 												data-react-tarea="SSG공통|GNB 띠메뉴|SSG카테고리|가디건">소카테</a>
-											</li>
+											</li> -->
+<!-- 										소카테											 -->
 											
 										</ul>
 
 									</div>
-
+<!-- 								미들박스엔드 -->
 								
 								
 								</div>
@@ -75,8 +85,12 @@
 
 	    var mjcId = extractMjcId(hrefValue);
 	    console.log("mjcId:", mjcId);
-	} 
-  function extractMjcId(href) {
+	    
+
+	}  
+  
+  //얘가 대카테고리 마우스 올라갈때 아이디값 읽어줌
+   function extractMjcId(href) {
 	    
 	    var regex = /categoryId=(\d{2})/;
 	    var match = href.match(regex);
@@ -87,7 +101,7 @@
 	    } else {
 	        return null;
 	    }
-	}
+	} 
 </script>        
 		<!-- 	카테고리띄우기 -->
 		

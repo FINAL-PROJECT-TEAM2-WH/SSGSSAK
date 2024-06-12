@@ -15,6 +15,7 @@ import lombok.extern.log4j.Log4j;
 import ssgssak.team1.sist.domain.productList.AllCateDTO;
 import ssgssak.team1.sist.domain.productList.BrdPrdListDTO;
 import ssgssak.team1.sist.domain.productList.MajorCateDTO;
+import ssgssak.team1.sist.domain.productList.MiddleCateDTO;
 import ssgssak.team1.sist.domain.productList.PageDTO;
 import ssgssak.team1.sist.domain.productList.ProductListDTO;
 import ssgssak.team1.sist.service.productList.ProductListService;
@@ -25,11 +26,9 @@ import ssgssak.team1.sist.service.productList.ProductListService;
 public class ProductListController {
 
 	@Autowired
-	private final ProductListService productListService;
+	private ProductListService productListService;
 	
-    public ProductListController(ProductListService productListService) {
-        this.productListService = productListService;
-    }
+
 
 	@GetMapping("/productList")
 	public String getProductList(@RequestParam(name = "categoryId", required = false) String categoryId,
@@ -88,17 +87,16 @@ public class ProductListController {
 		return "productList/prodList";
 	}
 
-/*
 
-	@GetMapping("/topCategory")
-	public String selectTopCate(Model model) throws SQLException {
-		log.info("받아짐?");
-		ArrayList<MajorCateDTO> mjc =  productListService.majorSelectCate();
-		model.addAttribute("mjc", mjc);
+
+	@GetMapping("/middleCategories")
+	public String middleCategories(@RequestParam("id") String id,Model model) throws SQLException {
+		log.info("탑미들카테받아짐?");
+		ArrayList<MiddleCateDTO> mdc =  productListService.middleSelectCate(id);
+		model.addAttribute("mdc", mdc);
 		return "category";
 	}
-	
-*/	
+
 /* 
     @ModelAttribute("mjc")
     public ArrayList<MajorCateDTO> majorCategories() throws SQLException {

@@ -77,34 +77,31 @@ public class ProductListServiceImpl implements ProductListService {
 	
 	//카테고리셀렉트쪽
 	
-	@Override public ArrayList<MajorCateDTO> majorSelectCate() throws
-	SQLException { ArrayList<MajorCateDTO> mjcDtoList =	productListMapper.selectMajorCate();
+	@Override 
+	public ArrayList<MajorCateDTO> majorSelectCate() throws SQLException { 
+		ArrayList<MajorCateDTO> mjcDtoList =	productListMapper.selectMajorCate();
 	
 	
 	return mjcDtoList; 
 	}
-		//카테고리셀렉트쪽
-	/*
-	 * @Override public AllCateDTO majorSelectCate() throws SQLException {
-	 * ArrayList<MajorCateDTO> mjcDtoList = productListMapper.selectMajorCate();
-	 * String mjid = [이부분에mjcDtoList에 담긴 MajorCateDTO들의 id값을 담고싶어]
-	 * 
-	 * 그리고 그렇게 받아온 mjid들을 파라미터로 하단의 mdcDtoList와 scDtoList가 담기는 어레이리스트를 리턴받고싶어
-	 * 
-	 * 결과적으로 리턴받는건 AllCateDTO가 담기는 arrayList가 될거같은데 어떻게 짜야할지 생각이 잘 안나네
-	 * 
-	 * ArrayList<MiddleCateDTO> mdcDtoList =
-	 * productListMapper.selectMiddleCate(mjid);
-	 * 
-	 * 
-	 * 
-	 * ArrayList<SubCateDTO> scDtoList = productListMapper.selectSubCate(mjid);
-	 * 
-	 * 
-	 * 
-	 * return AllCateDTO.builder() .mjcDtoList(mjcDtoList) .mdcDtoList(mdcDtoList)
-	 * .scDtoList(scDtoList) .build(); }
-	 */
+	
+	@Override
+	public ArrayList<MiddleCateDTO> middleSelectCate(String categoryId) throws SQLException {
+		ArrayList<MiddleCateDTO> mdcDtoList = productListMapper.selectMiddleCate(categoryId);
+		
+		
+		return mdcDtoList; 
+	}
+
+	@Override
+	public ArrayList<SubCateDTO> subSelectCate(String categoryId) throws SQLException {
+		ArrayList<SubCateDTO> scDtoList = productListMapper.selectSubCate(categoryId);
+		
+		return scDtoList;
+	}
+
+
+	
 	@Override
 	public AllCateDTO selectCate(String categoryId) throws SQLException {
 	    ArrayList<MajorCateDTO> mjcDtoList = productListMapper.selectMajorCate();
@@ -145,6 +142,7 @@ public class ProductListServiceImpl implements ProductListService {
     			.crtCateDto(crtCateDto)
     			.build();
 	}
+
 
 
 
