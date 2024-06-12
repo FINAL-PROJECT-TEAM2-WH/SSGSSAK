@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,7 @@ import ssgssak.team1.sist.domain.pay.CouponDTO;
 import ssgssak.team1.sist.domain.pay.Enroll2DTO;
 import ssgssak.team1.sist.domain.pay.EnrollDTO;
 import ssgssak.team1.sist.domain.pay.OrderedDTO;
+import ssgssak.team1.sist.domain.pay.PayDTO;
 import ssgssak.team1.sist.domain.pay.ProductDTO;
 import ssgssak.team1.sist.domain.pay.ShippingDTO;
 import ssgssak.team1.sist.domain.pay.UserDTO;
@@ -102,18 +104,56 @@ public class PayController {
 		
 	}
 	@GetMapping("/paysuccess.do")
-	public String paysuccess( Model model) throws SQLException, Exception {
+	public String paysuccess( Model model , HttpSession session) throws SQLException, Exception {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		String id = userDetails.getUsername();
-		String pattern = "yyyy�뀈 MM�썡 dd�씪 (E)";
+		PayDTO paydto = (PayDTO)session.getAttribute("paydto");
+		List<Integer> optionids = paydto.getOptionids();
+		List<Integer> usecouponids = paydto.getUsecouponids();
+		 int usepoint = paydto.getUsepoint();
+		List<Integer> quantity = paydto.getQuantity();
+		int shipnum = paydto.getShipnum();
+		String shipmsg = paydto.getShipmsg();
+		
+		System.out.println("SHIPPINGNUM" + shipnum);
+		
+		log.info(paydto.toString());
+		int lastprice = 0 ;
+		for (int j = 0; j < optionids.size(); j++) {
+			lastprice += this.payMapper.resultprice(optionids.get(j),quantity.get(j),usecouponids.get(j));
+			
+		}
+		
+		int result =  this.payMapper.insertpayre( usepoint , lastprice, id);
+		int result6 = this.payMapper.insertpointrecord(id, (int)(lastprice*0.001));
+		int result7 = this.payMapper.updatepoint2(id, (int)(lastprice*0.001));
+		if (usepoint !=0) {
+			int result2 = this.payMapper.insertpointre(id, usepoint );
+			int result3 =this.payMapper.updatepoint(id, usepoint);
+		}
+		
+		for (int j = 0; j < usecouponids.size(); j++) {
+			if (usecouponids.get(j) !=0 ) {
+				int result4 = this.payMapper.deletecoupon(id,usecouponids.get(j));
+			}
+			int result4 =  this.payMapper.insertpaydetail(optionids.get(j),usecouponids.get(j),quantity.get(j));
+			
+		}
+		int result5 =  this.payMapper.insertshipinfo(shipnum, shipmsg);
+		
+	
+		OrderedDTO al = this.payMapper.selectorderinfo(id);
+		String pattern = "yyyy년 MM월 dd일 (E)";
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 		String today = sdf.format(System.currentTimeMillis());
 		model.addAttribute("today", today);
-		OrderedDTO al = this.payMapper.selectorderinfo(id);
-	      model.addAttribute("al", al);
-		log.info(al.toString());
+		model.addAttribute("al", al);
 		return "/pay/paysuccess";
+		/*OrderedDTO al = this.payMapper.selectorderinfo(id);
+		  model.addAttribute("al", al);
+		log.info(al.toString());
+		return "/pay/paysuccess";*/
 	}
 	
 	@GetMapping("/enroll.do")
@@ -216,4 +256,12 @@ public class PayController {
 		return "/pay/cart";
 		
 	}
+	@GetMapping("/tosspay.do")
+	public String tosspay(HttpSession session, Model model) {
+		model.addAttribute("al",session.getAttribute("al"));
+		model.addAttribute("al2",session.getAttribute("al2"));
+		model.addAttribute("totalp",session.getAttribute("totalp"));
+		return "/pay/tosspay";
+	}
+	
 }

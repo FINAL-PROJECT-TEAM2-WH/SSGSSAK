@@ -5,10 +5,12 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class PayDTO {
 	private List<Integer> optionids;
 	private List<Integer> usecouponids;
@@ -16,6 +18,7 @@ public class PayDTO {
 	private List<Integer> quantity;
 	private int shipnum;
 	private String shipmsg;
+	private int totalp;
 
 
 }
