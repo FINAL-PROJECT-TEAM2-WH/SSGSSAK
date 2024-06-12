@@ -99,13 +99,13 @@ public class ProductListController {
 	}
 	
 */	
-	
+/* 
     @ModelAttribute("mjc")
     public ArrayList<MajorCateDTO> majorCategories() throws SQLException {
     	log.info("전역으로감???");
         return productListService.majorSelectCate();
     }
-	
+*/		
 	
    
     @GetMapping("/brandStore")
