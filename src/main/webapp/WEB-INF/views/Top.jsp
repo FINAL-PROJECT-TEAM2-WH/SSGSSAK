@@ -473,7 +473,7 @@ cmjump_rank_lst
 		let innerHtml = "";
 		$.ajax({
 	        type: "GET",
-	        url: `<%= request.getContextPath() %>/searchCount.do`,
+	        url: "/search/risingSearch",
 	        dataType: 'json',  // jQuery에서는 dataType 소문자로 씁니다.
 	        cache: false,
 	        success: function(response) {
@@ -494,7 +494,7 @@ cmjump_rank_lst
 	            var item = itemList[itemIndex];
 	            var itemHtml = '<li class="cmjump_rank_item">';
 	            itemHtml += '<span class="cmjump_rank_num">' + (itemIndex + 1) + '. </span>';
-	            itemHtml += '<span class="cmjump_rank_tx">' + item.searchWord + '</span>';
+	            itemHtml += '<span class="cmjump_rank_tx">' + item.searchword + '</span>';
 	            itemHtml += '<span class="cmjump_rank_state cmjump_rank_up"></span></li><br>';
 	            $("#rank_slide").append(itemHtml);
 	        }
@@ -508,11 +508,11 @@ cmjump_rank_lst
 		        for (var i = 0; i < 10; i++) {
 		            var itemIndex = (currentIndex + i) % itemList.length;  // 순환 인덱스 계산
 		            var item = itemList[itemIndex];
-		            //alert(item.rankChange);
+		            //alert(item.searchword);
 		            var itemHtml = '<li class="cmjump_rank_item">';
-		            itemHtml += '<a href="#" class="cmjump_rank_link clickable" >';
+		            itemHtml += '<a href=/searchQuery?searchWord=' + item.searchword + ' class="cmjump_rank_link clickable" >';
 		            itemHtml += '<span class="cmjump_rank_num">' + (itemIndex + 1) + '. </span>';
-		            itemHtml += '<span class="cmjump_rank_tx">' + item.searchWord + '</span>';
+		            itemHtml += '<span class="cmjump_rank_tx">' + item.searchword + '</span>';
 		            // 바뀐 랭크가 0과 null일때
 		            if( item.rankChange === 0 || item.rankChange === null ) {
 		            	itemHtml += ' <span class="cmjump_rank_state cmjump_rank_same">';
@@ -548,9 +548,9 @@ cmjump_rank_lst
 		            var item = itemList[itemIndex];
 		            //alert(item.rankChange);
 		            var itemHtml = '<li class="cmjump_rank_item">';
-		            itemHtml += '<a href="#" class="cmjump_rank_link clickable" >';
+		            itemHtml += '<a href=/searchQuery?searchWord=' + item.searchword + ' class="cmjump_rank_link clickable" >';
 		            itemHtml += '<span class="cmjump_rank_num">' + (itemIndex + 1) + '. </span>';
-		            itemHtml += '<span class="cmjump_rank_tx">' + item.searchWord + '</span>';
+		            itemHtml += '<span class="cmjump_rank_tx">' + item.searchword + '</span>';
 		            // 바뀐 랭크가 0과 null일때
 		            if( item.rankChange === 0 || item.rankChange === null ) {
 		            	itemHtml += ' <span class="cmjump_rank_state cmjump_rank_same">';

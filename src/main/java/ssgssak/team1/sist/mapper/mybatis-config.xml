@@ -40,6 +40,7 @@
     <typeAlias type="ssgssak.team1.sist.domain.ship.OrderRecordVO" alias="OrderRecordVO"/> 
     <typeAlias type="ssgssak.team1.sist.domain.ship.OrderDetailVO" alias="OrderDetailVO"/> 
     <typeAlias type="ssgssak.team1.sist.domain.search.BrandCateCountVO" alias="BrandCateCountVO"/>
+    <typeAlias type="ssgssak.team1.sist.domain.search.SearchDTO" alias="SearchDTO"/>
     <typeAlias type="java.util.Map" alias="Map" />
     <typeAlias type="java.util.HashMap" alias="HashMap" />
     <typeAlias type="java.util.List" alias="List" />

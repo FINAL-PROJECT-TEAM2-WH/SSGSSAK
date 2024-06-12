@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import ssgssak.team1.sist.domain.search.BrandCateCountVO;
 import ssgssak.team1.sist.domain.search.PageDTO;
 import ssgssak.team1.sist.domain.search.PriceVO;
+import ssgssak.team1.sist.domain.search.SearchDTO;
 import ssgssak.team1.sist.domain.search.SearchVO;
 
 @Mapper
@@ -29,4 +30,6 @@ public interface SearchMapper {
 	public ArrayList<BrandCateCountVO> getSearchBrandMap(@Param("searchWord") String searchWord) throws Exception;
 
 	public int insertSearch(@Param("searchWord") String searchWord, @Param("memid") String memid, @Param("datetime") String datetime) throws Exception;
+	
+	public ArrayList<SearchDTO> getRisingSearch() throws Exception;
 }

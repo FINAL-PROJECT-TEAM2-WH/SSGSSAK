@@ -12,6 +12,7 @@ import ssgssak.team1.sist.domain.search.BrandCateCountVO;
 import ssgssak.team1.sist.domain.search.Criteria;
 import ssgssak.team1.sist.domain.search.PageDTO;
 import ssgssak.team1.sist.domain.search.PriceVO;
+import ssgssak.team1.sist.domain.search.SearchDTO;
 import ssgssak.team1.sist.domain.search.SearchVO;
 import ssgssak.team1.sist.domain.ship.OrderRecordVO;
 import ssgssak.team1.sist.mapper.search.SearchMapper;
@@ -95,5 +96,9 @@ public class SearchServiceImpl implements SearchService {
 	}
 
 
+	@Override
+	public ArrayList<SearchDTO> getRisingSearch() throws Exception {
+		return this.searchMapper.getRisingSearch();
+	}
 	
 }
