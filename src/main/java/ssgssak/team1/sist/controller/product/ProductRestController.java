@@ -71,9 +71,9 @@ public class ProductRestController {
 	/*
 	 * @PostMapping(value = {"/review.do" },produces =
 	 * {MediaType.APPLICATION_JSON_UTF8_VALUE}) public Map<String,Object>
-	 * getReview(@RequestBody Map<String, Object> requestParams) throws Exception{
+	 * getReview(@RequestBody Map<String, String> requestParams) throws Exception{
 	 * 
-	 * long productcode = (long) requestParams.get("productcode");
+	 * long productcode = Long.parseLong( requestParams.get("productcode") );
 	 * 
 	 * int pageIndex = (int) requestParams.get("pageIndex"); int numberPerPage = 5;
 	 * String sort = (String) requestParams.get("sort"); String reviewType =(String)

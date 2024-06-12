@@ -16,5 +16,9 @@ public class PriceVO {
 	private long optionprice;
 	private int spcldscnrt;
 	private long discountprice;
+	private long spcprice;
+	private String toptionprice;
+	private String tdiscountprice;
+	private String tspcprice;
 	
 }

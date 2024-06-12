@@ -121,16 +121,16 @@ public class ProductListController {
 		int end = start + size-1;
 
 		
-		int totalPages = productListService.getBpTotalPages(brandId, size);
+		int getBpTotalPages = productListService.getBpTotalPages(brandId, size);
 		
-		int getProdCount = productListService.getBpProdCount(brandId);
+		int getBpProdCount = productListService.getBpProdCount(brandId);
 		
-		PageDTO pDto = new PageDTO(currentPage, size, numberOfPageBlock, totalPages);
+		PageDTO pDto = new PageDTO(currentPage, size, numberOfPageBlock, getBpTotalPages);
 		
 		List<BrdPrdListDTO> productList = productListService.selectBrdPrdList(brandId, currentPage, size, start, end,sort);
 		model.addAttribute("productList", productList);
-		model.addAttribute("getProdCount", getProdCount);
-		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("getBpProdCount", getBpProdCount);
+		model.addAttribute("getBpTotalPages", getBpTotalPages);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("pDto", pDto);
     	return "productList/brandStore";

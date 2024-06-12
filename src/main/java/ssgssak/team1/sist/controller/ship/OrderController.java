@@ -1,5 +1,6 @@
 package ssgssak.team1.sist.controller.ship;
 
+import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.extern.log4j.Log4j;
 import ssgssak.team1.sist.domain.ship.OrderDetailVO;
@@ -50,6 +52,7 @@ public class OrderController {
 			olist.add(oTlist.get(i));
 		}
 		System.out.println(olist);
+		System.out.println(dhm);
 		model.addAttribute("mid", memid);
 		model.addAttribute("olist", olist);
 		//System.out.println("olist : "+olist);
@@ -88,6 +91,21 @@ public class OrderController {
 		model.addAttribute("orderId", orderId);
 		model.addAttribute("orderDate", orderDate);
 		return "/member/userinfo/shipping/orderDetail";
+	}
+	
+
+	@GetMapping("/orderRecordDelete")
+	public String orderRecordDelete(@RequestParam("orderId") String orderId, @RequestParam("orderDate") String orderDate, HttpServletRequest request) throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		log.info("orderRecordDelete >>>>...");
+		System.out.println("orderDate : "+orderDate);
+		System.out.println("orderId : "+orderId);
+		String[] temp = orderId.split("/");
+		long id = Long.parseLong(temp[0]);
+		
+		this.shippingService.deleteOrderRecord(id);
+		System.out.println("그럼 컨트롤러 호출은 끝??");
+		return "redirect:/member/userinfo/shipping/orderRecord";
 	}
 
 }

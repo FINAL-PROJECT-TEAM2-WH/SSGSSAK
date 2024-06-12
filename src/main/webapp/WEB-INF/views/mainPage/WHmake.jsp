@@ -14,8 +14,15 @@
 <input type="hidden" name="itemsExist" value="true">
 <div class="cmmain_sec_oneday" data-react-tarea-cd="00052_000000748">
         <div class="cmmain_heading">
-            <h2 class="cmmain_heading_tit">신선식품</h2>
+        
+            <h2 class="cmmain_heading_tit">SSGSSAK 신선식품</h2>
+            <div>
+            <br>
+            <br>
             </div>
+            <img src="//sui.ssgcdn.com/ui/grocery/img/foodmarket/foodmarket_top_banner_v2.png" srcset="//sui.ssgcdn.com/ui/grocery/img/foodmarket/foodmarket_top_banner_v2@2x.png 2x" alt="프리미엄식품관">
+            </div>
+            
         
         <div class="cmmain_cunit_items">
             <!-- 공통상품유닛 -->

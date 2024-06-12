@@ -14,7 +14,12 @@
 <input type="hidden" name="itemsExist" value="true">
 <div class="cmmain_sec_oneday" data-react-tarea-cd="00052_000000748">
         <div class="cmmain_heading">
-            <h2 class="cmmain_heading_tit">패션</h2>
+            <h2 class="cmmain_heading_tit">SSGSSAK 패션</h2>
+             <div>
+            <br>
+            <br>
+            </div>
+            <img src="//sui.ssgcdn.com/cmpt/banner/202406/2024060516110949836164857716_866.jpg" alt="6/10 HERNO">
             </div>
        
         <div class="cmmain_cunit_items">

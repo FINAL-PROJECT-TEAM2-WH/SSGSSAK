@@ -14,6 +14,7 @@ public interface MainMapper {
 	
 	public List<MainProductListDTO> getProList(String catename);
 	
+	public List<MainProductListDTO> getProList1(String catename);
 	
 	
 	

@@ -3165,6 +3165,13 @@ function setCommonGnbCookie(name, value, expiredays) {
 									<c:when test="${totalOptions==1}">
 										<!-- 단일상품 -->
 										<c:forEach var="option" items="${productOption}">
+											<c:set var="discountedPrice"
+												value="${showPrice * (1 - (specialPrice.spclDscnRt / 100))}" />
+											<c:set var="roundedPrice"
+												value="${discountedPrice - (discountedPrice % 100)}" />
+											<fmt:formatNumber var="formPrice" value="${roundedPrice}"
+												type="number" maxFractionDigits="0" />
+											<c:set var="formPrice" value="${formPrice}" />
 											<div class="cdtl_opt_item selecedItem"
 												id="option-${option.id}" data-option-id="${option.id}"
 												style="display: block;">
