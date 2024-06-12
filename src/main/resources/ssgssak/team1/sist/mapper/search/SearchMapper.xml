@@ -171,4 +171,33 @@
 	<insert id="insertSearch">
 		INSERT INTO search (id, memid, searchWord, searchhour) VALUES ( SEQ_SEARCH.NEXTVAL, #{memid}, #{searchWord}, #{datetime} ) 
 	</insert>
+	
+	<select id="getRisingSearch" resultType="SearchDTO">
+				  <![CDATA[
+		 		 SELECT * 
+				  FROM ( 
+				  WITH RankedSearches AS ( 
+				   SELECT 
+				     searchword, 
+				     TO_CHAR(searchhour, 'YYYY-MM-DD') sdate , 
+				     COUNT(*) AS searchCount, 
+				     row_number() OVER (PARTITION BY TO_CHAR(searchhour, 'YYYY-MM-DD') ORDER BY COUNT(*) DESC) AS rank 
+				   FROM search 
+				   GROUP BY TO_CHAR(searchhour, 'YYYY-MM-DD'), searchword 
+				   ORDER BY sdate DESC 
+				  ) 
+				   SELECT 
+				     ROWNUM num, 
+				     c.searchword,
+				     c.sdate,   
+				     c.rank AS currentRank, 
+				     LAG(c.rank, 1) OVER (PARTITION BY c.searchword ORDER BY c.sdate) AS previousRank, 
+				     c.rank - LAG(c.rank, 1) OVER (PARTITION BY c.searchword ORDER BY c.sdate) AS rankChange 
+				   FROM RankedSearches c 
+				   WHERE c.rank <= 20 
+				   ORDER BY c.sdate DESC, c.rank 
+				  ) 
+				  WHERE num <= 20 	 
+				  ]]>
+	</select>
 </mapper>

@@ -85,7 +85,7 @@ public class ShippingController {
 	
 	@GetMapping("/SSG_shippingPlace_update")
 	public String ShippingPlaceUpdate() {
-		System.out.println("shippingupdate");
+		//System.out.println("shippingupdate");
         return "/member/userinfo/shipping/SSG_shippingPlace_update"; 
     }
 

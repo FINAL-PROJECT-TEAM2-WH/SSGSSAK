@@ -453,7 +453,7 @@
                             <div class="cmem_inpgrp">
                                 <div class="cmem_txt">
 
-                                    <input type="text" title="우편번호" id="zipcd" name="shipinfo.postNum" readonly="" onclick="openPopupSearchZip();" />
+                                    <input type="text" title="우편번호" id="zipcd" name="shipinfo.postnum" readonly="" onclick="openPopupSearchZip();" />
                                     <input type="hidden" id="roadAddress" name="shipinfo.roadAddress" readonly=""/>
                                     <input type="hidden" id="jibunAddress" name="shipinfo.jibunAddress" readonly=""/>
                                 </div>

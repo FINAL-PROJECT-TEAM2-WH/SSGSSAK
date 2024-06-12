@@ -9,6 +9,7 @@ import ssgssak.team1.sist.domain.search.BrandCateCountVO;
 import ssgssak.team1.sist.domain.search.Criteria;
 import ssgssak.team1.sist.domain.search.PageDTO;
 import ssgssak.team1.sist.domain.search.PriceVO;
+import ssgssak.team1.sist.domain.search.SearchDTO;
 import ssgssak.team1.sist.domain.search.SearchVO;
 
 @Service
@@ -27,5 +28,7 @@ public interface SearchService {
 	public ArrayList<BrandCateCountVO> getSearchBrandMap(String searchWord) throws Exception;
 
 	public int insertSearch(String memid, String searchWord) throws Exception;
+	
+	public ArrayList<SearchDTO> getRisingSearch() throws Exception;
 
 }

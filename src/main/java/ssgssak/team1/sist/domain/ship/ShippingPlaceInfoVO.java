@@ -22,4 +22,5 @@ public class ShippingPlaceInfoVO {
 	String tel;
 	String postnum;
 	String defaultShipping;
+	String postNum;
 }
