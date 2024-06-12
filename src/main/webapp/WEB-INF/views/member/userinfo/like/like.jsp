@@ -2828,7 +2828,8 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 				<button type="button" class="mylike_lay_make" disabled="disabled" onclick="javascript:addNewFolder('mylikeModA');">만들기 및 추가</button>
 			</div>
 		</div>
-		<div class="mylike_manage_management" id="">  
+		<div class="mylike_manage_management" id="">
+		<div class="mylike_manage_scroll">  
 				<ul class="mylike_manage_list">
 					<li>
 						<button type="button" class="new">새 폴더</button>
@@ -2845,6 +2846,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
 						</li>
 						
 					</ul>
+			</div>
 			</div>
 			<div class="mylike_lay_btnbox">
 				<button type="button" class="mylike_lay_make" disabled="disabled" onclick="javascript:operateClipDatas('C');">확인</button>
@@ -3624,14 +3626,19 @@ function addLike(productid) {
 	}
 	
 	function callFolder(){
+		var csrfToken = $('meta[name="_csrf"]').attr('content');
+        var csrfHeader = $('meta[name="_csrf_header"]').attr('content');
 		$.ajax({
-			type: "GET",
+			type: "POST",
 			dataType: "json",
-			url: '/memberR/loadLikeFolder',
+			url: '/memberR/likeFolder',
       		cache: false,
-			data: params,
+      		beforeSend: function(xhr) {
+                xhr.setRequestHeader(csrfHeader, csrfToken);
+            },
 			success: function(result){
-				$('#mylike_manage_list').empty();
+				$('ul.mylike_manage_list').empty();
+				console.log(result);
 			let htmlTag = '<li>';
 				htmlTag +='<button type="button" class="new">새 폴더</button>';
 				htmlTag +='<div class="mylike_manage_create">';
@@ -3639,10 +3646,11 @@ function addLike(productid) {
 				htmlTag +='<button type="button" id="mylikeMngB_btn" class="mylike_modify_btn" disabled="disabled" onclick="javascript:addNewFolder("mylikeMngB");">확인</button>';
 				htmlTag +='</div>';
 				htmlTag +='</li>';
+				result.forEach(function (element, index) {
 				htmlTag +='<li>';
 				htmlTag +='<span class="mylike_manage_thmb"></span>';
-				htmlTag +='<span class="mylike_manage_text" id="mng_disp_text_1">세제</span>';
-				htmlTag +='<span class="mylike_manage_btns" id="mng_disp_btns_1">';
+				htmlTag +='<span class="mylike_manage_text" id="mng_disp_text_'+ index + '"' + `>\${element}</span>`;
+				htmlTag +='<span class="mylike_manage_btns" id="mng_disp_btns_' + index + '">';
 				htmlTag +=	'<button type="button" class="modify" onclick="javascript:beforeModifyFolder(1);"><span class="blind">편집</span></button><button type="button" class="delete" onclick="javascript:deleteFolder(1);"><span class="blind">삭제</span></button>';
 				htmlTag +='</span>';
 				htmlTag +='<div class="mylike_manage_modify" id="mng_mod_area_1" style="display: none">';
@@ -3650,8 +3658,9 @@ function addLike(productid) {
 				htmlTag +=	'<button type="button" class="mylike_modify_btn" disabled="disabled" onclick="javascript:modifyFolder(1);">확인</button>';
 				htmlTag +='</div>';
 				htmlTag +='</li>';
-				$('#mylike_manage_list').append(htmlTag);
-				
+			})			
+			console.log(htmlTag);
+				$('ul.mylike_manage_list').append(htmlTag);
 			}, error : function(){
 				alert("체크삭제 실패. 잠시 후 다시 시도해주십시오.");
 			}
