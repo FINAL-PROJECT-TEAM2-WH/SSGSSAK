@@ -8,6 +8,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko"><head><script type="text/javascript" async="" src="https://linkback.contentsfeed.com/src/20240419/lb4ssg.min.js" charset="utf-8"></script><script src="https://connect.facebook.net/signals/config/1668002603429849?v=2.9.154&amp;r=stable&amp;domain=localhost&amp;hme=c3a545c63044e8e9102d4f32d84a1137594d024f28e801d670bc76dc5c075575&amp;ex_m=67%2C112%2C99%2C103%2C58%2C3%2C93%2C66%2C15%2C91%2C84%2C49%2C51%2C158%2C161%2C172%2C168%2C169%2C171%2C28%2C94%2C50%2C73%2C170%2C153%2C156%2C165%2C166%2C173%2C121%2C14%2C48%2C178%2C177%2C123%2C17%2C33%2C38%2C1%2C41%2C62%2C63%2C64%2C68%2C88%2C16%2C13%2C90%2C87%2C86%2C100%2C102%2C37%2C101%2C29%2C25%2C154%2C157%2C130%2C27%2C10%2C11%2C12%2C5%2C6%2C24%2C21%2C22%2C54%2C59%2C61%2C71%2C95%2C26%2C72%2C8%2C7%2C76%2C46%2C20%2C97%2C96%2C9%2C19%2C18%2C81%2C53%2C79%2C32%2C70%2C0%2C89%2C31%2C78%2C83%2C45%2C44%2C82%2C36%2C4%2C85%2C77%2C42%2C39%2C34%2C80%2C2%2C35%2C60%2C40%2C98%2C43%2C75%2C65%2C104%2C57%2C56%2C30%2C92%2C55%2C52%2C47%2C74%2C69%2C23%2C105" async=""></script><script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script><script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-PWBFGRL&amp;l=GA4_dataLayer"></script><script type="text/javascript" src="https://js.appboycdn.com/web-sdk/4.7/braze.min.js" async=""></script><script async="" src="https://www.datadoghq-browser-agent.com/datadog-rum-v4.js"></script><script type="text/javascript" async="" src="https://linkback.contentsfeed.com/src/20240419/lb4ssg.min.js" charset="utf-8"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-E0P8DK53C8&amp;l=GA4_dataLayer&amp;cx=c"></script><script src="https://connect.facebook.net/signals/config/1668002603429849?v=2.9.154&amp;r=stable&amp;domain=pay.ssg.com&amp;hme=c3a545c63044e8e9102d4f32d84a1137594d024f28e801d670bc76dc5c075575&amp;ex_m=67%2C112%2C99%2C103%2C58%2C3%2C93%2C66%2C15%2C91%2C84%2C49%2C51%2C158%2C161%2C172%2C168%2C169%2C171%2C28%2C94%2C50%2C73%2C170%2C153%2C156%2C165%2C166%2C173%2C121%2C14%2C48%2C178%2C177%2C123%2C17%2C33%2C38%2C1%2C41%2C62%2C63%2C64%2C68%2C88%2C16%2C13%2C90%2C87%2C86%2C100%2C102%2C37%2C101%2C29%2C25%2C154%2C157%2C130%2C27%2C10%2C11%2C12%2C5%2C6%2C24%2C21%2C22%2C54%2C59%2C61%2C71%2C95%2C26%2C72%2C8%2C7%2C76%2C46%2C20%2C97%2C96%2C9%2C19%2C18%2C81%2C53%2C79%2C32%2C70%2C0%2C89%2C31%2C78%2C83%2C45%2C44%2C82%2C36%2C4%2C85%2C77%2C42%2C39%2C34%2C80%2C2%2C35%2C60%2C40%2C98%2C43%2C75%2C65%2C104%2C57%2C56%2C30%2C92%2C55%2C52%2C47%2C74%2C69%2C23%2C105" async=""></script><script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<script src="https://js.tosspayments.com/v1/payment-widget"></script>
 	<title>결제하기, 믿고 사는 즐거움 SSG.COM</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<link rel="shortcut icon" type="image/x-icon" href="https://sui.ssgcdn.com/ui/common/img/ssg.ico">
@@ -1883,10 +1884,8 @@ function setCommonGnbCookie(name, value, expiredays) {
 				</div>
 				<!-- E: [결제방법] -->
 			</div>
-			<script>
 			
-			
-			</script>
+    
 			
 			<div id="paymtFrameDiv" style="width:780px; padding:5px; display:none; z-index:1;">
 				<div id="paymtProcessFrameDiv" style=""></div>
@@ -8697,7 +8696,8 @@ if(subdomain.indexOf('emart') !== -1 || subdomain.indexOf('m-emart') !== -1 ) {
  		           	let match ;
 					
 					
-					$("#processOrderButton").on("click",function(){
+					$("#processOrderButton").on("click",function(e){
+						e.preventDefault();
 						let selectedoptionids = [];
 						let selectedcouponids = [];
 						let quantity = [] ;
@@ -8720,38 +8720,38 @@ if(subdomain.indexOf('emart') !== -1 || subdomain.indexOf('m-emart') !== -1 ) {
 						})
 						let selectedshipnum = $("#shipnum").val();
 						let shippingmsg = $("#shipmsg").val();
-						
+						let totalprice = Number($("#totalprice1").text().replace(/,/g,''));
 						let alldata = {
 							optionids : selectedoptionids,
 							usecouponids : selectedcouponids,
 							usepoint : usepoint,
 							quantity : quantity,
 							shipnum : selectedshipnum,
-							shipmsg : shippingmsg
+							shipmsg : shippingmsg ,
+							totalp : totalprice
 						};
 						
+						let csrfToken = $("#csrfToken").val();
+					
+					   		$.ajax({
+							    url: "${pageContext.request.contextPath}/tosspay.do",
+							    type: "POST",
+							    data: JSON.stringify(alldata),
+							    contentType: "application/json; charset=utf-8",
+							    dataType: "text",
+							    beforeSend: function(xhr) {
+							            xhr.setRequestHeader('X-CSRF-Token', csrfToken);
+							    },
+							    success: function(data) {
+							    	window.open("${pageContext.request.contextPath}" + data , "_blank" );
+							      
+							    }
+							    
+							})
+					    
+					    
 						
-						const csrfToken = $("#csrfToken").val();
 						
-						$.ajax({
-						    url: "${pageContext.request.contextPath}/pay.do",
-						    type: "POST",
-						    data: JSON.stringify(alldata),
-						    contentType: "application/json; charset=utf-8",
-						    dataType: "text",
-						    beforeSend: function(xhr) {
-						        // Get the CSRF token
-						        
-						       
-						            // Add the CSRF token to the request header
-						            xhr.setRequestHeader('X-CSRF-Token', csrfToken);
-						   
-						    },
-						    success: function(data) {
-						        location.href = "${pageContext.request.contextPath}" + data;
-						    }
-						    
-						})
 					})
 		           	</script>
 <script type="text/javascript" id="">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","1668002603429849");fbq("track","PageView");</script>

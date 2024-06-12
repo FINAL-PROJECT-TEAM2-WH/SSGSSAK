@@ -67,7 +67,7 @@
                      <c:forEach items="${list1}" var="vo" varStatus="loop">
                         <c:if test="${loop.index < list1.size()}">
 
-                           <li class="cunit_t232">
+                           <li class="cunit_t180">
                               <div class="cunit_prod ">
                                  <div class="prod_top"></div>
                                  <div class="thmb">
@@ -262,7 +262,7 @@
                      <c:forEach items="${list2}" var="vo" varStatus="loop">
                         <c:if test="${loop.index < list2.size()}">
 
-                           <li class="cunit_t232">
+                           <li class="cunit_t180">
                               <div class="cunit_prod ">
                                  <div class="prod_top"></div>
                                  <div class="thmb">
@@ -463,7 +463,7 @@
                      <c:forEach items="${list3}" var="vo" varStatus="loop">
                         <c:if test="${loop.index < list3.size()}">
 
-                           <li class="cunit_t232">
+                           <li class="cunit_t180">
                               <div class="cunit_prod ">
                                  <div class="prod_top"></div>
                                  <div class="thmb">
@@ -665,7 +665,7 @@
                      <c:forEach items="${list4}" var="vo" varStatus="loop">
                         <c:if test="${loop.index < list4.size()}">
 
-                           <li class="cunit_t232">
+                           <li class="cunit_t180">
                               <div class="cunit_prod ">
                                  <div class="prod_top"></div>
                                  <div class="thmb">
@@ -865,7 +865,7 @@
                      <c:forEach items="${list5}" var="vo" varStatus="loop">
                         <c:if test="${loop.index < list5.size()}">
 
-                           <li class="cunit_t232">
+                           <li class="cunit_t180">
                               <div class="cunit_prod ">
                                  <div class="prod_top"></div>
                                  <div class="thmb">
@@ -1065,7 +1065,7 @@
                      <c:forEach items="${list6}" var="vo" varStatus="loop">
                         <c:if test="${loop.index < list6.size()}">
 
-                           <li class="cunit_t232">
+                           <li class="cunit_t180">
                               <div class="cunit_prod ">
                                  <div class="prod_top"></div>
                                  <div class="thmb">
@@ -1269,7 +1269,7 @@
                      <c:forEach items="${list7}" var="vo" varStatus="loop">
                         <c:if test="${loop.index < list7.size()}">
 
-                           <li class="cunit_t232">
+                           <li class="cunit_t180">
                               <div class="cunit_prod ">
                                  <div class="prod_top"></div>
                                  <div class="thmb">
