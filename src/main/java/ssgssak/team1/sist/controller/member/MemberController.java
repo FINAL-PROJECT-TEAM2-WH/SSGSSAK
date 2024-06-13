@@ -54,7 +54,6 @@ public class MemberController {
 	PasswordEncoder passwordEncoder;
 	
 	
-	
 	@GetMapping("/like")
 	public String likeInfo(Model model) {
 		// id받으면 그걸 바탕으로 좋아요 한 항목들을 뿌려주면 됨. 

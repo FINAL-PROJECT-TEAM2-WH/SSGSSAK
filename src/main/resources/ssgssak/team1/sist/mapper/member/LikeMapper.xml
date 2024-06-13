@@ -78,4 +78,10 @@ WHERE memid = #{id} AND productid = #{productid}
   WHERE memid = #{id} AND id = #{folderid} AND name = #{name}
   </delete>
   
+  <select id="getLikeInfo" resultType="String"> 
+   SELECT productid 
+   FROM interestgoods
+   WHERE memid = #{id}
+  </select>
+  
 </mapper>

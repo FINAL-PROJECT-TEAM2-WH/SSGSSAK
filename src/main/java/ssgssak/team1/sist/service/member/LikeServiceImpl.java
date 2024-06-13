@@ -97,5 +97,11 @@ public class LikeServiceImpl implements LikeService{
 	}
 
 
+	@Override
+	public List<String> getLikeInfo(String id) {
+		return this.likeMapper.getLikeInfo(id);
+	}
+
+
 
 }

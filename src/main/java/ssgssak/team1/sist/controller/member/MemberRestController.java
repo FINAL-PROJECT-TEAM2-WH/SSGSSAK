@@ -59,6 +59,16 @@ public class MemberRestController {
 		
 	}
 	
+	@GetMapping("/likeInfo")
+	public List<String> likeInfo() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		String id = userDetails.getUsername();
+		log.info("MemberRestController.likeInfo()..");
+			
+		return this.likeService.getLikeInfo(id);
+	}
+	
 	
 	
 	 // cancel

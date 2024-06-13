@@ -14,4 +14,5 @@ public interface LikeService {
 	List<LikeFolderDTO> getInterFolderList(String id);
 	public Map<String, Object> getInterFolderList(String id, int currentPage, int pageSize);
 	public boolean deleteFolder(String id, int folderid, String name);
+	public List<String> getLikeInfo(String id);
 }
