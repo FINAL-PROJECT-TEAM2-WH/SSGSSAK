@@ -24,7 +24,6 @@
 <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/ssg/css/ssg_layout.css?v=20240424"/>
 <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/ssg/css/ssg_component.css?v=20240424"/>
 <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/ssg/css/main_new.css?v=20240424"/>
-<!-- <link rel="stylesheet" type="text/css" href="./MAIN.css"> -->
 <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/ssg/css/mndmoon_ssg.css?v=20240424"/>
 <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/ssg/css/ssgday_2023.css?v=20240424"/>
 <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/ssg/css/com_component.css?v=20240424" />
@@ -415,9 +414,9 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
         } catch(e) {}
     </script>
 
-<%@include file="../Top.jsp" %>
+<%@include file="/WEB-INF/views/Top.jsp" %>
 
-<%@include file="../category.jsp" %>
+<%@include file="/WEB-INF/views/category.jsp" %>
 
 <script id="_tmplNavigation" type="text/x-jquery-tmpl">
 {{tmpl "#_tmplNavigation-menu"}}

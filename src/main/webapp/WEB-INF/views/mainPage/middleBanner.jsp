@@ -42,10 +42,9 @@
                     <div class="cmmain_brandstore_banner">
                         <div class="cmmain_brandstore_img">
                           <img src="//sui.ssgcdn.com/cmpt/banner/202211/2022110712520575197899121889_588.jpg" alt="04_백화점프리미엄">
-                          
                         </div>
                         
-                            <a href="https://casamia.family.ssg.com" class="cmmain_brandstore_link clickable" data-react-tarea-dtl-cd="t00001">
+                          
                             
                             <div class="cmmain_brandstore_logo">
                                    
