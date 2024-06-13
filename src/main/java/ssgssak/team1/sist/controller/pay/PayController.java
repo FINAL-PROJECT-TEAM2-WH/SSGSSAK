@@ -208,7 +208,7 @@ public class PayController {
 		ArrayList<MultipartFile> file2 = dto.getFile2();
 		ArrayList<MultipartFile> file3 = dto.getFile3();
 		
-		String uploadrealpath = request.getServletContext().getRealPath("/upload");
+		String uploadrealpath = request.getServletContext().getRealPath("/resources/images");
 		
 		if (!file1.isEmpty()) {
 			System.out.println(uploadrealpath);
