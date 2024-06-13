@@ -18,7 +18,7 @@
 
 <div class="cmmain_sec_news" data-react-tarea-cd="00052_000000916">
     <div class="cmmain_heading">   
-        <h2 class="cmmain_heading_tit">오늘의 새로운 소식</h2>
+        <h2 class="cmmain_heading_tit">SSGSSAK 소식</h2>
     </div>
     <div class="cmmain_grid">
         <div class="cmmain_gridcol3">
@@ -28,17 +28,18 @@
          data-react-unit-id="6000162499"
          data-react-unit-text=""
     >
-        <a class="cmplan_link clickable" href="https://www.ssg.com/plan/planShop.ssg?dispCmptId=6000162499" data-react-tarea="메인매장|오늘의소식|기획전_클릭|청송폴리페놀사과" data-react-tarea-dtl-cd="t00051">
+        <a class="cmplan_link clickable" href="http://localhost/SSGSSAK/product/product.do?productcode=1000398650979" data-react-tarea="메인매장|오늘의소식|기획전_클릭|청송폴리페놀사과" data-react-tarea-dtl-cd="t00051">
             <div class="cmplan_imgbx">
-                <img src="https://simg.ssgcdn.com/trans.ssg?src=/cmpt/banner/202312/2023121915392499936056118605_681.jpg&w=400&h=240&edit=c&t=b967fbc17f83e44488a4f7904ea61b3544963fce" srcset="https://simg.ssgcdn.com/trans.ssg?src=/cmpt/banner/202312/2023121915392499936056118605_681.jpg&w=800&h=480&edit=c&t=039e3fd069b48cc66c6712921b6c88fe6883cdb3 2x" alt="" class="cmplan_img" onerror="this.onerror=null;this.src='//simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/service/@750x452.jpg&w=400&h=240&edit=c'">
+                <img src="/resources/images/1000398650979_i1_1100.avif" srcset="/resources/images/1000398650979_i1_1100.avif" alt="" class="cmplan_img" onerror="this.onerror=null;this.src='//simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/service/@750x452.jpg&w=400&h=240&edit=c'">
             </div>
             <div class="cmplan_detailbx">
                 <div class="cmplan_tagarea">
-                        <span class="cmplan_tag">#기획전</span>
+                        <span class="cmplan_tag">#한우비</span>
                     </div>
-                <em class="cmplan_tit">청송 꿀 사과</em>
+                <em class="cmplan_tit">한우암소 채끝 구이용</em>
                 </div>
             </a>
+
 
         </div>
 <div class="cmplan_unit cmmain_mgz"
@@ -49,14 +50,14 @@
     >
         <a class="cmplan_link clickable" href="/contents/lifeMagazine.ssg?shpgMgzId=7000003812" data-react-tarea="메인매장|오늘의소식|라이프매거진_클릭|에피그램 24 S/S  SEASON BEST ITEM" data-react-tarea-dtl-cd="t00084">
             <div class="cmplan_imgbx">
-                <img src="https://simg.ssgcdn.com/trans.ssg?src=/cmpt/banner/202403/2024032808244652155364328536_289.jpg&w=400&h=240&edit=c&t=e3dd27bbdc05a31eb7fb2daf5077041eae195e37" srcset="https://simg.ssgcdn.com/trans.ssg?src=/cmpt/banner/202403/2024032808244652155364328536_289.jpg&w=800&h=480&edit=c&t=9a387bb39e1cc5a318740a9492fe846260825c45 2x" alt="epigram" class="cmplan_img" onerror="this.onerror=null;this.src='//simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/service/@750x452.jpg&w=400&h=240&edit=c'">
+                <img src="https://simg.ssgcdn.com/trans.ssg?src=/promo/event/ssg/202405/45708885615997366.jpg&amp;w=234&amp;h=167&amp;edit=c&amp;t=83b3f918016716fe489d365f0cc4aa13a811c56e" srcset=""https://simg.ssgcdn.com/trans.ssg?src=/promo/event/ssg/202405/45708885615997366.jpg&amp;w=468&amp;h=334&amp;edit=c&amp;t=63abda426805363dda0f59d0dd4aadc15a470581 2x" alt="epigram" class="cmplan_img" onerror="this.onerror=null;this.src='//simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/service/@750x452.jpg&w=400&h=240&edit=c'">
             </div>
             <div class="cmplan_detailbx">
                 <div class="cmplan_tagarea">
-                        <span class="cmplan_tag">#라이프매거진</span>
+                        <span class="cmplan_tag">#체험단</span>
                     </div>
-                <em class="cmplan_tit">epigram 24 SPRING/ SUMMER</em>
-                <em class="cmplan_tit">24S/S 40만원 이상 구매시 캠핑테이블 증정</em>
+                <em class="cmplan_tit">뽀숑 반려동물 탈취제 체험단</em>
+                <em class="cmplan_tit">10명모집 댓글로 기대평을 남겨주세요</em>
                 </div>
             </a>
 
@@ -65,71 +66,71 @@
                     <div class="cmmain_keyword_in">
                         <h3 class="cmmain_keyword_tit">지금 많이 검색하는 키워드</h3>
                         <ul class="cmmain_keyword_list">
-                            <li class="notranslate" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"골드키위"}]'>
-                                    <a href="/search.ssg?target=all&query=골드키위&src_area=main"
+                            <li class="notranslate" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"메종키츠네"}]'>
+                                    <a href="http://localhost/SSGSSAK/product/product.do?productcode=1000586877083"
                                        class="cmmain_keyword_item clickable"
-                                       data-react-tarea="메인매장|오늘의소식|키워드_클릭|골드키위"
+                                       data-react-tarea="메인매장|오늘의소식|키워드_클릭|메종키츠네"
                                        data-react-tarea-dtl-cd="t00060"
-                                    >골드키위</a>
+                                    >메종키츠네</a>
                                 </li>
-                            <li class="notranslate" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"초고추장"}]'>
-                                    <a href="/search.ssg?target=all&query=초고추장&src_area=main"
+                            <li class="notranslate" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"김치"}]'>
+                                    <a href="http://localhost/SSGSSAK/product/product.do?productcode=1000521094336"
                                        class="cmmain_keyword_item clickable"
-                                       data-react-tarea="메인매장|오늘의소식|키워드_클릭|초고추장"
+                                       data-react-tarea="메인매장|오늘의소식|키워드_클릭|김치"
                                        data-react-tarea-dtl-cd="t00060"
-                                    >초고추장</a>
+                                    >김치</a>
                                 </li>
-                            <li class="notranslate" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"여성샌들"}]'>
-                                    <a href="/search.ssg?target=all&query=여성샌들&src_area=main"
+                            <li class="notranslate" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"정장슈트"}]'>
+                                    <a href="http://localhost/SSGSSAK/product/product.do?productcode=1000587702102"
                                        class="cmmain_keyword_item clickable"
-                                       data-react-tarea="메인매장|오늘의소식|키워드_클릭|여성샌들"
+                                       data-react-tarea="메인매장|오늘의소식|키워드_클릭|정장슈트"
                                        data-react-tarea-dtl-cd="t00060"
-                                    >여성샌들</a>
+                                    >정장슈트</a>
                                 </li>
-                            <li class="notranslate" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"블라우스"}]'>
-                                    <a href="/search.ssg?target=all&query=블라우스&src_area=main"
+                            <li class="notranslate" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"베게"}]'>
+                                    <a href="http://localhost/SSGSSAK/product/product.do?productcode=70203"
                                        class="cmmain_keyword_item clickable"
-                                       data-react-tarea="메인매장|오늘의소식|키워드_클릭|블라우스"
+                                       data-react-tarea="메인매장|오늘의소식|키워드_클릭|베게"
                                        data-react-tarea-dtl-cd="t00060"
-                                    >블라우스</a>
+                                    >베게</a>
                                 </li>
-                            <li class="notranslate" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"돈까스"}]'>
-                                    <a href="/search.ssg?target=all&query=돈까스&src_area=main"
+                            <li class="notranslate" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"조말론 런던"}]'>
+                                    <a href="http://localhost/SSGSSAK/product/product.do?productcode=1000004714887"
                                        class="cmmain_keyword_item clickable"
-                                       data-react-tarea="메인매장|오늘의소식|키워드_클릭|돈까스"
+                                       data-react-tarea="메인매장|오늘의소식|키워드_클릭|조말론 런던"
                                        data-react-tarea-dtl-cd="t00060"
-                                    >돈까스</a>
+                                    >조말론 런던</a>
                                 </li>
-                            <li class="notranslate" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"초코파이"}]'>
-                                    <a href="/search.ssg?target=all&query=초코파이&src_area=main"
+                            <li class="notranslate" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"케라스타즈"}]'>
+                                    <a href="http://localhost/SSGSSAK/product/product.do?productcode=1000026532717"
                                        class="cmmain_keyword_item clickable"
-                                       data-react-tarea="메인매장|오늘의소식|키워드_클릭|초코파이"
+                                       data-react-tarea="메인매장|오늘의소식|키워드_클릭|케라스타즈"
                                        data-react-tarea-dtl-cd="t00060"
-                                    >초코파이</a>
+                                    >케라스타즈</a>
                                 </li>
-                            <li class="notranslate" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"수박"}]'>
-                                    <a href="/search.ssg?target=all&query=수박&src_area=main"
+                            <li class="notranslate" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"한우비"}]'>
+                                    <a href="http://localhost/SSGSSAK/product/product.do?productcode=1000398650979"
                                        class="cmmain_keyword_item clickable"
-                                       data-react-tarea="메인매장|오늘의소식|키워드_클릭|수박"
+                                       data-react-tarea="메인매장|오늘의소식|키워드_클릭|한우비"
                                        data-react-tarea-dtl-cd="t00060"
-                                    >수박</a>
+                                    >한우비</a>
                                 </li>
-                            <li class="notranslate" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"쌈채소"}]'>
-                                    <a href="/search.ssg?target=all&query=쌈채소&src_area=main"
+                            <li class="notranslate" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"바나나"}]'>
+                                    <a href="http://localhost/SSGSSAK/product/product.do?productcode=2097001308233"
                                        class="cmmain_keyword_item clickable"
-                                       data-react-tarea="메인매장|오늘의소식|키워드_클릭|쌈채소"
+                                       data-react-tarea="메인매장|오늘의소식|키워드_클릭\바나나"
                                        data-react-tarea-dtl-cd="t00060"
-                                    >쌈채소</a>
+                                    >바나나</a>
                                 </li>
-                            <li class="notranslate" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"플레인요거트"}]'>
-                                    <a href="/search.ssg?target=all&query=플레인요거트&src_area=main"
+                            <li class="notranslate" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"제육볶음"}]'>
+                                    <a href="http://localhost/SSGSSAK/product/product.do?productcode=3000000000008"
                                        class="cmmain_keyword_item clickable"
-                                       data-react-tarea="메인매장|오늘의소식|키워드_클릭|플레인요거트"
+                                       data-react-tarea="메인매장|오늘의소식|키워드_클릭|제육볶음"
                                        data-react-tarea-dtl-cd="t00060"
-                                    >플레인요거트</a>
+                                    >제육볶음</a>
                                 </li>
                             <li class="notranslate" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text='[{"type":"text","value":"냉동새우"}]'>
-                                    <a href="/search.ssg?target=all&query=냉동새우&src_area=main"
+                                    <a href="http://localhost/SSGSSAK/product/product.do?productcode=2097001577943"
                                        class="cmmain_keyword_item clickable"
                                        data-react-tarea="메인매장|오늘의소식|키워드_클릭|냉동새우"
                                        data-react-tarea-dtl-cd="t00060"
@@ -146,9 +147,12 @@
          data-react-unit-id="2003449287"
          data-react-unit-text=""
     >
-        <a class="cmplan_link clickable" href="" data-react-tarea="메인매장|오늘의소식|배너_클릭|" data-react-tarea-dtl-cd="t00001">
+    
+   
+    
+        <a class="cmplan_link clickable" href="http://localhost/coupon.do" data-react-tarea="메인매장|오늘의소식|배너_클릭|" data-react-tarea-dtl-cd="t00001">
             <div class="cmplan_imgbx">
-                <img src="https://simg.ssgcdn.com/trans.ssg?src=/cmpt/banner/202308/2023080218081277889862213096_919.jpg&w=400&h=240&edit=c&t=0b24c27bec06569166a94f7edd3307f77f233d54" srcset="https://simg.ssgcdn.com/trans.ssg?src=/cmpt/banner/202308/2023080218081277889862213096_919.jpg&w=800&h=480&edit=c&t=ae22305e2b57c5a3b0c8c53a080e5ea64af1c901 2x" alt="같이 사면 더 할인! 장바구니 채워가세요! 장보기 필수 채소/축산 外" class="cmplan_img" onerror="this.onerror=null;this.src='//simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/service/@750x452.jpg&w=400&h=240&edit=c'">
+                <img src="//sui.ssgcdn.com/promo/event/ssg/202404/44924390804174056.png" srcset="//sui.ssgcdn.com/promo/event/ssg/202404/44924390804174056.png" alt="같이 사면 더 할인! 장바구니 채워가세요! 장보기 필수 채소/축산 外" class="cmplan_img" onerror="this.onerror=null;this.src='//simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/service/@750x452.jpg&w=400&h=240&edit=c'">
             </div>
             <div class="cmplan_detailbx">
                 <div class="cmplan_tagarea">
@@ -160,23 +164,25 @@
 
         </div>
 <div class="cmmain_deal cmmain_deal_happylounge" data-react-unit-type="item" data-react-unit-id="1000050004951" data-react-unit-text="">
-        <a class="cmmain_deal_link clickable" href="/service/specialMain.ssg?tabDivCd=happy#myclick_1000050004951" data-react-tarea="메인매장|오늘의소식|해바상품_클릭|워시콤보 포토상품평이벤트" data-react-tarea-dtl-cd="t00001">
+        <a class="cmmain_deal_link clickable" href="http://localhost/SSGSSAK/product/product.do?productcode=1000553633604" data-react-tarea="메인매장|오늘의소식|해바상품_클릭|워시콤보 포토상품평이벤트" data-react-tarea-dtl-cd="t00001">
             <em class="cmmain_deal_ico"><span class="blind">해피라운지</span></em>
             <div class="cmmain_deal_imgbx">
-                <img class="cmmain_deal_img" src="//sitem.ssgcdn.com/51/49/00/item/1000050004951_i1_300.jpg" srcset="//sitem.ssgcdn.com/51/49/00/item/1000050004951_i1_600.jpg 2x" alt="워시콤보 포토상품평이벤트" onerror="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&w=300&h=300&t=d142c2696e00434abf53625345271a498f9694a0'">
+                <img class="cmmain_deal_img" src="/resources/images/d6fe38fe-3714-4be9-aa00-9589499e8edf1000026532717_i6_500.avif" srcset="" alt="워시콤보 포토상품평이벤트" onerror="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&w=300&h=300&t=d142c2696e00434abf53625345271a498f9694a0'">
             </div>
+          
             <div class="cmmain_deal_tit">
-                <p>의류가전 추천</p>
-                                <p>~13% 할인</p>
+                <p>가전제품 추천</p>
+                                <p>~61% 할인</p>
                                 </div>
             <div class="cmmain_deal_pricebx">
                 <p class="cmmain_deal_optprice">
                     <span class="blind">할인적용가</span>
-                    <em class="cmmain_deal_price">3,937,000</em>
+                    <em class="cmmain_deal_price">113,100</em>
                     <span class="cmmain_deal_pricetx">원</span>
                     <span class="cmmain_deal_pricebar">~</span>
                     </p>
             </div>
+            
         </a>
     </div>
 <div class="cmplan_unit "
@@ -191,7 +197,7 @@
             </div>
             <div class="cmplan_detailbx">
                 <div class="cmplan_tagarea">
-                        <span class="cmplan_tag">#기획전</span>
+                        <span class="cmplan_tag">#</span>
                     </div>
                 <em class="cmplan_tit">[대상웰라이프] 뉴케어 영양식</em>
                 </div>
