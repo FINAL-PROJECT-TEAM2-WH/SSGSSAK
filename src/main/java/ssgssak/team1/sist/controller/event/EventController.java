@@ -18,11 +18,11 @@ public class EventController {
 
 	
 	@Lazy
-    private EventService eventService;
+    private EventService mapper;
     
 	@Autowired
     public EventController(@Lazy EventService eventService) {
-        this.eventService = eventService;
+        this.mapper = eventService;
     
     }
 	@GetMapping(value = {"/baner"})
@@ -53,8 +53,7 @@ public class EventController {
 	
 
 	
-	
-	
 }
+
 
 

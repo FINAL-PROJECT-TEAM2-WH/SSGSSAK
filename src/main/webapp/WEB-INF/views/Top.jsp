@@ -4,17 +4,20 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
          <% String contextPath = request.getContextPath(); %>       
-         
+<%-- <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>--%>    
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/logo.css"> --%>
 <script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/common/sentry.bundle.min.js" crossorigin="anonymous"></script>
 <meta property="og:url" content="https://www.ssg.com/?ckwhere=ssg_ggbr&_a1_kad=18e3b5163515e1&_a1_site=ssg&gad_source=1&gclid=Cj0KCQjw0MexBhD3ARIsAEI3WHJHhFOkFmGMqVmb6vW1PsX-HOsLdrzS6wEPfP0QtZj6gozPycVByZIaAlAzEALw_wcB" />
-<meta property="og:image" content="https://sui.ssgcdn.com/ui/common/img/sns/ssg.png" />
-<meta property="og:title" content="[SSG.COM]" />
+<meta property="og:image" content="file:///C:/E/Class/SSGSSAK/src/main/webapp/WEB-INF/views/mainPage/SSGSSAK-logo-black.png" />
+<meta property="og:title" content="[SSGSSAK.COM]" />
 <meta property="og:description" content="여기를 눌러 링크를 확인하세요." />
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="[SSG.COM]" />
 <meta name="twitter:description" content="여기를 눌러 링크를 확인하세요." />
-<meta name="twitter:image" content="https://sui.ssgcdn.com/ui/common/img/sns/ssg.png" />
+<meta name="twitter:image" content="file:///C:/E/Class/SSGSSAK/src/main/webapp/WEB-INF/views/mainPage/SSGSSAK-logo-black.png" />
+
 </head>
 <body class="body_ssg body_renew body_wide body_wide_ctn">
 <div id="skip">
@@ -67,10 +70,13 @@
                         <div class="ssg_mall_layer_container">
                             <div class="ssg_mall_layer_head">
                                 <h1>
-                                    <a href="javascript:void(0)" class="ssg_logo_link">
-                                        <span class="ssg_logo_slogan">믿고 사는 즐거움</span>
-                                        <i class="logo logo_ssg_com" aria-hidden="true"></i>
-                                        <span class="blind">SSG.COM</span>
+                                   <a href="javascript:void(0)" class="ssg_logo_link">
+                                        <span class="ssg_logo_slogan">사는게 즐거운</span>
+
+                                        <i class="logo logo_ssg_com" aria-hidden="true" ></i>
+                                        
+                                        
+                                        <span class="blind" >SSGSSAK.COM</span>
                                     </a>
                                 </h1>
                                 <span class="ssg_mall_menu_trigger" aria-expanded="false">
@@ -80,11 +86,11 @@
                             </div>
                             <div class="ssg_mall_menu_container" aria-hidden="true" tabindex="-1" data-react-tarea-cd="00042_000000090">
                                 <ul class="ssg_mall_menu_list">
-                                    <li class="ssg_mall_menu_item ssg_mall_menu_item_ssg is-active" data-react-unit-type="text" data-react-unit-text='[{"type":"text","value":"SSG"}]'>
+                                    <li class="ssg_mall_menu_item ssg_mall_menu_item_ssg is-active" data-react-unit-type="text" data-react-unit-text='[{"type":"text","value":"SSGSSAK.COM"}]'>
 
                                         <a href="/" class="clickable" data-react-tarea="공통|몰이동_레이어|SSG_클릭" data-react-tarea-dtl-cd="t00060" onclick="javascript:setCommonGnbCookie('useGnbAdvertCk','',-1);">
 
-                                            <span class="blind">SSG.COM</span>
+                                            <span class="blind">SSGSSAK.COM</span>
                                         </a>
                                     </li>
                                     <li class="ssg_mall_menu_item ssg_mall_menu_item_emart" data-react-unit-type="text" data-react-unit-text='[{"type":"text","value":"이마트몰"}]'>

@@ -30,7 +30,7 @@
                      <c:forEach items="${plist}" var="vo" varStatus="loop">
                         <c:if test="${loop.index < plist.size()}">
 
-                           <li class="cunit_t232">
+                           <li class="cunit_t290">
                               <div class="cunit_prod ">
                                  <div class="prod_top"></div>
                                  <div class="thmb">
@@ -194,7 +194,7 @@
             <!-- //공통상품유닛 -->
         </div>
         <div class="cmmain_more" data-react-unit-type="text" data-react-unit-id="" data-react-unit-text=''>
-                <a href="/productList?categoryId=03000000&currentPage=1" class="cmmain_more_btn btn_moreview clickable" data-react-tarea-dtl-cd="t00026">매장 바로가기</a>
+                <a href="/productList?categoryId=03000000&currentPage=1" class="cmmain_more_btn btn_moreview clickable" data-react-tarea-dtl-cd="t00026">패션매장 바로가기</a>
             </div>
         </div>
         

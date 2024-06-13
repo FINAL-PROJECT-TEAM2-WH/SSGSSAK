@@ -1323,7 +1323,7 @@ font {
 .body_wide,
 .body_wide #wrap,
 .body_wide .gnb_bnr_wrap {
-  min-width: 1280px;
+  min-width: 1px;
 }
 
 /* 1280px container */

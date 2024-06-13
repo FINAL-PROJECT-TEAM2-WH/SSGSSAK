@@ -31,7 +31,7 @@
                      <c:forEach items="${onelist}" var="vo" varStatus="loop">
                         <c:if test="${loop.index < onelist.size()}">
 
-                           <li class="cunit_t232">
+                           <li class="cunit_t290">
                               <div class="cunit_prod ">
                                  <div class="prod_top"></div>
                                  <div class="thmb">
