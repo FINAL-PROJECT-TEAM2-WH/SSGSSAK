@@ -21,7 +21,7 @@ public class GlobalControllerAdvice {
     @ModelAttribute("mjc")
     public ArrayList<MajorCateDTO> majorCategories() throws SQLException {
         // 로그 출력
-        System.out.println("전역으로탑카테속성보내기");
+        System.out.println("전역으로탑메이저카테속성보내기");
         return productListService.majorSelectCate();
     }
 

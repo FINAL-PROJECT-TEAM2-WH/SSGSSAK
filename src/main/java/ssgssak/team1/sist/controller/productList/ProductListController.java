@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.log4j.Log4j;
 import ssgssak.team1.sist.domain.productList.AllCateDTO;
@@ -18,6 +19,7 @@ import ssgssak.team1.sist.domain.productList.MajorCateDTO;
 import ssgssak.team1.sist.domain.productList.MiddleCateDTO;
 import ssgssak.team1.sist.domain.productList.PageDTO;
 import ssgssak.team1.sist.domain.productList.ProductListDTO;
+import ssgssak.team1.sist.domain.productList.SubCateDTO;
 import ssgssak.team1.sist.service.productList.ProductListService;
 
 
@@ -87,16 +89,25 @@ public class ProductListController {
 		return "productList/prodList";
 	}
 
+	
 
-
-	@GetMapping("/middleCategories")
-	public String middleCategories(@RequestParam("id") String id,Model model) throws SQLException {
-		log.info("탑미들카테받아짐?");
-		ArrayList<MiddleCateDTO> mdc =  productListService.middleSelectCate(id);
-		model.addAttribute("mdc", mdc);
-		return "category";
-	}
-
+	/*
+	 * 
+	 * @GetMapping("/middleCategories") public String
+	 * middleCategories(@RequestParam("id") String id,Model model) throws
+	 * SQLException { log.info("탑미들카테받아짐?"); ArrayList<MiddleCateDTO> mdc =
+	 * productListService.middleSelectCate(id);
+	 * 
+	 * for (MiddleCateDTO dto : mdc) { System.out.println("MiddleCateDTO: " +
+	 * dto.toString()); } model.addAttribute("mdc", mdc); return "category"; }
+	 * 
+	 * @GetMapping("/subCategories") public String subCategories(@RequestParam("id")
+	 * String id,Model model) throws SQLException { log.info("탑서브카테받아짐?");
+	 * ArrayList<SubCateDTO> sbc = productListService.subSelectCate(id);
+	 * 
+	 * for (SubCateDTO dto : sbc) { System.out.println("SubCateDTO: " +
+	 * dto.toString()); } model.addAttribute("sbc", sbc); return "category"; }
+	 */
 /* 
     @ModelAttribute("mjc")
     public ArrayList<MajorCateDTO> majorCategories() throws SQLException {
