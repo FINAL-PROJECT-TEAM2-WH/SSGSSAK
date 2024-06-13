@@ -28,8 +28,8 @@
 </head>
 <body style="color: pink">
 
- <form action="" method="post" enctype="multipart/form-data">
- <input type="hidden" id="csrfToken" name="${_csrf.parameterName }" value="${_csrf.token }" />
+ <form action="/enroll.do?${_csrf.parameterName}=${_csrf.token }" method="post" enctype="multipart/form-data" >
+
 	
 <br /><br >
 
