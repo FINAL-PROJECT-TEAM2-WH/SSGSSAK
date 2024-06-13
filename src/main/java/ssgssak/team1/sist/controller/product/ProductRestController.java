@@ -37,35 +37,35 @@ public class ProductRestController {
 	private ShippingOptionService shippingOptionService;
 	
 	
-    @GetMapping(value = {"/productTest"})
-    public String test() {
-		   return "/product/productTest";
-	}//views
-    @PostMapping(value = {"/review.do" },produces =
-		 {MediaType.APPLICATION_JSON_UTF8_VALUE})
-    public Map<String,Object> getReview(@RequestBody ReviewVO requestParams) throws Exception{
-	
-	long productcode =  requestParams.getProductcode();
-	
-	int pageIndex = requestParams.getPageIndex();
-	int numberPerPage = 5; 
-	String sort = requestParams.getSort();
-	String reviewType =requestParams.getReviewType();
-	
-	List<ReviewDTO> reviews = reviewService.selectP(pageIndex, numberPerPage, productcode,sort,reviewType);
-	int totalPages = reviewService.getTotalPages(numberPerPage, productcode,reviewType);
-	int totalRecords = reviewService.getTotalRecords();
-	
-	Map<String,Object> response = new HashedMap();
-	response.put("reviews", reviews);
-	response.put("totalPages",totalPages);
-	response.put("currentPage",pageIndex);
-	response.put("totalRecords",totalRecords );
-	
-	System.out.println(numberPerPage);
-	return response;
-	
-}
+	 @GetMapping(value = {"/productTest"})
+	    public String test() {
+			   return "/product/productTest";
+		}//views
+	    @PostMapping(value = {"/review.do" },produces =
+			 {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	    public Map<String,Object> getReview(@RequestBody ReviewVO requestParams) throws Exception {
+		
+		long productcode =  requestParams.getProductcode();
+		
+		int pageIndex = requestParams.getPageIndex();
+		int numberPerPage = 5; 
+		String sort = requestParams.getSort();
+		String reviewType =requestParams.getReviewType();
+		
+		List<ReviewDTO> reviews = reviewService.selectP(pageIndex, numberPerPage, productcode,sort,reviewType);
+		int totalPages = reviewService.getTotalPages(numberPerPage, productcode,reviewType);
+		int totalRecords = reviewService.getTotalRecords();
+		
+		Map<String,Object> response = new HashedMap();
+		response.put("reviews", reviews);
+		response.put("totalPages",totalPages);
+		response.put("currentPage",pageIndex);
+		response.put("totalRecords",totalRecords );
+		
+		System.out.println(numberPerPage);
+		return response;
+		
+	}
 
     
 	/*

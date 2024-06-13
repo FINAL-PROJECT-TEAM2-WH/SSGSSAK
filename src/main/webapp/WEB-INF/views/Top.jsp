@@ -457,6 +457,33 @@
     </div>
   </div>
 </aside>
+<sec:authorize access="isAuthenticated()">
+<script>
+$(function () {
+	// 클래스를 제거하고 추가하는 거를 해야됨 
+	// 회원이 좋아요한 상품 ID 값을 가져와서 거기에 해당하는 친구들의 좋아요를 채워줘야함. 
+	$.ajax({
+		type: "GET",
+        url: '/memberR/likeInfo',
+        dataType: 'json',  // jQuery에서는 dataType 소문자로 씁니다.
+        cache: false,
+        success: function(response) {
+        	response.forEach(function (element, index ){       		
+        		$('input[name="attnTgtIdnfNo'+element+'"]').parent().removeClass('cmlike _js_cmlike interestIt');
+        		$('input[name="attnTgtIdnfNo'+element+'"]').parent().addClass('cmlike _js_cmlike interestIt on');
+        	})
+
+        },
+        error: function(xhr, status, error) {
+            console.log('좋아요 값 X');
+        }
+		
+	})
+	
+	
+})
+</script>
+</sec:authorize>
 <script>
 
 /*
@@ -722,21 +749,25 @@ function addLike(productid) {
                      },
         				success : function (data) {
         					if(data.result == 'success') {
-        						alert('삭제 성공');
-        						location.reload();
+        						$('input[name="attnTgtIdnfNo'+productid+'"]').parent().removeClass('cmlike _js_cmlike interestIt on');
+        		        		$('input[name="attnTgtIdnfNo'+productid+'"]').parent().addClass('cmlike _js_cmlike interestIt');
+
         					} else {
-        						alert('삭제 실패');
+
         					}
         				}, error : function (xhr, status, error){
         					
         				}
         			}); 
         		} else {
-        			alert('그대로 냅둘게');
+        			console.log("그대로 냅둘게");
         		}
         	} else if ( data.result == 'Success') {
-        		alert('좋아요 성공임');
+        		$('input[name="attnTgtIdnfNo'+productid+'"]').parent().removeClass('cmlike _js_cmlike interestIt');
+        		$('input[name="attnTgtIdnfNo'+productid+'"]').parent().addClass('cmlike _js_cmlike interestIt on');
+        		console.log('좋아요 성공임');
         	} else if ( data.result == 'Fail') {
+        		
         		alert('좋아요 실패임 ');
         	}
         },

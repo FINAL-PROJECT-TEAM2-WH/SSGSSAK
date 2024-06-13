@@ -23,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import ssgssak.team1.sist.domain.member.InterestGoodsVO;
+import ssgssak.team1.sist.domain.member.LikeFolderDTO;
 import ssgssak.team1.sist.domain.member.MemberVO;
 import ssgssak.team1.sist.domain.member.security.CustomerUser;
 import ssgssak.team1.sist.mapper.member.LikeMapper;
@@ -52,7 +54,6 @@ public class MemberController {
 	PasswordEncoder passwordEncoder;
 	
 	
-	
 	@GetMapping("/like")
 	public String likeInfo(Model model) {
 		// id받으면 그걸 바탕으로 좋아요 한 항목들을 뿌려주면 됨. 
@@ -61,7 +62,7 @@ public class MemberController {
 		String id = userDetails.getUsername();
 		System.out.println(id);
 		List<InterestGoodsVO> list = likeService.getInterGoodsList(id);
-		List<String>folderList = likeService.getInterFolderList(id);
+		List<LikeFolderDTO>folderList = likeService.getInterFolderList(id);
 		model.addAttribute("folderList", folderList);
 		model.addAttribute("productList",list);
 		model.addAttribute("listSize", list.isEmpty() ? 0 : list.size());
@@ -185,5 +186,7 @@ public class MemberController {
 		model.addAttribute("info",this.infoService.getUserInfo(id)); 
 		return "/member/userinfo/myInfoMng/quitMbr";
 	}
+	
+	
 	
 }
