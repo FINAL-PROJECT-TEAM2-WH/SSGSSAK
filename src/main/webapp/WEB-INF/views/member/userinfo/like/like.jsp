@@ -775,7 +775,7 @@ src="https://www.facebook.com/tr?id=1668002603429849&ev=PageView&noscript=1"
     <div class="prod_top">
         </div>
     <div class="thmb">
-        <a href="/item/itemView.ssg?itemId=1000068529577&siteNo=6004&salestrNo=6005" target="_self"  class="clickable"
+        <a href="/SSGSSAK/product/product.do?productcode=${product.id}" target="_self"  class="clickable"
              data-react-tarea="좋아요|상품|상품_클릭|어센틱 올드스쿨 체커보드슬립온 데일리 운동화 스니커즈 22종_1000068529577" data-info="1000068529577" data-index="0" data-position="view" data-unit="img" data-react-tarea-dtl-cd="t00001">
 
             <img <%-- srcset="${product.url}" --%> src="${product.url}" onerror="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&w=290&h=290&t=16cbd41d848a18acbeb9f1be5644242c91461495'" class="i1" width="290" height="290" alt="어센틱 올드스쿨 체커보드슬립온 데일리 운동화 스니커즈 22종"  loading="lazy">
