@@ -100,6 +100,7 @@
 		WHERE id LIKE '%000000'
 		AND majorCateName
 		IS NOT NULL
+		ORDER BY id ASC
 	</select>
 
 	<select id="selectMiddleCate" resultType="MiddleCateDTO">
@@ -109,6 +110,7 @@
 		WHERE id LIKE SUBSTR(#{categoryId}, 1,
 		2) || '%0000'
 		AND middleCateName IS NOT NULL
+		ORDER BY id ASC
 	</select>
 
 	<select id="selectSubCate" resultType="SubCateDTO">
@@ -118,6 +120,7 @@
 		WHERE id LIKE SUBSTR(#{categoryId}, 1, 4)
 		|| '%00'
 		AND subCateName IS NOT NULL
+		ORDER BY id ASC
 	</select>
 
 	<select id="selectMiniCate" resultType="MiniCateDTO">
@@ -127,6 +130,7 @@
 		WHERE id LIKE SUBSTR(#{categoryId}, 1, 6)
 		|| '%'
 		AND miniCateName IS NOT NULL
+		ORDER BY id ASC
 	</select>
 
 	<select id="selectCurrentCate" resultType="CurrentCateDTO">

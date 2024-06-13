@@ -74,20 +74,44 @@ public class ProductListServiceImpl implements ProductListService {
 	
 	
 	
+	
 	//카테고리셀렉트쪽
-	@Override
-	public ArrayList<MajorCateDTO> majorSelectCate() throws SQLException {
-		ArrayList<MajorCateDTO> mjcDtoList = productListMapper.selectMajorCate();
-		
-		
-		return 	 mjcDtoList;
+	
+	@Override 
+	public ArrayList<MajorCateDTO> majorSelectCate() throws SQLException { 
+		ArrayList<MajorCateDTO> mjcDtoList =	productListMapper.selectMajorCate();
+	
+	
+	return mjcDtoList; 
 	}
+	
+	@Override
+	public ArrayList<MiddleCateDTO> middleSelectCate(String categoryId) throws SQLException {
+		ArrayList<MiddleCateDTO> mdcDtoList = productListMapper.selectMiddleCate(categoryId);
+		
+		
+		return mdcDtoList; 
+	}
+
+	@Override
+	public ArrayList<SubCateDTO> subSelectCate(String categoryId) throws SQLException {
+		ArrayList<SubCateDTO> scDtoList = productListMapper.selectSubCate(categoryId);
+		
+		return scDtoList;
+	}
+
+
+	
 	@Override
 	public AllCateDTO selectCate(String categoryId) throws SQLException {
 	    ArrayList<MajorCateDTO> mjcDtoList = productListMapper.selectMajorCate();
+	    
 	    ArrayList<MiddleCateDTO> mdcDtoList = productListMapper.selectMiddleCate(categoryId);
+	    
 	    ArrayList<SubCateDTO> scDtoList = productListMapper.selectSubCate(categoryId);
+	    
 	    ArrayList<MiniCateDTO> mncDtoList = productListMapper.selectMiniCate(categoryId);
+	    
 	    CurrentCateDTO crtCateDto = productListMapper.selectCurrentCate(categoryId);
 	    System.out.println("서비스에서의 crtCateDto = " +crtCateDto);
 
@@ -118,6 +142,7 @@ public class ProductListServiceImpl implements ProductListService {
     			.crtCateDto(crtCateDto)
     			.build();
 	}
+
 
 
 
