@@ -265,7 +265,7 @@
 </script>
 	<script type="text/javascript"
 		src="https://sui.ssgcdn.com/ui/ssg/js/affiliate/affiliateGnb.js?v=20240507"></script>
-	<%@ include file="../../Top.jsp"%>
+	<%@ include file="../../../Top.jsp"%>
 	<!-- MYSSG UI 변경 대응 -->
 	<hr>
 	<div id="container" class="cmmyssg_wrap" class="">
@@ -285,7 +285,8 @@
 						<a href="http://www.ssg.com/myssg/main.ssg"
 							class="cmmyssg_user_tittx clickable"
 							data-react-tarea-dtl-cd="t00060"><span
-							class="cmmyssg_user_titname"><%= mid %></span>의 My SSG</a>
+							class="cmmyssg_user_titname"><c:if test="${ not empty mid }">
+                        ${ mid }</c:if></span>의 My SSG</a>
 					</h2>
 				</div>
 			</div>
@@ -795,6 +796,7 @@
 				<input type="hidden" name="orordNo" value="2024041502F004" />
 				<dl class="codr_odrdeliv_head">
 					<dt>
+						<input type="hidden" value="${entry.key}" id="orderDate">
 						<span class="codr_odrdeliv_odrdate notranslate">${ entry.key }</span>
 						<span class="codr_odrdeliv_odrnum"> <em>주문번호</em>
 							${ entry.value }
@@ -927,8 +929,8 @@
 								</div>
 								<div class="codr_unit_pricewrap">
 									<div class="codr_unit_newprice notranslate">
-										<span class="blind">${ orderDto.optionprice }</span><em
-											class="ssg_price notranslate">${ orderDto.optionprice }</em><span class="ssg_tx">원</span>
+										<span class="blind">${ orderDto.toptionprice }</span><em
+											class="ssg_price notranslate">${ orderDto.toptionprice }</em><span class="ssg_tx">원</span>
 									</div>
 									<span class="codr_unit_dot"></span> <span
 										class="codr_unit_count"> <strong class="blind">상품수량</strong>
@@ -1051,11 +1053,12 @@
 <script>
 	function orderDelete(button){
 		//alert("삭제버튼");
-		var value = button.value;
+		// 1이 주문 / 2가 주문취소
+		var value = button.value;	
 		var isConfirmed = confirm("정말로 이 주문을 삭제하시겠습니까?");
-		
+		var orderDate = $("#orderDate").val();
 		  if (isConfirmed) {
-			  location.href = `<%= request.getContextPath() %>/OrderRecordDelete.do?orderId=`+value;
+			  location.href = `/member/userinfo/shipping/orderRecordDelete?orderId=\${value}&orderDate=\${orderDate}`;
 			  alert("주문 삭제 완료");
 		  }else{
 			  console.log("주문 삭제 취소");
@@ -1065,8 +1068,9 @@
 	function orderDetail(button){
 		//alert('상세보기 버튼');
 		let orderId = button.value;
+		var orderDate = $("#orderDate").val();
 		//alert(orderId);
-		location.href = `<%= request.getContextPath() %>/orderDetail.do?orderId=`+orderId;
+		location.href = "/member/userinfo/shipping/orderDetail?orderId=" + orderId + "&orderDate=" + orderDate;
 	}
 </script>
 		<script type="text/javascript"

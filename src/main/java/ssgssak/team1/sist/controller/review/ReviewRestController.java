@@ -120,7 +120,7 @@ public class ReviewRestController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		CustomerUser  customerDetail =(CustomerUser) authentication.getPrincipal();
 		String auth = customerDetail.getUsername();
-		
+		System.out.println(auth);
 		Map<String, Object> response = new HashMap<String, Object>();
 		try {
 			List<BeforeReviewVO> payRecords = this.reviewService.getBeforeReview(auth);

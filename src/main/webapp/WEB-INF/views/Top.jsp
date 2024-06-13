@@ -4,17 +4,20 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
          <% String contextPath = request.getContextPath(); %>       
-         
+<%-- <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>--%>    
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/logo.css"> --%>
 <script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/common/sentry.bundle.min.js" crossorigin="anonymous"></script>
 <meta property="og:url" content="https://www.ssg.com/?ckwhere=ssg_ggbr&_a1_kad=18e3b5163515e1&_a1_site=ssg&gad_source=1&gclid=Cj0KCQjw0MexBhD3ARIsAEI3WHJHhFOkFmGMqVmb6vW1PsX-HOsLdrzS6wEPfP0QtZj6gozPycVByZIaAlAzEALw_wcB" />
-<meta property="og:image" content="https://sui.ssgcdn.com/ui/common/img/sns/ssg.png" />
-<meta property="og:title" content="[SSG.COM]" />
+<meta property="og:image" content="file:///C:/E/Class/SSGSSAK/src/main/webapp/WEB-INF/views/mainPage/SSGSSAK-logo-black.png" />
+<meta property="og:title" content="[SSGSSAK.COM]" />
 <meta property="og:description" content="여기를 눌러 링크를 확인하세요." />
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="[SSG.COM]" />
 <meta name="twitter:description" content="여기를 눌러 링크를 확인하세요." />
-<meta name="twitter:image" content="https://sui.ssgcdn.com/ui/common/img/sns/ssg.png" />
+<meta name="twitter:image" content="file:///C:/E/Class/SSGSSAK/src/main/webapp/WEB-INF/views/mainPage/SSGSSAK-logo-black.png" />
+
 </head>
 <body class="body_ssg body_renew body_wide body_wide_ctn">
 <div id="skip">
@@ -67,10 +70,13 @@
                         <div class="ssg_mall_layer_container">
                             <div class="ssg_mall_layer_head">
                                 <h1>
-                                    <a href="javascript:void(0)" class="ssg_logo_link">
-                                        <span class="ssg_logo_slogan">믿고 사는 즐거움</span>
-                                        <i class="logo logo_ssg_com" aria-hidden="true"></i>
-                                        <span class="blind">SSG.COM</span>
+                                   <a href="javascript:void(0)" class="ssg_logo_link">
+                                        <span class="ssg_logo_slogan">사는게 즐거운</span>
+
+                                        <i class="logo logo_ssg_com" aria-hidden="true" ></i>
+                                        
+                                        
+                                        <span class="blind" >SSGSSAK.COM</span>
                                     </a>
                                 </h1>
                                 <span class="ssg_mall_menu_trigger" aria-expanded="false">
@@ -80,11 +86,11 @@
                             </div>
                             <div class="ssg_mall_menu_container" aria-hidden="true" tabindex="-1" data-react-tarea-cd="00042_000000090">
                                 <ul class="ssg_mall_menu_list">
-                                    <li class="ssg_mall_menu_item ssg_mall_menu_item_ssg is-active" data-react-unit-type="text" data-react-unit-text='[{"type":"text","value":"SSG"}]'>
+                                    <li class="ssg_mall_menu_item ssg_mall_menu_item_ssg is-active" data-react-unit-type="text" data-react-unit-text='[{"type":"text","value":"SSGSSAK.COM"}]'>
 
                                         <a href="/" class="clickable" data-react-tarea="공통|몰이동_레이어|SSG_클릭" data-react-tarea-dtl-cd="t00060" onclick="javascript:setCommonGnbCookie('useGnbAdvertCk','',-1);">
 
-                                            <span class="blind">SSG.COM</span>
+                                            <span class="blind">SSGSSAK.COM</span>
                                         </a>
                                     </li>
                                     <li class="ssg_mall_menu_item ssg_mall_menu_item_emart" data-react-unit-type="text" data-react-unit-text='[{"type":"text","value":"이마트몰"}]'>
@@ -110,12 +116,12 @@
                         <div class="gnb_searching_box" id="search_query">
                             <form onsubmit="return false;">
                                 <div class="gnb_searching_inp" data-globalid="search">
-                                    <input id="ssg_searchQuery" type="text" value="" class="inp_txt" style="width:px"  />
+                                    <input id="ssg_searchQuery" type="text" value="" class="inp_txt" style="width:px" onkeyup="ssgSearchEnter();" />
                                     <input type="hidden" id="ssgQueryBanrUrl"    name="ssgQueryBanrUrl"    value="">
                                     <input type="hidden" id="ssgQueryBanrTarget" name="ssgQueryBanrTarget" value="">
                                     <input type="hidden" id="ssgQuerySub"        name="ssgQuerySub" value="">
 
-                                    <button type="button" id="ssgSearchBtn" class="gnb_search_btn">
+                                    <button type="button"  id="ssgSearchBtn" class="gnb_search_btn">
                                         <i class="icon ty_lg icon_search"></i>
                                         <span class="blind">검색</span>
                                     </button>
@@ -311,18 +317,18 @@
                    
                     <ul class="gnb_util" id="util_right">
                         <li id="gnbUserInfoArea" class="gnb_tx_user notranslate gnbUserInfoArea" style="display:none;"><a href="javascript:void(0);"></a></li>
-                         <sec:authorize access="isAnonymous()">
+                        <sec:authorize access="isAnonymous()">
                         <li id="loginBtn" style="display:block;"><a id="login_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그인" href="#" onclick="" title="새창 열림">로그인</a></li>
                         <li id="joinBtn" style="display:block;"><a id="regi_a_tag" class="clickable" data-react-tarea="몰공통|GNB|회원가입" href="#">회원가입</a></li>
                         </sec:authorize>
                         <sec:authorize access="isAuthenticated()">
                          <li id="userinfoBtn" style="display:block;"><a id="login_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그인" href="#" onclick="" title="새창 열림"><sec:authentication property="principal.username"/>님 환영합니다</a></li>
                         <form id="logoutform" action="/login/logout" method="post">
-                         <li id="logoutBtn" style="display:block;"><a id="logout_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그아웃" href="#">로그아웃</a></li>
+                        <li id="logoutBtn" style="display:block;"><a id="logout_a_tag" class="clickable" data-react-tarea="몰공통|GNB|로그아웃" href="#">로그아웃</a></li>
                         <input type="hidden" id="csrfToken" name="${_csrf.parameterName }" value="${_csrf.token }"/>                      
                         </form>                      
                         </sec:authorize>
-                         <sec:authorize access="hasRole('admin')">
+                         <sec:authorize access="hasRole('ROLE_ADMIN')">
                          <li id="enrollBtn" style="display:block;"><a id="enroll_tag" class="clickable" href="/enroll.do">상품등록</a></li>
                          </sec:authorize>
                         <li><a class="clickable" data-react-tarea="몰공통|GNB|고객센터" href="#">고객센터</a></li>
@@ -347,6 +353,7 @@
                             </a>
                         </li>
                         <li>
+
                             <a href="/login/full" class="btn_order clickable" data-react-tarea="몰공통|GNB|주문배송조회" onclick="javascript:setCommonGnbCookie('useGnbAdvertCk','',-1);">
                                 <i class="icon ty_sm icon_truck" aria-hidden="true"></i>
                                 <span class="blind">주문배송조회</span>
@@ -375,9 +382,8 @@
                                 <span class="blind">MY SSG</span>
                             </a>
                         </li>
-                    
                         <li>
-                            <a href="<%= contextPath %>/orderRecord.do" class="btn_order clickable" data-react-tarea="몰공통|GNB|주문배송조회" onclick="javascript:setCommonGnbCookie('useGnbAdvertCk','',-1);">
+                            <a href="/member/userinfo/shipping/orderRecord" class="btn_order clickable" data-react-tarea="몰공통|GNB|주문배송조회" onclick="javascript:setCommonGnbCookie('useGnbAdvertCk','',-1);">
                                 <i class="icon ty_sm icon_truck" aria-hidden="true"></i>
                                 <span class="blind">주문배송조회</span>
                             </a>
@@ -484,7 +490,7 @@ $(function () {
  * 
 <li class="cmjump_rank_item">
      <span class="cmjump_rank_num">1.</span>
-     <span class="cmjump_rank_tx">레고 10325</span>
+     <span class="cmjump_rank_tx">레고 10325</span> 
      <span class="cmjump_rank_state cmjump_rank_up">
      <span class="cmjump_rank_count">6</span>
      <span class="cmjump_rank_ico cmicon"><i class="icon ty_xs icon_caret_up_s_red"></i><span class="blind">상승</span></span>
@@ -500,7 +506,7 @@ cmjump_rank_lst
 		let innerHtml = "";
 		$.ajax({
 	        type: "GET",
-	        url: `<%= request.getContextPath() %>/searchCount.do`,
+	        url: "/search/risingSearch",
 	        dataType: 'json',  // jQuery에서는 dataType 소문자로 씁니다.
 	        cache: false,
 	        success: function(response) {
@@ -521,7 +527,7 @@ cmjump_rank_lst
 	            var item = itemList[itemIndex];
 	            var itemHtml = '<li class="cmjump_rank_item">';
 	            itemHtml += '<span class="cmjump_rank_num">' + (itemIndex + 1) + '. </span>';
-	            itemHtml += '<span class="cmjump_rank_tx">' + item.searchWord + '</span>';
+	            itemHtml += '<span class="cmjump_rank_tx">' + item.searchword + '</span>';
 	            itemHtml += '<span class="cmjump_rank_state cmjump_rank_up"></span></li><br>';
 	            $("#rank_slide").append(itemHtml);
 	        }
@@ -535,11 +541,11 @@ cmjump_rank_lst
 		        for (var i = 0; i < 10; i++) {
 		            var itemIndex = (currentIndex + i) % itemList.length;  // 순환 인덱스 계산
 		            var item = itemList[itemIndex];
-		            //alert(item.rankChange);
+		            //alert(item.searchword);
 		            var itemHtml = '<li class="cmjump_rank_item">';
-		            itemHtml += '<a href="#" class="cmjump_rank_link clickable" >';
+		            itemHtml += '<a href=/searchQuery?searchWord=' + item.searchword + ' class="cmjump_rank_link clickable" >';
 		            itemHtml += '<span class="cmjump_rank_num">' + (itemIndex + 1) + '. </span>';
-		            itemHtml += '<span class="cmjump_rank_tx">' + item.searchWord + '</span>';
+		            itemHtml += '<span class="cmjump_rank_tx">' + item.searchword + '</span>';
 		            // 바뀐 랭크가 0과 null일때
 		            if( item.rankChange === 0 || item.rankChange === null ) {
 		            	itemHtml += ' <span class="cmjump_rank_state cmjump_rank_same">';
@@ -575,9 +581,9 @@ cmjump_rank_lst
 		            var item = itemList[itemIndex];
 		            //alert(item.rankChange);
 		            var itemHtml = '<li class="cmjump_rank_item">';
-		            itemHtml += '<a href="#" class="cmjump_rank_link clickable" >';
+		            itemHtml += '<a href=/searchQuery?searchWord=' + item.searchword + ' class="cmjump_rank_link clickable" >';
 		            itemHtml += '<span class="cmjump_rank_num">' + (itemIndex + 1) + '. </span>';
-		            itemHtml += '<span class="cmjump_rank_tx">' + item.searchWord + '</span>';
+		            itemHtml += '<span class="cmjump_rank_tx">' + item.searchword + '</span>';
 		            // 바뀐 랭크가 0과 null일때
 		            if( item.rankChange === 0 || item.rankChange === null ) {
 		            	itemHtml += ' <span class="cmjump_rank_state cmjump_rank_same">';
@@ -641,13 +647,19 @@ cmjump_rank_lst
 <script>
 	
 	// 키보드 온 프레스 해서 엔터 눌렀을때도 마찬가지로 작동하도록 만들기
+	function ssgSearchEnter(){
+		if(window.event.keyCode == 13){
+			var searchWord = $("#ssg_searchQuery").val();
+			location.href = `/searchQuery?searchWord=\${ searchWord }`;
+		}
+	};	
 	
-		$("#ssgSearchBtn").on("click", function(){
+	
+	$("#ssgSearchBtn").on("click", function(){
 		var searchWord = $("#ssg_searchQuery").val();
-		
 		location.href = `/searchQuery?searchWord=\${ searchWord }`;
 		
-	}) 
+	});
 	
 	
 </script>

@@ -1,7 +1,5 @@
 package ssgssak.team1.sist.domain.ship;
 
-import java.sql.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,6 +20,7 @@ public class ShippingPlaceInfoVO {
 	String jibunAddress;
 	String detailAddress;
 	String tel;
-	String postNum;
+	String postnum;
 	String defaultShipping;
+	String postNum;
 }

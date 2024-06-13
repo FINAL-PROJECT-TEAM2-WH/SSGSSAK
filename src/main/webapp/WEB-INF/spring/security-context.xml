@@ -24,9 +24,10 @@
        --> 
       <security:intercept-url pattern="/member/**" access="isAuthenticated()"/>
       <security:intercept-url pattern="/memberR/**" access="isAuthenticated()"/>
+      <security:intercept-url pattern="/pay.do" access="isAuthenticated()"/>
       <!-- <security:intercept-url pattern="" access="hasRole('ROLE_ADMIN')"/> -->
+      <security:intercept-url pattern="/enroll.do" access="hasRole('ROLE_ADMIN')"/>
       <security:intercept-url pattern="/**" access="permitAll" />
-      
       <!-- <security:form-login/>   -->
       
        <!-- 1) 접근 금지 발생시 특정URL로 이동 : error-page 설정. --> 
@@ -35,12 +36,12 @@
        <security:access-denied-handler ref="customAccessDeniedHandler" />
        
       <!-- 커스텀 로인 페이지 -->
-      <security:form-login
+       <security:form-login
         login-page="/login/full" 
         authentication-success-handler-ref="customLoginSuccessHandler"
         authentication-failure-url="/login/full?error=true"
         default-target-url="/"
-      />
+      /> 
       
      <security:form-login
         login-page="/login/popup" 

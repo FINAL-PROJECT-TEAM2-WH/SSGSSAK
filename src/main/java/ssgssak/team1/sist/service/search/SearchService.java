@@ -2,12 +2,14 @@ package ssgssak.team1.sist.service.search;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import ssgssak.team1.sist.domain.search.BrandCateCountVO;
 import ssgssak.team1.sist.domain.search.Criteria;
 import ssgssak.team1.sist.domain.search.PageDTO;
 import ssgssak.team1.sist.domain.search.PriceVO;
+import ssgssak.team1.sist.domain.search.SearchDTO;
 import ssgssak.team1.sist.domain.search.SearchVO;
 
 @Service
@@ -24,5 +26,9 @@ public interface SearchService {
 	public  ArrayList<BrandCateCountVO> getSearchCateCount(String searchWord) throws Exception;
 	
 	public ArrayList<BrandCateCountVO> getSearchBrandMap(String searchWord) throws Exception;
+
+	public int insertSearch(String memid, String searchWord) throws Exception;
+	
+	public ArrayList<SearchDTO> getRisingSearch() throws Exception;
 
 }

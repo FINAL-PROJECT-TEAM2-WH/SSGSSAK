@@ -2,6 +2,7 @@ package ssgssak.team1.sist.domain.main;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.text.DecimalFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,14 +22,29 @@ public class MainProductListDTO {
    private String brandName;
    private String pDname;
    private String upDateDay;
-   private long optionPrice;
-   private long sprice;
+	private String optionPrice;
+	private String sprice;
    private long discount;
    private long reviewCount;
    private double avgGrade;
    private String imgurl;
 
 
+   private static final DecimalFormat decimalFormat = new DecimalFormat("#,###");
+
+   public void setOptionPrice(long optionPrice) {
+       this.optionPrice = formatPrice(optionPrice);
+   }
+
+   public void setSprice(long sprice) {
+       this.sprice = formatPrice(sprice);
+   }
+
+   private String formatPrice(long price) {
+       return decimalFormat.format(price);
+   }
+   
+   
     public void setImgurl(String imgurl) {
         if (imgurl == null) return;
 

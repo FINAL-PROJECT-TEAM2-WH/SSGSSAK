@@ -414,9 +414,9 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
         } catch(e) {}
     </script>
 
-<%@include file="../Top.jsp" %>
+<%@include file="/WEB-INF/views/Top.jsp" %>
 
-<%@include file="../category.jsp" %>
+<%@include file="/WEB-INF/views/category.jsp" %>
 
 <script id="_tmplNavigation" type="text/x-jquery-tmpl">
 {{tmpl "#_tmplNavigation-menu"}}

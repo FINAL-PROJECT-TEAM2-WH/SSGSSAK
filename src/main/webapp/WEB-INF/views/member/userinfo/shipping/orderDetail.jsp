@@ -324,7 +324,7 @@
 	</script>
 	<script type="text/javascript"
 		src="https://sui.ssgcdn.com/ui/ssg/js/affiliate/affiliateGnb.js?v=20240507"></script>
-	<%@ include file="../../Top.jsp"%>
+	<%@ include file="../../../Top.jsp"%>
 	<!-- 최근 본 상품 -->
 	<aside id="history" class="drawer_menu drawer_right"
 		role="complementary" aria-label="최근 본 상품 리스트">
@@ -415,7 +415,8 @@
 						<a href="http://www.ssg.com/myssg/main.ssg"
 							class="cmmyssg_user_tittx clickable"
 							data-react-tarea-dtl-cd="t00060"><span
-							class="cmmyssg_user_titname"><%= mid %></span>의 My SSG</a>
+							class="cmmyssg_user_titname"><c:if test="${ not empty mid }">
+                        ${ mid }</c:if></span>의 My SSG</a>
 					</h2>
 				</div>
 			</div>
@@ -698,8 +699,8 @@
 					<dl class="codr_odrdeliv_head">
 						<dt>
 							<span class="codr_odrdeliv_odrdate notranslate">${ odvo.orderDate }</span>
-							<c:if test="${ not empty idsStr }">
-							<c:forEach items="${ idsStr }" var="ids">
+							<c:if test="${ not empty orderId }">
+							<c:forEach items="${ orderId }" var="ids">
 							<span class="codr_odrdeliv_odrnum">주문번호 ${ ids }<em></em>
 							</c:forEach>
 							</c:if>
@@ -768,7 +769,7 @@
 
 											상품 준비중
 											<div class="tx_detail">
-												<span>${ odvo.orderDate }</span>에 결제하셨습니다.
+												<span>${ orderDate }</span> 에 결제하셨습니다.
 											</div>
 										</div>
 									</div>
@@ -821,7 +822,7 @@
 								<dt>주문자 정보</dt>
 								<dd>
 									<span class="codr_ip_tx notranslate"> <span
-										class="blind">주문자 성함</span><em class="notranslate">${ odvo.mname }&nbsp&nbsp</em> <span
+										class="blind">주문자 성함</span><em class="notranslate">${ odvo.name }&nbsp&nbsp</em> <span
 										class="blind">주문자 전화번호</span> ${ odvo.phonenum }
 									</span>
 								</dd>
@@ -840,7 +841,7 @@
 								<dt class="notranslate">받으시는 주소</dt>
 								<dd>
 									<span class="codr_ip_tx"> <span class="blind">주문자
-											주소</span> <span class="notranslate"> [${ odvo.mname }] [${ odvo.postnum }] 
+											주소</span> <span class="notranslate"> [${ odvo.name }] 
 											${ odvo.roadaddress }, ${ odvo.detailaddress }</span>
 									</span>	
 								</dd>
@@ -877,7 +878,8 @@
 											<input type="hidden" id="ordItemGrp__ForceShppcstBdnMainCd"
 												value="XX" /> <a
 												href="/SSGSSAK/product/product.do?productcode=${ ovo.productid }"
-												target="_blank"> <span class="codr_unit_img"> <img 
+												target="_blank"> <span class="codr_unit_img"> 
+												<img 
 													src="${ ovo.imgurl }" alt="상품이미지" style="width: 90px; height: 90px"
 													 />
 											</span>
@@ -895,8 +897,8 @@
 									</td>
 									<td class="codr_unit_pricewrap">
 										<div class="codr_unit_newprice notranslate">
-											<span class="blind">판매가격</span> <em
-												class="ssg_price notranslate">${ ovo.optionprice }</em> <span
+											<span class="blind">판매가격</span> <em 
+												class="ssg_price notranslate">${ ovo.toptionprice }</em> <span
 												class="ssg_tx">원</span>
 										</div> <span class="codr_unit_line"></span> <span
 										class="codr_unit_count"> <strong class="blind">상품수량</strong>
@@ -938,7 +940,8 @@
 			function reviewDo(button){
 				var btnVal = button.value
 				//alert(btnVal);
-				location.href = `<%= contextPath %>/review/review.do?productcode=\${btnVal}`;
+				// http://localhost:8080/SSGSSAK/review/review.do?productcode=70203&auth=qwer
+				location.href = `<%= contextPath %>/SSGSSAK/review/review.do?productcode=\${btnVal}&auth=${mid}`;
 			}
 		</script>
 		<script>
@@ -961,13 +964,7 @@
 											});
 						});
 					</script>
-		<div class="codr_btnarea ty_full">
-			<p class="codr_btnarea_desc">
-				기명식 선불전자지급수단(SSG MONEY)을 사용한 경우, 전자금융업자(SSGPAY)가 국세청에 연 1회 일괄 제출하여
-				소득공제 처리되며, <span class="codr_btnarea_desc_highlight">별도로
-					현금영수증은 발급되지 않습니다.</span>
-			</p>
-		</div>
+		
 	</div>
 	</div>
 	</div>
@@ -1209,7 +1206,7 @@
 
 	</div>
 
-	<%@ include file="../../footer.jsp"%>
+	<%@ include file="../../../footer.jsp"%>
 
 	<div id="myssgLayer"></div>
 	<script type="text/javascript">
