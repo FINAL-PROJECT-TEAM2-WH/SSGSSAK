@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import ssgssak.team1.sist.domain.productList.AllCateDTO;
 import ssgssak.team1.sist.domain.productList.BrdPrdListDTO;
 import ssgssak.team1.sist.domain.productList.MajorCateDTO;
+import ssgssak.team1.sist.domain.productList.MiddleCateDTO;
 import ssgssak.team1.sist.domain.productList.ProductListDTO;
+import ssgssak.team1.sist.domain.productList.SubCateDTO;
 
 @Service
 public interface ProductListService {
@@ -30,9 +32,12 @@ public interface ProductListService {
     
     public ArrayList<MajorCateDTO> majorSelectCate() throws SQLException;
     
+    public ArrayList<MiddleCateDTO> middleSelectCate(String categoryId) throws SQLException;
+    
+    public ArrayList<SubCateDTO> subSelectCate(String categoryId) throws SQLException;
+    
     public AllCateDTO selectCate(String categoryId) throws SQLException;
 
-    
     public AllCateDTO selectProdCate(long id) throws SQLException;
 
 }

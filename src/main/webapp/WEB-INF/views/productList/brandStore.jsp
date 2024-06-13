@@ -626,30 +626,6 @@ function setCommonGnbCookie(name, value, expiredays) {
 </script>
 <script type="text/javascript" src="//sui.ssgcdn.com/ui/ssg/js/ui/ssg.view.common.gnb.js?v=20240605"></script>
 
-<script type="text/javascript">
-    $(function(){
-        var oSsgMallCategory = new ssg.Model.mallCategory({
-            sUrl: 'https://sui.ssgcdn.com/common/ui/json/pc_ctg_list_0000_NORMAL.js'
-        });
-        oSsgMallCategory.getCategoryInfo().done(function(data) {
-            var sSsgMallCode = "6005";
-            var oSsgViewNavigation = new ssg.View.navigation({
-                htCtgData: oSsgMallCategory.getCtgDataByMallCode(sSsgMallCode, data)
-            });
-        });
-
-        // 배송매장 ( 새벽배송 )의 경우 이마트 / 새벽배송이 같은 차수이면 비노출 처리한다.
-        deferredObj.done(function() {
-            $("#cmgnb_ship a").each(function() {
-                if ( this.href.indexOf("morning/dvstore.ssg") > -1 && settings.UserInfo.isSameEmGm == "true" ) {
-                    $(this).hide();
-                } else {
-                    $(this).show();
-                }
-            });
-        });
-    });
-</script>
 
 <script type="text/javascript">
     function goSmileClub(notMbrLinkUrl, leaveMbrLinkUrl, mbrLinkUrl) {
@@ -1096,7 +1072,16 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="tmpl_drop_wrap notranslate" id="_il_pageSize">
                            <select data-template="#_dropdown" class="_dropdown"
                               title="상품보기 개수 선택" onchange="changeSize(this)">
-                              <option value="8" data-filter-type="count"
+                              <option value="8" 
+                                  ${param.size == '8' ? 'selected' : ''}>8개씩</option>
+                              <option value="12" 
+                                  ${param.size  == '12' || param.size == null ? 'selected' : ''}>12개씩</option>
+                              <option value="20" 
+                                 ${param.size  == '20' ? 'selected' : ''}>20개씩</option>
+                              <option value="40" 
+                                  ${param.size  == '40' ? 'selected' : ''}>40개씩</option>
+                              
+<%--                               <option value="8" data-filter-type="count"
                                  data-filter-value="count=8" ${param.size == '8' ? 'selected' : ''}>8개씩</option>
                               <option value="12" data-filter-type="count"
                                  data-filter-value="count=12" ${param.size  == '12' || param.size == null ? 'selected' : ''}>12개씩</option>
@@ -1104,7 +1089,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                  data-filter-value="count=20" ${param.size  == '20' ? 'selected' : ''}>20개씩</option>
                               <option value="40" data-filter-type="count"
                                  data-filter-value="count=40" ${param.size  == '40' ? 'selected' : ''}>40개씩</option>
-                              
+                               --%>
                            </select>
                            
                            <script type="text/javascript">

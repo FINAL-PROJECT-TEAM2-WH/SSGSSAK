@@ -2162,30 +2162,6 @@ function setCommonGnbCookie(name, value, expiredays) {
 		<script type="text/javascript"
 			src="//sui.ssgcdn.com/ui/ssg/js/ui/ssg.view.common.gnb.js?v=20240508"></script>
 
-		<script type="text/javascript">
-    $(function(){
-        var oSsgMallCategory = new ssg.Model.mallCategory({
-            sUrl: 'https://sui.ssgcdn.com/common/ui/json/pc_ctg_list_0000_NORMAL.js'
-        });
-        oSsgMallCategory.getCategoryInfo().done(function(data) {
-            var sSsgMallCode = "6005";
-            var oSsgViewNavigation = new ssg.View.navigation({
-                htCtgData: oSsgMallCategory.getCtgDataByMallCode(sSsgMallCode, data)
-            });
-        });
-
-        // 배송매장 ( 새벽배송 )의 경우 이마트 / 새벽배송이 같은 차수이면 비노출 처리한다.
-        deferredObj.done(function() {
-            $("#cmgnb_ship a").each(function() {
-                if ( this.href.indexOf("morning/dvstore.ssg") > -1 && settings.UserInfo.isSameEmGm == "true" ) {
-                    $(this).hide();
-                } else {
-                    $(this).show();
-                }
-            });
-        });
-    });
-</script>
 
 		<script type="text/javascript">
     function goSmileClub(notMbrLinkUrl, leaveMbrLinkUrl, mbrLinkUrl) {
