@@ -49,10 +49,39 @@ WHERE memid = #{id} AND productid = #{productid}
   INSERT INTO divisionfolder VALUES(division_seq.NEXTVAL, #{id}, #{folderName} ,SYSDATE)
   </insert>
   
-  <select id="getFolder" resultType="String">
-  SELECT name
+  <select id="getFolder" resultType="LikeFolderDTO">
+  SELECT id, name
   FROM divisionfolder
   WHERE memid = #{id}
+  </select>
+  
+  <select id="getFolders" resultType="String">
+  <![CDATA[
+  SELECT name
+   from (
+   SELECT name, ROW_NUMBER() OVER (ORDER BY CREATEDATE) rnum
+   FROm divisionfolder
+   WHERE memid = #{id}
+   )tp 
+   WHERE tp.rnum BETWEEN (CASE WHEN #{currentPage} > 1 THEN #{pageSize} * (#{currentPage} - 1) + 1 ELSE 1 END ) AND #{endPage}
+   ]]>
+  </select>
+  
+  <select id="getTotalFolder" resultType="int">
+ 	SELECT COUNT(*)
+  FROM divisionfolder
+  WHERE memid = #{id}
+  </select>
+  
+  <delete id="deleteFolder">
+  DELETE FROM divisionfolder
+  WHERE memid = #{id} AND id = #{folderid} AND name = #{name}
+  </delete>
+  
+  <select id="getLikeInfo" resultType="String"> 
+   SELECT productid 
+   FROM interestgoods
+   WHERE memid = #{id}
   </select>
   
 </mapper>

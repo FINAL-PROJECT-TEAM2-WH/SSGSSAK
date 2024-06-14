@@ -1272,7 +1272,7 @@ var sortViewTypeHandler = {
     <div class="prod_top">
         </div>
     <div class="thmb">
-        <a href="${productList[loop.index].id}" target="_self" class="clickable" data-react-tarea="브랜드|상품목록|상품_클릭|우먼스 플레이 톨 레인부츠 WFT2007RMA-BLK_1000592494943" data-info="1000592494943" data-index="7" data-position="view" data-unit="img" data-react-tarea-dtl-cd="t00001">
+        <a href="/SSGSSAK/product/product.do?productcode=${productList[loop.index].id}" target="_self" class="clickable" data-react-tarea="브랜드|상품목록|상품_클릭|우먼스 플레이 톨 레인부츠 WFT2007RMA-BLK_1000592494943" data-info="1000592494943" data-index="7" data-position="view" data-unit="img" data-react-tarea-dtl-cd="t00001">
 
             <img srcset="${productList[loop.index].prodImgurl}" src="${productList[loop.index].prodImgurl}" onerror="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=290&amp;h=290&amp;t=16cbd41d848a18acbeb9f1be5644242c91461495'" class="i1" width="290" height="290" alt="마우스 올리기 전의 이미지" loading="lazy">
             <img srcset="${productList[loop.index].prodImgurl}" src="${productList[loop.index].prodImgurl}" onerror="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=290&amp;h=290&amp;t=16cbd41d848a18acbeb9f1be5644242c91461495'" class="i2" width="290" height="290" alt="마우스 올린 후의 이미지" aria-hidden="true" loading="lazy">
