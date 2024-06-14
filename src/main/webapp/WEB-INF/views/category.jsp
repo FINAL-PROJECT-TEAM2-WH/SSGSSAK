@@ -87,66 +87,9 @@
 		</div>
  <script>
  
-//  원래메서드
-/*  window.onload = function() {
-	    var links = document.querySelectorAll('.cmctg_top_mn');
-	    var currentTarget = null;
-
-	    links.forEach(function(link) {
-	        link.addEventListener('mouseover', function(event) {
-	            if (currentTarget !== this) {
-	                currentTarget = this;
-	                var mjcId = this.getAttribute('data-ctg-code').substring(0, 2);
-
-	                $.ajax({
-	                    type: 'GET',
-	                    url: '/middleCategories',
-	                    data: { id: mjcId },
-	                    success: function(responseData, status, xhr) {
-	                        console.log("명건 요청 성공은 함?");
-	                        console.log("데이터도 됨?  제이슨", JSON.stringify(responseData));
-	                        $(currentTarget).find('.cmctg_sub_menu').empty(); // 선택된 메뉴의 서브 메뉴만 비움
-	                        renderMiddleCategories(currentTarget, responseData);
-	                    },
-	                    error: function(xhr, status, error) {
-	                        console.error("요청 실패:", error);
-	                    }
-	                });
-	            }
-	        });
-
-	        link.addEventListener('mouseleave', function(event) {
-	            currentTarget = null;
-	        });
-	    });
-	};
-
-	function renderMiddleCategories(target, data) {
-	    var subMenu = $(target).find('.cmctg_sub_menu');
-	    subMenu.empty(); // 기존 요소 제거
-	    $.each(data, function(index, item) {
-	        if (item && item.id && item.middleCateName) { // item이 null이 아니고 필요한 속성을 가지고 있는지 확인
-	            var newItemHtml = '<div class="cmctg_sub_col">' +
-	                                '<ul class="cmctg_sub_lst" role="menu">' +
-	                                    '<li class="cmctg_sub_tit">' +
-	                                        '<a role="menuitem" href="/productList?categoryId=' + item.id + '" ' +
-	                                            'class="cmctg_sub_lnk clickable" ' +
-	                                            'data-react-tarea="SSG공통|GNB 띠메뉴|SSG카테고리|' + item.middleCateName + '">' +
-	                                            item.middleCateName +
-	                                        '</a>' +
-	                                    '</li>' +
-	                                '</ul>' +
-	                            '</div>';
-	            subMenu.append(newItemHtml);
-	        } else {
-	            console.warn("Invalid item:", item);
-	        }
-	    });
-	} */
-
-	
-	
-	
+ 
+ /* 
+ 
 	window.onload = function() {
 	    var links = document.querySelectorAll('.cmctg_top_mn');
 	    var currentTarget = null;
@@ -236,19 +179,90 @@
 	    // 수정된 부분: 해당 미들카테고리 태그 바로 뒤에 서브카테고리를 추가합니다.
 	    $(target).after(subList.children());
 	}
-</script>    
-<!-- 					<div class="cmctg_sub_col">
-										<ul class="cmctg_sub_lst" role="menu">
-											<li class="cmctg_sub_tit"><a role="menuitem"
-												href="/productList?categoryId=미들아이디"
-												class="cmctg_sub_lnk clickable"
-												data-react-tarea="SSG공통|GNB 띠메뉴|SSG카테고리|미들이름">미들이름</a>
-											</li>
-										</ul>
-									</div>  -->
-<script>
+	 */
+
+	 window.onload = function() {
+		    var links = document.querySelectorAll('.cmctg_top_mn');
+
+		    links.forEach(function(link) {
+		        var mjcId = link.getAttribute('data-ctg-code').substring(0, 2);
+
+		        // 미들카테고리 요청
+		        $.ajax({
+		            type: 'GET',
+		            url: '/middleCategories',
+		            data: { id: mjcId },
+		            success: function(responseData, status, xhr) {
+		                console.log("미들카테고리 요청 성공");
+		                renderMiddleCategories(link, responseData);
+		            },
+		            error: function(xhr, status, error) {
+		                console.error("미들카테고리 요청 실패:", error);
+		            }
+		        });
+		    });
+		};
+
+		function renderMiddleCategories(target, data) {
+		    var subMenu = $(target).find('.cmctg_sub_menu');
+		    subMenu.empty(); // 기존 요소 제거
+		    $.each(data, function(index, item) {
+		        if (item && item.id && item.middleCateName) { // item이 null이 아니고 필요한 속성을 가지고 있는지 확인
+		            var newItemHtml = '<div class="cmctg_sub_col">' +
+		                                '<ul class="cmctg_sub_lst" role="menu">' +
+		                                    '<li class="cmctg_sub_tit" data-ctg-code="' + item.id.substring(0, 4) + '">' +
+		                                        '<a role="menuitem" href="/productList?categoryId=' + item.id + '" ' +
+		                                            'class="cmctg_sub_lnk clickable" ' +
+		                                            'data-react-tarea="SSG공통|GNB 띠메뉴|SSG카테고리|' + item.middleCateName + '">' +
+		                                            item.middleCateName +
+		                                        '</a>' +
+		                                    '</li>' +
+		                                '</ul>' +
+		                            '</div>';
+		            subMenu.append(newItemHtml);
+
+		            // 서브카테고리 요청
+		            $.ajax({
+		                type: 'GET',
+		                url: '/subCategories',
+		                data: { id: item.id.substring(0, 4) },
+		                success: function(subResponseData, subStatus, subXhr) {
+		                    console.log("서브카테고리 요청 성공");
+		                    renderSubCategories(subMenu.find('.cmctg_sub_tit[data-ctg-code="' + item.id.substring(0, 4) + '"]'), subResponseData);
+		                },
+		                error: function(subXhr, subStatus, subError) {
+		                    console.error("서브카테고리 요청 실패:", subError);
+		                }
+		            });
+		        } else {
+		            console.warn("Invalid item:", item);
+		        }
+		    });
+		}
+
+		function renderSubCategories(target, data) {
+		    var subList = $('<ul class="cmctg_sub_lst" role="menu"></ul>');
+		    $.each(data, function(index, item) {
+		        if (item && item.id && item.subCateName) { // item이 null이 아니고 필요한 속성을 가지고 있는지 확인
+		            var newItemHtml = '<li class="cmctg_sub_mn">' +
+		                                '<a role="menuitem" href="/productList?categoryId=' + item.id + '" ' +
+		                                    'class="cmctg_sub_lnk clickable" ' +
+		                                    'data-react-tarea="SSG공통|GNB 띠메뉴|SSG카테고리|' + item.subCateName + '">' +
+		                                    item.subCateName +
+		                                '</a>' +
+		                              '</li>';
+		            subList.append(newItemHtml);
+		        } else {
+		            console.warn("Invalid sub-category item:", item);
+		        }
+		    });
+		    // 해당 미들카테고리 태그 바로 뒤에 서브카테고리를 추가합니다.
+		    $(target).after(subList.children());
+		}
+
 
 </script>    
+
 		<!-- 	카테고리띄우기 -->
 		
 		
