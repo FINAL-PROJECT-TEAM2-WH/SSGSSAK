@@ -766,7 +766,7 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 		<div class="cctg_subtit" id="area_disp_ctg_title">
 			<h2>
 				<a class="notranslate clickable"
-					href="/SSGSSAK/productlist/productList?categoryId=${crtCateDto.id}">
+					href="/productList?categoryId=${crtCateDto.id}">
 					<c:choose>
 						<c:when test="${not empty crtCateDto.miniCateName}">
 							<c:out value="${crtCateDto.miniCateName}" />
@@ -865,15 +865,20 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 												</c:forEach>
 											</c:when>
 											
-											<c:when test="${fn:endsWith(crtCateDto.id, '0000') and not empty selectCate.mncDtoList}">
+											<c:when test="${fn:endsWith(crtCateDto.id, '00') and not empty selectCate.mncDtoList}">
 												<c:forEach items="${selectCate.mncDtoList}" var="mncDto">
 													<li class=""><a href="productList?categoryId=${mncDto.id}">${mncDto.miniCateName}</a></li>
 												</c:forEach>
 											</c:when>
-											
-											<c:otherwise>
+											<c:when test="${fn:endsWith(crtCateDto.id, '00') and empty selectCate.mncDtoList}">
 												<c:forEach items="${selectCate.scDtoList}" var="scDto">
 													<li class=""><a href="productList?categoryId=${scDto.id}">${scDto.subCateName}</a></li>
+												</c:forEach>
+											</c:when>
+											
+											<c:otherwise>
+												<c:forEach items="${selectCate.mncDtoList}" var="mncDto">
+													<li class=""><a href="productList?categoryId=${mncDto.id}">${mncDto.miniCateName}</a></li>
 												</c:forEach>
 											</c:otherwise>
 										</c:choose>
