@@ -65,7 +65,7 @@
 		<c:otherwise>
 			<div class="lo_depth_01">
 				<span class="lo_line">/</span> <a
-					href="/productList?categoryId=${crtCateDto.id}"
+					href="/productList?categoryId=${fn:substring(crtCateDto.id, 0, 6)}00"
 					class="lo_menu lo_arr">${crtCateDto.subCateName}</a>
 				<div id="lo_menu02" class="lo_depth_02 n2">
 					<ul>
